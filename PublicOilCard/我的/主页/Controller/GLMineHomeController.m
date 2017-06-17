@@ -178,8 +178,8 @@ static NSString *headerID = @"GLMine_HeaderView";
     [header.adImageV mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.equalTo(@0);
     }];
-    header.openCardBtn.hidden = YES;
-    header.exchangeBtn.hidden = YES;
+    header.openCardBtn.hidden = NO;
+    header.exchangeBtn.hidden = NO;
     
     return header;
 }

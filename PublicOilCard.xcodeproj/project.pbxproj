@@ -133,6 +133,10 @@
 		4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D41EF2A62300F827BB /* GLMine_updateManagerAllCell.m */; };
 		4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D51EF2A62300F827BB /* GLMine_updateManagerAllCell.xib */; };
 		847D8655779E28C7BBDF27AB /* Pods_PublicOilCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F5205C5ECB12FF995636AD /* Pods_PublicOilCard.framework */; };
+		F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */; };
+		F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */; };
+		F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */; };
+		F92DA9501EF5015900530237 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA94F1EF5015900530237 /* View.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -342,6 +346,12 @@
 		4AEEC9D51EF2A62300F827BB /* GLMine_updateManagerAllCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_updateManagerAllCell.xib; sourceTree = "<group>"; };
 		99D0512F57A7F383D89AAB99 /* Pods-PublicOilCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PublicOilCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-PublicOilCard/Pods-PublicOilCard.release.xcconfig"; sourceTree = "<group>"; };
 		CE8B0BB81FC7EF0D1C71D6A0 /* Pods-PublicOilCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PublicOilCard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PublicOilCard/Pods-PublicOilCard.debug.xcconfig"; sourceTree = "<group>"; };
+		F92DA9471EF4FD9C00530237 /* LBExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeViewController.h; sourceTree = "<group>"; };
+		F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeViewController.m; sourceTree = "<group>"; };
+		F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeViewController.xib; sourceTree = "<group>"; };
+		F92DA94C1EF5014C00530237 /* LBExchangeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeHeaderView.h; sourceTree = "<group>"; };
+		F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeHeaderView.m; sourceTree = "<group>"; };
+		F92DA94F1EF5015900530237 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -448,6 +458,9 @@
 				4A39F4BC1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.h */,
 				4A39F4BD1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.m */,
 				4A39F4BE1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.xib */,
+				F92DA9471EF4FD9C00530237 /* LBExchangeViewController.h */,
+				F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */,
+				F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -465,6 +478,9 @@
 				4A39F4C41EF3BA510038C147 /* GLMine_ExchangeRecordCell.h */,
 				4A39F4C51EF3BA510038C147 /* GLMine_ExchangeRecordCell.m */,
 				4A39F4C61EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib */,
+				F92DA94C1EF5014C00530237 /* LBExchangeHeaderView.h */,
+				F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */,
+				F92DA94F1EF5015900530237 /* View.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1277,6 +1293,7 @@
 				4A4FA5ED1EF0DE3100A256D2 /* GLMallHomeController.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
+				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
 				4A39F4C81EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib in Resources */,
 				4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
@@ -1289,6 +1306,7 @@
 				4A4FA5F41EF0E16A00A256D2 /* Common.xcassets in Resources */,
 				4A5BBBDB1EF2659F008270F2 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
 				4AEC05891EF13CBA00B39497 /* GLMine_CollectController.xib in Resources */,
+				F92DA9501EF5015900530237 /* View.xib in Resources */,
 				4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */,
 				4A39F4DB1EF3C6420038C147 /* LBMineCenterPayPagesViewController.xib in Resources */,
 				4A39F4F01EF3E79F0038C147 /* GLMall_GoodsDetailController.xib in Resources */,
@@ -1387,6 +1405,7 @@
 				4A5BBBD21EF2659F008270F2 /* GLLoginController.m in Sources */,
 				4A39F4B71EF3B6960038C147 /* XBScrollPageController.m in Sources */,
 				4A39F4B91EF3B6960038C147 /* XBPageCell.m in Sources */,
+				F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */,
 				4A39F4BF1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.m in Sources */,
 				4A39F4C71EF3BA510038C147 /* GLMine_ExchangeRecordCell.m in Sources */,
 				4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */,
@@ -1435,6 +1454,7 @@
 				4A39F50B1EF406A60038C147 /* PhotoView.m in Sources */,
 				4A5BBBED1EF26AED008270F2 /* NetworkManager.m in Sources */,
 				4A39F5031EF3F6480038C147 /* GLMall_GoodsHeaderView.m in Sources */,
+				F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */,
 				4AEC05A71EF1472900B39497 /* GLMine_InfoController.m in Sources */,
 				4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */,
 			);
