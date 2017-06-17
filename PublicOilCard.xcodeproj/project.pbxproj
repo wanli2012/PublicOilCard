@@ -136,7 +136,15 @@
 		F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */; };
 		F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */; };
 		F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */; };
-		F92DA9501EF5015900530237 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA94F1EF5015900530237 /* View.xib */; };
+		F92DA9521EF5020300530237 /* LBExchangeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9511EF5020300530237 /* LBExchangeHeaderView.xib */; };
+		F92DA9561EF5170400530237 /* LBChooseTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9541EF5170400530237 /* LBChooseTypeTableViewCell.m */; };
+		F92DA9571EF5170400530237 /* LBChooseTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9551EF5170400530237 /* LBChooseTypeTableViewCell.xib */; };
+		F92DA95B1EF518B400530237 /* LBWriteInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9591EF518B400530237 /* LBWriteInfoTableViewCell.m */; };
+		F92DA95C1EF518B400530237 /* LBWriteInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA95A1EF518B400530237 /* LBWriteInfoTableViewCell.xib */; };
+		F92DA9601EF5194900530237 /* LBExchangeJiFenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA95E1EF5194900530237 /* LBExchangeJiFenTableViewCell.m */; };
+		F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA95F1EF5194900530237 /* LBExchangeJiFenTableViewCell.xib */; };
+		F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9631EF51F5700530237 /* IncentiveModel.m */; };
+		F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9641EF51F5700530237 /* IncentiveModel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -351,7 +359,19 @@
 		F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeViewController.xib; sourceTree = "<group>"; };
 		F92DA94C1EF5014C00530237 /* LBExchangeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeHeaderView.h; sourceTree = "<group>"; };
 		F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeHeaderView.m; sourceTree = "<group>"; };
-		F92DA94F1EF5015900530237 /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
+		F92DA9511EF5020300530237 /* LBExchangeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeHeaderView.xib; sourceTree = "<group>"; };
+		F92DA9531EF5170400530237 /* LBChooseTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBChooseTypeTableViewCell.h; sourceTree = "<group>"; };
+		F92DA9541EF5170400530237 /* LBChooseTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBChooseTypeTableViewCell.m; sourceTree = "<group>"; };
+		F92DA9551EF5170400530237 /* LBChooseTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBChooseTypeTableViewCell.xib; sourceTree = "<group>"; };
+		F92DA9581EF518B400530237 /* LBWriteInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWriteInfoTableViewCell.h; sourceTree = "<group>"; };
+		F92DA9591EF518B400530237 /* LBWriteInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWriteInfoTableViewCell.m; sourceTree = "<group>"; };
+		F92DA95A1EF518B400530237 /* LBWriteInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBWriteInfoTableViewCell.xib; sourceTree = "<group>"; };
+		F92DA95D1EF5194900530237 /* LBExchangeJiFenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeJiFenTableViewCell.h; sourceTree = "<group>"; };
+		F92DA95E1EF5194900530237 /* LBExchangeJiFenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeJiFenTableViewCell.m; sourceTree = "<group>"; };
+		F92DA95F1EF5194900530237 /* LBExchangeJiFenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeJiFenTableViewCell.xib; sourceTree = "<group>"; };
+		F92DA9621EF51F5700530237 /* IncentiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncentiveModel.h; sourceTree = "<group>"; };
+		F92DA9631EF51F5700530237 /* IncentiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncentiveModel.m; sourceTree = "<group>"; };
+		F92DA9641EF51F5700530237 /* IncentiveModel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncentiveModel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -480,7 +500,19 @@
 				4A39F4C61EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib */,
 				F92DA94C1EF5014C00530237 /* LBExchangeHeaderView.h */,
 				F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */,
-				F92DA94F1EF5015900530237 /* View.xib */,
+				F92DA9511EF5020300530237 /* LBExchangeHeaderView.xib */,
+				F92DA9531EF5170400530237 /* LBChooseTypeTableViewCell.h */,
+				F92DA9541EF5170400530237 /* LBChooseTypeTableViewCell.m */,
+				F92DA9551EF5170400530237 /* LBChooseTypeTableViewCell.xib */,
+				F92DA9581EF518B400530237 /* LBWriteInfoTableViewCell.h */,
+				F92DA9591EF518B400530237 /* LBWriteInfoTableViewCell.m */,
+				F92DA95A1EF518B400530237 /* LBWriteInfoTableViewCell.xib */,
+				F92DA95D1EF5194900530237 /* LBExchangeJiFenTableViewCell.h */,
+				F92DA95E1EF5194900530237 /* LBExchangeJiFenTableViewCell.m */,
+				F92DA95F1EF5194900530237 /* LBExchangeJiFenTableViewCell.xib */,
+				F92DA9621EF51F5700530237 /* IncentiveModel.h */,
+				F92DA9631EF51F5700530237 /* IncentiveModel.m */,
+				F92DA9641EF51F5700530237 /* IncentiveModel.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1271,6 +1303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A1CE70F1EF4C91900895ADF /* GLMine_ExchangeController.xib in Resources */,
+				F92DA95C1EF518B400530237 /* LBWriteInfoTableViewCell.xib in Resources */,
 				4AEC058E1EF13CE400B39497 /* GLMine_CollectCell.xib in Resources */,
 				4AEC05801EF1151600B39497 /* GLMine_HeaderView.xib in Resources */,
 				4A5BBBA91EF23513008270F2 /* GLMine_OrderController.xib in Resources */,
@@ -1290,23 +1323,25 @@
 				4A39F4991EF3AFB00038C147 /* GLMine_SetController.xib in Resources */,
 				4A5BBBE71EF26A35008270F2 /* LoadWaitView.xib in Resources */,
 				4AEEC9BF1EF281D500F827BB /* PopMenuTableViewCell.xib in Resources */,
+				F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */,
 				4A4FA5ED1EF0DE3100A256D2 /* GLMallHomeController.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
 				4A39F4C81EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib in Resources */,
+				F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */,
 				4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
 				4A4FA5F21EF0DF3500A256D2 /* Mine.xcassets in Resources */,
 				4A4FA5981EF0CA1100A256D2 /* LaunchScreen.storyboard in Resources */,
+				F92DA9571EF5170400530237 /* LBChooseTypeTableViewCell.xib in Resources */,
 				4A4FA5951EF0CA1100A256D2 /* Assets.xcassets in Resources */,
 				4AEC05A81EF1472900B39497 /* GLMine_InfoController.xib in Resources */,
 				4A5BBB961EF21617008270F2 /* GLMine_InfoCell.xib in Resources */,
 				4A4FA5F41EF0E16A00A256D2 /* Common.xcassets in Resources */,
 				4A5BBBDB1EF2659F008270F2 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
 				4AEC05891EF13CBA00B39497 /* GLMine_CollectController.xib in Resources */,
-				F92DA9501EF5015900530237 /* View.xib in Resources */,
 				4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */,
 				4A39F4DB1EF3C6420038C147 /* LBMineCenterPayPagesViewController.xib in Resources */,
 				4A39F4F01EF3E79F0038C147 /* GLMall_GoodsDetailController.xib in Resources */,
@@ -1317,6 +1352,7 @@
 				4A4FA5F01EF0DF2E00A256D2 /* Mall.xcassets in Resources */,
 				4A5BBBD91EF2659F008270F2 /* SelectUserTypeView.xib in Resources */,
 				4A4FA5A81EF0CF0B00A256D2 /* GLMineHomeController.xib in Resources */,
+				F92DA9521EF5020300530237 /* LBExchangeHeaderView.xib in Resources */,
 				4A39F4DD1EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.xib in Resources */,
 				4A5BBBD71EF2659F008270F2 /* LoginIdentityView.xib in Resources */,
 				4A4FA5901EF0CA1100A256D2 /* Main.storyboard in Resources */,
@@ -1396,6 +1432,7 @@
 				4AEEC9BD1EF281A300F827BB /* PopMenuTableViewCell.m in Sources */,
 				4A1CE70E1EF4C91900895ADF /* GLMine_ExchangeController.m in Sources */,
 				4A39F4F91EF3F04D0038C147 /* GLMall_GoodsInterestCell.m in Sources */,
+				F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */,
 				4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */,
 				4AEEC9D11EF28DF500F827BB /* GLMine_updateManagerCell.m in Sources */,
 				4A5BBBD81EF2659F008270F2 /* SelectUserTypeView.m in Sources */,
@@ -1404,6 +1441,7 @@
 				4A4FA5C21EF0D91300A256D2 /* UserModel.m in Sources */,
 				4A5BBBD21EF2659F008270F2 /* GLLoginController.m in Sources */,
 				4A39F4B71EF3B6960038C147 /* XBScrollPageController.m in Sources */,
+				F92DA9561EF5170400530237 /* LBChooseTypeTableViewCell.m in Sources */,
 				4A39F4B91EF3B6960038C147 /* XBPageCell.m in Sources */,
 				F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */,
 				4A39F4BF1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.m in Sources */,
@@ -1417,6 +1455,7 @@
 				4A39F48F1EF383EB0038C147 /* GLCompleteInfoController.m in Sources */,
 				4A4FA5C11EF0D91300A256D2 /* MerchantInformationModel.m in Sources */,
 				4A5BBBE81EF26A35008270F2 /* NodataView.m in Sources */,
+				F92DA95B1EF518B400530237 /* LBWriteInfoTableViewCell.m in Sources */,
 				4A5BBBD61EF2659F008270F2 /* LoginIdentityView.m in Sources */,
 				4A4FA5A71EF0CF0B00A256D2 /* GLMineHomeController.m in Sources */,
 				4A39F4A61EF3B6280038C147 /* GLMine_ExchangeRecordController.m in Sources */,
@@ -1433,6 +1472,7 @@
 				4A39F4BA1EF3B6960038C147 /* XBTagTitleCell.m in Sources */,
 				4A5BBBDA1EF2659F008270F2 /* LBHomeLoginFortgetSecretViewController.m in Sources */,
 				4A39F4DC1EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.m in Sources */,
+				F92DA9601EF5194900530237 /* LBExchangeJiFenTableViewCell.m in Sources */,
 				4AEC057F1EF1151600B39497 /* GLMine_HeaderView.m in Sources */,
 				4A39F4981EF3AFB00038C147 /* GLMine_SetController.m in Sources */,
 				4A39F4861EF378430038C147 /* GLMine_updateManagerDealNowCell.m in Sources */,
