@@ -116,7 +116,8 @@
         
     }];
     
-    [UserModel defaultUser].usrtype = @"2";
+    [UserModel defaultUser].usrtype = @"1";
+    [usermodelachivar achive];
     
     [self.adImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -140,7 +141,8 @@
         
         make.leading.equalTo(self).offset(0);
         make.trailing.equalTo(self).offset(0);
-        make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
+//        make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
+        make.height.equalTo(@50);
         make.bottom.equalTo(self.adImageV.mas_top).offset(0);
     
     }];
@@ -261,6 +263,7 @@
         
         self.nameLabel.text = @"用户名";
     }
+    self.positionLabel.text = @"部长";
     self.IDLabel.text = @"ID:123445";
     self.xiaofeiLabel.text = @"2000元";
     self.jifenLabel.text = @"2000分";
