@@ -7,6 +7,7 @@
 //
 
 #import "GLMineHomeController.h"
+//#import <Masonry/Masonry.h>
 #import "GLMine_HeaderView.h"
 #import "GLMine_collectionCell.h"
 #import "GLMine_CollectController.h"
@@ -18,8 +19,8 @@
 #import "GLMine_updateManagerController.h"
 #import "GLMine_SetController.h"
 #import "GLMine_ExchangeRecordController.h"
-#import <Masonry/Masonry.h>
-#import "LBExchangeViewController.h"
+#import "GLMine_OpenController.h"
+#import "GLMine_RelationshipController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -41,7 +42,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [UserModel defaultUser].usrtype = @"1";
+    [UserModel defaultUser].usrtype = @"2";
     [usermodelachivar achive];
 
     _keyArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
@@ -90,7 +91,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)exchange {
     
     self.hidesBottomBarWhenPushed = YES;
-    LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
+    GLMine_ExchangeRecordController *exchangeVC = [[GLMine_ExchangeRecordController alloc] init];
     [self.navigationController pushViewController:exchangeVC animated:YES];
     
     self.hidesBottomBarWhenPushed = NO;
@@ -104,17 +105,12 @@ static NSString *headerID = @"GLMine_HeaderView";
         
         UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
         [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 10, 0)];
-//        if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-//            [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64) * 0.4 + 10)];
-//        }else{
-//            [flowLayout setHeaderReferenceSize:CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64) * 0.45)];
-//        }
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        [flowLayout setMinimumInteritemSpacing:0.0];
-        [flowLayout setMinimumLineSpacing:0.0];
+        [flowLayout setMinimumInteritemSpacing:10];
+        [flowLayout setMinimumLineSpacing:10];
         
         _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
-        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 ,(_collectionV.height - 220)/2);
+        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5 ,(_collectionV.height - 220)/2);
         _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
@@ -141,15 +137,31 @@ static NSString *headerID = @"GLMine_HeaderView";
     switch (indexPath.row) {
         case 0:
         {
-            GLMine_CollectController *collectVC = [[GLMine_CollectController alloc] init];
-            [self.navigationController pushViewController:collectVC animated:YES];
+            if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+                GLMine_OpenController *openVC = [[GLMine_OpenController alloc] init];
+                [self.navigationController pushViewController:openVC animated:YES];
+                
+            }else{
+                
+                GLMine_CollectController *collectVC = [[GLMine_CollectController alloc] init];
+                [self.navigationController pushViewController:collectVC animated:YES];
+            }
         }
             break;
         case 1:
         {
-            GLMine_OrderController *orderVC = [[GLMine_OrderController alloc] init];
-            [self.navigationController pushViewController:orderVC animated:YES];
-        }
+            if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+                GLMine_RelationshipController *vc = [[GLMine_RelationshipController alloc] init];
+                [self.navigationController pushViewController:vc animated:YES];
+                
+            }else{
+                
+                GLMine_OrderController *orderVC = [[GLMine_OrderController alloc] init];
+                [self.navigationController pushViewController:orderVC animated:YES];
+
+            }
+
+                    }
             break;
         case 2:
         {
@@ -188,8 +200,8 @@ static NSString *headerID = @"GLMine_HeaderView";
 //    }];
     if ([[UserModel defaultUser].usrtype integerValue] == 1) {
 
-        _header.openCardBtn.hidden = NO;
-        _header.exchangeBtn.hidden = NO;
+        _header.openCardBtn.hidden = YES;
+        _header.exchangeBtn.hidden = YES;
     }else{
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
@@ -208,7 +220,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
     }else{
         
-        return CGSizeMake(SCREEN_WIDTH, 250);
+        return CGSizeMake(SCREEN_WIDTH, 280);
     }
    
 }

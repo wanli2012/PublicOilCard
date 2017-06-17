@@ -116,8 +116,6 @@
         
     }];
     
-    [UserModel defaultUser].usrtype = @"1";
-    [usermodelachivar achive];
     
     [self.adImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -142,7 +140,7 @@
         make.leading.equalTo(self).offset(0);
         make.trailing.equalTo(self).offset(0);
 //        make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
-        make.height.equalTo(@50);
+        make.height.equalTo(@40);
         make.bottom.equalTo(self.adImageV.mas_top).offset(0);
     
     }];
