@@ -7,6 +7,7 @@
 //
 
 #import "GLMineHomeController.h"
+//#import <Masonry/Masonry.h>
 #import "GLMine_HeaderView.h"
 #import "GLMine_collectionCell.h"
 #import "GLMine_CollectController.h"
@@ -18,7 +19,7 @@
 #import "GLMine_updateManagerController.h"
 #import "GLMine_SetController.h"
 #import "GLMine_ExchangeRecordController.h"
-#import <Masonry/Masonry.h>
+#import "GLMine_OpenController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -140,8 +141,15 @@ static NSString *headerID = @"GLMine_HeaderView";
     switch (indexPath.row) {
         case 0:
         {
-            GLMine_CollectController *collectVC = [[GLMine_CollectController alloc] init];
-            [self.navigationController pushViewController:collectVC animated:YES];
+            if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+                GLMine_OpenController *openVC = [[GLMine_OpenController alloc] init];
+                [self.navigationController pushViewController:openVC animated:YES];
+                
+            }else{
+                
+                GLMine_CollectController *collectVC = [[GLMine_CollectController alloc] init];
+                [self.navigationController pushViewController:collectVC animated:YES];
+            }
         }
             break;
         case 1:
@@ -207,7 +215,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
     }else{
         
-        return CGSizeMake(SCREEN_WIDTH, 250);
+        return CGSizeMake(SCREEN_WIDTH, 280);
     }
    
 }
