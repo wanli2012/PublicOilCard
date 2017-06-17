@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_RelationshipController">
             <connections>
+                <outlet property="tableView" destination="aW9-sK-DDu" id="Idr-KS-okl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,49 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="353" height="377"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGG-Be-hsf">
-                    <rect key="frame" x="0.0" y="64" width="353" height="80"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经理: 10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k23-Be-CXt">
-                            <rect key="frame" x="20" y="10" width="70.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经理: 10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0je-VJ-0OP">
-                            <rect key="frame" x="20" y="48" width="70.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经理: 10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxk-Fe-Wpn">
-                            <rect key="frame" x="262.5" y="10" width="70.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="经理: 10人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zsp-Z1-mu5">
-                            <rect key="frame" x="262.5" y="48" width="70.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="0je-VJ-0OP" firstAttribute="top" secondItem="k23-Be-CXt" secondAttribute="bottom" constant="20" id="AvF-qW-Q5Q"/>
-                        <constraint firstAttribute="height" constant="80" id="EPO-Zx-g4P"/>
-                        <constraint firstItem="zsp-Z1-mu5" firstAttribute="leading" secondItem="Yxk-Fe-Wpn" secondAttribute="leading" id="Eep-wY-9o1"/>
-                        <constraint firstAttribute="trailing" secondItem="Yxk-Fe-Wpn" secondAttribute="trailing" constant="20" id="NqP-ZD-GQK"/>
-                        <constraint firstItem="k23-Be-CXt" firstAttribute="top" secondItem="BGG-Be-hsf" secondAttribute="top" constant="10" id="R4m-if-WDl"/>
-                        <constraint firstItem="zsp-Z1-mu5" firstAttribute="top" secondItem="Yxk-Fe-Wpn" secondAttribute="bottom" constant="20" id="a3d-JW-043"/>
-                        <constraint firstItem="Yxk-Fe-Wpn" firstAttribute="top" secondItem="k23-Be-CXt" secondAttribute="top" id="fby-Yn-aro"/>
-                        <constraint firstItem="0je-VJ-0OP" firstAttribute="leading" secondItem="k23-Be-CXt" secondAttribute="leading" id="rxE-sh-Moq"/>
-                        <constraint firstItem="k23-Be-CXt" firstAttribute="leading" secondItem="BGG-Be-hsf" secondAttribute="leading" constant="20" id="tuV-oS-bSr"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g0H-hG-bdX">
-                    <rect key="frame" x="0.0" y="144" width="353" height="50"/>
+                    <rect key="frame" x="0.0" y="64" width="353" height="50"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdA-dS-uVm">
                             <rect key="frame" x="0.0" y="0.0" width="117.5" height="50"/>
@@ -110,8 +70,8 @@
                         <constraint firstAttribute="trailing" secondItem="LeS-n4-SPt" secondAttribute="trailing" id="xPt-wb-mJS"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aW9-sK-DDu">
-                    <rect key="frame" x="0.0" y="194" width="353" height="183"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aW9-sK-DDu">
+                    <rect key="frame" x="0.0" y="114" width="353" height="263"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="xg2-zD-fKf"/>
@@ -121,16 +81,13 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="BGG-Be-hsf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="04c-v8-ECL"/>
                 <constraint firstItem="aW9-sK-DDu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="6FF-pt-gVe"/>
                 <constraint firstAttribute="bottom" secondItem="aW9-sK-DDu" secondAttribute="bottom" id="Ahq-Gw-Wp1"/>
                 <constraint firstAttribute="trailing" secondItem="g0H-hG-bdX" secondAttribute="trailing" id="Eh4-iD-v6v"/>
                 <constraint firstItem="aW9-sK-DDu" firstAttribute="top" secondItem="g0H-hG-bdX" secondAttribute="bottom" id="HpX-gU-NJL"/>
+                <constraint firstItem="g0H-hG-bdX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Nql-Cw-QTT"/>
                 <constraint firstAttribute="trailing" secondItem="aW9-sK-DDu" secondAttribute="trailing" id="PyL-rQ-nxz"/>
-                <constraint firstAttribute="trailing" secondItem="BGG-Be-hsf" secondAttribute="trailing" id="Xhs-ej-rIq"/>
-                <constraint firstItem="g0H-hG-bdX" firstAttribute="top" secondItem="BGG-Be-hsf" secondAttribute="bottom" id="YDf-9D-e0o"/>
                 <constraint firstItem="g0H-hG-bdX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ccQ-Za-cpH"/>
-                <constraint firstItem="BGG-Be-hsf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="m2h-6w-ycr"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
