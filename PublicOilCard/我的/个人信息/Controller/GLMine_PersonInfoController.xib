@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_PersonInfoController">
+            <connections>
+                <outlet property="addressLabel" destination="m3H-bk-53V" id="7GQ-Y0-Odb"/>
+                <outlet property="phoneLabel" destination="wnK-bm-usk" id="vst-8a-RlU"/>
+                <outlet property="tableView" destination="2AD-7U-YIu" id="OMd-xk-Z9v"/>
+                <outlet property="tableViewHeight" destination="fDi-bR-FAO" id="7Gg-KZ-xjU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号码:16776869999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnK-bm-usk">
+                    <rect key="frame" x="10" y="610" width="355" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址: 城都是高新区中百达到" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3H-bk-53V">
+                    <rect key="frame" x="10" y="572" width="355" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="qmq-Vr-LVI"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2AD-7U-YIu">
+                    <rect key="frame" x="0.0" y="74" width="375" height="478"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="478" id="fDi-bR-FAO"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="SZd-gr-XJ3"/>
+                        <outlet property="delegate" destination="-1" id="XC2-xs-yvq"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.97624784708023071" green="0.98039597272872925" blue="0.98440331220626831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="wnK-bm-usk" firstAttribute="top" secondItem="m3H-bk-53V" secondAttribute="bottom" constant="20" id="8Z4-K8-6sD"/>
+                <constraint firstItem="2AD-7U-YIu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="PwW-3e-sV4"/>
+                <constraint firstAttribute="trailing" secondItem="wnK-bm-usk" secondAttribute="trailing" constant="10" id="RKd-1s-naE"/>
+                <constraint firstItem="m3H-bk-53V" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="TEz-o4-fMz"/>
+                <constraint firstAttribute="trailing" secondItem="m3H-bk-53V" secondAttribute="trailing" constant="10" id="YUp-hC-mFe"/>
+                <constraint firstItem="wnK-bm-usk" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="ZFs-AF-h2P"/>
+                <constraint firstItem="2AD-7U-YIu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gbO-jW-p23"/>
+                <constraint firstAttribute="trailing" secondItem="2AD-7U-YIu" secondAttribute="trailing" id="nR6-kO-jV0"/>
+                <constraint firstItem="m3H-bk-53V" firstAttribute="top" secondItem="2AD-7U-YIu" secondAttribute="bottom" constant="20" id="r61-ye-O5C"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>
