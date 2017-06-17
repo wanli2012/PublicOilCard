@@ -25,6 +25,8 @@
     //假数据源
     NSArray *_keyArr;
     NSArray *_vlaueArr;
+    
+    GLMine_HeaderView *_header;
 }
 
 @property (nonatomic, strong)UICollectionView *collectionV;
@@ -37,6 +39,10 @@ static NSString *headerID = @"GLMine_HeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [UserModel defaultUser].usrtype = @"1";
+    [usermodelachivar achive];
+
     _keyArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
    
     [self.view addSubview:self.collectionV];
@@ -44,6 +50,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
 //    [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMine_HeaderView"];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -106,7 +113,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         [flowLayout setMinimumLineSpacing:0.0];
         
         _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
-        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 ,100);
+        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 ,(_collectionV.height - 220)/2);
         _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
@@ -165,29 +172,43 @@ static NSString *headerID = @"GLMine_HeaderView";
              viewForSupplementaryElementOfKind:(NSString *)kind
                                    atIndexPath:(NSIndexPath *)indexPath {
 
-    GLMine_HeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID forIndexPath:indexPath];
+    _header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID forIndexPath:indexPath];
     
     //跳转到个人信息界面
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(personInfo)];
-    [header.picImagaV addGestureRecognizer:tap];
+    [_header.picImagaV addGestureRecognizer:tap];
     
-    [header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
-    [header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
+    [_header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
+    [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     
-    [header.adImageV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.equalTo(@0);
-    }];
-    header.openCardBtn.hidden = YES;
-    header.exchangeBtn.hidden = YES;
+//    [header.adImageV mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.height.equalTo(@0);
+//    }];
+    if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+
+        _header.openCardBtn.hidden = YES;
+        _header.exchangeBtn.hidden = YES;
+    }else{
+        _header.openCardBtn.hidden = NO;
+        _header.exchangeBtn.hidden = NO;
+
+    }
     
-    return header;
+    return _header;
 }
 // 设置section头视图的参考大小，与tableheaderview类似
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
- 
-    return CGSizeMake(SCREEN_WIDTH, 250);
+    
+    if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+        
+        return CGSizeMake(SCREEN_WIDTH, 220);
+        
+    }else{
+        
+        return CGSizeMake(SCREEN_WIDTH, 250);
+    }
    
 }
 @end
