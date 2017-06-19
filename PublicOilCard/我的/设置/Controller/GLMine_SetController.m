@@ -8,8 +8,10 @@
 
 #import "GLMine_SetController.h"
 #import "GLMine_SetCell.h"
+#import "LBModifyPasswordViewController.h"
+#import "GLRecommendController.h"
 
-@interface GLMine_SetController ()
+@interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource>
 {
     NSArray *_dataArr;
 }
@@ -27,7 +29,6 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
     _dataArr = @[@"密码修改",@"内存清理",@"关于公司",@"联系客服",@"版本更新"];
-    self.tableViewHeight.constant = _dataArr.count * 40;
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -49,7 +50,46 @@
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    return 50;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    switch (indexPath.row) {
+        case 0:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            LBModifyPasswordViewController *vc=[[LBModifyPasswordViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 1:
+        {
+            
+        }
+            break;
+        case 2:
+        {
+            
+        }
+            break;
+        case 3:
+        {
+            
+        }
+            break;
+        case 4:
+        {
+            self.hidesBottomBarWhenPushed = YES;
+            GLRecommendController *vc=[[GLRecommendController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 @end
