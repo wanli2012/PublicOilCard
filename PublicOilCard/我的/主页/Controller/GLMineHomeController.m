@@ -21,12 +21,13 @@
 #import "GLMine_ExchangeRecordController.h"
 #import "GLMine_OpenController.h"
 #import "GLMine_RelationshipController.h"
+#import "LBExchangeViewController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     //假数据源
     NSArray *_keyArr;
-    NSArray *_vlaueArr;
+    NSArray *_imageArr;
     
     GLMine_HeaderView *_header;
 }
@@ -46,7 +47,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [usermodelachivar achive];
 
     _keyArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
-   
+    _imageArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
     [self.view addSubview:self.collectionV];
     //注册头视图
     [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
@@ -91,7 +92,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)exchange {
     
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_ExchangeRecordController *exchangeVC = [[GLMine_ExchangeRecordController alloc] init];
+    LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
     [self.navigationController pushViewController:exchangeVC animated:YES];
     
     self.hidesBottomBarWhenPushed = NO;
@@ -130,6 +131,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_collectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.titleLabel.text = _keyArr[indexPath.row];
+    cell.picImageV.image = [UIImage imageNamed:_imageArr[indexPath.row]];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{

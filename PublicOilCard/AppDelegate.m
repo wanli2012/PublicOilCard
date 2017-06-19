@@ -26,10 +26,10 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[BasetabbarViewController alloc]init];
+//    self.window.rootViewController = [[BasetabbarViewController alloc]init];
 //    self.window.rootViewController = [[LBMineCenterPayPagesViewController alloc]init];
 //    self.window.rootViewController = [[GLCompleteInfoController alloc]init];
-//    self.window.rootViewController = [[GLLoginController alloc]init];
+    self.window.rootViewController = [[GLLoginController alloc]init];
     
 //    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
 //        
