@@ -11,6 +11,7 @@
 #import "GLMallHomeController.h"
 #import "GLMineHomeController.h"
 #import "GLLoginController.h"
+#import "GLCompleteInfoController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -44,24 +45,20 @@
     
     mallNav.tabBarItem = [self barTitle:@"消费" image:@"首页未选中状态" selectImage:@"首页选中状态"];
     mineNav.tabBarItem = [self barTitle:@"我的" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-//    [UserModel defaultUser].usrtype = Retailer;
-//    [UserModel defaultUser].loginstatus = YES;
 
-//    [usermodelachivar achive];
-//    if ([UserModel defaultUser].loginstatus == YES) {//登录状态
-//        if ([[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]) {//一级业务员(副总) 二级业务员(高级推广员)
-//            self.viewControllers = @[businessNav,ManAndBusinessNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:THREESALER]){//三级业务员(普通推广员)
-//            self.viewControllers = @[businessNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]){//普通用户
-//            self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
-//        }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){//商家
-//            self.viewControllers = @[incomeNav,commentNav,storeNav, minenav];
-//        }
-//    }else{//退出状态
-//        self.viewControllers = @[IntegralMallnav,nearbyNav, minenav];
-//    }
-    self.viewControllers = @[mallNav,mineNav];
+    if ([UserModel defaultUser].loginstatus == YES) {//登录状态
+        if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR] || [[UserModel defaultUser].group_id isEqualToString:MINISTER]) {//经理
+            
+            self.viewControllers = @[mineNav];
+        }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer]){//商家
+            self.viewControllers = @[mallNav,mineNav];
+        }else{
+            self.viewControllers = @[mallNav,mineNav];
+        }
+    }else{//退出状态
+        self.viewControllers = @[mallNav,mineNav];
+    }
+
     self.selectedIndex=0;
     
 }
@@ -82,35 +79,40 @@
 {
     
     int index;
-//    if ([[UserModel defaultUser].usrtype isEqualToString:OrdinaryUser]) {
-//        index = 2;
-//    }else if ([[UserModel defaultUser].usrtype isEqualToString:Retailer]){
-//        index = 3;
-//    }else if ([[UserModel defaultUser].usrtype isEqualToString:@"0"] || [UserModel defaultUser].usrtype == nil || [[UserModel defaultUser].usrtype isEqualToString:ONESALER] || [[UserModel defaultUser].usrtype isEqualToString:TWOSALER]){
-//        index = 2;
-//    }else{
-//        index = 1;
-//    }
-//    if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
-//
-//        if ([UserModel defaultUser].loginstatus == YES) {
-//            
-//            if ([[UserModel defaultUser].rzstatus isEqualToString:@"0"] || [[UserModel defaultUser].rzstatus isEqualToString:@"3"]) {
-//                
-//                LBImprovePersonalDataViewController *infoVC = [[LBImprovePersonalDataViewController alloc] init];
-//                infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//                [self presentViewController:infoVC animated:YES completion:nil];
-//                return NO;
-//            }
-//            return YES;
-//        }
-//        GLLoginController *loginVC = [[GLLoginController alloc] init];
-//        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-//        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        [self presentViewController:nav animated:YES completion:nil];
-//        return NO;
-//
-//    }
+    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser]) {
+        index = 1;
+        
+    }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer]){
+        index = 1;
+        
+    }else if ([[UserModel defaultUser].group_id isEqualToString:@"0"] || [UserModel defaultUser].group_id == nil || [[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
+        index = 1;
+        
+    }else{
+        index = 1;
+        
+    }
+    if (viewController == [tabBarController.viewControllers objectAtIndex:index]) {
+
+        if ([UserModel defaultUser].loginstatus == YES) {
+            
+            if ([[UserModel defaultUser].isBqInfo isEqualToString:@"0"]) {
+                
+                GLCompleteInfoController *infoVC = [[GLCompleteInfoController alloc] init];
+                infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentViewController:infoVC animated:YES completion:nil];
+                
+                return NO;
+            }
+            return YES;
+        }
+        GLLoginController *loginVC = [[GLLoginController alloc] init];
+        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nav animated:YES completion:nil];
+        return NO;
+
+    }
 
     return YES;
 }

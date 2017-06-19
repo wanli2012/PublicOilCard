@@ -60,7 +60,10 @@
             </constraints>
             <size key="customSize" width="192" height="227"/>
             <connections>
-                <outlet property="titleLabel" destination="P6G-qF-bEK" id="Eb8-W4-9ks"/>
+                <outlet property="countLabel" destination="YOm-fk-wKr" id="eoG-Po-bPY"/>
+                <outlet property="picImageV" destination="ck8-m0-rLG" id="QqV-93-fVq"/>
+                <outlet property="priceLabel" destination="Ccl-hO-rr5" id="IhC-1U-QEb"/>
+                <outlet property="titleLabel" destination="P6G-qF-bEK" id="OGf-6A-bJa"/>
             </connections>
             <point key="canvasLocation" x="-18" y="-44"/>
         </collectionViewCell>

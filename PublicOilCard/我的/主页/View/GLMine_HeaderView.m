@@ -124,7 +124,7 @@
         make.bottom.equalTo(self).offset(0);
         
         
-        if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+        if ([[UserModel defaultUser].group_id integerValue] != 6) {
             
             make.height.equalTo(@0);
             

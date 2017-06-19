@@ -19,6 +19,7 @@
 
 
 
+
 @property (weak, nonatomic) IBOutlet UIImageView *shangImage;
 @property (weak, nonatomic) IBOutlet UIImageView *lingimage;
 @property (weak, nonatomic) IBOutlet UIImageView *oneImage;

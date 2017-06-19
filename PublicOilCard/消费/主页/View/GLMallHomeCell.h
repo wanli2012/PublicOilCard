@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMallHomeGoodsModel.h"
 
 @interface GLMallHomeCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (nonatomic, strong)GLMallHomeGoodsModel *model;
 
 @end

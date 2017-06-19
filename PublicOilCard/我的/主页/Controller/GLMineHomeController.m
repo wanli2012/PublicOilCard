@@ -42,9 +42,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [UserModel defaultUser].usrtype = @"2";
-    [usermodelachivar achive];
+ 
 
     _keyArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
     _imageArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
@@ -139,7 +137,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     switch (indexPath.row) {
         case 0:
         {
-            if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+            if ([[UserModel defaultUser].group_id integerValue] != 6) {
                 GLMine_OpenController *openVC = [[GLMine_OpenController alloc] init];
                 [self.navigationController pushViewController:openVC animated:YES];
                 
@@ -152,7 +150,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             break;
         case 1:
         {
-            if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+            if ([[UserModel defaultUser].group_id integerValue] != 6) {
                 GLMine_RelationshipController *vc = [[GLMine_RelationshipController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
                 
@@ -200,7 +198,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 //    [header.adImageV mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.equalTo(@0);
 //    }];
-    if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+    if ([[UserModel defaultUser].group_id integerValue] != 6) {
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
@@ -216,7 +214,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
     
-    if ([[UserModel defaultUser].usrtype integerValue] == 1) {
+    if ([[UserModel defaultUser].group_id integerValue] != 6) {
         
         return CGSizeMake(SCREEN_WIDTH, 220);
         

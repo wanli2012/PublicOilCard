@@ -46,21 +46,22 @@
     
     UITapGestureRecognizer *maskvgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskviewgesture)];
     [self.maskView addGestureRecognizer:maskvgesture];
-    //选择米家
+    //选择会员
     UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shangViewgesture)];
     [self.loginView.shangView addGestureRecognizer:shanVgesture];
-    //选择米商
+    //选择平台接收人
     UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lingViewgesture)];
     [self.loginView.lingView addGestureRecognizer:lingVgesture];
-    //选择一级业务员
+    //选择首期代理
     UITapGestureRecognizer *OneVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneSalerViewgesture)];
     [self.loginView.oneView addGestureRecognizer:OneVgesture];
-    //选择二级业务员
+    //选择二期代理
     UITapGestureRecognizer *TwoVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(twoSalerViewgesture)];
     [self.loginView.twoView addGestureRecognizer:TwoVgesture];
-    //选择三级业务员
+    //选择经理
     UITapGestureRecognizer *ThreeVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeSalerViewgesture)];
     [self.loginView.threeView addGestureRecognizer:ThreeVgesture];
+   
     
     self.currentloginViewimage = self.loginView.shangImage;
     
@@ -159,69 +160,60 @@
 -(void)surebuttonEvent{
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    
  
 //     NSString *encryptsecret = [RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA];
 //    NSLog(@"%@",encryptsecret);
-//    [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phone.text,@"password":encryptsecret,@"groupID":self.usertype} finish:^(id responseObject) {
-////        NSLog(@"responseObject = %@",responseObject);
-//        [_loadV removeloadview];
-//        if ([responseObject[@"code"] integerValue]==1) {
-//            
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//            
-//            [UserModel defaultUser].banknumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]];
-//            [UserModel defaultUser].counta = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"count"]];
-//            [UserModel defaultUser].giveMeMark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"giveMeMark"]];
-//            [UserModel defaultUser].groupId = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"groupId"]];
-//            [UserModel defaultUser].headPic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"headPic"]];
-//            [UserModel defaultUser].ketiBean = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"ketiBean"]];
-//            [UserModel defaultUser].lastFanLiTime = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"lastFanLiTime"]];
-//            [UserModel defaultUser].lastTime = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"lastTime"]];
-//            [UserModel defaultUser].loveNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"loveNum"]];
-//            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
-//            [UserModel defaultUser].name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"name"]];
-//            [UserModel defaultUser].phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"phone"]];
-//            [UserModel defaultUser].recommendMark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendMark"]];
-//            [UserModel defaultUser].regTime = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"regTime"]];
-//            [UserModel defaultUser].token = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"token"]];
-//            [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
-//            [UserModel defaultUser].version = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"version"]];
-//            [UserModel defaultUser].vsnAddress = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"vsnAddress"]];
-//            [UserModel defaultUser].vsnUpdateTime = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"vsnUpdateTime"]];
-//            [UserModel defaultUser].djs_bean = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"djs_bean"]];
-//            
-//            [UserModel defaultUser].idcard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"idcard"]];
-//            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
-//            [UserModel defaultUser].tjr = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"tjr"]];
-//            [UserModel defaultUser].tjrname = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"tjrname"]];
-//            
-//            [UserModel defaultUser].rzstatus = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"rzstatus"]];
-//            [UserModel defaultUser].loginstatus = YES;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/login" paramDic:@{@"userphone":self.phone.text,@"password":self.scretTf.text,@"groupID":self.usertype} finish:^(id responseObject) {
+
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+            [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
+            [UserModel defaultUser].phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"phone"]];
+            [UserModel defaultUser].address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"address"]];
+            [UserModel defaultUser].recommendUser = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendUser"]];
+            [UserModel defaultUser].recommendID = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendID"]];
+            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
+            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].banknumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]];
+            [UserModel defaultUser].group_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_id"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].openbank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"openbank"]];
+            [UserModel defaultUser].version = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"version"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].isBqInfo = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isBqInfo"]];
+            [UserModel defaultUser].isHaveNewMsg = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveNewMsg"]];
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].token = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"token"]];
+            [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
+            
+            [UserModel defaultUser].loginstatus = YES;
 //            [UserModel defaultUser].usrtype = self.usertype;
-//            [UserModel defaultUser].AudiThrough = @"0";
-//            
-//            if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
-//                
-//                [UserModel defaultUser].banknumber = @"";
-//            }
-//            if ([[UserModel defaultUser].counta rangeOfString:@"null"].location != NSNotFound) {
-//                
-//                [UserModel defaultUser].counta = @"";
-//            }
-//            if ([[UserModel defaultUser].giveMeMark rangeOfString:@"null"].location != NSNotFound) {
-//                
-//                [UserModel defaultUser].giveMeMark = @"";
-//            }
-//            if ([[UserModel defaultUser].tjr rangeOfString:@"null"].location != NSNotFound) {
-//                
-//                [UserModel defaultUser].tjr = @"";
-//            }
-//            if ([[UserModel defaultUser].tjrname rangeOfString:@"null"].location != NSNotFound) {
-//                
-//                [UserModel defaultUser].tjrname = @"";
-//            }
-//            
+          
+            
+            if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].banknumber = @"";
+            }
+            if ([[UserModel defaultUser].openbank rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].openbank = @"";
+            }
+            if ([[UserModel defaultUser].jyzSelfCardNum rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].jyzSelfCardNum = @"";
+            }
+            if ([[UserModel defaultUser].qtIdNum rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].qtIdNum = @"";
+            }
 //            if ([self.usertype isEqualToString:Retailer]) {//零售商
 //                [UserModel defaultUser].shop_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
 //                [UserModel defaultUser].shop_address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_address"]];
@@ -246,20 +238,20 @@
 //                [UserModel defaultUser].is_main = @"";
 //
 //            }
-//            
-//            [usermodelachivar achive];
-//            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-//            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-//            
-//        }else{
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//        
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        [MBProgressHUD showError:error.localizedDescription];
-//        
-//    }];
+            
+            [usermodelachivar achive];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 
 }
 
@@ -274,7 +266,7 @@
     self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
     self.currentloginViewimage = self.loginView.shangImage;
 }
-//零售商
+//个人代理
 -(void)lingViewgesture{
     
     self.usertype = Retailer;
@@ -286,22 +278,23 @@
     self.currentloginViewimage = self.loginView.lingimage;
     
 }
-//一级业务员
--(void)oneSalerViewgesture{
 
-    self.usertype = ONESALER;
+//经理
+-(void)threeSalerViewgesture{
+    
+    self.usertype = MANAGER;
     if (self.currentloginViewimage == self.loginView.oneImage) {
         return;
     }
     self.loginView.oneImage.image=[UIImage imageNamed:@"登录选中"];
     self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
     self.currentloginViewimage = self.loginView.oneImage;
-
-}
-//二级业务员
--(void)twoSalerViewgesture{
     
-    self.usertype = TWOSALER;
+}
+//总监
+-(void)fourSalerViewgesture{
+    
+    self.usertype = DIRECTOR;
     if (self.currentloginViewimage == self.loginView.twoImage) {
         return;
     }
@@ -310,10 +303,10 @@
     self.currentloginViewimage = self.loginView.twoImage;
     
 }
-//三级业务员
--(void)threeSalerViewgesture{
+//部长
+-(void)fiveSalerViewgesture{
     
-    self.usertype = THREESALER;
+    self.usertype = MINISTER;
     if (self.currentloginViewimage == self.loginView.threeImage) {
         return;
     }
@@ -383,10 +376,12 @@
 }
 
 -(LoginIdentityView*)loginView{
-    
+   
+    CGFloat loginViewHeight = 300;
     if (!_loginView) {
+        
         _loginView=[[NSBundle mainBundle]loadNibNamed:@"LoginIdentityView" owner:self options:nil].firstObject;
-        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - 240)/2, SCREEN_WIDTH-40, 240);
+        _loginView.frame=CGRectMake(20, (SCREEN_HEIGHT - loginViewHeight)/2, SCREEN_WIDTH-40, loginViewHeight);
         _loginView.alpha=1;
         
     }

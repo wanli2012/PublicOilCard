@@ -23,7 +23,7 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 //#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
-#define URL_Base @"http://192.168.0.190/qmyk/QMYK/index.php/App/"
+#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于我们网址
@@ -31,16 +31,16 @@
 //公告
 #define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 
-//米家
-#define OrdinaryUser @"10"
-//米商
-#define Retailer @"9"
-//副总
-#define ONESALER @"6"
-//高级推广员
-#define TWOSALER @"7"
-//推广员
-#define THREESALER @"8"
+//个人代理
+#define Retailer @"7"
+//会员
+#define OrdinaryUser @"6"
+//经理
+#define MANAGER @"3"
+//总监
+#define DIRECTOR @"2"
+//部长
+#define MINISTER @"1"
 
 #define PlaceHolderImage @"planceholder"
 #define LUNBO_PlaceHolder @"轮播暂位图"

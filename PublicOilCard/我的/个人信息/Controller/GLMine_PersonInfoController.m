@@ -8,6 +8,7 @@
 
 #import "GLMine_PersonInfoController.h"
 #import "GLMine_PersonInfoCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -20,6 +21,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (nonatomic, strong)NSDictionary *dataDic;
+
 @end
 
 @implementation GLMine_PersonInfoController
@@ -28,11 +32,60 @@
     [super viewDidLoad];
     self.navigationItem.title = @"个人信息";
     
-    _keyArr = @[@"头像",@"用户名",@"ID",@"二维码",@"身份证号码",@"推荐人",@"推荐人ID"];
-    _vlaueArr = @[@"头像",@"吴秀波",@"123456",@"二维码",@"513021199919198837",@"胡歌",@"HG333"];
-    self.tableViewHeight.constant = 5 * 40 + 2 * 60 + 30;
+    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"银行卡号",@"开户银行",@"加油站自办芯片卡号",@"推荐人",@"推荐人ID"];
     
+    _vlaueArr = @[[UserModel defaultUser].pic,
+                  [UserModel defaultUser].truename,
+                  [UserModel defaultUser].username,
+                  [UserModel defaultUser].IDCard,
+                  [UserModel defaultUser].pic,
+                  [UserModel defaultUser].banknumber,
+                  [UserModel defaultUser].openbank,
+                  [UserModel defaultUser].jyzSelfCardNum,
+                  [UserModel defaultUser].recommendUser,
+                  [UserModel defaultUser].recommendID];
+    self.tableViewHeight.constant = 8 * 40 + 2 * 60 + 30;
+    
+    //自定义右键
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"编辑" forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [btn addTarget:self  action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
+    [self getPersonInfo];
+}
+- (void)edit {
+    
+}
+- (void)getPersonInfo{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+ 
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/info_go" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+   
+        if ([responseObject[@"code"] integerValue]==1) {
+            self.dataDic = responseObject[@"data"];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        [self.tableView reloadData];
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -45,7 +98,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         
-        return 5;
+        return 8;
         
     }else{
         
@@ -57,13 +110,14 @@
     cell.selectionStyle = 0;
     
     if (indexPath.section == 0) {
+        
         cell.titleLabel.text = _keyArr[indexPath.row];
-        cell.detailLabel.text= _vlaueArr[indexPath.row];
+        cell.valueTF.text = _vlaueArr[indexPath.row];
         
         if (indexPath.row == 0 || indexPath.row == 3) {
-            
+            cell.picImageV.image = [UIImage imageNamed:_vlaueArr[indexPath.row]];
             cell.picImageV.hidden = NO;
-            cell.detailLabel.hidden = YES;
+            cell.valueTF.hidden = YES;
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
                 
@@ -73,14 +127,15 @@
         }else{
             
             cell.picImageV.hidden = YES;
-            cell.detailLabel.hidden = NO;
+            cell.valueTF.hidden = NO;
         }
-        
+
     }else{
-        cell.titleLabel.text = _keyArr[indexPath.row + 5];
-        cell.detailLabel.text= _vlaueArr[indexPath.row + 5];
+        cell.titleLabel.text = _keyArr[indexPath.row + 8];
+        cell.valueTF.text = _vlaueArr[indexPath.row + 8];
+        
         cell.picImageV.hidden = YES;
-        cell.detailLabel.hidden = NO;
+        cell.valueTF.hidden = NO;
         
     }
     return cell;

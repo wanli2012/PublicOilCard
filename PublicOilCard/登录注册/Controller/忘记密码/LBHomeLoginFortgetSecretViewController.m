@@ -103,21 +103,34 @@
 //    NSString *encrypYzm = [RSAEncryptor encryptString:self.yabzTf.text publicKey:public_RSA];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:@"user/forget_pwd" paramDic:@{@"userphone":self.phoneTf.text , @"password":encryptsecret , @"groupID":self.usertype , @"yzm":self.yabzTf.text} finish:^(id responseObject) {
-//        [_loadV removeloadview];
-//        if ([responseObject[@"code"] integerValue]==1) {
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//            [self.navigationController popViewControllerAnimated:YES];
-//        }else{
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        [MBProgressHUD showError:error.localizedDescription];
-//        
-//    }];
-//    
-}
+    [NetworkManager requestPOSTWithURLStr:@"user/check_yzm" paramDic:@{@"userphone":self.phoneTf.text,@"yzm":self.yabzTf.text} finish:^(id responseObject) {
+
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_pwd" paramDic:@{@"phone":self.phoneTf.text , @"new_pwd":self.secretTf.text , @"group_id":self.usertype } finish:^(id responseObject) {
+                [_loadV removeloadview];
+                if ([responseObject[@"code"] integerValue]==1) {
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }else{
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
+            } enError:^(NSError *error) {
+                [_loadV removeloadview];
+                [MBProgressHUD showError:error.localizedDescription];
+                
+            }];
+
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+    }
 
 - (IBAction)chooseUsertype:(UIButton *)sender {
     
@@ -221,7 +234,7 @@
 #pragma mark - 选择用户类型
 //会员
 -(void)shangbuttonE{
-    _usertype=OrdinaryUser;
+    _usertype = OrdinaryUser;
     self.usertypeTf.text=@"会员";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
@@ -235,8 +248,8 @@
 }
 //商家
 -(void)lingbuttonE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"商家";
+    _usertype = Retailer;
+    self.usertypeTf.text=@"个人代理";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
@@ -247,10 +260,10 @@
     }];
     
 }
-//副总
+//经理
 -(void)ServiceBtE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"副总";
+    _usertype = MANAGER;
+    self.usertypeTf.text=@"经理";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
@@ -261,10 +274,10 @@
     }];
 
 }
-//高级推广员
+//总监
 -(void)ManufacturerBtE{
-    _usertype=Retailer;
-    self.usertypeTf.text=@"高级推广员";
+    _usertype=DIRECTOR;
+    self.usertypeTf.text=@"总监";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
@@ -275,11 +288,11 @@
     }];
     
 }
-//推广员
+//部长
 -(void)TraderBtE{
     
-    _usertype=Retailer;
-    self.usertypeTf.text=@"推广员";
+    _usertype=MINISTER;
+    self.usertypeTf.text=@"部长";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         

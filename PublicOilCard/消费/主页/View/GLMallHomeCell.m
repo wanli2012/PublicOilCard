@@ -7,6 +7,16 @@
 //
 
 #import "GLMallHomeCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+@interface GLMallHomeCell()
+
+@property (weak, nonatomic) IBOutlet UIImageView *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+@end
 
 @implementation GLMallHomeCell
 
@@ -14,5 +24,12 @@
     [super awakeFromNib];
     // Initialization code
 }
-
+- (void)setModel:(GLMallHomeGoodsModel *)model {
+    _model = model;
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    self.titleLabel.text = model.goods_name;
+    self.priceLabel.text = model.discount;;
+    self.countLabel.text = model.goods_num;
+    
+}
 @end

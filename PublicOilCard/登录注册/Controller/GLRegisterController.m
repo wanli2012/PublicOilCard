@@ -56,10 +56,10 @@
 //注册
 - (IBAction)regsiterEventBt:(UIButton *)sender {
     
-    if (self.recomendId.text.length <= 0) {
-        [MBProgressHUD showError:@"推荐人ID不能为空"];
-        return;
-    }
+//    if (self.recomendId.text.length <= 0) {
+//        [MBProgressHUD showError:@"推荐人ID不能为空"];
+//        return;
+//    }
     if (self.phoneTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入手机号码"];
         return;
@@ -105,9 +105,9 @@
 //    NSString *encrypteyzm = [RSAEncryptor encryptString:self.verificationTf.text publicKey:public_RSA];
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"phone"] = self.phoneTf.text;
+    dict[@"userphone"] = self.phoneTf.text;
     dict[@"password"] = self.secretTf.text;
-    dict[@"uid"] = self.recomendId.text;
+//    dict[@"uid"] = self.recomendId.text;
     dict[@"yzm"] = self.verificationTf.text;
  
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
