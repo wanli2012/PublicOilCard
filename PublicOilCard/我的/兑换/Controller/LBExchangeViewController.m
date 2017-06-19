@@ -12,10 +12,13 @@
 #import "LBWriteInfoTableViewCell.h"
 #import "LBExchangeJiFenTableViewCell.h"
 #import "IncentiveModel.h"
+#import "LBExchangeFooterView.h"
+#import "GLMine_ExchangeRecordController.h"
 
 @interface LBExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,IncentiveModelDelegete>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 @property (strong, nonatomic)LBExchangeHeaderView *exchangeHeaderView;
+@property (strong, nonatomic)LBExchangeFooterView *exchangeFooterView;
 @property (strong, nonatomic)IncentiveModel *incentiveModelV;
 @property (strong, nonatomic)IncentiveModel *incentiveModelVT;//到账方式
 @property (strong, nonatomic)UIView *incentiveModelMaskV;
@@ -49,6 +52,11 @@
     self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 250 * autoSizeScaleY);
     self.tableview.tableHeaderView = self.exchangeHeaderView;
     /**
+     *设置tableview 的HeaderView
+     */
+    self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+    self.tableview.tableFooterView = self.exchangeFooterView;
+    /**
      *注册cell
      */
       [self.tableview registerNib:[UINib nibWithNibName:@"LBChooseTypeTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBChooseTypeTableViewCell"];
@@ -60,7 +68,18 @@
     UITapGestureRecognizer *incentiveModelMaskVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(incentiveModelMaskVtapgestureLb)];
     [self.incentiveModelMaskV addGestureRecognizer:incentiveModelMaskVgesture];
     
-    
+    /**
+     *兑换记录
+     */
+    //自定义导航栏右键
+    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightBtn.frame = CGRectMake(SCREEN_WIDTH - 60, 14, 60, 30);
+    [rightBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, -10)];
+    [rightBtn setTitle:@"兑换记录" forState:UIControlStateNormal];
+    [rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+    [rightBtn addTarget:self  action:@selector(recommendRecord) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
 }
 
@@ -196,6 +215,13 @@
         [self.incentiveModelMaskV removeFromSuperview];
         [self.incentiveModelV removeFromSuperview];
         [self.incentiveModelVT removeFromSuperview];
+}
+//兑换记录
+-(void)recommendRecord{
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_ExchangeRecordController *vc=[[GLMine_ExchangeRecordController alloc]init];
+    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 

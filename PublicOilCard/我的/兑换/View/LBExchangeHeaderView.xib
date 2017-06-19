@@ -26,24 +26,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="brP-3t-R6G">
                     <rect key="frame" x="0.0" y="0.0" width="159.5" height="150"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pq8-Bo-27n">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="椭圆-1-拷贝" translatesAutoresizingMaskIntoConstraints="NO" id="Pq8-Bo-27n">
                             <rect key="frame" x="30" y="30.5" width="99.5" height="99.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Pq8-Bo-27n" secondAttribute="height" id="6Wv-dQ-Cqk"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可兑换积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmd-sj-Iny">
-                            <rect key="frame" x="40" y="55.5" width="79.5" height="20"/>
+                            <rect key="frame" x="40" y="60.5" width="79.5" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="tRe-ee-O7t"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eci-KJ-LRR">
-                            <rect key="frame" x="40" y="81.5" width="79.5" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <rect key="frame" x="40" y="86.5" width="79.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -56,7 +56,7 @@
                         <constraint firstItem="eci-KJ-LRR" firstAttribute="trailing" secondItem="qmd-sj-Iny" secondAttribute="trailing" id="fHc-yY-eWB"/>
                         <constraint firstItem="Pq8-Bo-27n" firstAttribute="leading" secondItem="brP-3t-R6G" secondAttribute="leading" constant="30" id="fP5-d7-d2K"/>
                         <constraint firstAttribute="trailing" secondItem="Pq8-Bo-27n" secondAttribute="trailing" constant="30" id="fpZ-cz-4H9"/>
-                        <constraint firstItem="qmd-sj-Iny" firstAttribute="centerY" secondItem="Pq8-Bo-27n" secondAttribute="centerY" constant="-15" id="gdZ-5I-9o2"/>
+                        <constraint firstItem="qmd-sj-Iny" firstAttribute="centerY" secondItem="Pq8-Bo-27n" secondAttribute="centerY" constant="-10" id="gdZ-5I-9o2"/>
                         <constraint firstItem="eci-KJ-LRR" firstAttribute="leading" secondItem="qmd-sj-Iny" secondAttribute="leading" id="pb4-JP-MsQ"/>
                         <constraint firstItem="qmd-sj-Iny" firstAttribute="trailing" secondItem="Pq8-Bo-27n" secondAttribute="trailing" constant="-10" id="s7J-qm-OXU"/>
                     </constraints>
@@ -64,21 +64,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IS7-6X-9FG">
                     <rect key="frame" x="160.5" y="0.0" width="159.5" height="150"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HOB-Rz-yq8">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="椭圆-1-拷贝" translatesAutoresizingMaskIntoConstraints="NO" id="HOB-Rz-yq8">
                             <rect key="frame" x="30" y="30.5" width="99.5" height="99.5"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="HOB-Rz-yq8" secondAttribute="height" id="4nM-xM-bce"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可使用余额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bxz-DO-XF6">
-                            <rect key="frame" x="40" y="55.5" width="79.5" height="19.5"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <rect key="frame" x="40" y="60.5" width="79.5" height="19.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01D-R7-VEm">
-                            <rect key="frame" x="40" y="81.5" width="79.5" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <rect key="frame" x="40" y="86.5" width="79.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -119,4 +119,7 @@
             <point key="canvasLocation" x="34.5" y="55"/>
         </view>
     </objects>
+    <resources>
+        <image name="椭圆-1-拷贝" width="123" height="110"/>
+    </resources>
 </document>

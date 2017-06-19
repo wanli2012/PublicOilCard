@@ -154,6 +154,11 @@
 		F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA95F1EF5194900530237 /* LBExchangeJiFenTableViewCell.xib */; };
 		F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9631EF51F5700530237 /* IncentiveModel.m */; };
 		F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9641EF51F5700530237 /* IncentiveModel.xib */; };
+		F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */; };
+		F9652D5B1EF76B1600DD229F /* LBModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D591EF76B1600DD229F /* LBModifyPasswordViewController.m */; };
+		F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */; };
+		F9652D601EF76B6200DD229F /* GLRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D5E1EF76B6200DD229F /* GLRecommendController.m */; };
+		F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -396,6 +401,14 @@
 		F92DA9621EF51F5700530237 /* IncentiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncentiveModel.h; sourceTree = "<group>"; };
 		F92DA9631EF51F5700530237 /* IncentiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncentiveModel.m; sourceTree = "<group>"; };
 		F92DA9641EF51F5700530237 /* IncentiveModel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncentiveModel.xib; sourceTree = "<group>"; };
+		F9652D531EF766AF00DD229F /* LBExchangeFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeFooterView.h; sourceTree = "<group>"; };
+		F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeFooterView.m; sourceTree = "<group>"; };
+		F9652D581EF76B1600DD229F /* LBModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBModifyPasswordViewController.h; sourceTree = "<group>"; };
+		F9652D591EF76B1600DD229F /* LBModifyPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBModifyPasswordViewController.m; sourceTree = "<group>"; };
+		F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBModifyPasswordViewController.xib; sourceTree = "<group>"; };
+		F9652D5D1EF76B6200DD229F /* GLRecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendController.h; sourceTree = "<group>"; };
+		F9652D5E1EF76B6200DD229F /* GLRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendController.m; sourceTree = "<group>"; };
+		F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +527,8 @@
 		4A39F4911EF3AF9E0038C147 /* 设置 */ = {
 			isa = PBXGroup;
 			children = (
+				F9652D561EF76AD400DD229F /* 修改密码 */,
+				F9652D571EF76AD400DD229F /* 版本更新 */,
 				4A39F4921EF3AF9E0038C147 /* Controller */,
 				4A39F4931EF3AF9E0038C147 /* Model */,
 				4A39F4941EF3AF9E0038C147 /* view */,
@@ -592,6 +607,8 @@
 				F92DA94C1EF5014C00530237 /* LBExchangeHeaderView.h */,
 				F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */,
 				F92DA9511EF5020300530237 /* LBExchangeHeaderView.xib */,
+				F9652D531EF766AF00DD229F /* LBExchangeFooterView.h */,
+				F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */,
 				F92DA9531EF5170400530237 /* LBChooseTypeTableViewCell.h */,
 				F92DA9541EF5170400530237 /* LBChooseTypeTableViewCell.m */,
 				F92DA9551EF5170400530237 /* LBChooseTypeTableViewCell.xib */,
@@ -1335,6 +1352,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F9652D561EF76AD400DD229F /* 修改密码 */ = {
+			isa = PBXGroup;
+			children = (
+				F9652D581EF76B1600DD229F /* LBModifyPasswordViewController.h */,
+				F9652D591EF76B1600DD229F /* LBModifyPasswordViewController.m */,
+				F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */,
+			);
+			name = "修改密码";
+			path = "Controller/修改密码";
+			sourceTree = "<group>";
+		};
+		F9652D571EF76AD400DD229F /* 版本更新 */ = {
+			isa = PBXGroup;
+			children = (
+				F9652D5D1EF76B6200DD229F /* GLRecommendController.h */,
+				F9652D5E1EF76B6200DD229F /* GLRecommendController.m */,
+				F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */,
+			);
+			name = "版本更新";
+			path = "Controller/版本更新";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1427,6 +1466,7 @@
 				F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */,
 				4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
+				F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
 				4A1CE7171EF504C900895ADF /* GLMine_OpenController.xib in Resources */,
 				4A4FA5F21EF0DF3500A256D2 /* Mine.xcassets in Resources */,
@@ -1438,6 +1478,7 @@
 				4A4FA5F41EF0E16A00A256D2 /* Common.xcassets in Resources */,
 				4A5BBBDB1EF2659F008270F2 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
 				4AEC05891EF13CBA00B39497 /* GLMine_CollectController.xib in Resources */,
+				F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */,
 				4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */,
 				4A39F4DB1EF3C6420038C147 /* LBMineCenterPayPagesViewController.xib in Resources */,
 				4A39F4F01EF3E79F0038C147 /* GLMall_GoodsDetailController.xib in Resources */,
@@ -1515,6 +1556,7 @@
 				4A4FA5D71EF0D97B00A256D2 /* formattime.m in Sources */,
 				4A5BBBD41EF2659F008270F2 /* GLRegisterController.m in Sources */,
 				4A4FA5D91EF0D97B00A256D2 /* MBProgressHUD+LB.m in Sources */,
+				F9652D5B1EF76B1600DD229F /* LBModifyPasswordViewController.m in Sources */,
 				4AEC05881EF13CBA00B39497 /* GLMine_CollectController.m in Sources */,
 				4A4FA5B91EF0D8F800A256D2 /* UIView+Extension.m in Sources */,
 				4A39F4BB1EF3B6960038C147 /* XBConst.m in Sources */,
@@ -1582,6 +1624,7 @@
 				4A39F4B81EF3B6960038C147 /* XBTagTitleModel.m in Sources */,
 				4A4FA5931EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld in Sources */,
 				4AEEC9AB1EF2716900F827BB /* GLMine_RecommendController.m in Sources */,
+				F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */,
 				4AEEC9CC1EF28C3700F827BB /* GLMine_updateManagerController.m in Sources */,
 				4A4FA5B41EF0D6E300A256D2 /* LBLoginNavigationViewController.m in Sources */,
 				4A4FA5B31EF0D6E300A256D2 /* BasetabbarViewController.m in Sources */,
@@ -1597,6 +1640,7 @@
 				4A5BBB951EF21617008270F2 /* GLMine_InfoCell.m in Sources */,
 				4A39F50B1EF406A60038C147 /* PhotoView.m in Sources */,
 				4A5BBBED1EF26AED008270F2 /* NetworkManager.m in Sources */,
+				F9652D601EF76B6200DD229F /* GLRecommendController.m in Sources */,
 				4A39F5031EF3F6480038C147 /* GLMall_GoodsHeaderView.m in Sources */,
 				F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */,
 				4AEC05A71EF1472900B39497 /* GLMine_InfoController.m in Sources */,
