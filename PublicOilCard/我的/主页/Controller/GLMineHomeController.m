@@ -21,6 +21,7 @@
 #import "GLMine_ExchangeRecordController.h"
 #import "GLMine_OpenController.h"
 #import "GLMine_RelationshipController.h"
+#import "LBExchangeViewController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -91,7 +92,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)exchange {
     
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_ExchangeRecordController *exchangeVC = [[GLMine_ExchangeRecordController alloc] init];
+    LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
     [self.navigationController pushViewController:exchangeVC animated:YES];
     
     self.hidesBottomBarWhenPushed = NO;
