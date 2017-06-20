@@ -10,18 +10,19 @@
 
 @interface LBMineCenterPayPagesViewController : UIViewController
 
-@property (nonatomic, assign) NSInteger payType; // 支付类型 1普通消费支付  2 积分支付
+//@property (nonatomic, assign) NSInteger payType; // 支付类型 1普通消费支付  2 积分支付
 
 @property (nonatomic, copy) NSString *order_id;//订单id
 
-@property (nonatomic, copy) NSString *useableScore;//可用积分
+@property (nonatomic, copy) NSString *order_num;//订单号
 
-@property (nonatomic, copy) NSString *order_sn;//订单号
+@property (nonatomic, copy) NSString *addtime;//下单时间
 
-@property (nonatomic, copy) NSString *orderPrice;//订单金额
+@property (nonatomic, copy) NSString *realy_price;//支付金额
 
-@property (nonatomic, copy) NSString *order_sh; //后台生成的加密字符串
 
-@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1:积分商城确认订单  2:我的-订单
+@property (nonatomic, copy)NSString *goods_id;
+
+@property (nonatomic, copy)NSString *goods_num;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_InfoModel.h"
 
 @interface GLMine_InfoCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_InfoModel *model;
 
 @end

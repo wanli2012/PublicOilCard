@@ -23,7 +23,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-
+    
 }
 
 - (IBAction)changeNum:(UIButton *)sender {
@@ -37,9 +37,12 @@
         
     }else{
         
+        if([self.numberLabel.text integerValue] >= [self.stockNum integerValue]){
+            [MBProgressHUD showError:@"库存不足"];
+            return;
+        }
         self.numberLabel.text = [NSString stringWithFormat:@"%zd",[self.numberLabel.text integerValue] + 1];
     }
-    
     if ([_delegate respondsToSelector:@selector(changeNum:)]) { // 如果协议响应
         
         [_delegate changeNum:self.numberLabel.text];

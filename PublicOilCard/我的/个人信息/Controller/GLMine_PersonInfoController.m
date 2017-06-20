@@ -24,6 +24,8 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic, strong)NSDictionary *dataDic;
 
+@property (nonatomic, strong)NSMutableArray *canEditArr;
+
 @end
 
 @implementation GLMine_PersonInfoController
@@ -52,7 +54,7 @@
     [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [btn addTarget:self  action:@selector(edit) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self  action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
     btn.frame = CGRectMake(0, 0, 80, 40);
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
@@ -60,8 +62,21 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
     [self getPersonInfo];
 }
-- (void)edit {
+- (void)edit:(UIButton *)sender {
+     sender.selected = !sender.selected;
+    if(!sender.selected){
+        
+    }else{
+        
+        [self.navigationItem.rightBarButtonItem setTitle:@"完成"];
+        for (int i = 0; i < self.canEditArr.count; i ++) {
+            if (i == 0 || i == 5 || i == 7) {
+                [self.canEditArr replaceObjectAtIndex:i withObject:@YES];
+            }
+        }
+    }
     
+    [self.tableView reloadData];
 }
 - (void)getPersonInfo{
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -69,7 +84,6 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
  
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    
     [NetworkManager requestPOSTWithURLStr:@"UserInfo/info_go" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -105,6 +119,7 @@
         return 2;
     }
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_PersonInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_PersonInfoCell"];
     cell.selectionStyle = 0;
@@ -113,10 +128,13 @@
         
         cell.titleLabel.text = _keyArr[indexPath.row];
         cell.valueTF.text = _vlaueArr[indexPath.row];
+        cell.valueTF.enabled = [self.canEditArr[indexPath.row] boolValue];
         
         if (indexPath.row == 0 || indexPath.row == 3) {
             cell.picImageV.image = [UIImage imageNamed:_vlaueArr[indexPath.row]];
+            cell.picImageV.userInteractionEnabled = [self.canEditArr[indexPath.row] boolValue];
             cell.picImageV.hidden = NO;
+
             cell.valueTF.hidden = YES;
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
@@ -133,10 +151,17 @@
     }else{
         cell.titleLabel.text = _keyArr[indexPath.row + 8];
         cell.valueTF.text = _vlaueArr[indexPath.row + 8];
+        cell.valueTF.enabled = [self.canEditArr[indexPath.row + 8] boolValue];
         
         cell.picImageV.hidden = YES;
         cell.valueTF.hidden = NO;
         
+    }
+    
+    if (cell.valueTF.enabled) {
+        cell.valueTF.backgroundColor = [UIColor lightGrayColor];
+    }else{
+        cell.valueTF.backgroundColor = [UIColor clearColor];
     }
     return cell;
     
@@ -161,5 +186,14 @@
     }else{
         return 40;
     }
+}
+- (NSMutableArray *)canEditArr{
+    if (!_canEditArr) {
+        _canEditArr = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 10; i ++) {
+            [_canEditArr addObject:@NO];
+        }
+    }
+    return _canEditArr;
 }
 @end

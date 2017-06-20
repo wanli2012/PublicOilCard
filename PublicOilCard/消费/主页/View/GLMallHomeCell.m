@@ -30,6 +30,5 @@
     self.titleLabel.text = model.goods_name;
     self.priceLabel.text = model.discount;;
     self.countLabel.text = model.goods_num;
-    
 }
 @end

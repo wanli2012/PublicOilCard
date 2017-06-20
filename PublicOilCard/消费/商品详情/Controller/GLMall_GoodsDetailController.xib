@@ -31,6 +31,9 @@
                             <state key="normal" title="立即购买">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buyNow:" destination="-1" eventType="touchUpInside" id="Vz4-19-9re"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.96033936740000003" green="0.97251003979999995" blue="0.98073250059999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

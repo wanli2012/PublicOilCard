@@ -7,14 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LBWaitOrdersListModel.h"
+#import "GLMine_CollectModel.h"
 
 @interface GLMine_CollectCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imagev;
-@property (weak, nonatomic) IBOutlet UILabel *nameLb;
-@property (weak, nonatomic) IBOutlet UILabel *infoLb;
-@property (weak, nonatomic) IBOutlet UILabel *numlb;
-@property (weak, nonatomic) IBOutlet UILabel *momeyLb;
 
-@property (strong, nonatomic)LBWaitOrdersListModel *WaitOrdersListModel;
+@property (nonatomic, strong)GLMine_CollectModel *model;
+
 @end

@@ -190,7 +190,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.getcodeBt setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
                 self.getcodeBt.userInteractionEnabled = NO;
-                self.getcodeBt.backgroundColor = YYSRGBColor(184, 184, 184, 1);
+                self.getcodeBt.backgroundColor = TABBARTITLE_COLOR;
                 self.getcodeBt.titleLabel.font = [UIFont systemFontOfSize:11];
             });
             timeout--;
