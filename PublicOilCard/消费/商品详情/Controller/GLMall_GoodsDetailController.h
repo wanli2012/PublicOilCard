@@ -10,4 +10,6 @@
 
 @interface GLMall_GoodsDetailController : UIViewController
 
+@property (nonatomic, copy)NSString  *goods_id;
+
 @end

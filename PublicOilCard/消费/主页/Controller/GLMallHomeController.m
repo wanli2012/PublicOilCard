@@ -117,6 +117,10 @@
                 GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
                 [self.models addObject:model];
             }
+            if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -162,7 +166,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     self.hidesBottomBarWhenPushed = YES;
+    
     GLMall_GoodsDetailController *detailVC = [[GLMall_GoodsDetailController alloc] init];
+    
+    GLMallHomeGoodsModel *model = self.models[indexPath.row];
+    
+    detailVC.goods_id = model.goods_id;
+    
     [self.navigationController pushViewController:detailVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
