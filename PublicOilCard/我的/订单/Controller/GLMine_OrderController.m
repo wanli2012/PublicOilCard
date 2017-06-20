@@ -9,12 +9,18 @@
 #import "GLMine_OrderController.h"
 #import "GLMine_CollectCell.h"
 #import "GLMine_OrderSectionHeader.h"
+#import "LBWaitOrdersListModel.h"
 
 @interface GLMine_OrderController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *sectionModels;
 @property (nonatomic, strong)NSMutableArray *models;
+
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
+@property (strong, nonatomic)NodataView *nodataV;
 
 @end
 
@@ -25,10 +31,65 @@
     self.navigationItem.title = @"我的订单";
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+     [self.tableView addSubview:self.nodataV];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_CollectCell" bundle:nil] forCellReuseIdentifier:@"GLMine_CollectCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_OrderSectionHeader" bundle:nil] forHeaderFooterViewReuseIdentifier:@"GLMine_OrderSectionHeader"];
     
+    [self initdatasource];//网络请求
+    
+}
+
+-(void)initdatasource{
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"shop/gain_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            if (_refreshType == NO) {
+                [self.sectionModels removeAllObjects];
+            }
+            
+            if (![responseObject[@"data"] isEqual:[NSNull null]]) {
+                for (int i = 0; i < [responseObject[@"data"] count]; i++) {
+                    
+                    GLMine_OrderSectionModel *orderMode = [[GLMine_OrderSectionModel alloc]init];
+                    
+                    orderMode.order_num = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_num"]];
+                    orderMode.user_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"user_name"]];
+                    orderMode.should_price = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"should_price"]];
+                    orderMode.addtime = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"addtime"]];
+                    orderMode.total = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"total"]];
+                    orderMode.order_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_status"]];
+                    orderMode.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_id"]];
+                    orderMode.isExpanded = NO;
+                    for (int j =0; j < [responseObject[@"data"][i][@"order_glist"]count]; j++) {
+                        LBWaitOrdersListModel   *listmodel = [LBWaitOrdersListModel mj_objectWithKeyValues:responseObject[@"data"][i][@"goods"][j]];
+                        [orderMode.dataArr addObject:listmodel];
+                    }
+                    
+                    [self.sectionModels addObject:orderMode];
+                }
+            }
+            
+            [self.tableView reloadData];
+            
+        }
+        else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            [self.tableView reloadData];
+        }
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -36,16 +97,24 @@
 }
 #pragma UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    if (self.sectionModels.count > 0 ) {
+        
+        self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+        
+    }
+    
+    return self.sectionModels.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     GLMine_OrderSectionModel *model=self.sectionModels[section];
-
-    return model.isExpanded?3:0;
+    return model.isExpanded?model.dataArr.count:0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_CollectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_CollectCell"];
     cell.selectionStyle = 0;
+    
     return cell;
     
 }
@@ -73,13 +142,7 @@
 - (NSMutableArray *)sectionModels{
     if (!_sectionModels) {
         _sectionModels = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 3; i ++) {
-            GLMine_OrderSectionModel *sectionModel = [[GLMine_OrderSectionModel alloc] init];
-            sectionModel.orderNum = [NSString stringWithFormat:@"28492646276n + %d",i];
-            sectionModel.orderStatus = [NSString stringWithFormat:@"已完成 %d",i];
-            sectionModel.orderDate = [NSString stringWithFormat:@"2017-06-%d",i];
-            [_sectionModels addObject:sectionModel];
-        }
+        
     }
     return _sectionModels;
 }
@@ -89,5 +152,14 @@
         
     }
     return _models;
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114);
+    }
+    return _nodataV;
+    
 }
 @end

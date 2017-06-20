@@ -15,10 +15,11 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+-(void)setWaitOrdersListModel:(LBWaitOrdersListModel *)WaitOrdersListModel{
 
-    // Configure the view for the selected state
+    _WaitOrdersListModel = WaitOrdersListModel;
+
+
 }
 
 @end
