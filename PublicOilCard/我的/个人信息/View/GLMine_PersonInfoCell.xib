@@ -34,13 +34,17 @@
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U6z-vc-UQL">
                         <rect key="frame" x="270" y="26" width="40" height="40"/>
                         <color key="backgroundColor" red="0.90196078430000004" green="0.14901960780000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="Oaw-hh-dzM"/>
                             <constraint firstAttribute="height" constant="40" id="ctS-uA-nuT"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kZ3-9w-Daj" appends="YES" id="H13-b8-5zj"/>
+                        </connections>
                     </imageView>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJQ-os-029">
-                        <rect key="frame" x="280" y="37.5" width="30" height="17"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yJQ-os-029">
+                        <rect key="frame" x="59" y="37.5" width="251" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="xb7-g8-ukR"/>
                         </constraints>
@@ -60,6 +64,7 @@
                     <constraint firstItem="yJQ-os-029" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SQc-UU-Y4O"/>
                     <constraint firstItem="yJQ-os-029" firstAttribute="height" secondItem="00X-hP-9D8" secondAttribute="height" id="hEW-0g-o4T"/>
                     <constraint firstAttribute="trailing" secondItem="U6z-vc-UQL" secondAttribute="trailing" constant="10" id="qdk-0r-ygT"/>
+                    <constraint firstItem="yJQ-os-029" firstAttribute="leading" secondItem="00X-hP-9D8" secondAttribute="trailing" constant="20" id="qvO-ox-V6Y"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -69,5 +74,10 @@
             </connections>
             <point key="canvasLocation" x="57" y="-10"/>
         </tableViewCell>
+        <tapGestureRecognizer id="kZ3-9w-Daj">
+            <connections>
+                <action selector="clickImageV:" destination="KGk-i7-Jjw" id="tYN-lG-cRc"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

@@ -11,7 +11,7 @@
 #import "LBModifyPasswordViewController.h"
 #import "GLRecommendController.h"
 
-@interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
     NSArray *_dataArr;
 }
@@ -36,6 +36,29 @@
 }
 //退出登录
 - (IBAction)quitLogin:(id)sender {
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定要退出吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 10;
+    [alert show];
+
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        
+        if (alertView.tag == 10) {
+            
+            [UserModel defaultUser].loginstatus = NO;
+            [UserModel defaultUser].pic = @"";
+            [UserModel defaultUser].group_id = @"0";
+            [usermodelachivar achive];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else if (alertView.tag == 11){
+            
+//            [self clearFile];//清楚缓存
+        }
+        
+    }
     
 }
 #pragma UITableViewDelegate

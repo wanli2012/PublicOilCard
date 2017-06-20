@@ -20,5 +20,9 @@
     // Initialization code
 }
 
+- (IBAction)clickImageV:(id)sender {
+    
+}
+
 
 @end

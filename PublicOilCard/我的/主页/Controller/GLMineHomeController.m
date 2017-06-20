@@ -25,14 +25,12 @@
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
-    //假数据源
-    NSArray *_keyArr;
-    NSArray *_imageArr;
-    
     GLMine_HeaderView *_header;
 }
 
 @property (nonatomic, strong)UICollectionView *collectionV;
+@property (nonatomic, strong)NSArray *titleArr;
+@property (nonatomic, strong)NSArray *imageArr;
 
 @end
 
@@ -44,9 +42,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [super viewDidLoad];
  
 
-    _keyArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
-    _imageArr = @[@"收藏",@"订单",@"升级管理",@"推荐"];
-    [self.view addSubview:self.collectionV];
+      [self.view addSubview:self.collectionV];
     //注册头视图
     [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
 //    [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMine_HeaderView"];
@@ -128,8 +124,8 @@ static NSString *headerID = @"GLMine_HeaderView";
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_collectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-    cell.titleLabel.text = _keyArr[indexPath.row];
-    cell.picImageV.image = [UIImage imageNamed:_imageArr[indexPath.row]];
+    cell.titleLabel.text = self.titleArr[indexPath.row];
+    cell.picImageV.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -223,5 +219,31 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         return CGSizeMake(SCREEN_WIDTH, 280);
     }
    
+}
+
+
+
+#pragma 懒加载
+- (NSArray *)titleArr{
+    if (!_titleArr) {
+
+        if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4) {
+             _titleArr=[NSArray arrayWithObjects:@"收藏",@"订单",@"升级管理",@"推荐", nil];
+        }else if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
+            _titleArr=[NSArray arrayWithObjects:@"开通",@"关系",@"兑换",@"推荐", nil];
+        }
+    }
+    return _titleArr;
+}
+- (NSArray *)imageArr{
+    if (!_imageArr) {
+       if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4) {
+           
+           _imageArr = [NSArray arrayWithObjects:@"收藏",@"订单",@"升级管理",@"推荐", nil];
+       }else{
+           _imageArr = [NSArray arrayWithObjects:@"开通",@"关系",@"兑换",@"推荐", nil];
+       }
+    }
+    return _imageArr;
 }
 @end

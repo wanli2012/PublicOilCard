@@ -33,6 +33,12 @@
 @property (strong, nonatomic)NSString *typeStr;//账号类型
 @property (strong, nonatomic)NSString *mothodStr;//到账方式
 
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (nonatomic,strong)NodataView *nodataV;
+@property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, strong)NSDictionary *dataDic;
+@property (nonatomic, assign)NSInteger page;//页数
+
 @end
 
 @implementation LBExchangeViewController
@@ -80,7 +86,35 @@
     rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [rightBtn addTarget:self  action:@selector(recommendRecord) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    [self postRequest];
+}
+- (void)postRequest {
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/sel_user" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+
+            self.arr = @[[NSString stringWithFormat:@"全团账号:%@",responseObject[@"data"][@"qtidnum"]]];
+            
+            self.arr2 = @[[NSString stringWithFormat:@"卡号:%@",responseObject[@"data"][@"bank_list"][0][@"banknumber"]]];
+            
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        [self.tableview reloadData];
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -98,7 +132,6 @@
         _curetarr = self.arr2;
     }
     
-    
     return _curetarr.count + 3;
 }
 
@@ -113,11 +146,8 @@
     }else if (indexPath.row == _curetarr.count + 2) {
          return 80;
     }
-    
     return 0;
-    
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -138,6 +168,7 @@
         LBWriteInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBWriteInfoTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.textf.placeholder = _curetarr [indexPath.row - 1];
+        cell.textf.textColor = [UIColor darkGrayColor];
         
         return cell;
     }else if (indexPath.row == _curetarr.count + 1) {
@@ -184,7 +215,6 @@
     }
 
 }
-
 #pragma mark - 点击全团账号或银行卡
 
 -(void)choosebutton:(NSInteger)tag typeIndex:(NSInteger)typeIndex{
@@ -266,7 +296,7 @@
 -(NSArray*)arr{
 
     if (!_arr) {
-        _arr = [NSArray arrayWithObjects:@"填写全团账号", nil];
+        _arr = [NSArray arrayWithObjects:[NSString stringWithFormat:@"%@",self.dataDic[@"qtidnum"]], nil];
     }
 
     return _arr;
@@ -276,7 +306,8 @@
 -(NSArray*)arr2{
     
     if (!_arr2) {
-        _arr2 = [NSArray arrayWithObjects:@"真实姓名",@"账号",@"地址", nil];
+        
+        _arr2 = [NSArray arrayWithObjects:[NSString stringWithFormat:@"卡号:%@",self.dataDic[@"data"][@"banknumber"]],nil];
     }
     
     return _arr2;
@@ -285,7 +316,7 @@
 -(NSArray*)typeArr{
     
     if (!_typeArr) {
-        _typeArr = [NSArray arrayWithObjects:@"全国账号",@"银行卡", nil];
+        _typeArr = [NSArray arrayWithObjects:@"全团账号",@"银行卡", nil];
     }
     
     return _typeArr;

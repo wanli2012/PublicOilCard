@@ -9,6 +9,7 @@
 #import "GLMall_GoodsDetailController.h"
 #import "GLMall_GoodsHeaderView.h"
 #import "GLMallHomeCell.h"
+#import "LBMineCenterPayPagesViewController.h"
 
 @interface GLMall_GoodsDetailController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,GLMall_GoodsHeaderViewDelegate>
 {
@@ -42,6 +43,8 @@
     layout.minimumLineSpacing = 10;
     layout.minimumInteritemSpacing = 10;
     self.collectionView.collectionViewLayout = layout;
+    
+    _sum = 1;
     
     //自定义右键
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -77,6 +80,7 @@
 }
 
 - (void)updateData:(BOOL)status {
+    
     if (status) {
         
         self.page = 1;
@@ -120,9 +124,11 @@
     }];
     
 }
+
 - (void)endRefresh {
     [self.collectionView.mj_header endRefreshing];
 }
+
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
@@ -138,9 +144,38 @@
     self.navigationController.navigationBar.hidden = NO;
 }
 
+//立即购买
+- (IBAction)buyNow:(id)sender {
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
+    
+    payVC.goods_id = self.dataDic[@"goods_id"];
+    payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
+    [self.navigationController pushViewController:payVC animated:YES];
+    
+}
+
 //收藏
 - (void)collect {
     
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"goods_id"] = self.goods_id;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/collec_add" paramDic:dict finish:^(id responseObject) {
+        [self endRefresh];
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:responseObject[@"message"]];
+
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
 }
 
 //取到购买数量
@@ -152,12 +187,13 @@
 #pragma UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return 4;
+    return self.models.count;
     
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMallHomeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GLMallHomeCell" forIndexPath:indexPath];
+    cell.model = self.models[indexPath.row];
     
     return cell;
 }
@@ -169,7 +205,46 @@
                                  atIndexPath:(NSIndexPath *)indexPath {
     
     GLMall_GoodsHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView" forIndexPath:indexPath];
-    header.detailLabel.text = @"你大爷 对方是否酸辣粉哈哈发黑你啊发生佛挖而非哈佛;奥尔回复你 发生佛啊;事发后我合法发按时发沙发后文化发分红;阿双方;哈市发送; 发;  是否滑石粉是是分红;是否";
+    
+    NSString *attrStr = self.dataDic[@"goods_info"];
+    NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
+    long len1 = [strone length];
+    NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+    
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+    
+    if(attrStr.length <= 0){
+        
+        header.detailLabel.text = self.dataDic[@"goods_name"];
+        
+    }else{
+        
+        header.detailLabel.attributedText = str;
+    }
+
+    if([self.dataDic[@"discount"] isEqual:[NSNull null]] || self.dataDic[@"discount"] == nil){
+        header.priceLabel.text = @"¥0";
+    }else{
+        
+        header.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"discount"]];
+    }
+    
+    if([self.dataDic[@"salenum"] isEqual:[NSNull null]]|| self.dataDic[@"salenum"] == nil){
+        header.countLabel.text = @"总销量:0";
+    }else{
+    
+        header.countLabel.text = [NSString stringWithFormat:@"总销量:%@",self.dataDic[@"salenum"]];
+    }
+    
+    if([self.dataDic[@"goods_num"] isEqual:[NSNull null]]|| self.dataDic[@"goods_num"] == nil){
+        header.stockLabel.text = @"库存:0";
+    }else{
+        header.stockLabel.text = [NSString stringWithFormat:@"库存:%@",self.dataDic[@"goods_num"]];
+    }
+    
+    header.stockNum = self.dataDic[@"goods_num"];
     header.delegate = self;
     
     [header addSubview:self.cycleScrollView];
@@ -197,11 +272,33 @@
 // 设置section头视图的参考大小，与tableheaderview类似
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
-//    [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    NSString *content = @"你大爷 对方是否酸辣粉哈哈发黑你啊发生佛挖而非哈佛;奥尔回复你 发生佛啊;事发后我合法发按时发沙发后文化发分红;阿双方;哈市发送; 发;  是否滑石粉是是分红;是否";
+    NSString *content;
+    if (self.dataDic) {
+        
+        NSString *attrStr = self.dataDic[@"goods_info"];
+        NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
+        long len1 = [strone length];
+        NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
+        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+        
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+        content = [str string];
+    }else{
+        content = @"暂无";
+    }
+
     CGSize titleSize = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
     
-    return CGSizeMake(SCREEN_WIDTH, titleSize.height + 275);
-    
+    return CGSizeMake(SCREEN_WIDTH, titleSize.height + self.headerImageHeight + 130);
 }
+
+#pragma 懒加载
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [[NSMutableArray alloc] init];
+    }
+    return _models;
+}
+
 @end

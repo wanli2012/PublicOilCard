@@ -40,7 +40,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-Bl-Szu">
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="x1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Of1-Bl-Szu">
                         <rect key="frame" x="273" y="10" width="50" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="k52-c2-JYb"/>
@@ -82,6 +82,13 @@
                     <constraint firstItem="mzQ-mY-et2" firstAttribute="leading" secondItem="gNZ-j8-DkD" secondAttribute="trailing" constant="10" id="wx8-Ah-6Nz"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="countLabel" destination="Of1-Bl-Szu" id="PA2-19-T3p"/>
+                <outlet property="detailLabel" destination="gNZ-j8-DkD" id="yHH-XJ-CLf"/>
+                <outlet property="picImageV" destination="c2o-3e-ZoU" id="IqW-CG-Obv"/>
+                <outlet property="priceLabel" destination="mzQ-mY-et2" id="h8g-wU-uOq"/>
+                <outlet property="titleLabel" destination="Vln-K9-JQg" id="RxR-ci-jOO"/>
+            </connections>
             <point key="canvasLocation" x="15.5" y="-53.5"/>
         </tableViewCell>
     </objects>

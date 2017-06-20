@@ -47,8 +47,8 @@
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
-    self.goodsNumLabel.text = self.order_sn;
-    self.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.orderPrice floatValue]];
+    self.goodsNumLabel.text = self.goods_num;
+//    self.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.orderPrice floatValue]];
 
 //    if (self.payType == 1) {
 //        self.orderMTitleLb.text = @"订单金额:";
@@ -68,7 +68,36 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
+    [self initData];
+}
+- (void)initData {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"user_name"] = [UserModel defaultUser].username;
+    dict[@"group_id"] = [UserModel defaultUser].group_id;
+    dict[@"goods_id"] = self.goods_id;
+    dict[@"goods_num"] = self.goods_num;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/buy_order" paramDic:dict finish:^(id responseObject) {
+
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -326,33 +355,19 @@
 //支付宝客户端支付成功之后 发送通知
 -(void)Alipaysucess{
     
-    self.hidesBottomBarWhenPushed = YES;
-    if(self.pushIndex == 1){
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    }else{
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    self.hidesBottomBarWhenPushed = NO;
+//    self.hidesBottomBarWhenPushed = YES;
+//    if(self.pushIndex == 1){
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//        
+//    }else{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+//    self.hidesBottomBarWhenPushed = NO;
     
 }
 //支付请求
 - (void)postRepuest:(NSNotification *)sender {
 
-    if (self.payType == 2) {
-        
-        //米劵支付(积分)
-        [self integralPay:sender];
-        
-    }else{
-        
-        if (self.selectIndex == 0) {
-            
-            //米子支付
-            [self ricePay:sender];
-            
-        }
-    }
   
 }
 

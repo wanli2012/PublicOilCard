@@ -63,14 +63,15 @@
 // 这里加载在了window上
 -(void)showViewWithContentView:(UIView *)contentView
 {
-    UIWindow * window = [UIApplication sharedApplication].windows[0];
+    
+    UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
     [self addSubview:contentView];
    
     [window addSubview:self];
 }
 - (void)show {
     
-    UIWindow * window = [UIApplication sharedApplication].windows[0];
+    UIWindow * window = [[[UIApplication sharedApplication] delegate] window];
     
     [window addSubview:self];
 }

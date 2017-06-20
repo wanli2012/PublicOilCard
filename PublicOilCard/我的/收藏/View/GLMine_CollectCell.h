@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_CollectModel.h"
 
 @interface GLMine_CollectCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_CollectModel *model;
 
 @end
