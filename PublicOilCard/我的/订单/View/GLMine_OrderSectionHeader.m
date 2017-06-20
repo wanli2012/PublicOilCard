@@ -33,10 +33,8 @@
 }
 - (void)setSectionModel:(GLMine_OrderSectionModel *)sectionModel{
     _sectionModel = sectionModel;
+
     
-    self.orderNumLabel.text = [NSString stringWithFormat:@"订单编号:%@", sectionModel.orderNum];
-    self.dateLabel.text = [NSString stringWithFormat:@"创建时间:%@",sectionModel.orderDate];
-    self.statusLabel.text = sectionModel.orderStatus;
     
 }
 
