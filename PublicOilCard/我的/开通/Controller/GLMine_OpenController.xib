@@ -11,9 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_OpenController">
             <connections>
+                <outlet property="addressLabel" destination="Uie-Gj-OYe" id="bX6-hs-Jl8"/>
+                <outlet property="codeTF" destination="ae5-Aa-4BN" id="D4L-R2-8KY"/>
                 <outlet property="contentViewHeight" destination="9gS-i5-6Pf" id="lfr-J6-P6h"/>
                 <outlet property="contentViewWidth" destination="wJP-Ev-HD8" id="x0H-6w-5Uv"/>
+                <outlet property="ensurePwdTF" destination="IEs-YW-uLB" id="Ujg-Gh-l4H"/>
                 <outlet property="getCodeBtn" destination="4Za-oW-F3t" id="M01-CJ-c4T"/>
+                <outlet property="phoneTF" destination="q4o-70-B53" id="2xb-jL-BKI"/>
+                <outlet property="pwdTF" destination="Zwm-5h-h6S" id="gg8-fQ-nxC"/>
                 <outlet property="submitBtn" destination="G06-rs-8x4" id="uKg-5w-k7R"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -104,6 +109,9 @@
                                             <state key="normal" title="获取验证码">
                                                 <color key="titleColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
+                                            <connections>
+                                                <action selector="getCode:" destination="-1" eventType="touchUpInside" id="pRf-sJ-CAO"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -297,6 +305,9 @@
                         <constraint firstAttribute="height" constant="40" id="Iua-FM-bxa"/>
                     </constraints>
                     <state key="normal" title="提交"/>
+                    <connections>
+                        <action selector="submit:" destination="-1" eventType="touchUpInside" id="59a-ge-wMj"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.94487851858139038" green="0.94902163743972778" blue="0.95303434133529663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

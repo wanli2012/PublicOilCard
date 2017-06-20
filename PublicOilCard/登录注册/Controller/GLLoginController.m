@@ -49,19 +49,19 @@
     //选择会员
     UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shangViewgesture)];
     [self.loginView.shangView addGestureRecognizer:shanVgesture];
-    //选择平台接收人
+    //个人代理
     UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lingViewgesture)];
     [self.loginView.lingView addGestureRecognizer:lingVgesture];
-    //选择首期代理
-    UITapGestureRecognizer *OneVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneSalerViewgesture)];
-    [self.loginView.oneView addGestureRecognizer:OneVgesture];
-    //选择二期代理
-    UITapGestureRecognizer *TwoVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(twoSalerViewgesture)];
-    [self.loginView.twoView addGestureRecognizer:TwoVgesture];
     //选择经理
     UITapGestureRecognizer *ThreeVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeSalerViewgesture)];
-    [self.loginView.threeView addGestureRecognizer:ThreeVgesture];
+    [self.loginView.oneView addGestureRecognizer:ThreeVgesture];
    
+    //总监
+    UITapGestureRecognizer *fourVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fourSalerViewgesture)];
+    [self.loginView.twoView addGestureRecognizer:fourVgesture];
+    //部长
+    UITapGestureRecognizer *fiveVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fiveSalerViewgesture)];
+    [self.loginView.threeView addGestureRecognizer:fiveVgesture];
     
     self.currentloginViewimage = self.loginView.shangImage;
     
@@ -214,30 +214,6 @@
                 
                 [UserModel defaultUser].qtIdNum = @"";
             }
-//            if ([self.usertype isEqualToString:Retailer]) {//零售商
-//                [UserModel defaultUser].shop_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
-//                [UserModel defaultUser].shop_address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_address"]];
-//                [UserModel defaultUser].shop_type = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_type"]];
-//                [UserModel defaultUser].is_main = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"is_main"]];
-//                if ([[UserModel defaultUser].shop_name rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_name = @"";
-//                }
-//                if ([[UserModel defaultUser].shop_address rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_address = @"";
-//                }
-//                if ([[UserModel defaultUser].shop_type rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_type = @"";
-//                }
-//            }else{//普通用户
-//                [UserModel defaultUser].shop_name = @"";
-//                [UserModel defaultUser].shop_address = @"";
-//                [UserModel defaultUser].shop_type = @"";
-//                [UserModel defaultUser].is_main = @"";
-//
-//            }
             
             [usermodelachivar achive];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
@@ -252,7 +228,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-
 }
 
 //普通用户

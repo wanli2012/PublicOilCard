@@ -12,10 +12,15 @@
 @property (weak, nonatomic) IBOutlet UIView *oldView;
 @property (weak, nonatomic) IBOutlet UIView *newaView;
 @property (weak, nonatomic) IBOutlet UIView *repeatView;
+@property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
 @property (weak, nonatomic) IBOutlet UITextField *oldTf;
 @property (weak, nonatomic) IBOutlet UITextField *newaTf;
 @property (weak, nonatomic) IBOutlet UITextField *repeatTf;
+
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (nonatomic,strong)NodataView *nodataV;
+@property (nonatomic, assign)NSInteger page;//页数
 
 
 @end
@@ -27,9 +32,39 @@
     
     self.navigationItem.title = @"修改密码";
     
+    self.submitBtn.layer.cornerRadius = 5.f;
+    
 }
 //提交
 - (IBAction)submitevent:(UIButton *)sender {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"new_pwd"] = self.newaTf.text;
+    dict[@"old_pwd"] = self.oldTf.text;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/upd_pwd" paramDic:dict finish:^(id responseObject) {
+
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:responseObject[@"message"]];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [self popoverPresentationController];
+            
+        }else{
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
+    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
