@@ -32,6 +32,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
 
+@property (nonatomic, strong)NSDictionary *dataDic;
+
 @end
 
 @implementation LBMineCenterPayPagesViewController
@@ -87,9 +89,15 @@
         
         if ([responseObject[@"code"] integerValue]==1) {
             
+            self.dataDic = responseObject[@"data"];
+            self.goodsNameLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_num"]];
+            self.goodsNumLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"addtime"]];
+            self.orderMoney.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"realy_price"]];
             
         }else{
+            
             [MBProgressHUD showError:responseObject[@"message"]];
+            
         }
     
         

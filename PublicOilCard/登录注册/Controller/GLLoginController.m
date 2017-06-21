@@ -49,19 +49,19 @@
     //选择会员
     UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shangViewgesture)];
     [self.loginView.shangView addGestureRecognizer:shanVgesture];
-    //选择平台接收人
+    //个人代理
     UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lingViewgesture)];
     [self.loginView.lingView addGestureRecognizer:lingVgesture];
-    //选择首期代理
-    UITapGestureRecognizer *OneVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(oneSalerViewgesture)];
-    [self.loginView.oneView addGestureRecognizer:OneVgesture];
-    //选择二期代理
-    UITapGestureRecognizer *TwoVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(twoSalerViewgesture)];
-    [self.loginView.twoView addGestureRecognizer:TwoVgesture];
     //选择经理
     UITapGestureRecognizer *ThreeVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(threeSalerViewgesture)];
-    [self.loginView.threeView addGestureRecognizer:ThreeVgesture];
+    [self.loginView.oneView addGestureRecognizer:ThreeVgesture];
    
+    //总监
+    UITapGestureRecognizer *fourVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fourSalerViewgesture)];
+    [self.loginView.twoView addGestureRecognizer:fourVgesture];
+    //部长
+    UITapGestureRecognizer *fiveVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(fiveSalerViewgesture)];
+    [self.loginView.threeView addGestureRecognizer:fiveVgesture];
     
     self.currentloginViewimage = self.loginView.shangImage;
     
@@ -227,7 +227,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-
 }
 
 //普通用户
