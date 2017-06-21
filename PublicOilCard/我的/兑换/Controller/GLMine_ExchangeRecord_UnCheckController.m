@@ -1,16 +1,16 @@
 //
-//  GLMine_ExchangeRecord_SuccessController.m
+//  GLMine_ExchangeRecord_UnCheckController.m
 //  PublicOilCard
 //
-//  Created by 龚磊 on 2017/6/16.
+//  Created by 四川三君科技有限公司 on 2017/6/21.
 //  Copyright © 2017年 三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_ExchangeRecord_SuccessController.h"
+#import "GLMine_ExchangeRecord_UnCheckController.h"
 #import "GLMine_ExchangeRecordCell.h"
 #import "recordeManger.h"
 
-@interface GLMine_ExchangeRecord_SuccessController ()
+@interface GLMine_ExchangeRecord_UnCheckController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)NSMutableArray *dataarr;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation GLMine_ExchangeRecord_SuccessController
+@implementation GLMine_ExchangeRecord_UnCheckController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -61,6 +61,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(filterExtensionCategories) name:@"filterExtensionCategories" object:nil];
 
 }
+
 //筛选
 -(void)filterExtensionCategories{
     
@@ -69,7 +70,7 @@
 }
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"status":@"1",@"back_type":[recordeManger defaultUser].recordeType} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"shop/mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"status":@"2",@"back_type":[recordeManger defaultUser].recordeType} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -138,7 +139,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_ExchangeRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ExchangeRecordCell"];
     cell.selectionStyle = 0;
-    
     cell.timelb.text = [formattime formateTime:[NSString stringWithFormat:@"%@",self.dataarr[indexPath.row][@"addtime"]]];
     if ([self.dataarr[indexPath.row][@"back_type"] integerValue] == 0) {
         cell.typelb.text = @"RMB";
@@ -147,7 +147,6 @@
     }
     
     cell.moemylb.text = [NSString stringWithFormat:@"¥%@",self.dataarr[indexPath.row][@"back_money"]];
-    
     return cell;
     
 }
@@ -164,7 +163,6 @@
     return _nodataV;
     
 }
-
 -(NSMutableArray *)dataarr{
     
     if (!_dataarr) {
@@ -174,6 +172,5 @@
     return _dataarr;
     
 }
-
 
 @end

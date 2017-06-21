@@ -159,6 +159,21 @@
 		F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9641EF51F5700530237 /* IncentiveModel.xib */; };
 		F94AFF261EF92AC000DC34F8 /* GLMine_OrderSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */; };
 		F94AFF291EF92AD800DC34F8 /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */; };
+		F95D45EE1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */; };
+		F95D45EF1EFA4A980011C69B /* TYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DD1EFA4A980011C69B /* TYAlertController.m */; };
+		F95D45F01EFA4A980011C69B /* TYAlertDropDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DF1EFA4A980011C69B /* TYAlertDropDownAnimation.m */; };
+		F95D45F11EFA4A980011C69B /* TYAlertFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45E11EFA4A980011C69B /* TYAlertFadeAnimation.m */; };
+		F95D45F21EFA4A980011C69B /* TYAlertScaleFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45E31EFA4A980011C69B /* TYAlertScaleFadeAnimation.m */; };
+		F95D45F31EFA4A980011C69B /* TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45E51EFA4A980011C69B /* TYAlertView.m */; };
+		F95D45F41EFA4A980011C69B /* TYBaseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45E71EFA4A980011C69B /* TYBaseAnimation.m */; };
+		F95D45F51EFA4A980011C69B /* TYShowAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45E91EFA4A980011C69B /* TYShowAlertView.m */; };
+		F95D45F61EFA4A980011C69B /* UIView+TYAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45EB1EFA4A980011C69B /* UIView+TYAlertView.m */; };
+		F95D45F71EFA4A980011C69B /* UIView+TYAutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45ED1EFA4A980011C69B /* UIView+TYAutoLayout.m */; };
+		F95D45FB1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45F91EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.m */; };
+		F95D45FC1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95D45FA1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib */; };
+		F95D46001EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45FE1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m */; };
+		F95D46011EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95D45FF1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib */; };
+		F95D46041EFA5C090011C69B /* recordeManger.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D46031EFA5C090011C69B /* recordeManger.m */; };
 		F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */; };
 		F9652D5B1EF76B1600DD229F /* LBModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D591EF76B1600DD229F /* LBModifyPasswordViewController.m */; };
 		F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */; };
@@ -416,6 +431,33 @@
 		F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_OrderSectionModel.m; sourceTree = "<group>"; };
 		F94AFF271EF92AD800DC34F8 /* LBWaitOrdersListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersListModel.h; sourceTree = "<group>"; };
 		F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWaitOrdersListModel.m; sourceTree = "<group>"; };
+		F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TYAlertController+TransitionAnimate.m"; sourceTree = "<group>"; };
+		F95D45DC1EFA4A980011C69B /* TYAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertController.h; sourceTree = "<group>"; };
+		F95D45DD1EFA4A980011C69B /* TYAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertController.m; sourceTree = "<group>"; };
+		F95D45DE1EFA4A980011C69B /* TYAlertDropDownAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertDropDownAnimation.h; sourceTree = "<group>"; };
+		F95D45DF1EFA4A980011C69B /* TYAlertDropDownAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertDropDownAnimation.m; sourceTree = "<group>"; };
+		F95D45E01EFA4A980011C69B /* TYAlertFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertFadeAnimation.h; sourceTree = "<group>"; };
+		F95D45E11EFA4A980011C69B /* TYAlertFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertFadeAnimation.m; sourceTree = "<group>"; };
+		F95D45E21EFA4A980011C69B /* TYAlertScaleFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertScaleFadeAnimation.h; sourceTree = "<group>"; };
+		F95D45E31EFA4A980011C69B /* TYAlertScaleFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertScaleFadeAnimation.m; sourceTree = "<group>"; };
+		F95D45E41EFA4A980011C69B /* TYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertView.h; sourceTree = "<group>"; };
+		F95D45E51EFA4A980011C69B /* TYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertView.m; sourceTree = "<group>"; };
+		F95D45E61EFA4A980011C69B /* TYBaseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYBaseAnimation.h; sourceTree = "<group>"; };
+		F95D45E71EFA4A980011C69B /* TYBaseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYBaseAnimation.m; sourceTree = "<group>"; };
+		F95D45E81EFA4A980011C69B /* TYShowAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYShowAlertView.h; sourceTree = "<group>"; };
+		F95D45E91EFA4A980011C69B /* TYShowAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYShowAlertView.m; sourceTree = "<group>"; };
+		F95D45EA1EFA4A980011C69B /* UIView+TYAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TYAlertView.h"; sourceTree = "<group>"; };
+		F95D45EB1EFA4A980011C69B /* UIView+TYAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TYAlertView.m"; sourceTree = "<group>"; };
+		F95D45EC1EFA4A980011C69B /* UIView+TYAutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TYAutoLayout.h"; sourceTree = "<group>"; };
+		F95D45ED1EFA4A980011C69B /* UIView+TYAutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TYAutoLayout.m"; sourceTree = "<group>"; };
+		F95D45F81EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_ExchangeRecord_FailController.h; sourceTree = "<group>"; };
+		F95D45F91EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_ExchangeRecord_FailController.m; sourceTree = "<group>"; };
+		F95D45FA1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_ExchangeRecord_FailController.xib; sourceTree = "<group>"; };
+		F95D45FD1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_ExchangeRecord_UnCheckController.h; sourceTree = "<group>"; };
+		F95D45FE1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_ExchangeRecord_UnCheckController.m; sourceTree = "<group>"; };
+		F95D45FF1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_ExchangeRecord_UnCheckController.xib; sourceTree = "<group>"; };
+		F95D46021EFA5C090011C69B /* recordeManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recordeManger.h; path = "PublicOilCard/我的/兑换/Controller/recordeManger.h"; sourceTree = SOURCE_ROOT; };
+		F95D46031EFA5C090011C69B /* recordeManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recordeManger.m; path = "PublicOilCard/我的/兑换/Controller/recordeManger.m"; sourceTree = SOURCE_ROOT; };
 		F9652D531EF766AF00DD229F /* LBExchangeFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeFooterView.h; sourceTree = "<group>"; };
 		F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeFooterView.m; sourceTree = "<group>"; };
 		F9652D581EF76B1600DD229F /* LBModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBModifyPasswordViewController.h; sourceTree = "<group>"; };
@@ -604,6 +646,12 @@
 				4A39F4BC1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.h */,
 				4A39F4BD1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.m */,
 				4A39F4BE1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.xib */,
+				F95D45F81EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.h */,
+				F95D45F91EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.m */,
+				F95D45FA1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib */,
+				F95D45FD1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.h */,
+				F95D45FE1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m */,
+				F95D45FF1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -611,6 +659,8 @@
 		4A39F4A11EF3B60E0038C147 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F95D46021EFA5C090011C69B /* recordeManger.h */,
+				F95D46031EFA5C090011C69B /* recordeManger.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1304,6 +1354,7 @@
 		4AEEC9B71EF2802200F827BB /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F95D45DA1EFA4A980011C69B /* TYAlertController */,
 				4A39F5051EF406A60038C147 /* IOS图片浏览器 */,
 				4A39F4A81EF3B6960038C147 /* XBScrollPageController */,
 				4AEEC9B81EF2803F00F827BB /* QQPopMenuView.h */,
@@ -1375,6 +1426,32 @@
 				F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		F95D45DA1EFA4A980011C69B /* TYAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */,
+				F95D45DC1EFA4A980011C69B /* TYAlertController.h */,
+				F95D45DD1EFA4A980011C69B /* TYAlertController.m */,
+				F95D45DE1EFA4A980011C69B /* TYAlertDropDownAnimation.h */,
+				F95D45DF1EFA4A980011C69B /* TYAlertDropDownAnimation.m */,
+				F95D45E01EFA4A980011C69B /* TYAlertFadeAnimation.h */,
+				F95D45E11EFA4A980011C69B /* TYAlertFadeAnimation.m */,
+				F95D45E21EFA4A980011C69B /* TYAlertScaleFadeAnimation.h */,
+				F95D45E31EFA4A980011C69B /* TYAlertScaleFadeAnimation.m */,
+				F95D45E41EFA4A980011C69B /* TYAlertView.h */,
+				F95D45E51EFA4A980011C69B /* TYAlertView.m */,
+				F95D45E61EFA4A980011C69B /* TYBaseAnimation.h */,
+				F95D45E71EFA4A980011C69B /* TYBaseAnimation.m */,
+				F95D45E81EFA4A980011C69B /* TYShowAlertView.h */,
+				F95D45E91EFA4A980011C69B /* TYShowAlertView.m */,
+				F95D45EA1EFA4A980011C69B /* UIView+TYAlertView.h */,
+				F95D45EB1EFA4A980011C69B /* UIView+TYAlertView.m */,
+				F95D45EC1EFA4A980011C69B /* UIView+TYAutoLayout.h */,
+				F95D45ED1EFA4A980011C69B /* UIView+TYAutoLayout.m */,
+			);
+			path = TYAlertController;
 			sourceTree = "<group>";
 		};
 		F9652D561EF76AD400DD229F /* 修改密码 */ = {
@@ -1461,6 +1538,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F95D46011EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib in Resources */,
 				F92DA95C1EF518B400530237 /* LBWriteInfoTableViewCell.xib in Resources */,
 				4AEC058E1EF13CE400B39497 /* GLMine_CollectCell.xib in Resources */,
 				4AEC05801EF1151600B39497 /* GLMine_HeaderView.xib in Resources */,
@@ -1478,6 +1556,7 @@
 				4A39F4E71EF3DA600038C147 /* GLMallHomeCell.xib in Resources */,
 				4A5BBBE91EF26A35008270F2 /* NodataView.xib in Resources */,
 				4A39F4991EF3AFB00038C147 /* GLMine_SetController.xib in Resources */,
+				F95D45FC1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib in Resources */,
 				4A5BBBE71EF26A35008270F2 /* LoadWaitView.xib in Resources */,
 				4AEEC9BF1EF281D500F827BB /* PopMenuTableViewCell.xib in Resources */,
 				F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */,
@@ -1588,6 +1667,7 @@
 				4A39F4BB1EF3B6960038C147 /* XBConst.m in Sources */,
 				4A6ADCA31EF7E00700C99498 /* GLMine_PersonInfoCell.m in Sources */,
 				4A4FA5DD1EF0D97B00A256D2 /* UIButton+SetEdgeInsets.m in Sources */,
+				F95D45EE1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m in Sources */,
 				4A4FA5E01EF0D97B00A256D2 /* UIView+YYExtension.m in Sources */,
 				4A4FA5DB1EF0D97B00A256D2 /* predicateModel.m in Sources */,
 				4A39F4821EF365D10038C147 /* GLMine_updateManagerModel.m in Sources */,
@@ -1596,14 +1676,18 @@
 				4AEC058D1EF13CE400B39497 /* GLMine_CollectCell.m in Sources */,
 				4A5BBBE51EF26A35008270F2 /* GLSet_MaskVeiw.m in Sources */,
 				4AEEC9B51EF275AD00F827BB /* GLMine_RecommendRecordCell.m in Sources */,
+				F95D45F31EFA4A980011C69B /* TYAlertView.m in Sources */,
 				4AEEC9BD1EF281A300F827BB /* PopMenuTableViewCell.m in Sources */,
 				F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */,
 				4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */,
 				4AEEC9D11EF28DF500F827BB /* GLMine_updateManagerCell.m in Sources */,
 				4A5BBBD81EF2659F008270F2 /* SelectUserTypeView.m in Sources */,
 				4A4FA5B21EF0D6E300A256D2 /* BaseNavigationViewController.m in Sources */,
+				F95D45EF1EFA4A980011C69B /* TYAlertController.m in Sources */,
 				4A4FA5DE1EF0D97B00A256D2 /* UILabel+UILabel_ChangeLineSpaceAndWordSpace.m in Sources */,
+				F95D45F01EFA4A980011C69B /* TYAlertDropDownAnimation.m in Sources */,
 				4A4FA5C21EF0D91300A256D2 /* UserModel.m in Sources */,
+				F95D46001EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m in Sources */,
 				4A5BBBD21EF2659F008270F2 /* GLLoginController.m in Sources */,
 				4A39F4B71EF3B6960038C147 /* XBScrollPageController.m in Sources */,
 				F92DA9561EF5170400530237 /* LBChooseTypeTableViewCell.m in Sources */,
@@ -1615,26 +1699,32 @@
 				4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */,
 				4A4FA58A1EF0CA1100A256D2 /* AppDelegate.m in Sources */,
 				4A39F49D1EF3B0810038C147 /* GLMine_SetCell.m in Sources */,
+				F95D45F61EFA4A980011C69B /* UIView+TYAlertView.m in Sources */,
 				4AEEC9BA1EF2803F00F827BB /* QQPopMenuView.m in Sources */,
 				4A4FA5E31EF0DB8D00A256D2 /* yindaotuViewController.m in Sources */,
 				4A5BBBB11EF25502008270F2 /* GLMine_OrderSectionHeader.m in Sources */,
 				4A39F48F1EF383EB0038C147 /* GLCompleteInfoController.m in Sources */,
 				4A4FA5C11EF0D91300A256D2 /* MerchantInformationModel.m in Sources */,
+				F95D45F11EFA4A980011C69B /* TYAlertFadeAnimation.m in Sources */,
 				4A5BBBE81EF26A35008270F2 /* NodataView.m in Sources */,
 				F92DA95B1EF518B400530237 /* LBWriteInfoTableViewCell.m in Sources */,
+				F95D45F71EFA4A980011C69B /* UIView+TYAutoLayout.m in Sources */,
 				4A5201DC1EF8C8D10096DB0C /* GLHomeLiveChooseController.m in Sources */,
 				4A5BBBD61EF2659F008270F2 /* LoginIdentityView.m in Sources */,
+				F95D45FB1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.m in Sources */,
 				4A4FA5A71EF0CF0B00A256D2 /* GLMineHomeController.m in Sources */,
 				F94AFF261EF92AC000DC34F8 /* GLMine_OrderSectionModel.m in Sources */,
 				4A6ADC961EF7BB0900C99498 /* editorMaskPresentationController.m in Sources */,
 				4A39F4A61EF3B6280038C147 /* GLMine_ExchangeRecordController.m in Sources */,
 				4A4FA5D81EF0D97B00A256D2 /* GetLabelBounds.m in Sources */,
+				F95D46041EFA5C090011C69B /* recordeManger.m in Sources */,
 				4A39F4E61EF3DA600038C147 /* GLMallHomeCell.m in Sources */,
 				4A4FA5EC1EF0DE3100A256D2 /* GLMallHomeController.m in Sources */,
 				4A6ADC921EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m in Sources */,
 				4A1CE71E1EF50CD300895ADF /* GLMine_RelationshipController.m in Sources */,
 				4A4FA5871EF0CA1100A256D2 /* main.m in Sources */,
 				4AEEC9B01EF2742E00F827BB /* GLMine_RecommendRecordController.m in Sources */,
+				F95D45F51EFA4A980011C69B /* TYShowAlertView.m in Sources */,
 				4AEEC9C71EF28B2D00F827BB /* GLMine_OpenCardController.m in Sources */,
 				4A39F4EF1EF3E79F0038C147 /* GLMall_GoodsDetailController.m in Sources */,
 				4A4FA5DF1EF0D97B00A256D2 /* UIView+SFrame.m in Sources */,
@@ -1667,11 +1757,13 @@
 				4A5BBB951EF21617008270F2 /* GLMine_InfoCell.m in Sources */,
 				4A6ADCA71EF7EC0100C99498 /* GLMallHomeGoodsModel.m in Sources */,
 				4A39F50B1EF406A60038C147 /* PhotoView.m in Sources */,
+				F95D45F21EFA4A980011C69B /* TYAlertScaleFadeAnimation.m in Sources */,
 				4A5BBBED1EF26AED008270F2 /* NetworkManager.m in Sources */,
 				F9652D601EF76B6200DD229F /* GLRecommendController.m in Sources */,
 				4A39F5031EF3F6480038C147 /* GLMall_GoodsHeaderView.m in Sources */,
 				F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */,
 				4AEC05A71EF1472900B39497 /* GLMine_InfoController.m in Sources */,
+				F95D45F41EFA4A980011C69B /* TYBaseAnimation.m in Sources */,
 				4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */,
 				4A5201E31EF904FE0096DB0C /* GLMine_CollectModel.m in Sources */,
 				4A6ADCA11EF7E00700C99498 /* GLMine_PersonInfoController.m in Sources */,

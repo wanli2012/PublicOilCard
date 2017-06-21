@@ -10,4 +10,10 @@
 
 @interface GLMine_ExchangeRecordCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *timelb;
+
+@property (weak, nonatomic) IBOutlet UILabel *typelb;
+
+@property (weak, nonatomic) IBOutlet UILabel *moemylb;
+
 @end

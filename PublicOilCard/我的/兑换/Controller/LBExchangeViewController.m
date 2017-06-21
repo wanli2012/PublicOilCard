@@ -14,6 +14,9 @@
 #import "IncentiveModel.h"
 #import "LBExchangeFooterView.h"
 #import "GLMine_ExchangeRecordController.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "UIView+TYAlertView.h"
+#import "recordeManger.h"
 
 @interface LBExchangeViewController ()<UITableViewDelegate,UITableViewDataSource,IncentiveModelDelegete,LBExchangeJiFenTableViewCellDelegete>
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
@@ -24,6 +27,9 @@
 @property (strong, nonatomic)IncentiveModel *incentiveModelVE;//兑换方式
 @property (strong, nonatomic)UIView *incentiveModelMaskV;
 @property (assign, nonatomic)NSInteger selectindex;//判断是否是团购账号或银行卡 1为团购 0为银行卡
+@property (assign, nonatomic)NSInteger selectMethod;//到账方式 回购选择 1T1 2T3 3T7。默认为1
+@property (assign, nonatomic)NSInteger selecttype;//兑换方式 1积分 0人民币 默认为1
+@property (strong, nonatomic)NSString *money;//兑换金额
 @property (strong, nonatomic)NSArray *arr;//全团账号 信息
 @property (strong, nonatomic)NSArray *arr2;//银行卡 信息
 @property (strong, nonatomic)NSArray *arr3;//兑换信息
@@ -55,6 +61,9 @@
     self.mothodStr = self.mothodArr[0];
     self.Exchangestr = self.arr3[0];
     self.selectindex = 1;
+    self.selectMethod = 1;
+    self.selecttype = 1;
+    self.money = @"";
     /**
      *设置tableview 的HeaderView
      */
@@ -184,7 +193,11 @@
         if (self.selectindex == 1) {
             cell.textf.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum];
         }else{
-            cell.textf.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum];
+            cell.textf.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber];
+        }
+        
+        if ([cell.textf.text rangeOfString:@"null"].location != NSNotFound) {
+            cell.textf.text = @"";
         }
         
         return cell;
@@ -202,8 +215,15 @@
         LBExchangeJiFenTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LBExchangeJiFenTableViewCell" forIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.delegete = self;
-        cell.titleLb.text = self.Exchangestr;
+        if (self.selectindex == 1) {
+            cell.titleLb.text = @"兑换积分";
+        }else{
+            cell.titleLb.text = @"兑换余额";
+        }
         cell.indexpath = indexPath;
+        [[cell.textf rac_textSignal]subscribeNext:^(id x) {
+            self.money = x;
+        }];
         
         return cell;
     }
@@ -251,11 +271,12 @@
     }else if (typeIndex ==2){
     
         self.mothodStr = self.mothodArr [tag - 10];
+        self.selectMethod = tag - 10 +1;
     
     }else if (typeIndex ==3){
         
         self.Exchangestr = self.arr3 [tag - 10];
-        
+        self.selecttype = tag - 10 ;
     }
     
     [self.tableview reloadData];
@@ -274,6 +295,7 @@
 //兑换记录
 -(void)recommendRecord{
     self.hidesBottomBarWhenPushed = YES;
+    [recordeManger defaultUser].recordeType = @"1";
     GLMine_ExchangeRecordController *vc=[[GLMine_ExchangeRecordController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 
@@ -289,6 +311,107 @@
     self.incentiveModelVE.frame=CGRectMake(30, rect.origin.y+20, 120, 80);
     [self.view addSubview:self.incentiveModelMaskV];
     [self.incentiveModelMaskV addSubview:self.incentiveModelVE];
+}
+
+#pragma mark --- 提交
+
+- (IBAction)submitInfo:(UIButton *)sender {
+    
+    if (self.selectindex == 1) {
+        if ([UserModel defaultUser].qtIdNum == nil || [[UserModel defaultUser].qtIdNum length]<=0) {
+            [MBProgressHUD showError:@"暂无全团账号"];
+            return;
+        }
+    }else if (self.selectindex == 2){
+        if ([UserModel defaultUser].banknumber == nil || [[UserModel defaultUser].banknumber length]<=0) {
+            [MBProgressHUD showError:@"暂无全团账号"];
+            return;
+        }
+    }
+    
+    if (self.selecttype == 0 && self.money.length <= 0) {
+        [MBProgressHUD showError:@"请输入兑换金额"];
+        return;
+    }else if (self.selecttype == 1 && self.money.length <= 0) {
+        [MBProgressHUD showError:@"请输入兑换积分"];
+        return;
+    }
+    
+    if (([self.money hasPrefix:@"."] || [self.money hasSuffix:@"."])) {
+        [MBProgressHUD showError:@"输入格式错误"];
+        return;
+    }
+    
+    TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"温馨提示"] message:[NSString stringWithFormat:@"请输入登录密码"]];
+    
+    [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
+        
+    }]];
+    
+    // first way to show
+    TYAlertController *alertController = [TYAlertController alertControllerWithAlertView:alertView preferredStyle:TYAlertControllerStyleAlert];
+    // 弱引用alertView 否则 会循环引用
+    __typeof (alertView) __weak weakAlertView = alertView;
+    __typeof (self) __weak weakself = self;
+    [alertView addAction:[TYAlertAction actionWithTitle:@"确定" style:TYAlertActionStyleDestructive handler:^(TYAlertAction *action) {
+        if (weakAlertView.textFieldArray.count > 0) {
+            for (UITextField *textField in weakAlertView.textFieldArray) {
+                [weakself infoSend:textField.text];
+            }
+        }else{
+            [weakself infoSend:@""];
+        }
+        
+    }]];
+    
+    [alertView addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"请输入";
+    }];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+-(void)infoSend:(NSString*)str{
+
+    if (str.length <= 0) {
+        [MBProgressHUD showError:@"请输入密码"];
+        return;
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"pwd"] = str;
+    dict[@"back_type"] = @(self.selectindex);
+    dict[@"back_money"] = self.money;
+    dict[@"user_name"] = [UserModel defaultUser].username;
+    dict[@"choice"] = @(self.selectMethod);
+    if (self.selectindex == 1) {
+        dict[@"bank_id"] = @"";
+        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+    }else if (self.selectindex == 2){
+        dict[@"bank_id"] = self.dataDic[@"bank_list"][0][@"bank_id"];
+        dict[@"qt_name"] = @"";
+    }
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_operate" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        [self.tableview reloadData];
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+    
+
 }
 
 -(IncentiveModel*)incentiveModelV{
@@ -385,7 +508,7 @@
 -(NSArray*)typeArr{
     
     if (!_typeArr) {
-        _typeArr = [NSArray arrayWithObjects:@"全团账号",@"银行卡", nil];
+        _typeArr = [NSArray arrayWithObjects:@"全团账号", @"银行卡",nil];
     }
     
     return _typeArr;
