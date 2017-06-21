@@ -10,20 +10,24 @@
 
 @interface GLMine_RelationshipModel : NSObject
 
-@property (nonatomic, copy)NSString *IDNum;
+@property (nonatomic, copy)NSString *group_id;
 
-@property (nonatomic, copy)NSString *name;
+@property (nonatomic, copy)NSString *uid;
 
-@property (nonatomic, copy)NSString *date;
+@property (nonatomic, copy)NSString *user_name;
 
-@property (nonatomic, copy)NSString *subordinateNum;
+@property (nonatomic, copy)NSString *truename;
 
-@property (nonatomic, copy)NSString *memberNum;
+@property (nonatomic, copy)NSString *regtime;
 
-@property (nonatomic, copy)NSString *firstDelegateNum;
+@property (nonatomic, copy)NSString *jl;//经理个数
 
-@property (nonatomic, copy)NSString *secondDelegateNum;
+@property (nonatomic, copy)NSString *hy;//会员个数
 
-@property (nonatomic, assign)BOOL isExpanded;
+@property (nonatomic, copy)NSString *ad;//首期代理
+
+@property (nonatomic, copy)NSString *bd;//二期代理
+
+@property (nonatomic, assign)BOOL isExpanded;//是否展开
 
 @end

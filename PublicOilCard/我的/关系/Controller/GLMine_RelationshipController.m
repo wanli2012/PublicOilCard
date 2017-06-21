@@ -13,7 +13,11 @@
 
 @interface GLMine_RelationshipController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, assign)NSInteger page;//页数
 
 @end
 
@@ -26,6 +30,93 @@
 //   [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_RecommendRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_RecommendRecordCell"];
     [self.tableView registerClass:[GLMine_RelationshipHeader class] forHeaderFooterViewReuseIdentifier:@"GLMine_RelationshipHeader"];
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_RelationshipCell" bundle:nil] forCellReuseIdentifier:@"GLMine_RelationshipCell"];
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    
+    [self updateData:YES];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/bz_groom_list" paramDic:dict finish:^(id responseObject) {
+        [self endRefresh];
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            for (NSDictionary * dic in responseObject[@"data"]) {
+                GLMine_RelationshipModel *model = [GLMine_RelationshipModel mj_objectWithKeyValues:dic];
+                [self.models addObject:model];
+            }
+            
+            if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+    
+}
+- (void)endRefresh {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -34,7 +125,7 @@
 }
 #pragma UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 3;
+    return self.models.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     GLMine_RelationshipModel *model = self.models[section];
@@ -73,18 +164,18 @@
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [[NSMutableArray alloc] init];
-        for (int i = 0; i < 3; i ++) {
-            GLMine_RelationshipModel *model = [[GLMine_RelationshipModel alloc] init];
-            model.IDNum = [NSString stringWithFormat:@"AB11221212 %d",i];
-            model.name = [NSString stringWithFormat:@"梁朝伟 %d",i];
-            model.date = [NSString stringWithFormat:@"2017-06-%d",i];
-            model.subordinateNum = [NSString stringWithFormat:@"1%d",i];
-            model.memberNum = [NSString stringWithFormat:@"2%d",i];
-            model.firstDelegateNum = [NSString stringWithFormat:@"3%d",i];
-            model.secondDelegateNum = [NSString stringWithFormat:@"4%d",i];
-            
-            [_models addObject:model];
-        }
+//        for (int i = 0; i < 3; i ++) {
+//            GLMine_RelationshipModel *model = [[GLMine_RelationshipModel alloc] init];
+//            model.IDNum = [NSString stringWithFormat:@"AB11221212 %d",i];
+//            model.name = [NSString stringWithFormat:@"梁朝伟 %d",i];
+//            model.date = [NSString stringWithFormat:@"2017-06-%d",i];
+//            model.subordinateNum = [NSString stringWithFormat:@"1%d",i];
+//            model.memberNum = [NSString stringWithFormat:@"2%d",i];
+//            model.firstDelegateNum = [NSString stringWithFormat:@"3%d",i];
+//            model.secondDelegateNum = [NSString stringWithFormat:@"4%d",i];
+//            
+//            [_models addObject:model];
+//        }
     }
     return _models;
 }
