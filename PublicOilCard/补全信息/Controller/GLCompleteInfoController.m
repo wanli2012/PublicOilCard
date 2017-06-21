@@ -109,20 +109,29 @@
 //        [MBProgressHUD showError:@"请输入全团ID号"];
 //        return;
 //    }
-    if(self.oilCardNumTF.text.length <= 0){
-        [MBProgressHUD showError:@"请输入油卡卡号"];
-        return;
-    }
+//    if(self.oilCardNumTF.text.length <= 0){
+//        [MBProgressHUD showError:@"请输入油卡卡号"];
+//        return;
+//    }
     if(self.indentifierTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入身份证号"];
+        return;
+    }else if(![predicateModel validateIdentityCard:self.indentifierTF.text]){
+        [MBProgressHUD showError:@"输入的身份证号不正确"];
         return;
     }
     if(self.bankCardNumTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入银行卡号"];
         return;
+    }else if (![predicateModel IsBankCard:self.bankCardNumTF.text]){
+        [MBProgressHUD showError:@"输入的银行卡号不正确"];
+        return;
     }
     if(self.bankNameTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入银行名称"];
+        return;
+    }else if([predicateModel IsChinese:self.bankCardNumTF.text]){
+        [MBProgressHUD showError:@"银行名只能为中文"];
         return;
     }
     if([self.addressLabel.text isEqualToString:@"请选择省市区"]){

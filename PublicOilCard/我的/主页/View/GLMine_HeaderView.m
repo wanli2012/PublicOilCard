@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong)UIView *lineView2;
 
+@property (nonatomic, strong)UIView *lineView3;
+
 @end
 
 @implementation GLMine_HeaderView
@@ -51,7 +53,6 @@
     [self.middleView addSubview:self.xiaofeiView];
     [self.middleView addSubview:self.jifenView];
     [self.middleView addSubview:self.tuijianView];
-    
    
     [self.xiaofeiView addSubview:self.xiaofeiLabel];
     [self.xiaofeiView addSubview:self.xiaofeiL];
@@ -64,8 +65,8 @@
 
     [self.middleView addSubview:self.lineView];
     [self.middleView addSubview:self.lineView2];
+    [self addSubview:self.lineView3];
     
-//    [self addSubview:self.cycleScrollView];
     [self.levelImageV mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerX.equalTo(self.picImagaV).offset(0);
@@ -73,6 +74,12 @@
         
         make.width.equalTo(@10);
         make.height.equalTo(@10);
+    }];
+    [self.lineView3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(0);
+        make.trailing.equalTo(self).offset(0);
+        make.leading.equalTo(self).offset(0);
+        make.height.equalTo(@1);
     }];
     [self.positionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -141,7 +148,7 @@
         make.trailing.equalTo(self).offset(0);
 //        make.top.equalTo(self.nameLabel.mas_bottom).offset(5);
         make.height.equalTo(@40);
-        make.bottom.equalTo(self.adImageV.mas_top).offset(0);
+        make.bottom.equalTo(self.adImageV.mas_top).offset(-10);
     
     }];
 
@@ -485,5 +492,14 @@
         _lineView2.alpha = 0.3;
     }
     return _lineView2;
+}
+
+- (UIView *)lineView3{
+    if (!_lineView3) {
+        _lineView3 = [[UIView alloc] init];
+        _lineView3.backgroundColor = [UIColor lightGrayColor];
+        _lineView3.alpha = 0.3;
+    }
+    return _lineView3;
 }
 @end

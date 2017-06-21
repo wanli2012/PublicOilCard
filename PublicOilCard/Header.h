@@ -23,7 +23,7 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 //#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
-#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
+#define URL_Base @"http://192.168.0.132/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于我们网址
@@ -42,7 +42,7 @@
 //部长
 #define MINISTER @"1"
 
-#define PlaceHolderImage @"planceholder"
+#define PlaceHolderImage @"picnodata"
 #define LUNBO_PlaceHolder @"轮播暂位图"
 #define MERCHAT_PlaceHolder @"商户暂位图"
 

@@ -10,7 +10,8 @@
 #import "GLMine_PersonInfoCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 {
     //假数据源
     NSArray *_keyArr;
@@ -36,7 +37,7 @@
 
 //@property (strong, nonatomic)NSString *trueName;//真实姓名
 //@property (strong, nonatomic)NSString *IDNum;//ID
-//@property (strong, nonatomic)UIImage *codeImage;//二维码
+@property (strong, nonatomic)UIImage *codeImage;//二维码
 //@property (strong, nonatomic)NSString *shenfenCode;//身份证号
 ////@property (strong, nonatomic)NSString *bankNum;//银行卡号
 //@property (strong, nonatomic)NSString *openBank;//开户行
@@ -66,12 +67,12 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
-    [self getPersonInfo];
+   
 }
 
 - (void)updateInfo{
     
-    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"银行卡号",@"开户银行",@"加油站自办芯片卡号",@"推荐人",@"推荐人ID"];
+    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"加油站自办芯片卡号",@"全团ID",@"推荐人",@"推荐人ID"];
 
     self.vlaueArr = [NSMutableArray arrayWithObjects:
                      [UserModel defaultUser].pic,
@@ -79,26 +80,67 @@
                      [UserModel defaultUser].username,
                      [UserModel defaultUser].IDCard,
                      [UserModel defaultUser].pic,
-                     [UserModel defaultUser].banknumber,
                      [UserModel defaultUser].openbank,
+                     [UserModel defaultUser].banknumber,
                      [UserModel defaultUser].jyzSelfCardNum,
+                     [UserModel defaultUser].qtIdNum,
                      [UserModel defaultUser].recommendUser,
                      [UserModel defaultUser].recommendID, nil];
     
-//    self.picImage = [UserModel defaultUser].pic;
-//    self.trueName = [UserModel defaultUser].truename;
-//    self.IDNum = [UserModel defaultUser].username;
-//    self.shenfenCode = [UserModel defaultUser].IDCard;
-//    self.picImage = [UserModel defaultUser].pic;
-//    self.bankNum = [UserModel defaultUser].banknumber;
-//    self.openBank = [UserModel defaultUser].openbank;
-//    self.oilCardNum = [UserModel defaultUser].jyzSelfCardNum;
-//    self.recommendName = [UserModel defaultUser].recommendUser;
-//    self.recommendID = [UserModel defaultUser].recommendID;
-    
-    
     self.tableViewHeight.constant = 8 * 40 + 2 * 60 + 30;
 
+}
+//MARK: 二维码中间内置图片,可以是公司logo
+-(UIImage *)logoQrCode{
+    
+    //二维码过滤器
+    CIFilter *qrImageFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    
+    //设置过滤器默认属性 (老油条)
+    [qrImageFilter setDefaults];
+    
+    //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
+    NSData *qrImageData = [[UserModel defaultUser].username dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //设置过滤器的 输入值  ,KVC赋值
+    [qrImageFilter setValue:qrImageData forKey:@"inputMessage"];
+    
+    //取出图片
+    CIImage *qrImage = [qrImageFilter outputImage];
+    
+    //但是图片 发现有的小 (27,27),我们需要放大..我们进去CIImage 内部看属性
+    qrImage = [qrImage imageByApplyingTransform:CGAffineTransformMakeScale(20, 20)];
+    
+    //转成 UI的 类型
+    UIImage *qrUIImage = [UIImage imageWithCIImage:qrImage];
+    
+    
+    //----------------给 二维码 中间增加一个 自定义图片----------------
+    //开启绘图,获取图形上下文  (上下文的大小,就是二维码的大小)
+    UIGraphicsBeginImageContext(qrUIImage.size);
+    
+    //把二维码图片画上去. (这里是以,图形上下文,左上角为 (0,0)点)
+    [qrUIImage drawInRect:CGRectMake(0, 0, qrUIImage.size.width, qrUIImage.size.height)];
+    
+    
+    //再把小图片画上去
+    UIImage *sImage = [UIImage imageNamed:@""];
+    
+    CGFloat sImageW = 100;
+    CGFloat sImageH= sImageW;
+    CGFloat sImageX = (qrUIImage.size.width - sImageW) * 0.5;
+    CGFloat sImgaeY = (qrUIImage.size.height - sImageH) * 0.5;
+    
+    [sImage drawInRect:CGRectMake(sImageX, sImgaeY, sImageW, sImageH)];
+    
+    //获取当前画得的这张图片
+    UIImage *finalyImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    //关闭图形上下文
+    UIGraphicsEndImageContext();
+    
+    //设置图片
+    return finalyImage;
 }
 
 - (void)edit:(UIButton *)sender {
@@ -114,64 +156,85 @@
             UITextField *openBankTF = alertController.textFields[0];
             UITextField *bankNumTF = alertController.textFields[1];
             UITextField *oilNumTF = alertController.textFields[2];
+            UITextField *qtIdNumTF = alertController.textFields[3];
+
             
-            [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+                [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text qtIdNum:qtIdNumTF.text];
+            });
+            
             
         }];
-        
+    
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"请输入开户银行名";
+        textField.tag = 10;
+        textField.delegate = self;
         
     }];
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"请输入银行卡号";
+        textField.tag = 11;
+        textField.delegate = self;
+
         
     }];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"请输入油卡卡号";
-        
-    }];
-    
-        [self presentViewController:alertController animated:YES completion:nil];
+        textField.tag = 12;
+        textField.delegate = self;
 
         
-        
-        NSLog(@"可以编辑了");
- 
-}
-- (void)modifyInfo:(NSString *)bankNum OilNum:(NSString *)oilNum andOpenbank:(NSString *)openbank{
+    }];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"请输入全团ID";
+        textField.tag = 13;
+        textField.delegate = self;
+
+    }];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+
+ }
+- (void)modifyInfo:(NSString *)bankNum OilNum:(NSString *)oilNum andOpenbank:(NSString *)openbank qtIdNum:(NSString *)qtIdNum{
   
-    if (bankNum.length == 0 && oilNum.length == 0 && openbank.length == 0) {
+    if (bankNum.length == 0 && oilNum.length == 0 && openbank.length == 0 && qtIdNum.length == 0) {
+        
         return;
     }
-    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    if(bankNum.length == 0){
-//        dict[@"banknumber"] = @"";
-    }else{
+    
+    if (openbank.length != 0) {
+        
+        if (![predicateModel IsChinese:openbank]) {
+            [MBProgressHUD showError:@"开户行只能是中文"];
+            return;
+        }
+        dict[@"openbank"] = openbank;
+    }
+    if(bankNum.length != 0){
         
         dict[@"banknumber"] = bankNum;
+        if (![predicateModel IsBankCard:bankNum]) {
+            [MBProgressHUD showError:@"请输入正确的银行卡号"];
+            return;
+        }
+        
     }
-    if (oilNum.length == 0) {
-//        dict[@"jyzSelfCardNum"] = @"";
-
-    }else{
+    if (oilNum.length != 0) {
         
         dict[@"jyzSelfCardNum"] = oilNum;
     }
-
-    if (openbank.length == 0) {
-//        dict[@"openbank"] = @"";
+    if (qtIdNum.length != 0) {
         
-    }else{
-        
-        dict[@"openbank"] = openbank;
+        dict[@"qtIdNum"] = qtIdNum;
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
@@ -204,12 +267,13 @@
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             
             [UserModel defaultUser].openbank = responseObject[@"data"][@"openbank"];
             [UserModel defaultUser].banknumber = responseObject[@"data"][@"banknumber"];
             [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
+            [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
             
             [usermodelachivar achive];
             [self updateInfo];
@@ -226,29 +290,32 @@
         
     }];
 }
-- (void)getPersonInfo{
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-// 
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:@"UserInfo/info_go" paramDic:dict finish:^(id responseObject) {
-//        
-//        [_loadV removeloadview];
-//   
-//        if ([responseObject[@"code"] integerValue]==1) {
-//            self.dataDic = responseObject[@"data"];
-//            
-//        }else{
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//        [self.tableView reloadData];
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        [MBProgressHUD showError:error.localizedDescription];
-//        
-//    }];
+#pragma UITextfieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+
+    if (textField.tag == 11 || textField.tag == 12) {//身份证号只能输入数字和X
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        BOOL basicTest = [string isEqualToString:filtered];
+        if(!basicTest){
+            [MBProgressHUD showError:@"输入不合法"];
+            return NO;
+        }
+        
+    }else if (textField.tag == 13){
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        BOOL basicTest = [string isEqualToString:filtered];
+        if(!basicTest){
+            [MBProgressHUD showError:@"输入不合法"];
+            return NO;
+        }
+    }
+    return YES;
+    
 }
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
@@ -260,7 +327,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         
-        return 8;
+        return self.vlaueArr.count - 2;
         
     }else{
         
@@ -286,9 +353,10 @@
             
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
-                
+                [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
             }else{
                 cell.picImageV.layer.cornerRadius = 0;
+                cell.picImageV.image = [self logoQrCode];
             }
         }else{
 
@@ -299,8 +367,8 @@
     }else{
         cell.picImageV.hidden = YES;
         cell.detailTF.hidden = NO;
-        cell.titleLabel.text = _keyArr[indexPath.row + 8];
-        cell.detailTF.text = _vlaueArr[indexPath.row + 8];
+        cell.titleLabel.text = _keyArr[indexPath.row + 9];
+        cell.detailTF.text = _vlaueArr[indexPath.row + 9];
         
     }
 
@@ -338,6 +406,7 @@
         return 40;
     }
 }
+#pragma 调相机 相册
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     switch (buttonIndex) {
         case 0:{

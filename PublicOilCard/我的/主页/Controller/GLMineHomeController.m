@@ -216,7 +216,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
     }else{
         
-        return CGSizeMake(SCREEN_WIDTH, 280);
+        return CGSizeMake(SCREEN_WIDTH, 290);
     }
    
 }
