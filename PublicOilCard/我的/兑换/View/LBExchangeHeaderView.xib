@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LBExchangeHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -116,6 +116,10 @@
                 <constraint firstItem="aep-yt-Gg7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="uJJ-R3-QDx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="jifenLb" destination="eci-KJ-LRR" id="DK3-Ou-4F4"/>
+                <outlet property="yuELb" destination="01D-R7-VEm" id="qWr-yn-5BH"/>
+            </connections>
             <point key="canvasLocation" x="34.5" y="55"/>
         </view>
     </objects>

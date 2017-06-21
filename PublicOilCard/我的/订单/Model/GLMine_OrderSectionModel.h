@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface GLMine_OrderSectionModel : NSObject
-//订单编号
-@property (nonatomic, copy)NSString *user_name;
 //用户名
+@property (nonatomic, copy)NSString *user_name;
+//订单编号
 @property (nonatomic, copy)NSString *order_num;
 //订单应付款
 @property (nonatomic, copy)NSString *should_price;

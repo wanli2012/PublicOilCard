@@ -16,6 +16,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
+    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesture)];
+    [self.titleLb addGestureRecognizer:tapgesture];
 
 }
 
@@ -28,5 +31,10 @@
     return YES;
 }
 
+-(void)tapgesture{
+
+    [self.delegete showExchangeType:self.indexpath];
+
+}
 
 @end

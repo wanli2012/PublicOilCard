@@ -195,8 +195,7 @@
             [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
             
             [UserModel defaultUser].loginstatus = YES;
-//            [UserModel defaultUser].usrtype = self.usertype;
-          
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -214,30 +213,6 @@
                 
                 [UserModel defaultUser].qtIdNum = @"";
             }
-//            if ([self.usertype isEqualToString:Retailer]) {//零售商
-//                [UserModel defaultUser].shop_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_name"]];
-//                [UserModel defaultUser].shop_address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_address"]];
-//                [UserModel defaultUser].shop_type = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"shop_type"]];
-//                [UserModel defaultUser].is_main = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"is_main"]];
-//                if ([[UserModel defaultUser].shop_name rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_name = @"";
-//                }
-//                if ([[UserModel defaultUser].shop_address rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_address = @"";
-//                }
-//                if ([[UserModel defaultUser].shop_type rangeOfString:@"null"].location != NSNotFound) {
-//                    
-//                    [UserModel defaultUser].shop_type = @"";
-//                }
-//            }else{//普通用户
-//                [UserModel defaultUser].shop_name = @"";
-//                [UserModel defaultUser].shop_address = @"";
-//                [UserModel defaultUser].shop_type = @"";
-//                [UserModel defaultUser].is_main = @"";
-//
-//            }
             
             [usermodelachivar achive];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];

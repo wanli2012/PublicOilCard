@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface LBExchangeHeaderView : UIView
+@property (weak, nonatomic) IBOutlet UILabel *jifenLb;
+@property (weak, nonatomic) IBOutlet UILabel *yuELb;
 
 @end

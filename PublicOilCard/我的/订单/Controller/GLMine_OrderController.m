@@ -10,8 +10,9 @@
 #import "GLMine_CollectCell.h"
 #import "GLMine_OrderSectionHeader.h"
 #import "LBWaitOrdersListModel.h"
+#import "LBMineCenterPayPagesViewController.h"
 
-@interface GLMine_OrderController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_OrderController ()<UITableViewDelegate,UITableViewDataSource,GLMine_OrderSectionHeaderDelegete>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *sectionModels;
@@ -38,12 +39,51 @@
     
     [self initdatasource];//网络请求
     
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadNewData];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+       [weakSelf footerrefresh];
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    
 }
+
+//下拉刷新
+-(void)loadNewData{
+    
+    _refreshType = NO;
+    _page=1;
+    
+    [self initdatasource];
+}
+//上啦刷新
+-(void)footerrefresh{
+    _refreshType = YES;
+    _page++;
+    
+    [self initdatasource];
+}
+
 
 -(void)initdatasource{
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"shop/gain_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/order_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page]} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
@@ -115,14 +155,17 @@
     GLMine_CollectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_CollectCell"];
     cell.selectionStyle = 0;
     
-    return cell;
+    GLMine_OrderSectionModel *model = self.sectionModels[indexPath.section];
+    cell.WaitOrdersListModel = model.dataArr[indexPath.row];
     
+    return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     GLMine_OrderSectionHeader *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"GLMine_OrderSectionHeader"];
     GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
     headerview.sectionModel = sectionModel;
+    headerview.delegete = self;
     headerview.expandCallback = ^(BOOL isExpanded) {
         
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -136,6 +179,75 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
+}
+
+
+#pragma mark == GLMine_OrderSectionHeaderDelegete
+
+-(void)orderpay:(NSInteger)section{
+    GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
+    if ([sectionModel.order_status isEqualToString:@"1"]) {//去支付
+        self.hidesBottomBarWhenPushed = YES;
+        LBMineCenterPayPagesViewController *vc = [[LBMineCenterPayPagesViewController alloc]init];
+        vc.order_id = sectionModel.order_id;
+        vc.order_num = sectionModel.order_num;
+        vc.addtime = sectionModel.addtime;
+        vc.realy_price = sectionModel.should_price;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{//删除订单
+        [self deleteOrder:section];
+    }
+
+}
+/**
+ *删除订单
+ */
+-(void)deleteOrder:(NSInteger)section{
+
+    GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/del_order" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id":sectionModel.order_id } finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+            [self.sectionModels removeObjectAtIndex:section];
+            [self.tableView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
+}
+
+-(void)orderCancel:(NSInteger)section{
+
+    GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/cancel_order" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"order_id":sectionModel.order_id } finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+            sectionModel.order_status = @"11";
+            [self.tableView reloadData];
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+
 }
 
 #pragma  懒加载

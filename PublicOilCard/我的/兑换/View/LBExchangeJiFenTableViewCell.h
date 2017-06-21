@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LBExchangeJiFenTableViewCellDelegete <NSObject>
+
+-(void)showExchangeType:(NSIndexPath*)indexpath;
+
+@end
+
 @interface LBExchangeJiFenTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLb;
 @property (weak, nonatomic) IBOutlet UITextField *textf;
-
+@property (assign, nonatomic)id<LBExchangeJiFenTableViewCellDelegete> delegete;
+@property (strong , nonatomic)NSIndexPath *indexpath;
 @end
