@@ -31,7 +31,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"我的订单";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
+    _page=1;
      [self.tableView addSubview:self.nodataV];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_CollectCell" bundle:nil] forCellReuseIdentifier:@"GLMine_CollectCell"];
@@ -106,7 +106,7 @@
                     orderMode.order_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_status"]];
                     orderMode.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_id"]];
                     orderMode.isExpanded = NO;
-                    for (int j =0; j < [responseObject[@"data"][i][@"order_glist"]count]; j++) {
+                    for (int j =0; j < [responseObject[@"data"][i][@"goods"]count]; j++) {
                         LBWaitOrdersListModel   *listmodel = [LBWaitOrdersListModel mj_objectWithKeyValues:responseObject[@"data"][i][@"goods"][j]];
                         [orderMode.dataArr addObject:listmodel];
                     }
