@@ -120,6 +120,8 @@
 		4A751F741EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */; };
 		4A751F7A1EFA40E100C919F6 /* GLMine_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */; };
 		4A751F7B1EFA40E100C919F6 /* GLMine_PersonInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */; };
+		4A9FBE3D1EFA98AE00BAEBBF /* GLMine_updateNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FBE3B1EFA98AE00BAEBBF /* GLMine_updateNewCell.m */; };
+		4A9FBE3E1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9FBE3C1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib */; };
 		4AEC057F1EF1151600B39497 /* GLMine_HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC057D1EF1151600B39497 /* GLMine_HeaderView.m */; };
 		4AEC05801EF1151600B39497 /* GLMine_HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEC057E1EF1151600B39497 /* GLMine_HeaderView.xib */; };
 		4AEC05881EF13CBA00B39497 /* GLMine_CollectController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC05861EF13CBA00B39497 /* GLMine_CollectController.m */; };
@@ -372,6 +374,9 @@
 		4A751F771EFA40E100C919F6 /* GLMine_PersonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_PersonInfoCell.h; sourceTree = "<group>"; };
 		4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_PersonInfoCell.m; sourceTree = "<group>"; };
 		4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_PersonInfoCell.xib; sourceTree = "<group>"; };
+		4A9FBE3A1EFA98AE00BAEBBF /* GLMine_updateNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_updateNewCell.h; sourceTree = "<group>"; };
+		4A9FBE3B1EFA98AE00BAEBBF /* GLMine_updateNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_updateNewCell.m; sourceTree = "<group>"; };
+		4A9FBE3C1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_updateNewCell.xib; sourceTree = "<group>"; };
 		4AEC057C1EF1151600B39497 /* GLMine_HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_HeaderView.h; sourceTree = "<group>"; };
 		4AEC057D1EF1151600B39497 /* GLMine_HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_HeaderView.m; sourceTree = "<group>"; };
 		4AEC057E1EF1151600B39497 /* GLMine_HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_HeaderView.xib; sourceTree = "<group>"; };
@@ -1262,6 +1267,9 @@
 		4AEC05961EF1425F00B39497 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A9FBE3A1EFA98AE00BAEBBF /* GLMine_updateNewCell.h */,
+				4A9FBE3B1EFA98AE00BAEBBF /* GLMine_updateNewCell.m */,
+				4A9FBE3C1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib */,
 				4AEEC9CE1EF28DF500F827BB /* GLMine_updateManagerCell.h */,
 				4AEEC9CF1EF28DF500F827BB /* GLMine_updateManagerCell.m */,
 				4AEEC9D01EF28DF500F827BB /* GLMine_updateManagerCell.xib */,
@@ -1576,6 +1584,7 @@
 				F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
 				4A1CE7171EF504C900895ADF /* GLMine_OpenController.xib in Resources */,
+				4A9FBE3E1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib in Resources */,
 				4A4FA5F21EF0DF3500A256D2 /* Mine.xcassets in Resources */,
 				4A751F7B1EFA40E100C919F6 /* GLMine_PersonInfoCell.xib in Resources */,
 				4A4FA5981EF0CA1100A256D2 /* LaunchScreen.storyboard in Resources */,
@@ -1703,6 +1712,7 @@
 				4A39F4C71EF3BA510038C147 /* GLMine_ExchangeRecordCell.m in Sources */,
 				4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */,
 				4A4FA58A1EF0CA1100A256D2 /* AppDelegate.m in Sources */,
+				4A9FBE3D1EFA98AE00BAEBBF /* GLMine_updateNewCell.m in Sources */,
 				4A39F49D1EF3B0810038C147 /* GLMine_SetCell.m in Sources */,
 				F95D45F61EFA4A980011C69B /* UIView+TYAlertView.m in Sources */,
 				4AEEC9BA1EF2803F00F827BB /* QQPopMenuView.m in Sources */,

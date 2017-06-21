@@ -7,12 +7,13 @@
 //
 
 #import "GLMine_updateManagerController.h"
-#import "GLMine_updateManagerCell.h"
-#import "GLMine_updateManagerAllCell.h"
 #import "GLMine_updateManagerModel.h"
-#import "GLMine_updateManagerDealNowCell.h"
+//#import "GLMine_updateManagerCell.h"
+//#import "GLMine_updateManagerAllCell.h"
+//#import "GLMine_updateManagerDealNowCell.h"
+#import "GLMine_updateNewCell.h"
 
-@interface GLMine_updateManagerController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_updateManagerController ()<UITableViewDelegate,UITableViewDataSource,GLMine_updateNewCellDelegate>
 {
     //假数据源
     NSArray *_keyArr;
@@ -24,7 +25,11 @@
 
 @property (nonatomic, strong)NSMutableArray *tempArr;
 
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *models;
+@property (nonatomic, strong)NSArray *dataArr;
+@property (nonatomic, assign)NSInteger page;//页数
 
 @end
 
@@ -35,9 +40,10 @@
     
     self.navigationItem.title = @"升级管理";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerAllCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerAllCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerDealNowCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerDealNowCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerAllCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerAllCell"];
+//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerDealNowCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerDealNowCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateNewCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateNewCell"];
     
     _keyArr = @[@"赠送6000积分送6000积分送6000积分送6000积分送6000积分",
                 @"用户赠送6000积分送6000积分送6000积分送6000积分送6000积分名",
@@ -48,154 +54,146 @@
                 @"推荐人ID"];
 
 
+    [self.tableView addSubview:self.nodataV];
+    self.nodataV.hidden = YES;
+    
+    __weak __typeof(self) weakSelf = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf updateData:YES];
+        
+    }];
+    
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [weakSelf updateData:NO];
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+    }];
+    
+    // 设置文字
+    [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
+    
+    [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
+    
+    [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
+    
+    self.tableView.mj_header = header;
+    self.tableView.mj_footer = footer;
+    
+    [self updateData:YES];
+    
+}
+
+- (void)updateData:(BOOL)status {
+    if (status) {
+        
+        self.page = 1;
+        [self.models removeAllObjects];
+        
+    }else{
+        _page ++;
+        
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/upgrade_user" paramDic:dict finish:^(id responseObject) {
+        [self endRefresh];
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            self.dataArr = responseObject[@"data"];
+            
+            if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+    
+}
+- (void)endRefresh {
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshing];
+}
+-(NodataView*)nodataV{
+    
+    if (!_nodataV) {
+        _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+    }
+    return _nodataV;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
-#pragma UITableViewDelegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.models.count;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
+
+#pragma GLMine_updateNewDelegate
+
+- (void)open:(NSInteger)index{
+    
+    if (index == 0) {
         
-        if (_keyArr.count <= 3) {
-            
-            return _keyArr.count ;
-            
-        }else{
-            
-            return self.tempArr.count;
-        }
+        NSLog(@"6000");
     }else{
-        return _keyArr.count;
+        
+        NSLog(@"12000");
     }
+}
+
+#pragma UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if(self.dataArr.count == 0){
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden =YES;
+    }
+    
+    return self.dataArr.count;
+
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        
-        if (self.tempArr.count >= 3) {
-            if (indexPath.row <= self.tempArr.count -3) {
-                
-                GLMine_updateManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateManagerCell"];
-                cell.selectionStyle = 0;
-                return cell;
-                
-            }else if(indexPath.row == self.tempArr.count - 2){
-                
-                GLMine_updateManagerAllCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateManagerAllCell"];
-                cell.selectionStyle = 0;
-                cell.index = indexPath.section;
-                cell.model = self.models[indexPath.section];
-                
-                //回调
-                __weak __typeof(self)weakSelf = self;
-                cell.returnBlock = ^(BOOL isCheckAll,NSInteger index){
-                    GLMine_updateManagerModel *model = weakSelf.models[indexPath.section];
-                    model.isCheckAll = !model.isCheckAll;
-                    [_tempArr removeAllObjects];
-                    
-                    if (model.isCheckAll == YES) {
-                        for (int i = 0; i < _keyArr.count; i ++) {
-                            [_tempArr addObject:_keyArr[i]];
-                        }
-                        [_tempArr addObject:@""];
-                        [_tempArr addObject:@""];
-                        
-                    }else{
-                        for (int i = 0; i < 2; i ++) {
-                            [_tempArr addObject:_keyArr[i]];
-                        }
-                        [_tempArr addObject:@""];
-                        [_tempArr addObject:@""];
-                        
-                    }
-                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:index] withRowAnimation:UITableViewRowAnimationAutomatic];
-                };
-                return cell;
-            }else{
-                GLMine_updateManagerModel *model = self.models[indexPath.section];
-                if (model.isCheckAll) {
-                    return [[UITableViewCell alloc] init];
-                }else{
-                    
-                    GLMine_updateManagerDealNowCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateManagerDealNowCell"];
-                    cell.selectionStyle = 0;
-                    return cell;
-                }
-            }
-        }else{
-            
-            GLMine_updateManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateManagerCell"];
-            cell.selectionStyle = 0;
-            return cell;
-            
-        }
-        
-    }else{
-        GLMine_updateManagerCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateManagerCell"];
-        cell.selectionStyle = 0;
-        return cell;
-
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    headerLabel.backgroundColor = TABBARTITLE_COLOR;
-    headerLabel.textColor = [UIColor whiteColor];
-    headerLabel.font = [UIFont systemFontOfSize:14];
-    GLMine_updateManagerModel *model = self.models[section];
-    headerLabel.text = model.content;
-    headerLabel.textAlignment = NSTextAlignmentCenter;
-    return headerLabel;
+    GLMine_updateNewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateNewCell"];
+    cell.titleLabel.text = self.dataArr[indexPath.row][@"title"];
+    cell.contentLabel.text = self.dataArr[indexPath.row][@"right"];
+    cell.delegate = self;
+    cell.index = indexPath.row;
+    return cell;
+
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GLMine_updateManagerModel *model = self.models[indexPath.section];
- 
     
-    if(model.isCheckAll && (indexPath.row == self.tempArr.count - 1)){
-        return 0;
-    }else{
-        
-        self.tableView.estimatedRowHeight = 44;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
-        return self.tableView.rowHeight;
-    }
-    
+    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    return self.tableView.rowHeight;
 }
 
 - (NSMutableArray *)models{
     if (!_models) {
         _models = [[NSMutableArray alloc] init];
-        NSArray *contents = @[@"首期: 6000级代理商尊享权益(限1000名)",@"二期:12000级代理快点快点看"];
-        NSArray *isCA = @[@(NO),@(NO)];
-        for (int i = 0; i < 2; i ++) {
-            GLMine_updateManagerModel *model = [[GLMine_updateManagerModel alloc] init];
-            model.content = contents[i];
-            model.isCheckAll = [isCA[i] boolValue];
-            [_models addObject:model];
-        }
     }
     return _models;
 }
-- (NSMutableArray *)tempArr{
-    if (!_tempArr) {
-        _tempArr = [[NSMutableArray alloc] init];
-        if (_keyArr.count >= 3) {
-            for (int i = 0; i < 2; i ++) {
-                [_tempArr addObject:_keyArr[i]];
-            }
-            [_tempArr addObject:@""];
-            [_tempArr addObject:@""];
-        }
-    }
-    return _tempArr;
-}
+
 @end

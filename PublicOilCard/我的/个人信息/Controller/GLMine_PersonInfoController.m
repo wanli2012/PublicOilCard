@@ -67,7 +67,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
-   
 }
 
 - (void)updateInfo{
@@ -78,8 +77,8 @@
                      [UserModel defaultUser].pic,
                      [UserModel defaultUser].truename,
                      [UserModel defaultUser].username,
-                     [UserModel defaultUser].IDCard,
                      [UserModel defaultUser].pic,
+                     [UserModel defaultUser].IDCard,
                      [UserModel defaultUser].openbank,
                      [UserModel defaultUser].banknumber,
                      [UserModel defaultUser].jyzSelfCardNum,
@@ -87,7 +86,7 @@
                      [UserModel defaultUser].recommendUser,
                      [UserModel defaultUser].recommendID, nil];
     
-    self.tableViewHeight.constant = 8 * 40 + 2 * 60 + 30;
+    self.tableViewHeight.constant = 9 * 40 + 2 * 60 + 30;
 
 }
 //MARK: 二维码中间内置图片,可以是公司logo
@@ -153,15 +152,16 @@
         __weak typeof(self) weakself = self;
         UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             
-            UITextField *openBankTF = alertController.textFields[0];
-            UITextField *bankNumTF = alertController.textFields[1];
-            UITextField *oilNumTF = alertController.textFields[2];
-            UITextField *qtIdNumTF = alertController.textFields[3];
+//            UITextField *openBankTF = alertController.textFields[0];
+//            UITextField *bankNumTF = alertController.textFields[1];
+            UITextField *oilNumTF = alertController.textFields[0];
+            UITextField *qtIdNumTF = alertController.textFields[1];
 
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-                [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text qtIdNum:qtIdNumTF.text];
+//                [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text qtIdNum:qtIdNumTF.text];
+                [weakself modifyInfo:oilNumTF.text qtIdNum:qtIdNumTF.text];
             });
             
             
@@ -170,20 +170,20 @@
         [alertController addAction:cancelAction];
         [alertController addAction:okAction];
     
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入开户银行名";
-        textField.tag = 10;
-        textField.delegate = self;
-        
-    }];
-    
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入银行卡号";
-        textField.tag = 11;
-        textField.delegate = self;
-
-        
-    }];
+//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//        textField.placeholder = @"请输入开户银行名";
+//        textField.tag = 10;
+//        textField.delegate = self;
+//        
+//    }];
+//    
+//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+//        textField.placeholder = @"请输入银行卡号";
+//        textField.tag = 11;
+//        textField.delegate = self;
+//
+//        
+//    }];
     [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
         textField.placeholder = @"请输入油卡卡号";
         textField.tag = 12;
@@ -201,37 +201,37 @@
     [self presentViewController:alertController animated:YES completion:nil];
 
  }
-- (void)modifyInfo:(NSString *)bankNum OilNum:(NSString *)oilNum andOpenbank:(NSString *)openbank qtIdNum:(NSString *)qtIdNum{
+- (void)modifyInfo:(NSString *)oilNum qtIdNum:(NSString *)qtIdNum{
   
-    if (bankNum.length == 0 && oilNum.length == 0 && openbank.length == 0 && qtIdNum.length == 0) {
+    if ( oilNum.length == 0 && qtIdNum.length == 0) {
         
         return;
     }
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    
-    if (openbank.length != 0) {
-        
-        if (![predicateModel IsChinese:openbank]) {
-            [MBProgressHUD showError:@"开户行只能是中文"];
-            return;
-        }
-        dict[@"openbank"] = openbank;
-    }
-    if(bankNum.length != 0){
-        
-        dict[@"banknumber"] = bankNum;
-        if (![predicateModel IsBankCard:bankNum]) {
-            [MBProgressHUD showError:@"请输入正确的银行卡号"];
-            return;
-        }
-        
-    }
+//    
+//    if (openbank.length != 0) {
+//        
+//        if (![predicateModel IsChinese:openbank]) {
+//            [MBProgressHUD showError:@"开户行只能是中文"];
+//            return;
+//        }
+//        dict[@"openbank"] = openbank;
+//    }
+//    if(bankNum.length != 0){
+//        
+//        dict[@"banknumber"] = bankNum;
+////        if (![predicateModel IsBankCard:bankNum]) {
+////            [MBProgressHUD showError:@"请输入正确的银行卡号"];
+////            return;
+////        }
+//    }
     if (oilNum.length != 0) {
         
         dict[@"jyzSelfCardNum"] = oilNum;
     }
+    
     if (qtIdNum.length != 0) {
         
         dict[@"qtIdNum"] = qtIdNum;
@@ -270,8 +270,8 @@
 //        NSLog(@"%@",responseObject);
         if ([responseObject[@"code"] integerValue]==1) {
             
-            [UserModel defaultUser].openbank = responseObject[@"data"][@"openbank"];
-            [UserModel defaultUser].banknumber = responseObject[@"data"][@"banknumber"];
+//            [UserModel defaultUser].openbank = responseObject[@"data"][@"openbank"];
+//            [UserModel defaultUser].banknumber = responseObject[@"data"][@"banknumber"];
             [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
             [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
             
@@ -327,7 +327,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         
-        return self.vlaueArr.count - 2;
+        return _keyArr.count - 2;
         
     }else{
         

@@ -196,20 +196,21 @@
             
             [UserModel defaultUser].loginstatus = YES;
             [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
+            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
             
-            if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].banknumber = @"";
             }
-            if ([[UserModel defaultUser].openbank rangeOfString:@"null"].location != NSNotFound) {
-                
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].openbank] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].openbank = @"";
             }
-            if ([[UserModel defaultUser].jyzSelfCardNum rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].jyzSelfCardNum = @"";
             }
-            if ([[UserModel defaultUser].qtIdNum rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].qtIdNum = @"";
             }
