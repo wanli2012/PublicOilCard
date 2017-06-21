@@ -46,6 +46,7 @@
                   [UserModel defaultUser].jyzSelfCardNum,
                   [UserModel defaultUser].recommendUser,
                   [UserModel defaultUser].recommendID];
+    
     self.tableViewHeight.constant = 8 * 40 + 2 * 60 + 30;
     
     //自定义右键
@@ -62,8 +63,11 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
     [self getPersonInfo];
 }
+
 - (void)edit:(UIButton *)sender {
+    
      sender.selected = !sender.selected;
+    
     if(!sender.selected){
         
     }else{
@@ -158,11 +162,11 @@
         
     }
     
-    if (cell.valueTF.enabled) {
-        cell.valueTF.backgroundColor = [UIColor lightGrayColor];
-    }else{
-        cell.valueTF.backgroundColor = [UIColor clearColor];
-    }
+//    if (cell.valueTF.enabled) {
+//        cell.valueTF.backgroundColor = [UIColor lightGrayColor];
+//    }else{
+//        cell.valueTF.backgroundColor = [UIColor clearColor];
+//    }
     return cell;
     
 }

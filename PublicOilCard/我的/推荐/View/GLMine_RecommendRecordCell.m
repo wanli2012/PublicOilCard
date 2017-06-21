@@ -7,18 +7,27 @@
 //
 
 #import "GLMine_RecommendRecordCell.h"
+#import "formattime.h"
+
+@interface GLMine_RecommendRecordCell ()
+@property (weak, nonatomic) IBOutlet UILabel *IDLabel;
+@property (weak, nonatomic) IBOutlet UILabel *trueNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
+@end
 
 @implementation GLMine_RecommendRecordCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    
 }
+- (void)setModel:(GLMine_RecommendRecordModel *)model {
+    _model = model;
+    self.IDLabel.text = model.user_name;
+    self.trueNameLabel.text = model.truename;
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+    self.dateLabel.text = [formattime formateTime:model.regtime];
 }
 
 @end

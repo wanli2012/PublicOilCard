@@ -115,6 +115,7 @@
         weakself.countryStrId = areaid;
     };
 }
+
 //提交
 - (IBAction)submit:(id)sender {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -127,11 +128,12 @@
     dict[@"area"] = self.countryStrId;
     [NetworkManager requestPOSTWithURLStr:@"UserInfo/open_under" paramDic:dict finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
-            
+            [MBProgressHUD showSuccess:@"开通下级成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             
+            [MBProgressHUD showError:responseObject[@"message"]];
         }
-        [MBProgressHUD showError:responseObject[@"message"]];
     } enError:^(NSError *error) {
         
     }];
@@ -150,7 +152,7 @@
                 //设置界面的按钮显示 根据自己需求设置
                 [self.getCodeBtn setTitle:@"重发验证码" forState:UIControlStateNormal];
                 self.getCodeBtn.userInteractionEnabled = YES;
-                self.getCodeBtn.backgroundColor = [UIColor clearColor];
+                self.getCodeBtn.backgroundColor = [UIColor whiteColor];
                 self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:13];
             });
             
@@ -160,7 +162,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.getCodeBtn setTitle:[NSString stringWithFormat:@"%@",strTime] forState:UIControlStateNormal];
                 self.getCodeBtn.userInteractionEnabled = NO;
-                self.getCodeBtn.backgroundColor = TABBARTITLE_COLOR;
+                self.getCodeBtn.backgroundColor = [UIColor whiteColor];
                 self.getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:11];
             });
             timeout--;

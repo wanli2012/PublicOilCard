@@ -57,11 +57,12 @@
         _sectionModel = sectionModel;
     }
     
-    self.IDLabel.text = [NSString stringWithFormat:@"%@", sectionModel.IDNum];
-    self.nameLabel.text = [NSString stringWithFormat:@"%@", sectionModel.name];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@", sectionModel.date];
+    self.IDLabel.text = [NSString stringWithFormat:@"%@", sectionModel.user_name];
+    self.nameLabel.text = [NSString stringWithFormat:@"%@", sectionModel.truename];
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", sectionModel.regtime];
 
 }
+
 -(void)tapgestureSection{
     self.sectionModel.isExpanded = !self.sectionModel.isExpanded;
     

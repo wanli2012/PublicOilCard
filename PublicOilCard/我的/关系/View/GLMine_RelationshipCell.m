@@ -24,9 +24,9 @@
 }
 - (void)setModel:(GLMine_RelationshipModel *)model{
     _model = model;
-    self.subordinateLabel.text = [NSString stringWithFormat:@"经理:%@人",model.subordinateNum];
-    self.memberLabel.text = [NSString stringWithFormat:@"会员:%@人",model.subordinateNum];
-    self.delegateOneLabel.text = [NSString stringWithFormat:@"首期代理:%@人",model.subordinateNum];
-    self.delegateTwoLabel.text = [NSString stringWithFormat:@"二期代理:%@人",model.subordinateNum];
+    self.subordinateLabel.text = [NSString stringWithFormat:@"经理:%@人",model.jl];
+    self.memberLabel.text = [NSString stringWithFormat:@"会员:%@人",model.hy];
+    self.delegateOneLabel.text = [NSString stringWithFormat:@"首期代理:%@人",model.ad];
+    self.delegateTwoLabel.text = [NSString stringWithFormat:@"二期代理:%@人",model.bd];
 }
 @end

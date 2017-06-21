@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GLMine_RecommendRecordModel.h"
 
 @interface GLMine_RecommendRecordCell : UITableViewCell
+
+@property (nonatomic, strong)GLMine_RecommendRecordModel *model;
 
 @end
