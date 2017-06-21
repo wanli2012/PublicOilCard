@@ -34,4 +34,22 @@
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];
     
 }
+
+-(void)setWaitOrdersListModel:(LBWaitOrdersListModel *)WaitOrdersListModel{
+    _WaitOrdersListModel =WaitOrdersListModel;
+
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    self.titleLabel.text =  [NSString stringWithFormat:@"名称: %@",_WaitOrdersListModel.goods_name];
+    self.detailLabel.text =  [NSString stringWithFormat:@"%@",_WaitOrdersListModel.goods_info];
+    self.priceLabel.text =  [NSString stringWithFormat:@"¥%@",_WaitOrdersListModel.goods_price];
+    self.countLabel.text =  [NSString stringWithFormat:@"x%@",_WaitOrdersListModel.goods_num];
+    
+    if ([self.titleLabel.text rangeOfString:@"null"].location != NSNotFound) {
+        self.titleLabel.text =  [NSString stringWithFormat:@"名称: "];
+    }
+    if ([self.detailLabel.text rangeOfString:@"null"].location != NSNotFound || self.detailLabel.text.length <= 0) {
+        self.detailLabel.text =  [NSString stringWithFormat:@"暂无描述"];
+    }
+   
+}
 @end

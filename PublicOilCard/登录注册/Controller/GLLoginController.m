@@ -195,8 +195,7 @@
             [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
             
             [UserModel defaultUser].loginstatus = YES;
-//            [UserModel defaultUser].usrtype = self.usertype;
-          
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
             
             if ([[UserModel defaultUser].banknumber rangeOfString:@"null"].location != NSNotFound) {
                 

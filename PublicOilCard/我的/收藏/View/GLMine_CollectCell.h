@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "GLMine_CollectModel.h"
+#import "LBWaitOrdersListModel.h"
 
 @interface GLMine_CollectCell : UITableViewCell
 
 @property (nonatomic, strong)GLMine_CollectModel *model;
+@property (strong, nonatomic)LBWaitOrdersListModel *WaitOrdersListModel;
+
+
 
 @end
