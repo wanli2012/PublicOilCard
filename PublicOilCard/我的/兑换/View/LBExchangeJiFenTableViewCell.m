@@ -17,8 +17,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     
-    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesture)];
-    [self.titleLb addGestureRecognizer:tapgesture];
+//    UITapGestureRecognizer *tapgesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgesture)];
+//    [self.titleLb addGestureRecognizer:tapgesture];
 
 }
 
