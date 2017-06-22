@@ -239,11 +239,19 @@
            NSDictionary *dic =  self.dataArr[i];
             [dataSource addObject:dic[@"catename"]];
         }
+        [dataSource insertObject:@"不限" atIndex:0];
         _chooseVC.dataSource = dataSource;
         
         _chooseVC.block = ^(NSString *value,NSInteger index){
+            if (index == 0) {
+                 weakSelf.cate_id = @"";
+                [weakSelf updateData:YES];
+                [weakSelf dismiss];
+                [weakSelf.typeBtn setTitle:@"不限" forState:UIControlStateNormal];
+                return ;
+            }
             [weakSelf.typeBtn setTitle:value forState:UIControlStateNormal];
-            NSDictionary *dic = weakSelf.dataArr[index];
+            NSDictionary *dic = weakSelf.dataArr[index - 1];
             weakSelf.cate_id = dic[@"cate_id"];
             
             if ([weakSelf.typeBtn.titleLabel.text isEqualToString:@"类型"]) {
