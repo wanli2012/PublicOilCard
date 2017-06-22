@@ -149,9 +149,37 @@
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
     
-    payVC.goods_id = self.dataDic[@"goods_id"];
-    payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
-    [self.navigationController pushViewController:payVC animated:YES];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"user_name"] = [UserModel defaultUser].username;
+    dict[@"group_id"] = [UserModel defaultUser].group_id;
+    dict[@"goods_id"] = self.dataDic[@"goods_id"];
+    dict[@"goods_num"] = [NSString stringWithFormat:@"%zd",_sum];
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/buy_order" paramDic:dict finish:^(id responseObject) {
+        
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            payVC.addtime =[NSString stringWithFormat:@"%@", responseObject[@"data"][@"addtime"]];
+            payVC.order_id = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_id"]];
+            payVC.order_num = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_num"]];
+            payVC.realy_price = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"realy_price"]];
+            [self.navigationController pushViewController:payVC animated:YES];
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
     
 }
 

@@ -49,16 +49,11 @@
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
-    self.goodsNumLabel.text = self.goods_num;
-//    self.orderMoney.text = [NSString stringWithFormat:@"%.2f",[self.orderPrice floatValue]];
+//    self.goodsNumLabel.text = self.goods_num;
+    self.goodsNameLabel.text = self.order_num;
+    self.goodsNumLabel.text = self.addtime;
+    self.orderMoney.text = self.realy_price;
 
-//    if (self.payType == 1) {
-//        self.orderMTitleLb.text = @"订单金额:";
-//        self..text = @"消费订单";
-//    }else{
-//        self.orderMTitleLb.text = @"订单米券:";
-//        self.orderType.text = @"米券订单";
-//    }
     for (int i=0; i<_dataarr.count; i++) {
         
         [self.selectB addObject:@NO];
@@ -70,43 +65,9 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
-    [self initData];
+//    [self initData];
 }
-- (void)initData {
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"user_name"] = [UserModel defaultUser].username;
-    dict[@"group_id"] = [UserModel defaultUser].group_id;
-    dict[@"goods_id"] = self.goods_id;
-    dict[@"goods_num"] = self.goods_num;
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/buy_order" paramDic:dict finish:^(id responseObject) {
 
-        [_loadV removeloadview];
-        
-        if ([responseObject[@"code"] integerValue]==1) {
-            
-            self.dataDic = responseObject[@"data"];
-            self.goodsNameLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"order_num"]];
-            self.goodsNumLabel.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"addtime"]];
-            self.orderMoney.text = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"realy_price"]];
-            
-        }else{
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
-            
-        }
-    
-        
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
-    }];
-
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -125,16 +86,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.payimage.image = [UIImage imageNamed:_dataarr[indexPath.row][@"image"]];
     cell.paytitile.text = _dataarr[indexPath.row][@"title"];
-    
-//    if(indexPath.row == 0){//米子
-//        if (self.payType == 1) {
-//            
-//            cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].ketiBean];
-//        }else{//米券
-//            cell.reuseScoreLabel.text  = [NSString stringWithFormat:@"剩余:%@",[UserModel defaultUser].mark];
-//        }
-//    }
-//    
+
     if ([self.selectB[indexPath.row]boolValue] == NO) {
         
         cell.selectimage.image = [UIImage imageNamed:@"支付未选中"];

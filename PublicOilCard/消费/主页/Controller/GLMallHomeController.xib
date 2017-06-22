@@ -87,7 +87,7 @@
                     </constraints>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Cmd-it-WaP">
-                    <rect key="frame" x="0.0" y="124" width="375" height="494"/>
+                    <rect key="frame" x="0.0" y="114" width="375" height="504"/>
                     <color key="backgroundColor" red="0.93703609704971313" green="0.94117802381515503" blue="0.94519203901290894" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zja-k6-HCX">
                         <size key="itemSize" width="50" height="50"/>
@@ -126,7 +126,7 @@
                 <constraint firstItem="pch-CC-9be" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Uet-Qh-quI"/>
                 <constraint firstAttribute="trailing" secondItem="Cmd-it-WaP" secondAttribute="trailing" id="ffh-sR-DhS"/>
                 <constraint firstItem="PuX-vg-d5W" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iDm-Ep-q1f"/>
-                <constraint firstItem="Cmd-it-WaP" firstAttribute="top" secondItem="pch-CC-9be" secondAttribute="bottom" constant="10" id="qdF-Rz-F3h"/>
+                <constraint firstItem="Cmd-it-WaP" firstAttribute="top" secondItem="pch-CC-9be" secondAttribute="bottom" id="qdF-Rz-F3h"/>
                 <constraint firstItem="PuX-vg-d5W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="scF-MT-wcE"/>
                 <constraint firstAttribute="trailing" secondItem="pch-CC-9be" secondAttribute="trailing" id="uxH-ya-UEt"/>
                 <constraint firstItem="Cmd-it-WaP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="yGC-rV-gDB"/>

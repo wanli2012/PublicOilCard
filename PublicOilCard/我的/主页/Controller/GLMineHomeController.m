@@ -105,7 +105,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         [flowLayout setMinimumLineSpacing:10];
         
         _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
-        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5 ,(_collectionV.height - 220)/2);
+        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5,(_collectionV.height - 220)/2);
         _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
@@ -126,8 +126,27 @@ static NSString *headerID = @"GLMine_HeaderView";
     GLMine_collectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
     cell.titleLabel.text = self.titleArr[indexPath.row];
     cell.picImageV.image = [UIImage imageNamed:self.imageArr[indexPath.row]];
+    
+    if (indexPath.row == 0 || indexPath.row == 2) {
+        
+        cell.leftViewWidth.constant = 40;
+        cell.rightViewWidth.constant = -40;
+    }else{
+        cell.leftViewWidth.constant = 0;
+        cell.rightViewWidth.constant = 40;
+    }
+    
     return cell;
 }
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+//    
+//    if (section == 0 || section == 2) {
+//        return UIEdgeInsetsMake(0, 30, 0, 0);
+//    }else{
+//        return UIEdgeInsetsMake(0, 0, 0, 30);
+//    }
+//    
+//}
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
     switch (indexPath.row) {

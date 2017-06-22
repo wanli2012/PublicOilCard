@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface GLMine_collectionCell : UICollectionViewCell
+
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightViewWidth;
 
 @end
