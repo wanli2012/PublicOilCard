@@ -24,13 +24,17 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5p-pv-5uz">
                     <rect key="frame" x="0.0" y="64" width="375" height="503"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yRQ-W0-px8">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yRQ-W0-px8">
                             <rect key="frame" x="68" y="100" width="240" height="240"/>
-                            <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="240" id="4U3-Ju-hlb"/>
                                 <constraint firstAttribute="height" constant="240" id="wkv-kW-Upx"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="x5Y-ot-V7r" appends="YES" id="iBe-L2-1AH"/>
+                            </connections>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长按点击分享" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aD0-uX-opx">
                             <rect key="frame" x="68" y="340" width="240" height="40"/>
@@ -84,5 +88,10 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-14" y="-133"/>
         </view>
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="x5Y-ot-V7r">
+            <connections>
+                <action selector="shareTo:" destination="-1" id="fVq-lH-MvL"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
 </document>

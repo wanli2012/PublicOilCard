@@ -347,13 +347,19 @@
         cell.detailTF.enabled = [self.canEditArr[indexPath.row] boolValue];
         
         if (indexPath.row == 0 || indexPath.row == 3) {
-            cell.picImageV.image = [UIImage imageNamed:_vlaueArr[indexPath.row]];
             cell.picImageV.hidden = NO;
             cell.detailTF.hidden = YES;
-            
+//            cell.picImageV.image = [UIImage imageNamed:_vlaueArr[indexPath.row]];
+       
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
                 [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+                if (cell.picImageV.image) {
+                    cell.picImageV.image = self.picImage;
+                    if (self.picImage == nil) {
+                        cell.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
+                    }
+                }
             }else{
                 cell.picImageV.layer.cornerRadius = 0;
                 cell.picImageV.image = [self logoQrCode];
@@ -454,6 +460,7 @@
 }
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    
     if ([type isEqualToString:@"public.image"]) {
         // 先把图片转成NSData
         UIImage *image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
@@ -467,11 +474,68 @@
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
         self.picImage = [UIImage imageWithData:data];
-        [self.tableView reloadData];
         
-        [picker dismissViewControllerAnimated:YES completion:nil];
+        
+        
+        //拿到图片准备上传
+         NSDictionary *dic;
+         dic=@{@"token":[UserModel defaultUser].token ,
+               @"uid":[UserModel defaultUser].uid};
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+        manager.requestSerializer.timeoutInterval = 10;
+        // 加上这行代码，https ssl 验证。
+        [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+        [manager POST:[NSString stringWithFormat:@"%@",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            //将图片以表单形式上传
+            
+            if (self.picImage) {
+                
+                NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+                formatter.dateFormat=@"yyyyMMddHHmmss";
+                NSString *str=[formatter stringFromDate:[NSDate date]];
+                NSString *fileName=[NSString stringWithFormat:@"%@.png",str];
+                NSData *data = UIImagePNGRepresentation(self.picImage);
+                [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
+            }
+            
+            
+        }progress:^(NSProgress *uploadProgress){
+            
+            [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+            [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            [SVProgressHUD setCornerRadius:8.0];
+            
+            if (uploadProgress.fractionCompleted == 1.0) {
+                [SVProgressHUD dismiss];
+//                self.submit.userInteractionEnabled = YES;
+            }
+
+        }success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            if ([dic[@"code"]integerValue]==1) {
+                
+                [MBProgressHUD showError:dic[@"message"]];
+                
+            }else{
+                [MBProgressHUD showError:dic[@"message"]];
+            }
+            [_loadV removeloadview];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
         
     }
+    
+    [self.tableView reloadData];
+
+        
+    [picker dismissViewControllerAnimated:YES completion:nil];
+        
+    
 }
 - (NSMutableArray *)vlaueArr{
     if (!_vlaueArr) {

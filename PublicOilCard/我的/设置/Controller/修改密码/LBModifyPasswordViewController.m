@@ -52,8 +52,9 @@
         
         [MBProgressHUD showError:responseObject[@"message"]];
         
-        if ([responseObject[@"code"] integerValue]==1) {
-            [self popoverPresentationController];
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
             
         }else{
         }

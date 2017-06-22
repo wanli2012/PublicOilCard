@@ -15,6 +15,8 @@
 		4A1CE7281EF5142D00895ADF /* GLMine_RelationshipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CE7271EF5142D00895ADF /* GLMine_RelationshipModel.m */; };
 		4A1CE72F1EF52A8C00895ADF /* GLMine_RelationshipCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A1CE72D1EF52A8C00895ADF /* GLMine_RelationshipCell.m */; };
 		4A1CE7301EF52A8C00895ADF /* GLMine_RelationshipCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1CE72E1EF52A8C00895ADF /* GLMine_RelationshipCell.xib */; };
+		4A2924811EFB58860081F797 /* GLShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A29247F1EFB58860081F797 /* GLShareView.m */; };
+		4A2924821EFB58860081F797 /* GLShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2924801EFB58860081F797 /* GLShareView.xib */; };
 		4A39F4821EF365D10038C147 /* GLMine_updateManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F4811EF365D10038C147 /* GLMine_updateManagerModel.m */; };
 		4A39F4861EF378430038C147 /* GLMine_updateManagerDealNowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F4841EF378430038C147 /* GLMine_updateManagerDealNowCell.m */; };
 		4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A39F4851EF378430038C147 /* GLMine_updateManagerDealNowCell.xib */; };
@@ -52,7 +54,6 @@
 		4A4FA5871EF0CA1100A256D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5861EF0CA1100A256D2 /* main.m */; };
 		4A4FA58A1EF0CA1100A256D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */; };
 		4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA58C1EF0CA1100A256D2 /* ViewController.m */; };
-		4A4FA5901EF0CA1100A256D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A4FA58E1EF0CA1100A256D2 /* Main.storyboard */; };
 		4A4FA5931EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5911EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld */; };
 		4A4FA5951EF0CA1100A256D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4FA5941EF0CA1100A256D2 /* Assets.xcassets */; };
 		4A4FA5981EF0CA1100A256D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A4FA5961EF0CA1100A256D2 /* LaunchScreen.storyboard */; };
@@ -199,6 +200,9 @@
 		4A1CE72C1EF52A8C00895ADF /* GLMine_RelationshipCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_RelationshipCell.h; sourceTree = "<group>"; };
 		4A1CE72D1EF52A8C00895ADF /* GLMine_RelationshipCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_RelationshipCell.m; sourceTree = "<group>"; };
 		4A1CE72E1EF52A8C00895ADF /* GLMine_RelationshipCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_RelationshipCell.xib; sourceTree = "<group>"; };
+		4A29247E1EFB58860081F797 /* GLShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLShareView.h; sourceTree = "<group>"; };
+		4A29247F1EFB58860081F797 /* GLShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLShareView.m; sourceTree = "<group>"; };
+		4A2924801EFB58860081F797 /* GLShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLShareView.xib; sourceTree = "<group>"; };
 		4A39F4801EF365D10038C147 /* GLMine_updateManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_updateManagerModel.h; sourceTree = "<group>"; };
 		4A39F4811EF365D10038C147 /* GLMine_updateManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_updateManagerModel.m; sourceTree = "<group>"; };
 		4A39F4831EF378430038C147 /* GLMine_updateManagerDealNowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_updateManagerDealNowCell.h; sourceTree = "<group>"; };
@@ -261,7 +265,6 @@
 		4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		4A4FA58B1EF0CA1100A256D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		4A4FA58C1EF0CA1100A256D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4A4FA58F1EF0CA1100A256D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A4FA5921EF0CA1100A256D2 /* PublicOilCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PublicOilCard.xcdatamodel; sourceTree = "<group>"; };
 		4A4FA5941EF0CA1100A256D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A4FA5971EF0CA1100A256D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -872,7 +875,6 @@
 			isa = PBXGroup;
 			children = (
 				4A4FA5861EF0CA1100A256D2 /* main.m */,
-				4A4FA58E1EF0CA1100A256D2 /* Main.storyboard */,
 				4A4FA5961EF0CA1100A256D2 /* LaunchScreen.storyboard */,
 				4A4FA5991EF0CA1100A256D2 /* Info.plist */,
 				4A4FA5911EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld */,
@@ -1318,6 +1320,9 @@
 		4AEC059A1EF1425F00B39497 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A29247E1EFB58860081F797 /* GLShareView.h */,
+				4A29247F1EFB58860081F797 /* GLShareView.m */,
+				4A2924801EFB58860081F797 /* GLShareView.xib */,
 				4AEEC9B21EF275AD00F827BB /* GLMine_RecommendRecordCell.h */,
 				4AEEC9B31EF275AD00F827BB /* GLMine_RecommendRecordCell.m */,
 				4AEEC9B41EF275AD00F827BB /* GLMine_RecommendRecordCell.xib */,
@@ -1565,6 +1570,7 @@
 				4A39F4E21EF3CED20038C147 /* GLPay_OfflineController.xib in Resources */,
 				4A5BBBD31EF2659F008270F2 /* GLLoginController.xib in Resources */,
 				4AEEC9B11EF2742E00F827BB /* GLMine_RecommendRecordController.xib in Resources */,
+				4A2924821EFB58860081F797 /* GLShareView.xib in Resources */,
 				4A39F4E71EF3DA600038C147 /* GLMallHomeCell.xib in Resources */,
 				4A5BBBE91EF26A35008270F2 /* NodataView.xib in Resources */,
 				4A39F4991EF3AFB00038C147 /* GLMine_SetController.xib in Resources */,
@@ -1612,7 +1618,6 @@
 				F92DA9521EF5020300530237 /* LBExchangeHeaderView.xib in Resources */,
 				4A39F4DD1EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.xib in Resources */,
 				4A5BBBD71EF2659F008270F2 /* LoginIdentityView.xib in Resources */,
-				4A4FA5901EF0CA1100A256D2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1731,6 +1736,7 @@
 				F94AFF261EF92AC000DC34F8 /* GLMine_OrderSectionModel.m in Sources */,
 				4A6ADC961EF7BB0900C99498 /* editorMaskPresentationController.m in Sources */,
 				4A39F4A61EF3B6280038C147 /* GLMine_ExchangeRecordController.m in Sources */,
+				4A2924811EFB58860081F797 /* GLShareView.m in Sources */,
 				4A4FA5D81EF0D97B00A256D2 /* GetLabelBounds.m in Sources */,
 				F95D46041EFA5C090011C69B /* recordeManger.m in Sources */,
 				4A39F4E61EF3DA600038C147 /* GLMallHomeCell.m in Sources */,
@@ -1789,14 +1795,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4A4FA58E1EF0CA1100A256D2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4A4FA58F1EF0CA1100A256D2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4A4FA5961EF0CA1100A256D2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -56,8 +56,9 @@
 //微博分享
 #define WEIBO_APPKEY @"2203958313"
 #define WEIBO_SECRET @"9a911777f4b18555cd2b42a9bc186389"
-//#define WEIBO_APPKEY @"688497271"
-//#define WEIBO_SECRET @"5d4df0f912e9af331adaf718a357176f"
+//友盟分享 AppKey
+#define USHARE_DEMO_APPKEY @"594b286765b6d607f3000f9a"
+
 //虚拟货币名称
 #define NormalMoney @"米子"
 #define SpecialMoney @"推荐米子"
