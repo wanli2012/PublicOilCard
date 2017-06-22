@@ -162,9 +162,10 @@ static NSString *headerID = @"GLMine_HeaderView";
         {
             if ([[UserModel defaultUser].group_id integerValue] != 6) {
                 
-                GLMine_ExchangeRecordController *exchageVC = [[GLMine_ExchangeRecordController alloc] init];
+                LBExchangeViewController *exchageVC = [[LBExchangeViewController alloc] init];
                 [self.navigationController pushViewController:exchageVC animated:YES];
             }else{
+                
                 GLMine_updateManagerController *updateVC = [[GLMine_updateManagerController alloc] init];
                 [self.navigationController pushViewController:updateVC animated:YES];
                 

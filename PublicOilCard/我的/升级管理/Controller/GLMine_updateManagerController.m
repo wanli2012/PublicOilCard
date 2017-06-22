@@ -12,6 +12,7 @@
 //#import "GLMine_updateManagerAllCell.h"
 //#import "GLMine_updateManagerDealNowCell.h"
 #import "GLMine_updateNewCell.h"
+#import "LBMineCenterPayPagesViewController.h"
 
 @interface GLMine_updateManagerController ()<UITableViewDelegate,UITableViewDataSource,GLMine_updateNewCellDelegate>
 {
@@ -30,6 +31,9 @@
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, strong)NSArray *dataArr;
 @property (nonatomic, assign)NSInteger page;//页数
+
+@property (nonatomic, copy)NSString *status;//审核状态  0未审核 1审核成功  2审核失败
+@property (nonatomic, copy)NSString *upgrade;//升级类型 1首期代理   2二期代理
 
 @end
 
@@ -95,7 +99,7 @@
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
+//    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
     
@@ -107,7 +111,9 @@
         
         if ([responseObject[@"code"] integerValue]==1) {
             
-            self.dataArr = responseObject[@"data"];
+            self.dataArr = responseObject[@"data"][@"msg"];
+            self.status = responseObject[@"data"][@"status"];
+            self.upgrade = responseObject[@"data"][@"upgrade"];
             
             if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
                 
@@ -149,6 +155,8 @@
 
 - (void)open:(NSInteger)index{
     
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     if (index == 0) {
         
         NSLog(@"6000");
@@ -156,6 +164,7 @@
         
         NSLog(@"12000");
     }
+    [self.navigationController pushViewController:pay animated:YES];
 }
 
 #pragma UITableViewDelegate
@@ -178,6 +187,74 @@
     cell.contentLabel.text = self.dataArr[indexPath.row][@"right"];
     cell.delegate = self;
     cell.index = indexPath.row;
+    cell.selectionStyle = 0;
+    
+    if (indexPath.row == 0) {
+        
+        if ([self.status integerValue] == 0) {
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"未审核" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+               [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+        }else if([self.status integerValue] == 1){
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"审核成功" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+
+        }else if([self.status integerValue] == 2){
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"审核失败" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+
+        }else{
+            [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+            [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+        }
+    }else{
+        if ([self.status integerValue] == 0) {
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"未审核" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+        }else if([self.status integerValue] == 1){
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"审核成功" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+            
+        }else if([self.status integerValue] == 2){
+            if ([self.upgrade integerValue] == 1) {
+                [cell.openBtn setTitle:@"审核失败" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+            
+        }else{
+            [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+            [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+        }
+
+    }
+    
     return cell;
 
 }
