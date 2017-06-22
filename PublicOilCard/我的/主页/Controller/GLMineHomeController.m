@@ -129,11 +129,18 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     if (indexPath.row == 0 || indexPath.row == 2) {
         
-        cell.leftViewWidth.constant = 40;
-        cell.rightViewWidth.constant = -40;
+        cell.leftViewWidth.constant = 30;
+        cell.rightViewWidth.constant = -30;
     }else{
         cell.leftViewWidth.constant = 0;
-        cell.rightViewWidth.constant = 40;
+        cell.rightViewWidth.constant = 30;
+    }
+    if (indexPath.row == 0 || indexPath.row == 1) {
+        cell.topViewHeight.constant = 15;
+        cell.bottomViewHeight.constant = 0;
+    }else{
+        cell.topViewHeight.constant = 0;
+        cell.bottomViewHeight.constant = 15;
     }
     
     return cell;
@@ -220,6 +227,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 //    [header.adImageV mas_updateConstraints:^(MASConstraintMaker *make) {
 //        make.height.equalTo(@0);
 //    }];
+    
     if ([[UserModel defaultUser].group_id integerValue] != 6) {
 
         _header.openCardBtn.hidden = YES;
