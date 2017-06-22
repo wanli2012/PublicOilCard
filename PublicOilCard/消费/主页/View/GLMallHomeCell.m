@@ -26,7 +26,7 @@
 }
 - (void)setModel:(GLMallHomeGoodsModel *)model {
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:@"产品占位图"]];
     self.titleLabel.text = model.goods_name;
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.discount];;
     self.countLabel.text = [NSString stringWithFormat:@"销量:%@",model.salenum];
