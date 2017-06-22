@@ -30,6 +30,8 @@
 //
 //@property (nonatomic, strong)UIImageView *adImageV;
 @property (weak, nonatomic) IBOutlet UIButton *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *positionLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *IDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openCardBtn;

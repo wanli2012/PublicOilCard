@@ -48,7 +48,7 @@
                         <rect key="frame" x="30" y="20" width="140" height="130"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n8w-Rv-kC1">
-                                <rect key="frame" x="37" y="33" width="65" height="65"/>
+                                <rect key="frame" x="37" y="22.5" width="65" height="65"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="n8w-Rv-kC1" secondAttribute="height" multiplier="1:1" id="RNT-Et-6p0"/>
@@ -56,7 +56,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收藏" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iw6-62-Qxa">
-                                <rect key="frame" x="56" y="108" width="29" height="17"/>
+                                <rect key="frame" x="56" y="97.5" width="29" height="27.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -66,7 +66,8 @@
                         <constraints>
                             <constraint firstItem="n8w-Rv-kC1" firstAttribute="centerX" secondItem="c0a-KI-8Kk" secondAttribute="centerX" id="5ur-IT-xMh"/>
                             <constraint firstItem="iw6-62-Qxa" firstAttribute="centerX" secondItem="c0a-KI-8Kk" secondAttribute="centerX" id="CwJ-ze-VCp"/>
-                            <constraint firstItem="iw6-62-Qxa" firstAttribute="top" secondItem="n8w-Rv-kC1" secondAttribute="bottom" constant="10" id="a0S-wG-djW"/>
+                            <constraint firstItem="n8w-Rv-kC1" firstAttribute="centerY" secondItem="c0a-KI-8Kk" secondAttribute="centerY" constant="-10" id="iMW-ul-joh"/>
+                            <constraint firstItem="iw6-62-Qxa" firstAttribute="top" secondItem="n8w-Rv-kC1" secondAttribute="bottom" constant="10" id="kcv-kA-xef"/>
                             <constraint firstAttribute="bottom" secondItem="iw6-62-Qxa" secondAttribute="bottom" constant="5" id="qgA-hc-wUz"/>
                         </constraints>
                     </view>
@@ -97,6 +98,7 @@
                 <outlet property="bottomViewHeight" destination="7cF-Ej-pBx" id="Jee-f8-dJS"/>
                 <outlet property="leftViewWidth" destination="AKG-Xl-mW0" id="gS2-0Y-4af"/>
                 <outlet property="picImageV" destination="n8w-Rv-kC1" id="ZzQ-td-La8"/>
+                <outlet property="picImageVWidth" destination="efu-tR-cfc" id="ODm-Uc-6Nb"/>
                 <outlet property="rightViewWidth" destination="1By-vy-iKC" id="AHH-aG-rcW"/>
                 <outlet property="titleLabel" destination="iw6-62-Qxa" id="gNG-7t-WhC"/>
                 <outlet property="topViewHeight" destination="OJT-ZS-ZhK" id="8Vs-wh-QfQ"/>

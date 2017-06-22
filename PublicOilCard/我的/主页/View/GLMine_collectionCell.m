@@ -8,11 +8,18 @@
 
 #import "GLMine_collectionCell.h"
 
+@interface GLMine_collectionCell()
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageVWidth;
+
+@end
+
 @implementation GLMine_collectionCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.picImageVWidth.constant = 65 * autoSizeScaleX;
+    self.titleLabel.font = [UIFont systemFontOfSize:13 * autoSizeScaleY];
 }
 
 @end

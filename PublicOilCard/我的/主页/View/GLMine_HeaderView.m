@@ -18,12 +18,14 @@
 @property (nonatomic, strong)UIView *lineView2;
 
 @property (nonatomic, strong)UIView *lineView3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageVHeight;
 
 @end
 
 @implementation GLMine_HeaderView
 
 - (void)awakeFromNib {
+    
     [super awakeFromNib];
     _openCardBtn.layer.borderWidth = 1;
     _openCardBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
@@ -31,8 +33,15 @@
     _exchangeBtn.layer.borderWidth = 1;
     _exchangeBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
     
-    self.picImageV.layer.cornerRadius = self.picImageV.height /2;
- 
+    self.picImageVHeight.constant = 80 *autoSizeScaleY;
+    
+    self.picImageV.layer.cornerRadius = self.picImageVHeight.constant /2;
+    self.positionLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.IDLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.nameLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+
+    [self.openCardBtn.titleLabel setFont:[UIFont systemFontOfSize:12 * autoSizeScaleY]];
+    [self.exchangeBtn.titleLabel setFont:[UIFont systemFontOfSize:12 * autoSizeScaleY]];
 }
 //-(instancetype)initWithFrame:(CGRect)frame{
 //    self = [super initWithFrame:frame];

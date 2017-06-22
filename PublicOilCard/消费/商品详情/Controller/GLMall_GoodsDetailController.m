@@ -227,6 +227,10 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
+    GLMallHomeGoodsModel *model = self.models[indexPath.row];
+    self.goods_id = model.goods_id;
+    [self updateData:YES];
+    
 }
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind

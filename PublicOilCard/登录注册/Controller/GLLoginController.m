@@ -216,6 +216,7 @@
             
             [usermodelachivar achive];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+            
             [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
         }else{
