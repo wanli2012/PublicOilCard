@@ -10,6 +10,7 @@
 #import "GLMine_SetCell.h"
 #import "LBModifyPasswordViewController.h"
 #import "GLRecommendController.h"
+#import "LBViewProtocolViewController.h"
 
 @interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
@@ -17,6 +18,7 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
+@property (nonatomic , assign)float folderSize;//缓存
 
 @end
 
@@ -29,6 +31,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
     _dataArr = @[@"密码修改",@"内存清理",@"关于公司",@"联系客服",@"版本更新"];
+    
+    self.folderSize = [self filePath];
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -43,7 +47,6 @@
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
-        
         if (alertView.tag == 10) {
             
             [UserModel defaultUser].loginstatus = NO;
@@ -55,7 +58,7 @@
             
         }else if (alertView.tag == 11){
             
-//            [self clearFile];//清楚缓存
+            [self clearFile];//清楚缓存
         }
         
     }
@@ -88,12 +91,18 @@
             break;
         case 1:
         {
-            
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"清理缓存%.2fM",self.folderSize] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alert.tag = 11;
+            [alert show];
         }
             break;
         case 2:
         {
-            
+            self.hidesBottomBarWhenPushed = YES;
+            LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+            vc.webUrl = ABOUTUS_URL;
+            vc.navTitle = @"关于公司";
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 3:
@@ -113,6 +122,57 @@
             break;
     }
 
+}
+//*********************清理缓存********************//
+//显示缓存大小
+-( float )filePath
+{
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    
+    return [ self folderSizeAtPath :cachPath];
+    
+}
+//单个文件的大小
+
+- ( long long ) fileSizeAtPath:( NSString *) filePath{
+    
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    
+    if ([manager fileExistsAtPath :filePath]){
+        
+        return [[manager attributesOfItemAtPath :filePath error : nil ] fileSize ];
+    }
+    
+    return 0 ;
+    
+}
+//返回多少 M
+- ( float ) folderSizeAtPath:( NSString *) folderPath{
+    NSFileManager * manager = [ NSFileManager defaultManager ];
+    if (![manager fileExistsAtPath :folderPath]) return 0 ;
+    NSEnumerator *childFilesEnumerator = [[manager subpathsAtPath :folderPath] objectEnumerator ];
+    NSString * fileName;
+    long long folderSize = 0 ;
+    while ((fileName = [childFilesEnumerator nextObject ]) != nil ){
+        NSString * fileAbsolutePath = [folderPath stringByAppendingPathComponent :fileName];
+        folderSize += [ self fileSizeAtPath :fileAbsolutePath];
+    }
+    return folderSize/( 1024.0 * 1024.0 );
+}
+// 清理缓存
+- (void)clearFile
+{
+    NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
+    NSArray * files = [[ NSFileManager defaultManager ] subpathsAtPath :cachPath];
+    //NSLog ( @"cachpath = %@" , cachPath);
+    for ( NSString * p in files) {
+        NSError * error = nil ;
+        NSString * path = [cachPath stringByAppendingPathComponent :p];
+        if ([[ NSFileManager defaultManager ] fileExistsAtPath :path]) {
+            [[ NSFileManager defaultManager ] removeItemAtPath :path error :&error];
+        }
+    }
+    [ self performSelectorOnMainThread : @selector (clearCachSuccess) withObject : nil waitUntilDone : YES ];
 }
 
 @end
