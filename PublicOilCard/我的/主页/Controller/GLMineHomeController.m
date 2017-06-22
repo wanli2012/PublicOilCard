@@ -162,8 +162,8 @@ static NSString *headerID = @"GLMine_HeaderView";
         {
             if ([[UserModel defaultUser].group_id integerValue] != 6) {
                 
-                GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
-                [self.navigationController pushViewController:openVC animated:YES];
+                GLMine_ExchangeRecordController *exchageVC = [[GLMine_ExchangeRecordController alloc] init];
+                [self.navigationController pushViewController:exchageVC animated:YES];
             }else{
                 GLMine_updateManagerController *updateVC = [[GLMine_updateManagerController alloc] init];
                 [self.navigationController pushViewController:updateVC animated:YES];

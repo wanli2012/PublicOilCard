@@ -14,7 +14,7 @@ pod 'MJExtension'
 pod 'FMDB'
 pod 'UMengUShare/UI'
  # 集成微信(完整版14.4M)
-    pod ‘UMengUShare/Social/WeChat'
+    pod 'UMengUShare/Social/WeChat'
  # 集成新浪微博(完整版25.3M)
     pod 'UMengUShare/Social/Sina'
 end

@@ -270,9 +270,10 @@
                 weakSelf.order_money = @"-1";
 
             }
+            weakSelf.order_num = @"0";
+            [weakSelf.timeBtn setTitle:@"销量" forState:UIControlStateNormal];
             
-            if ([weakSelf.moneyBtn.titleLabel.text isEqualToString:@"类型"]) {
-                
+            if ([weakSelf.moneyBtn.titleLabel.text isEqualToString:@"金额"]) {
                 weakSelf.moneyBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
             }else{
                 weakSelf.moneyBtn.imageView.image = [UIImage imageNamed:@""];
@@ -292,9 +293,9 @@
             }else{
                 weakSelf.order_num  = @"-2";
             }
-            
+            [weakSelf.moneyBtn setTitle:@"金额" forState:UIControlStateNormal];
+            weakSelf.order_money = @"0";
             if ([weakSelf.timeBtn.titleLabel.text isEqualToString:@"类型"]) {
-                
                 weakSelf.timeBtn.imageView.image = [UIImage imageNamed:@"下选三角形"];
             }else{
                 weakSelf.timeBtn.imageView.image = [UIImage imageNamed:@""];

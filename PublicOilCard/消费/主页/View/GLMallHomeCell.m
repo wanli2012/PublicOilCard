@@ -28,7 +28,7 @@
     _model = model;
     [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     self.titleLabel.text = model.goods_name;
-    self.priceLabel.text = model.discount;;
-    self.countLabel.text = model.goods_num;
+    self.priceLabel.text = [NSString stringWithFormat:@"¥%@", model.discount];;
+    self.countLabel.text = [NSString stringWithFormat:@"销量:%@",model.salenum];
 }
 @end
