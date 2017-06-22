@@ -13,6 +13,8 @@
 
 - (void)changeNum:(NSString* )text;
 
+- (void)collect:(UIButton*)collectionbt;
+
 @end
 
 @interface GLMall_GoodsHeaderView : UICollectionReusableView
@@ -21,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stockLabel;
+@property (weak, nonatomic) IBOutlet UIButton *collectionBt;
+
 
 @property (nonatomic, copy)NSString * stockNum;
 
