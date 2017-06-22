@@ -23,7 +23,7 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 //#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
-#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
+#define URL_Base @"http://192.168.0.132/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于我们网址

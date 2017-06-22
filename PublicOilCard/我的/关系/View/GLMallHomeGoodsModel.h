@@ -14,6 +14,8 @@
 
 @property (nonatomic, copy)NSString *goods_num;
 
+@property (nonatomic, copy)NSString *salenum;
+
 @property (nonatomic, copy)NSString *goods_id;
 
 @property (nonatomic, copy)NSString *goods_name;

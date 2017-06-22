@@ -12,6 +12,8 @@
 #import "GLLoginController.h"
 #import "GLCompleteInfoController.h"
 #import "LBMineCenterPayPagesViewController.h"
+#import <UMSocialSinaHandler.h>
+#import <UMSocialWechatHandler.h>
 #import <UMSocialCore/UMSocialCore.h>
 
 @interface AppDelegate ()
@@ -48,20 +50,42 @@
     
     [self configUSharePlatforms];
     
-//    [self confitUShareSettings];
+    [self confitUShareSettings];
 
     return YES;
+}
+- (void)confitUShareSettings
+{
+    /*
+     * 打开图片水印
+     */
+    //[UMSocialGlobal shareInstance].isUsingWaterMark = YES;
+    
+    /*
+     * 关闭强制验证https，可允许http图片分享，但需要在info.plist设置安全域名
+     <key>NSAppTransportSecurity</key>
+     <dict>
+     <key>NSAllowsArbitraryLoads</key>
+     <true/>
+     </dict>
+     */
+    [UMSocialGlobal shareInstance].isUsingHttpsWhenShareContent = NO;
+    
 }
 // 支持所有iOS系统
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url sourceApplication:sourceApplication annotation:annotation];
+//     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (!result) {
         // 其他如支付等SDK的回调
     }
     return result;
+
 }
+
+//支持目前所有iOS系统
 - (void)configUSharePlatforms
 {
     /* 设置微信的appKey和appSecret */

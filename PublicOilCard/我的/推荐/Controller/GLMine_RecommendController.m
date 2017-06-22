@@ -8,15 +8,11 @@
 
 #import "GLMine_RecommendController.h"
 #import "GLMine_RecommendRecordController.h"
-#import "GLSet_MaskVeiw.h"
-#import "GLShareView.h"
+
 #import <UShareUI/UShareUI.h>
 
 @interface GLMine_RecommendController ()
-{
-    GLShareView *_shareV;
-    GLSet_MaskVeiw *_maskV;
-}
+
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 
@@ -57,6 +53,7 @@
             [self shareWebPageToPlatformType:platformType];
             
         }];
+        
     }
 }
 - (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
@@ -76,17 +73,10 @@
     //调用分享接口
     [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:self completion:^(id data, NSError *error) {
         if (error) {
-            UMSocialLogInfo(@"************Share fail with error %@*********",error);
+    
         }else{
             if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-                UMSocialShareResponse *resp = data;
-                //分享结果消息
-                UMSocialLogInfo(@"response message is %@",resp.message);
-                //第三方原始返回的数据
-                UMSocialLogInfo(@"response originalResponse data is %@",resp.originalResponse);
-                
-            }else{
-                UMSocialLogInfo(@"response data is %@",data);
+//                UMSocialShareResponse *resp = data;
             }
         }
        
