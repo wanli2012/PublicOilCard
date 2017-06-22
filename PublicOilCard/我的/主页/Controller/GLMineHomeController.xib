@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,22 +22,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4K8-wq-opg">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUa-Gj-qTf">
-                            <rect key="frame" x="10" y="24" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUa-Gj-qTf">
+                            <rect key="frame" x="10" y="27" width="27" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="27" id="aBD-Ij-XOA"/>
+                                <constraint firstAttribute="height" constant="27" id="fXx-bt-MFp"/>
+                            </constraints>
+                            <state key="normal" image="设置"/>
                             <connections>
                                 <action selector="set:" destination="-1" eventType="touchUpInside" id="KDv-iZ-e7w"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvv-Aa-cFS">
-                            <rect key="frame" x="319" y="24" width="46" height="30"/>
-                            <state key="normal" title="Button"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvv-Aa-cFS">
+                            <rect key="frame" x="340" y="28" width="25" height="25"/>
+                            <state key="normal" image="消息提示"/>
                             <connections>
                                 <action selector="info:" destination="-1" eventType="touchUpInside" id="06y-Ri-8vf"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="车马店油卡" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y4N-ec-ZMa">
-                            <rect key="frame" x="144" y="29" width="87" height="21"/>
+                            <rect key="frame" x="144" y="30" width="87" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -45,12 +49,12 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="0.31372549019607843" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="yvv-Aa-cFS" firstAttribute="centerY" secondItem="jUa-Gj-qTf" secondAttribute="centerY" id="2Og-14-KaK"/>
                         <constraint firstItem="Y4N-ec-ZMa" firstAttribute="centerX" secondItem="4K8-wq-opg" secondAttribute="centerX" id="2Ur-7t-LDS"/>
                         <constraint firstItem="Y4N-ec-ZMa" firstAttribute="centerY" secondItem="jUa-Gj-qTf" secondAttribute="centerY" id="8Rd-cc-5fD"/>
                         <constraint firstItem="jUa-Gj-qTf" firstAttribute="leading" secondItem="4K8-wq-opg" secondAttribute="leading" constant="10" id="UtB-eD-uQN"/>
                         <constraint firstAttribute="bottom" secondItem="jUa-Gj-qTf" secondAttribute="bottom" constant="10" id="cn4-XE-0Sa"/>
                         <constraint firstAttribute="trailing" secondItem="yvv-Aa-cFS" secondAttribute="trailing" constant="10" id="dMt-eW-rVS"/>
-                        <constraint firstAttribute="bottom" secondItem="yvv-Aa-cFS" secondAttribute="bottom" constant="10" id="mll-fw-jfp"/>
                         <constraint firstAttribute="height" constant="64" id="zJ9-NT-ECw"/>
                     </constraints>
                 </view>
@@ -66,4 +70,8 @@
             <point key="canvasLocation" x="35.5" y="54.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="消息提示" width="25" height="25"/>
+        <image name="设置" width="44" height="44"/>
+    </resources>
 </document>

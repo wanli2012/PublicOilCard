@@ -151,6 +151,7 @@
 		847D8655779E28C7BBDF27AB /* Pods_PublicOilCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F5205C5ECB12FF995636AD /* Pods_PublicOilCard.framework */; };
 		F91CA9611EFB6F3700817DEF /* LBViewProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */; };
 		F91CA9621EFB6F3700817DEF /* LBViewProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */; };
+		F91CA9641EFBA94C00817DEF /* loadWait.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F91CA9631EFBA94C00817DEF /* loadWait.xcassets */; };
 		F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */; };
 		F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */; };
 		F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */; };
@@ -425,6 +426,7 @@
 		F91CA95E1EFB6F3700817DEF /* LBViewProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBViewProtocolViewController.h; sourceTree = "<group>"; };
 		F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBViewProtocolViewController.m; sourceTree = "<group>"; };
 		F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBViewProtocolViewController.xib; sourceTree = "<group>"; };
+		F91CA9631EFBA94C00817DEF /* loadWait.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = loadWait.xcassets; sourceTree = "<group>"; };
 		F92DA9471EF4FD9C00530237 /* LBExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeViewController.h; sourceTree = "<group>"; };
 		F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeViewController.m; sourceTree = "<group>"; };
 		F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeViewController.xib; sourceTree = "<group>"; };
@@ -1057,6 +1059,7 @@
 		4A4FA5EE1EF0DF1A00A256D2 /* 图片资源 */ = {
 			isa = PBXGroup;
 			children = (
+				F91CA9631EFBA94C00817DEF /* loadWait.xcassets */,
 				4A4FA5EF1EF0DF2E00A256D2 /* Mall.xcassets */,
 				4A4FA5F11EF0DF3500A256D2 /* Mine.xcassets */,
 				4A4FA5F31EF0E16A00A256D2 /* Common.xcassets */,
@@ -1606,6 +1609,7 @@
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
 				F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
+				F91CA9641EFBA94C00817DEF /* loadWait.xcassets in Resources */,
 				4A1CE7171EF504C900895ADF /* GLMine_OpenController.xib in Resources */,
 				4A9FBE3E1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib in Resources */,
 				4A4FA5F21EF0DF3500A256D2 /* Mine.xcassets in Resources */,
