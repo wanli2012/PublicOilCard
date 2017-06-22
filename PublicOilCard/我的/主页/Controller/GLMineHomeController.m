@@ -44,8 +44,8 @@ static NSString *headerID = @"GLMine_HeaderView";
 
       [self.view addSubview:self.collectionV];
     //注册头视图
-    [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
-//    [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMine_HeaderView"];
+//    [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
+    [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
     
 }
@@ -105,7 +105,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         [flowLayout setMinimumLineSpacing:10];
         
         _collectionV =[[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64 - 50)collectionViewLayout:flowLayout];
-        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5,(_collectionV.height - 220)/2);
+        flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5,(SCREEN_HEIGHT-64 - 50 - 220)/2);
         _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
@@ -218,7 +218,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     //跳转到个人信息界面
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(personInfo)];
-    [_header.picImagaV addGestureRecognizer:tap];
+    [_header.picImageV addGestureRecognizer:tap];
     
     [_header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
@@ -246,16 +246,14 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     
     if ([[UserModel defaultUser].group_id integerValue] != 6) {
         
-        return CGSizeMake(SCREEN_WIDTH, 220);
+        return CGSizeMake(SCREEN_WIDTH, (SCREEN_HEIGHT - 64 - 50) * 0.5);
         
     }else{
         
-        return CGSizeMake(SCREEN_WIDTH, 290);
+        return CGSizeMake(SCREEN_WIDTH, 290 * autoSizeScaleY);
     }
    
 }
-
-
 
 #pragma 懒加载
 - (NSArray *)titleArr{
