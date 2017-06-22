@@ -62,12 +62,11 @@
     self.collectionView.collectionViewLayout = layout;
     
     [self.collectionView addSubview:self.nodataV];
-    self.nodataV.hidden = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMallHomeCell" bundle:nil] forCellWithReuseIdentifier:@"GLMallHomeCell"];
-    _dataArr = @[@"niday你大爷  的  男的意见啊  只要998   只要998",@"和哈大家发神经",@"niday你大爷  的  男的意见啊  只要998   只要998niday你大爷  的  男的意见啊  只要998   只要998",@"电动蝶阀"];
+    
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -334,6 +333,11 @@
 
 #pragma  UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    if (self.models.count <=0) {
+        self.nodataV.hidden = NO;
+    }else{
+      self.nodataV.hidden = YES;
+    }
     return self.models.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

@@ -7,7 +7,7 @@
 //
 
 #import "GLRegisterController.h"
-
+#import "LBViewProtocolViewController.h"
 
 @interface GLRegisterController ()
 
@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *getcodeBt;
 @property (weak, nonatomic) IBOutlet UIButton *registerBt;
 @property (strong, nonatomic)LoadWaitView *loadV;
+@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+
+@property (assign, nonatomic)BOOL isAgreel;//是否同意注册协议 默认为NO
 
 @end
 
@@ -26,6 +29,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.title = @"注册";
+    self.isAgreel = NO;
+    
+    self.registerBt.userInteractionEnabled = NO;
     
 }
 //获取验证码
@@ -99,6 +107,10 @@
         [MBProgressHUD showError:@"请输入验证码"];
         return;
     }
+    if (_isAgreel == NO) {
+        [MBProgressHUD showError:@"勾选注册协议"];
+        return;
+    }
 //    NSString *encryptphone = [RSAEncryptor encryptString:self.phoneTf.text publicKey:public_RSA];
 //      NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
 //    NSString *encryptrecoemd = [RSAEncryptor encryptString:self.recomendId.text publicKey:public_RSA];
@@ -126,6 +138,36 @@
     }];
     
 }
+/**
+ *是否同意注册协议
+ */
+- (IBAction)IsAgreeRegist:(UITapGestureRecognizer *)sender {
+    
+    self.isAgreel = !self.isAgreel;
+    
+    if (self.isAgreel) {
+        self.registerBt.userInteractionEnabled = YES;
+        self.registerBt.backgroundColor = TABBARTITLE_COLOR;
+        self.imagev.image =[UIImage imageNamed:@"注册协议选中"];
+    }else{
+        self.registerBt.userInteractionEnabled = NO;
+        self.registerBt.backgroundColor = [UIColor lightGrayColor];
+        self.imagev.image =[UIImage imageNamed:@"注册协议未选中"];
+    }
+    
+}
+/**
+ *查看注册协议
+ */
+- (IBAction)seeRegistinfo:(UITapGestureRecognizer *)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+    vc.navTitle = @"注册协议";
+    vc.webUrl = REGISTER_URL;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
@@ -209,5 +251,20 @@
     [self.view endEditing:YES];
 
 }
+
+-(void)updateViewConstraints{
+    
+    [super updateViewConstraints];
+    
+    
+    self.registerBt.layer.cornerRadius = 4;
+    self.registerBt.clipsToBounds = YES;
+    
+    self.getcodeBt.layer.cornerRadius = 4;
+    self.getcodeBt.clipsToBounds = YES;
+    
+    
+}
+
 
 @end

@@ -26,8 +26,10 @@
 #define URL_Base @"http://192.168.0.132/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
-//关于我们网址
+//关于公司网址
 #define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
+//注册协议
+#define REGISTER_URL @"https://www.51dztg.com/hyjm/hyjm.html"
 //公告
 #define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 

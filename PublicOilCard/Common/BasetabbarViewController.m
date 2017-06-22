@@ -22,10 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor=[UIColor whiteColor];
+    self.view.backgroundColor=TABBARTITLE_COLOR;
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.tintColor = [UIColor redColor];
-    self.tabBar.barTintColor = [UIColor whiteColor];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.tabBar.barTintColor = TABBARTITLE_COLOR;
     self.delegate=self;
     [self addViewControllers];
     
@@ -69,8 +69,8 @@
     item.title = title;
     item.image = [[UIImage imageNamed:image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item.selectedImage = [[UIImage imageNamed:selectImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor grayColor]} forState:UIControlStateNormal];
-    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : TABBARTITLE_COLOR} forState:UIControlStateSelected];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
     item.titlePositionAdjustment = UIOffsetMake(0, -4);
     return item;
 }

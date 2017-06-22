@@ -98,8 +98,7 @@
 - (IBAction)registerClick:(id)sender {
     [self.view endEditing:YES];
     GLRegisterController *registerVC = [[GLRegisterController alloc] init];
-    registerVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:registerVC animated:YES completion:nil];
+    [self.navigationController pushViewController:registerVC animated:YES];
 }
 
 //登录

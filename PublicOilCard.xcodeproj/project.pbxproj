@@ -149,6 +149,8 @@
 		4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D41EF2A62300F827BB /* GLMine_updateManagerAllCell.m */; };
 		4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D51EF2A62300F827BB /* GLMine_updateManagerAllCell.xib */; };
 		847D8655779E28C7BBDF27AB /* Pods_PublicOilCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F5205C5ECB12FF995636AD /* Pods_PublicOilCard.framework */; };
+		F91CA9611EFB6F3700817DEF /* LBViewProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */; };
+		F91CA9621EFB6F3700817DEF /* LBViewProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */; };
 		F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */; };
 		F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */; };
 		F92DA94E1EF5014C00530237 /* LBExchangeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA94D1EF5014C00530237 /* LBExchangeHeaderView.m */; };
@@ -420,6 +422,9 @@
 		4AEEC9D51EF2A62300F827BB /* GLMine_updateManagerAllCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_updateManagerAllCell.xib; sourceTree = "<group>"; };
 		99D0512F57A7F383D89AAB99 /* Pods-PublicOilCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PublicOilCard.release.xcconfig"; path = "Pods/Target Support Files/Pods-PublicOilCard/Pods-PublicOilCard.release.xcconfig"; sourceTree = "<group>"; };
 		CE8B0BB81FC7EF0D1C71D6A0 /* Pods-PublicOilCard.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PublicOilCard.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PublicOilCard/Pods-PublicOilCard.debug.xcconfig"; sourceTree = "<group>"; };
+		F91CA95E1EFB6F3700817DEF /* LBViewProtocolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBViewProtocolViewController.h; sourceTree = "<group>"; };
+		F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBViewProtocolViewController.m; sourceTree = "<group>"; };
+		F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBViewProtocolViewController.xib; sourceTree = "<group>"; };
 		F92DA9471EF4FD9C00530237 /* LBExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeViewController.h; sourceTree = "<group>"; };
 		F92DA9481EF4FD9C00530237 /* LBExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeViewController.m; sourceTree = "<group>"; };
 		F92DA9491EF4FD9C00530237 /* LBExchangeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBExchangeViewController.xib; sourceTree = "<group>"; };
@@ -845,6 +850,7 @@
 		4A4FA5841EF0CA1100A256D2 /* PublicOilCard */ = {
 			isa = PBXGroup;
 			children = (
+				F91CA95D1EFB6F3700817DEF /* 使用加载网页 */,
 				4A5BBBBF1EF2659F008270F2 /* 登录注册 */,
 				4A39F4881EF3838C0038C147 /* 补全信息 */,
 				4A4FA5E41EF0DDF500A256D2 /* 消费 */,
@@ -1435,6 +1441,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		F91CA95D1EFB6F3700817DEF /* 使用加载网页 */ = {
+			isa = PBXGroup;
+			children = (
+				F91CA95E1EFB6F3700817DEF /* LBViewProtocolViewController.h */,
+				F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */,
+				F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */,
+			);
+			path = "使用加载网页";
+			sourceTree = "<group>";
+		};
 		F94AFF231EF92AA500DC34F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1568,6 +1584,7 @@
 				4A5BBBD51EF2659F008270F2 /* GLRegisterController.xib in Resources */,
 				4A5BBBAE1EF235A0008270F2 /* GLMine_OrderCell.xib in Resources */,
 				4A39F4E21EF3CED20038C147 /* GLPay_OfflineController.xib in Resources */,
+				F91CA9621EFB6F3700817DEF /* LBViewProtocolViewController.xib in Resources */,
 				4A5BBBD31EF2659F008270F2 /* GLLoginController.xib in Resources */,
 				4AEEC9B11EF2742E00F827BB /* GLMine_RecommendRecordController.xib in Resources */,
 				4A2924821EFB58860081F797 /* GLShareView.xib in Resources */,
@@ -1765,6 +1782,7 @@
 				4AEEC9AB1EF2716900F827BB /* GLMine_RecommendController.m in Sources */,
 				F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */,
 				4AEEC9CC1EF28C3700F827BB /* GLMine_updateManagerController.m in Sources */,
+				F91CA9611EFB6F3700817DEF /* LBViewProtocolViewController.m in Sources */,
 				4A4FA5B41EF0D6E300A256D2 /* LBLoginNavigationViewController.m in Sources */,
 				4A4FA5B31EF0D6E300A256D2 /* BasetabbarViewController.m in Sources */,
 				4A1CE7161EF504C900895ADF /* GLMine_OpenController.m in Sources */,

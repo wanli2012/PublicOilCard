@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLRegisterController">
             <connections>
                 <outlet property="getcodeBt" destination="d0b-yk-WtG" id="OUs-la-QvJ"/>
+                <outlet property="imagev" destination="zSl-3l-CgP" id="caC-p7-ayy"/>
                 <outlet property="phoneTf" destination="K31-MW-KcV" id="7wc-Sk-uol"/>
                 <outlet property="recomendId" destination="q4m-Rw-aQi" id="Pwg-cV-Tf4"/>
                 <outlet property="registerBt" destination="wKv-UJ-gdK" id="X6r-qj-hXl"/>
@@ -62,8 +63,8 @@
                         <outlet property="delegate" destination="-1" id="D1h-77-Tti"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="938-Pe-Vlq">
-                    <rect key="frame" x="15" y="127" width="43" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手  机  号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="938-Pe-Vlq">
+                    <rect key="frame" x="15" y="127" width="58.5" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -80,8 +81,8 @@
                         <outlet property="delegate" destination="-1" id="dgs-L8-A6B"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-3L-cMm">
-                    <rect key="frame" x="15" y="182" width="29" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密        码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6t-3L-cMm">
+                    <rect key="frame" x="15" y="182" width="59" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -116,8 +117,8 @@
                         <outlet property="delegate" destination="-1" id="gEB-FT-Ucw"/>
                     </connections>
                 </textField>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验证码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exc-r1-sn0">
-                    <rect key="frame" x="15" y="292" width="43" height="35"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="验  证  码" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exc-r1-sn0">
+                    <rect key="frame" x="15" y="292" width="58.5" height="35"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -134,9 +135,9 @@
                         <outlet property="delegate" destination="-1" id="gbl-Dx-0cX"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKv-UJ-gdK">
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKv-UJ-gdK">
                     <rect key="frame" x="10" y="427" width="355" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="uQM-Yq-4LT"/>
                     </constraints>
@@ -162,18 +163,31 @@
                         <action selector="getcode:" destination="-1" eventType="touchUpInside" id="Zdq-PW-5Md"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zSl-3l-CgP">
-                    <rect key="frame" x="15" y="347" width="10" height="10"/>
-                    <color key="backgroundColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="注册协议未选中" translatesAutoresizingMaskIntoConstraints="NO" id="zSl-3l-CgP">
+                    <rect key="frame" x="15" y="352" width="15" height="15"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="10" id="VMv-G7-D9n"/>
-                        <constraint firstAttribute="height" constant="10" id="aqM-Bb-j8c"/>
+                        <constraint firstAttribute="width" constant="15" id="VMv-G7-D9n"/>
+                        <constraint firstAttribute="height" constant="15" id="aqM-Bb-j8c"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="FQW-jv-PdH" appends="YES" id="EyO-Uz-ZVj"/>
+                    </connections>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-Ob-Dc7">
-                    <rect key="frame" x="35" y="344.5" width="53.5" height="16"/>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-Ob-Dc7">
+                    <rect key="frame" x="40" y="350" width="70" height="20"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="bht-pr-Cy1"/>
+                        <constraint firstAttribute="height" constant="20" id="d0A-sz-dzv"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="lQi-pz-xz7" appends="YES" id="cSo-UQ-Hpa"/>
+                    </connections>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -213,7 +227,7 @@
                 <constraint firstItem="zSl-3l-CgP" firstAttribute="leading" secondItem="exc-r1-sn0" secondAttribute="leading" id="hhX-Q2-nHU"/>
                 <constraint firstItem="q4m-Rw-aQi" firstAttribute="centerY" secondItem="cdY-G6-IKH" secondAttribute="centerY" id="htZ-If-Eqm"/>
                 <constraint firstItem="zqf-9t-jXB" firstAttribute="leading" secondItem="m9E-cg-Bp3" secondAttribute="leading" id="hvo-zp-jAP"/>
-                <constraint firstItem="zSl-3l-CgP" firstAttribute="top" secondItem="exc-r1-sn0" secondAttribute="bottom" constant="20" id="iAq-L3-Yio"/>
+                <constraint firstItem="zSl-3l-CgP" firstAttribute="top" secondItem="exc-r1-sn0" secondAttribute="bottom" constant="25" id="iAq-L3-Yio"/>
                 <constraint firstItem="exc-r1-sn0" firstAttribute="leading" secondItem="K5O-wd-F1o" secondAttribute="leading" id="icy-yE-glD"/>
                 <constraint firstItem="K31-MW-KcV" firstAttribute="trailing" secondItem="q4m-Rw-aQi" secondAttribute="trailing" id="kL9-ml-P98"/>
                 <constraint firstItem="d0b-yk-WtG" firstAttribute="leading" secondItem="tCU-B5-5qR" secondAttribute="trailing" constant="10" id="oYi-YL-lBV"/>
@@ -230,8 +244,19 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="FQW-jv-PdH">
+            <connections>
+                <action selector="IsAgreeRegist:" destination="-1" id="g6y-va-tPQ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="lQi-pz-xz7">
+            <connections>
+                <action selector="seeRegistinfo:" destination="-1" id="CnR-vi-9B8"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="注册协议未选中" width="15" height="15"/>
         <image name="返回键-拷贝" width="8" height="15"/>
     </resources>
 </document>
