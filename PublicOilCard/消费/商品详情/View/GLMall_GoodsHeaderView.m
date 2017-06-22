@@ -49,5 +49,12 @@
     }
 
 }
+//收藏
+- (IBAction)collectionEvent:(UIButton *)sender {
+    
+    [self.delegate collect:self.collectionBt];
+    
+}
+
 
 @end

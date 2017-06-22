@@ -19,7 +19,7 @@
                     <rect key="frame" x="0.0" y="120" width="377" height="110"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你大" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LcK-Ue-69r">
-                            <rect key="frame" x="10" y="10" width="357" height="30"/>
+                            <rect key="frame" x="10" y="10" width="327" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -80,10 +80,22 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIh-2e-kDO">
+                            <rect key="frame" x="347" y="10" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="b22-bK-k1C"/>
+                                <constraint firstAttribute="width" constant="20" id="got-ff-167"/>
+                            </constraints>
+                            <state key="normal" image="未收藏"/>
+                            <connections>
+                                <action selector="collectionEvent:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="MHW-Jw-JIG"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="LR6-Hg-1Zx" firstAttribute="height" secondItem="UQT-9R-ZhZ" secondAttribute="height" id="0RI-j5-ggI"/>
+                        <constraint firstAttribute="trailing" secondItem="HIh-2e-kDO" secondAttribute="trailing" constant="10" id="5n3-xk-C6w"/>
                         <constraint firstItem="IvQ-10-0eh" firstAttribute="leading" secondItem="LcK-Ue-69r" secondAttribute="leading" id="6NK-Hc-Fvz"/>
                         <constraint firstItem="Esl-tY-tsF" firstAttribute="height" secondItem="UQT-9R-ZhZ" secondAttribute="height" id="6ZS-Tj-cAJ"/>
                         <constraint firstAttribute="trailing" secondItem="UQT-9R-ZhZ" secondAttribute="trailing" constant="10" id="APc-YY-Yag"/>
@@ -95,13 +107,14 @@
                         <constraint firstItem="JHc-J0-gH9" firstAttribute="centerY" secondItem="UQT-9R-ZhZ" secondAttribute="centerY" id="F25-dQ-Pin"/>
                         <constraint firstItem="hom-0C-3a7" firstAttribute="top" secondItem="IvQ-10-0eh" secondAttribute="bottom" constant="10" id="IEl-cR-rdc"/>
                         <constraint firstAttribute="bottom" secondItem="hom-0C-3a7" secondAttribute="bottom" constant="10" id="IGd-5a-qYc"/>
-                        <constraint firstAttribute="trailing" secondItem="LcK-Ue-69r" secondAttribute="trailing" constant="10" id="K5P-YC-tfV"/>
+                        <constraint firstItem="HIh-2e-kDO" firstAttribute="top" secondItem="ee0-J9-r5Y" secondAttribute="top" constant="10" id="RKb-Gj-KOG"/>
                         <constraint firstItem="hom-0C-3a7" firstAttribute="leading" secondItem="IvQ-10-0eh" secondAttribute="leading" id="V9f-Iz-qAY"/>
                         <constraint firstItem="LR6-Hg-1Zx" firstAttribute="leading" secondItem="JHc-J0-gH9" secondAttribute="trailing" constant="10" id="X1w-np-j1O"/>
                         <constraint firstItem="hom-0C-3a7" firstAttribute="height" secondItem="UQT-9R-ZhZ" secondAttribute="height" id="Yms-CD-56V"/>
                         <constraint firstItem="Esl-tY-tsF" firstAttribute="centerY" secondItem="UQT-9R-ZhZ" secondAttribute="centerY" id="a7g-ZG-ERg"/>
                         <constraint firstItem="Cr8-0q-ony" firstAttribute="height" secondItem="IvQ-10-0eh" secondAttribute="height" id="cJL-1s-JGY"/>
                         <constraint firstAttribute="trailing" secondItem="Cr8-0q-ony" secondAttribute="trailing" constant="10" id="cwx-7p-GXn"/>
+                        <constraint firstItem="HIh-2e-kDO" firstAttribute="leading" secondItem="LcK-Ue-69r" secondAttribute="trailing" constant="10" id="liQ-N9-Ul1"/>
                         <constraint firstItem="UQT-9R-ZhZ" firstAttribute="centerY" secondItem="hom-0C-3a7" secondAttribute="centerY" id="lkw-2F-Edx"/>
                         <constraint firstItem="LcK-Ue-69r" firstAttribute="top" secondItem="ee0-J9-r5Y" secondAttribute="top" constant="10" id="mk3-5k-8yT"/>
                         <constraint firstItem="IvQ-10-0eh" firstAttribute="top" secondItem="LcK-Ue-69r" secondAttribute="bottom" constant="10" id="t6t-Pf-BKK"/>
@@ -160,6 +173,7 @@
             </constraints>
             <connections>
                 <outlet property="addBtn" destination="UQT-9R-ZhZ" id="br2-Nu-g2f"/>
+                <outlet property="collectionBt" destination="HIh-2e-kDO" id="UbN-xc-2Hr"/>
                 <outlet property="countLabel" destination="hom-0C-3a7" id="HNm-lu-YPn"/>
                 <outlet property="detailLabel" destination="LcK-Ue-69r" id="RCE-CC-DYF"/>
                 <outlet property="numberLabel" destination="Esl-tY-tsF" id="Dkf-Rv-uxu"/>
@@ -172,6 +186,7 @@
     </objects>
     <resources>
         <image name="可能喜欢" width="15" height="15"/>
+        <image name="未收藏" width="26" height="24"/>
         <image name="＋" width="20" height="20"/>
         <image name="－" width="20" height="20"/>
     </resources>

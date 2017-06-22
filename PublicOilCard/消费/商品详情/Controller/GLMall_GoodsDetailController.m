@@ -26,7 +26,9 @@
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, strong)NSDictionary *dataDic;
 @property (nonatomic, assign)NSInteger page;//页数
-
+@property (nonatomic, strong)UIButton *btn;
+@property (nonatomic, strong)NSString *isCollection;//是否收藏
+@property (nonatomic, strong)NSString *collect_id;//收藏id
 @end
 
 @implementation GLMall_GoodsDetailController
@@ -37,6 +39,8 @@
     self.navigationItem.title = @"详情";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.headerImageHeight = 120;
+    self.isCollection =@"0";
+    self.collect_id = @"";
     //设置layout
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 -5, 224);
@@ -46,14 +50,13 @@
     
     _sum = 1;
     
-    //自定义右键
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:@"余额"] forState:UIControlStateNormal];
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [btn addTarget:self  action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0, 0, 80, 40);
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+//    //自定义右键
+//    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    _btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    [_btn addTarget:self  action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
+//    _btn.frame = CGRectMake(0, 0, 80, 40);
+//    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_btn];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMall_GoodsHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMallHomeCell" bundle:nil] forCellWithReuseIdentifier:@"GLMallHomeCell"];
@@ -89,6 +92,9 @@
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if ([UserModel defaultUser].loginstatus == YES) {
+        dict[@"uid"] = [UserModel defaultUser].uid;
+    }
     dict[@"goods_id"] = self.goods_id;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -100,7 +106,9 @@
         if ([responseObject[@"code"] integerValue]==1) {
             
             self.dataDic = responseObject[@"data"][@"goods_details"];
-            
+            self.isCollection = responseObject[@"data"][@"collect"];
+            self.collect_id = responseObject[@"data"][@"collect_id"];
+
             for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
                 
                 GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
@@ -184,25 +192,56 @@
 }
 
 //收藏
-- (void)collect {
+- (void)collect:(UIButton *)collectionbt {
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"goods_id"] = self.goods_id;
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/collec_add" paramDic:dict finish:^(id responseObject) {
-        [self endRefresh];
-        [_loadV removeloadview];
+    if ([self.isCollection integerValue] == 1) {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"collect_id"] = self.collect_id;
         
-        [MBProgressHUD showError:responseObject[@"message"]];
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"UserInfo/del_collect" paramDic:dict finish:^(id responseObject) {
+            [self endRefresh];
+            [_loadV removeloadview];
+            
+            if ([responseObject[@"code"]integerValue] == 1) {
+                [collectionbt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+                self.isCollection = @"0";
+                [MBProgressHUD showError:@"取消收藏成功"];
+            }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
+        
+    }else{
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"goods_id"] = self.goods_id;
+        
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"UserInfo/collec_add" paramDic:dict finish:^(id responseObject) {
+            [self endRefresh];
+            [_loadV removeloadview];
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+            if ([responseObject[@"code"]integerValue] == 1) {
+                [collectionbt setImage:[UIImage imageNamed:@"已收藏"] forState:UIControlStateNormal];
+                self.isCollection = @"1";
+                self.collect_id = responseObject[@"data"];
+            }
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
+    }
 
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-
-        [MBProgressHUD showError:error.localizedDescription];
-    }];
 
 }
 
@@ -278,6 +317,12 @@
     
     header.stockNum = self.dataDic[@"goods_num"];
     header.delegate = self;
+    
+    if ([self.isCollection integerValue] == 1) {
+        [header.collectionBt setImage:[UIImage imageNamed:@"已收藏"] forState:UIControlStateNormal];
+    }else{
+        [header.collectionBt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+    }
     
     [header addSubview:self.cycleScrollView];
     
