@@ -62,6 +62,7 @@
 
     return YES;
 }
+
 - (void)confitUShareSettings
 {
     /*

@@ -151,8 +151,7 @@
     
     }
     
- 
-}
+ }
 - (void)ricePay:(NSNotification *)sender {
 //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 //    dict[@"token"] = [UserModel defaultUser].token;

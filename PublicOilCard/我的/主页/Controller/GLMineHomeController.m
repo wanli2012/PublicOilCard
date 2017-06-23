@@ -52,8 +52,14 @@ static NSString *headerID = @"GLMine_HeaderView";
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
 }
-
+//移除通知
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
@@ -79,7 +85,33 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
             [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
             [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
-
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            if ([[UserModel defaultUser].price rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[UserModel defaultUser].mark rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[UserModel defaultUser].recNumber rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
+            if ([[UserModel defaultUser].username rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[UserModel defaultUser].truename rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[UserModel defaultUser].group_name rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
             
             [usermodelachivar achive];
         }else{
@@ -293,22 +325,8 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
-    
-//    if ([[UserModel defaultUser].group_id integerValue] == 1) {
-    
-        _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 2){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"总监:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 3){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"经理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 4){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"首期代理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 5){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"二期代理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 6){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"会员:%@",[UserModel defaultUser].truename];
-//    }
-    
+    _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
+
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].price floatValue]/10000];
     }else{
@@ -327,17 +345,20 @@ static NSString *headerID = @"GLMine_HeaderView";
 
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
 
+    [_header addSubview:self.cycleScrollView];
+    
     if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
-        _header.adImageVHeight.constant = 0;
+        self.cycleScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
         _header.backgroundColor = [UIColor whiteColor];
         
     }else{
         
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
+        self.cycleScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _headerImageHeight);
         _header.adImageVHeight.constant = 70 * autoSizeScaleY;
         _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
