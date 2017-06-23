@@ -180,6 +180,7 @@
             payVC.order_num = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_num"]];
             payVC.realy_price = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"realy_price"]];
             payVC.pushIndex = 1;
+            payVC.goods_id = self.dataDic[@"goods_id"];
             [self.navigationController pushViewController:payVC animated:YES];
         }else{
             

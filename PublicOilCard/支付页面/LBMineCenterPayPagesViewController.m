@@ -260,6 +260,7 @@
         dict[@"paytype"] = payType;
         dict[@"realy_price"] = self.realy_price;
         dict[@"order_num"] = self.order_num;
+        dict[@"goods_id"] = self.goods_id;
         urlstr = @"ShopInfo/order_pay";
         
     }else if(self.pushIndex == 2){
@@ -290,7 +291,7 @@
             }else if(self.pushIndex == 2){
                 alipay = responseObject[@"data"][@"alipay"];
             }
-           [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+           [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
                
                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                if (orderState==9000) {
