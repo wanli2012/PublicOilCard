@@ -268,6 +268,14 @@
         dict[@"uid"] = [UserModel defaultUser].uid;
         dict[@"pay_fun"] = payType;
          urlstr = @"UserInfo/operate_card";
+    }else if(self.pushIndex == 3){
+        
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"user_name"] = [UserModel defaultUser].username;
+        dict[@"upgrade"] = @(self.upgrade);
+        dict[@"pay_fun"] = payType;
+        urlstr = @"UserInfo/upgrade";
     }
   
     
@@ -277,7 +285,7 @@
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
             NSString *alipay = [[NSString alloc]init];
-            if(self.pushIndex == 1){
+            if(self.pushIndex == 1 || self.pushIndex == 3){
                 alipay = responseObject[@"data"];
             }else if(self.pushIndex == 2){
                 alipay = responseObject[@"data"][@"alipay"];
