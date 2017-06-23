@@ -82,6 +82,6 @@
 #define KThreePersent @"4"
 
 //支付宝appid
-#define AlipayAPPID @"2017060207408516"
+#define AlipayAPPID @"2017061907523362"
 
 #endif /* Header_h */

@@ -25,4 +25,6 @@
 
 @property (nonatomic, copy)NSString *goods_num;
 
+@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1返回到根控制器 0表示返回上一级
+
 @end
