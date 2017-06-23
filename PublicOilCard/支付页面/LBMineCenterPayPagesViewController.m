@@ -52,7 +52,7 @@
 //    self.goodsNumLabel.text = self.goods_num;
     self.goodsNameLabel.text = self.order_num;
     self.goodsNumLabel.text = self.addtime;
-    self.orderMoney.text = self.realy_price;
+    self.orderMoney.text = [NSString stringWithFormat:@"¥ %@",self.realy_price];
 
     for (int i=0; i<_dataarr.count; i++) {
         
@@ -250,18 +250,47 @@
 
 - (void)alipayAndWeChatPay:(NSString *)payType{
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"order_id"] = self.order_id;
-    dict[@"paytype"] = payType;
+    NSString *urlstr = [[NSString alloc]init];
+    if(self.pushIndex == 1){
+       
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"order_id"] = self.order_id;
+        dict[@"paytype"] = payType;
+        dict[@"realy_price"] = self.realy_price;
+        dict[@"order_num"] = self.order_num;
+        dict[@"goods_id"] = self.goods_id;
+        urlstr = @"ShopInfo/order_pay";
+        
+    }else if(self.pushIndex == 2){
+       
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"pay_fun"] = payType;
+         urlstr = @"UserInfo/operate_card";
+    }else if(self.pushIndex == 3){
+        
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"user_name"] = [UserModel defaultUser].username;
+        dict[@"upgrade"] = @(self.upgrade);
+        dict[@"pay_fun"] = payType;
+        urlstr = @"UserInfo/upgrade";
+    }
+  
     
-    [NetworkManager requestPOSTWithURLStr:@"shop/payParam" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:urlstr paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
-            
-           [ [AlipaySDK defaultService]payOrder:responseObject[@"data"][@"alipay"][@"url"] fromScheme:@"univerAlipay" callback:^(NSDictionary *resultDic) {
+            NSString *alipay = [[NSString alloc]init];
+            if(self.pushIndex == 1 || self.pushIndex == 3){
+                alipay = responseObject[@"data"];
+            }else if(self.pushIndex == 2){
+                alipay = responseObject[@"data"][@"alipay"];
+            }
+           [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
                
                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                if (orderState==9000) {
@@ -307,7 +336,7 @@
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
-        
+        [MBProgressHUD showError:error.localizedDescription];
     }];
 }
 

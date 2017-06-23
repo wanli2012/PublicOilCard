@@ -25,6 +25,8 @@
 
 @property (nonatomic, copy)NSString *goods_num;
 
-@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1返回到根控制器 0表示返回上一级
+@property (nonatomic, assign)NSInteger pushIndex;//记录从哪个控制器push的 1从商品详情跳转过去 2开卡跳转过去  3申请代理商
+
+@property (nonatomic, assign)NSInteger upgrade;//1首期代理 2二期代理
 
 @end
