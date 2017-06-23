@@ -21,28 +21,28 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zx-3I-Y57">
                         <rect key="frame" x="0.0" y="150" width="200" height="20"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="7cF-Ej-pBx"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT0-rq-wRz">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="20"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="OJT-ZS-ZhK"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2S-lj-r1M">
                         <rect key="frame" x="0.0" y="0.0" width="30" height="170"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="AKG-Xl-mW0"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cil-MT-s2P">
                         <rect key="frame" x="170" y="0.0" width="30" height="170"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0a-KI-8Kk">
                         <rect key="frame" x="30" y="20" width="140" height="130"/>
@@ -73,7 +73,7 @@
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Cil-MT-s2P" firstAttribute="width" secondItem="e2S-lj-r1M" secondAttribute="width" id="1By-vy-iKC"/>
                 <constraint firstItem="c0a-KI-8Kk" firstAttribute="leading" secondItem="e2S-lj-r1M" secondAttribute="trailing" id="3bo-qd-lLY"/>
@@ -96,6 +96,7 @@
             <size key="customSize" width="200" height="170"/>
             <connections>
                 <outlet property="bottomViewHeight" destination="7cF-Ej-pBx" id="Jee-f8-dJS"/>
+                <outlet property="cellView" destination="c0a-KI-8Kk" id="dgY-x8-eEe"/>
                 <outlet property="leftViewWidth" destination="AKG-Xl-mW0" id="gS2-0Y-4af"/>
                 <outlet property="picImageV" destination="n8w-Rv-kC1" id="ZzQ-td-La8"/>
                 <outlet property="picImageVWidth" destination="efu-tR-cfc" id="ODm-Uc-6Nb"/>

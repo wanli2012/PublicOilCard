@@ -176,19 +176,36 @@ static NSString *headerID = @"GLMine_HeaderView";
     if (indexPath.row == 0 || indexPath.row == 2) {
         
         cell.leftViewWidth.constant = 30;
-        cell.rightViewWidth.constant = -30;
+        cell.rightViewWidth.constant = -22;
     }else{
-        cell.leftViewWidth.constant = 0;
+        cell.leftViewWidth.constant = 8;
         cell.rightViewWidth.constant = 30;
     }
     if (indexPath.row == 0 || indexPath.row == 1) {
         cell.topViewHeight.constant = 15;
-        cell.bottomViewHeight.constant = 0;
+        cell.bottomViewHeight.constant = 8;
     }else{
-        cell.topViewHeight.constant = 0;
+        cell.topViewHeight.constant = 8;
         cell.bottomViewHeight.constant = 15;
     }
-    
+//    cell.cellView.layer.cornerRadius = 10;
+//    cell.cellView.layer.cornerRadius = 10.0f;
+//    cell.cellView.layer.borderWidth = 0.5f;
+//    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
+//    cell.cellView.layer.masksToBounds = YES;
+//    
+//    cell.cellView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
+//    cell.cellView.layer.shadowOffset = CGSizeMake(0, 0);
+//    cell.cellView.layer.shadowRadius = 4.0f;
+//    cell.cellView.layer.shadowOpacity = 0.5f;
+//    cell.cellView.layer.masksToBounds = NO;
+//    cell.cellView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
+    cell.cellView.layer.cornerRadius = 5;
+    //    self.bgView.layer.masksToBounds = YES;
+    cell.cellView.layer.shadowColor = [UIColor lightGrayColor].CGColor;//shadowColor阴影颜色
+    cell.cellView.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
+    cell.cellView.layer.shadowOpacity = 0.3;//阴影透明度，默认0
+    cell.cellView.layer.shadowRadius = 5;//阴影半径，默认3
     return cell;
 }
 //- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
@@ -271,20 +288,20 @@ static NSString *headerID = @"GLMine_HeaderView";
 
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     
-    if ([[UserModel defaultUser].group_id integerValue] == 1) {
-        
-        _header.nameLabel.text= [NSString stringWithFormat:@"部长:%@",[UserModel defaultUser].truename];
-    }else if([[UserModel defaultUser].group_id integerValue] == 2){
-        _header.nameLabel.text= [NSString stringWithFormat:@"总监:%@",[UserModel defaultUser].truename];
-    }else if([[UserModel defaultUser].group_id integerValue] == 3){
-        _header.nameLabel.text= [NSString stringWithFormat:@"经理:%@",[UserModel defaultUser].truename];
-    }else if([[UserModel defaultUser].group_id integerValue] == 4){
-        _header.nameLabel.text= [NSString stringWithFormat:@"首期代理:%@",[UserModel defaultUser].truename];
-    }else if([[UserModel defaultUser].group_id integerValue] == 5){
-        _header.nameLabel.text= [NSString stringWithFormat:@"二期代理:%@",[UserModel defaultUser].truename];
-    }else if([[UserModel defaultUser].group_id integerValue] == 6){
-        _header.nameLabel.text= [NSString stringWithFormat:@"会员:%@",[UserModel defaultUser].truename];
-    }
+//    if ([[UserModel defaultUser].group_id integerValue] == 1) {
+    
+        _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
+//    }else if([[UserModel defaultUser].group_id integerValue] == 2){
+//        _header.nameLabel.text= [NSString stringWithFormat:@"总监:%@",[UserModel defaultUser].truename];
+//    }else if([[UserModel defaultUser].group_id integerValue] == 3){
+//        _header.nameLabel.text= [NSString stringWithFormat:@"经理:%@",[UserModel defaultUser].truename];
+//    }else if([[UserModel defaultUser].group_id integerValue] == 4){
+//        _header.nameLabel.text= [NSString stringWithFormat:@"首期代理:%@",[UserModel defaultUser].truename];
+//    }else if([[UserModel defaultUser].group_id integerValue] == 5){
+//        _header.nameLabel.text= [NSString stringWithFormat:@"二期代理:%@",[UserModel defaultUser].truename];
+//    }else if([[UserModel defaultUser].group_id integerValue] == 6){
+//        _header.nameLabel.text= [NSString stringWithFormat:@"会员:%@",[UserModel defaultUser].truename];
+//    }
     
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].price floatValue]/10000];
