@@ -52,7 +52,7 @@
 		4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F5071EF406A60038C147 /* JZAlbumViewController.m */; };
 		4A39F50B1EF406A60038C147 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F5091EF406A60038C147 /* PhotoView.m */; };
 		4A4FA5871EF0CA1100A256D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5861EF0CA1100A256D2 /* main.m */; };
-		4A4FA58A1EF0CA1100A256D2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */; };
+		4A4FA58A1EF0CA1100A256D2 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5891EF0CA1100A256D2 /* AppDelegate.mm */; };
 		4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA58C1EF0CA1100A256D2 /* ViewController.m */; };
 		4A4FA5931EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5911EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld */; };
 		4A4FA5951EF0CA1100A256D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A4FA5941EF0CA1100A256D2 /* Assets.xcassets */; };
@@ -164,6 +164,18 @@
 		F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA95F1EF5194900530237 /* LBExchangeJiFenTableViewCell.xib */; };
 		F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F92DA9631EF51F5700530237 /* IncentiveModel.m */; };
 		F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92DA9641EF51F5700530237 /* IncentiveModel.xib */; };
+		F946A5C41EFCAF050080954C /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F946A5C21EFCAF050080954C /* AlipaySDK.bundle */; };
+		F946A5C51EFCAF050080954C /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5C31EFCAF050080954C /* AlipaySDK.framework */; };
+		F946A5C71EFCB0180080954C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5C61EFCB0180080954C /* libz.tbd */; };
+		F946A5C91EFCB0230080954C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5C81EFCB0230080954C /* SystemConfiguration.framework */; };
+		F946A5CB1EFCB02D0080954C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5CA1EFCB02D0080954C /* CoreTelephony.framework */; };
+		F946A5CD1EFCB0360080954C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5CC1EFCB0360080954C /* QuartzCore.framework */; };
+		F946A5CF1EFCB03E0080954C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5CE1EFCB03E0080954C /* CoreText.framework */; };
+		F946A5D11EFCB0470080954C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D01EFCB0470080954C /* CoreGraphics.framework */; };
+		F946A5D31EFCB0540080954C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D21EFCB0540080954C /* UIKit.framework */; };
+		F946A5D51EFCB05E0080954C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D41EFCB05E0080954C /* Foundation.framework */; };
+		F946A5D81EFCB0B40080954C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D61EFCB0B40080954C /* libcrypto.a */; };
+		F946A5D91EFCB0B40080954C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D71EFCB0B40080954C /* libssl.a */; };
 		F94AFF261EF92AC000DC34F8 /* GLMine_OrderSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */; };
 		F94AFF291EF92AD800DC34F8 /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */; };
 		F95D45EE1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */; };
@@ -186,6 +198,8 @@
 		F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */; };
 		F9652D601EF76B6200DD229F /* GLRecommendController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D5E1EF76B6200DD229F /* GLRecommendController.m */; };
 		F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */; };
+		F96CE1991EFCB2B000D88BB0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96CE1981EFCB2B000D88BB0 /* CoreMotion.framework */; };
+		F96CE19B1EFCB2C200D88BB0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96CE19A1EFCB2C200D88BB0 /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -265,7 +279,7 @@
 		4A4FA5821EF0CA1100A256D2 /* PublicOilCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicOilCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4FA5861EF0CA1100A256D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PublicOilCard/AppDelegate.h; sourceTree = "<group>"; };
-		4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PublicOilCard/AppDelegate.m; sourceTree = "<group>"; };
+		4A4FA5891EF0CA1100A256D2 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = PublicOilCard/AppDelegate.mm; sourceTree = "<group>"; };
 		4A4FA58B1EF0CA1100A256D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = PublicOilCard/ViewController.h; sourceTree = "<group>"; };
 		4A4FA58C1EF0CA1100A256D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = PublicOilCard/ViewController.m; sourceTree = "<group>"; };
 		4A4FA5921EF0CA1100A256D2 /* PublicOilCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PublicOilCard.xcdatamodel; sourceTree = "<group>"; };
@@ -445,6 +459,18 @@
 		F92DA9621EF51F5700530237 /* IncentiveModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncentiveModel.h; sourceTree = "<group>"; };
 		F92DA9631EF51F5700530237 /* IncentiveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncentiveModel.m; sourceTree = "<group>"; };
 		F92DA9641EF51F5700530237 /* IncentiveModel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncentiveModel.xib; sourceTree = "<group>"; };
+		F946A5C21EFCAF050080954C /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		F946A5C31EFCAF050080954C /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		F946A5C61EFCB0180080954C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		F946A5C81EFCB0230080954C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F946A5CA1EFCB02D0080954C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F946A5CC1EFCB0360080954C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F946A5CE1EFCB03E0080954C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		F946A5D01EFCB0470080954C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F946A5D21EFCB0540080954C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F946A5D41EFCB05E0080954C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F946A5D61EFCB0B40080954C /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
+		F946A5D71EFCB0B40080954C /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libssl.a; sourceTree = "<group>"; };
 		F94AFF241EF92AC000DC34F8 /* GLMine_OrderSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_OrderSectionModel.h; sourceTree = "<group>"; };
 		F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_OrderSectionModel.m; sourceTree = "<group>"; };
 		F94AFF271EF92AD800DC34F8 /* LBWaitOrdersListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersListModel.h; sourceTree = "<group>"; };
@@ -484,6 +510,8 @@
 		F9652D5D1EF76B6200DD229F /* GLRecommendController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLRecommendController.h; sourceTree = "<group>"; };
 		F9652D5E1EF76B6200DD229F /* GLRecommendController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLRecommendController.m; sourceTree = "<group>"; };
 		F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendController.xib; sourceTree = "<group>"; };
+		F96CE1981EFCB2B000D88BB0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		F96CE19A1EFCB2C200D88BB0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,7 +519,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F96CE19B1EFCB2C200D88BB0 /* CFNetwork.framework in Frameworks */,
+				F96CE1991EFCB2B000D88BB0 /* CoreMotion.framework in Frameworks */,
+				F946A5D51EFCB05E0080954C /* Foundation.framework in Frameworks */,
+				F946A5D31EFCB0540080954C /* UIKit.framework in Frameworks */,
+				F946A5D11EFCB0470080954C /* CoreGraphics.framework in Frameworks */,
+				F946A5CF1EFCB03E0080954C /* CoreText.framework in Frameworks */,
+				F946A5CD1EFCB0360080954C /* QuartzCore.framework in Frameworks */,
+				F946A5CB1EFCB02D0080954C /* CoreTelephony.framework in Frameworks */,
+				F946A5D81EFCB0B40080954C /* libcrypto.a in Frameworks */,
+				F946A5C91EFCB0230080954C /* SystemConfiguration.framework in Frameworks */,
+				F946A5D91EFCB0B40080954C /* libssl.a in Frameworks */,
+				F946A5C71EFCB0180080954C /* libz.tbd in Frameworks */,
 				847D8655779E28C7BBDF27AB /* Pods_PublicOilCard.framework in Frameworks */,
+				F946A5C51EFCAF050080954C /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -835,7 +876,7 @@
 			isa = PBXGroup;
 			children = (
 				4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */,
-				4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */,
+				4A4FA5891EF0CA1100A256D2 /* AppDelegate.mm */,
 				4A4FA58B1EF0CA1100A256D2 /* ViewController.h */,
 				4A4FA58C1EF0CA1100A256D2 /* ViewController.m */,
 				4A4FA5E11EF0DB8D00A256D2 /* yindaotuViewController.h */,
@@ -1381,6 +1422,9 @@
 		4AEEC9B71EF2802200F827BB /* 三方库 */ = {
 			isa = PBXGroup;
 			children = (
+				F946A5D61EFCB0B40080954C /* libcrypto.a */,
+				F946A5D71EFCB0B40080954C /* libssl.a */,
+				F946A5C11EFCAF050080954C /* 支付宝 */,
 				F95D45DA1EFA4A980011C69B /* TYAlertController */,
 				4A39F5051EF406A60038C147 /* IOS图片浏览器 */,
 				4A39F4A81EF3B6960038C147 /* XBScrollPageController */,
@@ -1430,6 +1474,16 @@
 		54C22C41E27BEC14345A7B20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F96CE19A1EFCB2C200D88BB0 /* CFNetwork.framework */,
+				F96CE1981EFCB2B000D88BB0 /* CoreMotion.framework */,
+				F946A5D41EFCB05E0080954C /* Foundation.framework */,
+				F946A5D21EFCB0540080954C /* UIKit.framework */,
+				F946A5D01EFCB0470080954C /* CoreGraphics.framework */,
+				F946A5CE1EFCB03E0080954C /* CoreText.framework */,
+				F946A5CC1EFCB0360080954C /* QuartzCore.framework */,
+				F946A5CA1EFCB02D0080954C /* CoreTelephony.framework */,
+				F946A5C81EFCB0230080954C /* SystemConfiguration.framework */,
+				F946A5C61EFCB0180080954C /* libz.tbd */,
 				24F5205C5ECB12FF995636AD /* Pods_PublicOilCard.framework */,
 			);
 			name = Frameworks;
@@ -1452,6 +1506,15 @@
 				F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */,
 			);
 			path = "使用加载网页";
+			sourceTree = "<group>";
+		};
+		F946A5C11EFCAF050080954C /* 支付宝 */ = {
+			isa = PBXGroup;
+			children = (
+				F946A5C21EFCAF050080954C /* AlipaySDK.bundle */,
+				F946A5C31EFCAF050080954C /* AlipaySDK.framework */,
+			);
+			path = "支付宝";
 			sourceTree = "<group>";
 		};
 		F94AFF231EF92AA500DC34F8 /* Model */ = {
@@ -1630,6 +1693,7 @@
 				4A39F49E1EF3B0810038C147 /* GLMine_SetCell.xib in Resources */,
 				4A5201DD1EF8C8D10096DB0C /* GLHomeLiveChooseController.xib in Resources */,
 				4AEEC9B61EF275AD00F827BB /* GLMine_RecommendRecordCell.xib in Resources */,
+				F946A5C41EFCAF050080954C /* AlipaySDK.bundle in Resources */,
 				4AEEC9C81EF28B2D00F827BB /* GLMine_OpenCardController.xib in Resources */,
 				4A1CE71F1EF50CD300895ADF /* GLMine_RelationshipController.xib in Resources */,
 				4A4FA5F01EF0DF2E00A256D2 /* Mall.xcassets in Resources */,
@@ -1737,7 +1801,7 @@
 				4A39F4BF1EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.m in Sources */,
 				4A39F4C71EF3BA510038C147 /* GLMine_ExchangeRecordCell.m in Sources */,
 				4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */,
-				4A4FA58A1EF0CA1100A256D2 /* AppDelegate.m in Sources */,
+				4A4FA58A1EF0CA1100A256D2 /* AppDelegate.mm in Sources */,
 				4A9FBE3D1EFA98AE00BAEBBF /* GLMine_updateNewCell.m in Sources */,
 				4A39F49D1EF3B0810038C147 /* GLMine_SetCell.m in Sources */,
 				F95D45F61EFA4A980011C69B /* UIView+TYAlertView.m in Sources */,
@@ -1924,10 +1988,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PublicOilCard/三方库/支付宝",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PublicOilCard/PublicOilCard.pch";
 				INFOPLIST_FILE = PublicOilCard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PublicOilCard/三方库",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1939,10 +2011,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = GCU762TQ3E;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PublicOilCard/三方库/支付宝",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PublicOilCard/PublicOilCard.pch";
 				INFOPLIST_FILE = PublicOilCard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PublicOilCard/三方库",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

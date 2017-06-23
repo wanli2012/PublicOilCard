@@ -152,6 +152,10 @@
 
 //立即购买
 - (IBAction)buyNow:(id)sender {
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
     
@@ -191,7 +195,10 @@
 
 //收藏
 - (void)collect:(UIButton *)collectionbt {
-    
+    if ([UserModel defaultUser].loginstatus == NO) {
+        [MBProgressHUD showError:@"请先登录"];
+        return;
+    }
     if ([self.isCollection integerValue] == 1) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         dict[@"uid"] = [UserModel defaultUser].uid;
