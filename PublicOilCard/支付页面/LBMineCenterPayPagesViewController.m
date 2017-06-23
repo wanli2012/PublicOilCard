@@ -63,11 +63,35 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
-    
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
+
 //    [self initData];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(Alipaysucess) name:@"Alipaysucess" object:nil];
+    
+    /**
+     *微信支付成功 回调
+     */
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(wxpaysucess) name:@"wxpaysucess" object:nil];
 }
 
+//支付宝客户端支付成功之后 发送通知
+-(void)Alipaysucess{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    if(self.pushIndex == 1){
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+-(void)wxpaysucess{
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -259,6 +283,7 @@
         dict[@"realy_price"] = self.realy_price;
         dict[@"order_num"] = self.order_num;
         dict[@"goods_id"] = self.goods_id;
+        dict[@"goods_num"] = self.goods_num;
         urlstr = @"ShopInfo/order_pay";
         
     }else if(self.pushIndex == 2){
@@ -284,9 +309,9 @@
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
             NSString *alipay = [[NSString alloc]init];
-            if(self.pushIndex == 1 || self.pushIndex == 3){
+            if( self.pushIndex == 3){
                 alipay = responseObject[@"data"];
-            }else if(self.pushIndex == 2){
+            }else if(self.pushIndex == 2 || self.pushIndex == 1){
                 alipay = responseObject[@"data"][@"alipay"];
             }
            [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
@@ -339,19 +364,7 @@
     }];
 }
 
-//支付宝客户端支付成功之后 发送通知
--(void)Alipaysucess{
-    
-//    self.hidesBottomBarWhenPushed = YES;
-//    if(self.pushIndex == 1){
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//        
-//    }else{
-//        [self.navigationController popViewControllerAnimated:YES];
-//    }
-//    self.hidesBottomBarWhenPushed = NO;
-    
-}
+
 //支付请求
 - (void)postRepuest:(NSNotification *)sender {
 

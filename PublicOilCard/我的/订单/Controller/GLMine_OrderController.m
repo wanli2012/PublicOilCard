@@ -61,6 +61,7 @@
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     
+    
 }
 
 //下拉刷新
@@ -186,13 +187,17 @@
 
 -(void)orderpay:(NSInteger)section{
     GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
-    if ([sectionModel.order_status isEqualToString:@"1"]) {//去支付
+    LBWaitOrdersListModel   *listmodel = sectionModel.dataArr[0];
+    if ([sectionModel.order_status isEqualToString:@"0"]) {//去支付
         self.hidesBottomBarWhenPushed = YES;
         LBMineCenterPayPagesViewController *vc = [[LBMineCenterPayPagesViewController alloc]init];
         vc.order_id = sectionModel.order_id;
         vc.order_num = sectionModel.order_num;
         vc.addtime = sectionModel.addtime;
         vc.realy_price = sectionModel.should_price;
+        vc.pushIndex = 1;
+        vc.goods_id = listmodel.goods_id;
+        vc.goods_num = listmodel.goods_num;
         [self.navigationController pushViewController:vc animated:YES];
     }else{//删除订单
         [self deleteOrder:section];
