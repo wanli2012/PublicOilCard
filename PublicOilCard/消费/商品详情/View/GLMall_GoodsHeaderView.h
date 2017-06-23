@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UILabel *stockLabel;
 @property (weak, nonatomic) IBOutlet UIButton *collectionBt;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewTop;
 
 
 @property (nonatomic, copy)NSString * stockNum;

@@ -30,7 +30,6 @@
 //
 //@property (nonatomic, strong)UIImageView *adImageV;
 @property (weak, nonatomic) IBOutlet UIButton *picImageV;
-@property (weak, nonatomic) IBOutlet UILabel *positionLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *IDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -38,13 +37,11 @@
 @property (weak, nonatomic) IBOutlet UIButton *exchangeBtn;
 @property (weak, nonatomic) IBOutlet UIView *middleView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewHeight;
-@property (weak, nonatomic) IBOutlet UIImageView *adImageV;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *adImageVHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewBottom;
+
 @property (weak, nonatomic) IBOutlet UILabel *xiaofeiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jifenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tuijianLabel;
 @property (weak, nonatomic) IBOutlet UILabel *jiangliLabel;
-
-
 
 @end

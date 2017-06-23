@@ -137,7 +137,6 @@
     
     if ( self.selectIndex == 0) {
         
-
     }else{
     
          if (self.selectIndex == 1){
@@ -151,8 +150,7 @@
     
     }
     
- 
-}
+ }
 - (void)ricePay:(NSNotification *)sender {
 //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 //    dict[@"token"] = [UserModel defaultUser].token;

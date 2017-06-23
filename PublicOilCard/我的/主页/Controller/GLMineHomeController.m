@@ -22,8 +22,9 @@
 #import "GLMine_OpenController.h"
 #import "GLMine_RelationshipController.h"
 #import "LBExchangeViewController.h"
+#import <SDCycleScrollView/SDCycleScrollView.h>
 
-@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate>
 {
     GLMine_HeaderView *_header;
 }
@@ -31,6 +32,9 @@
 @property (nonatomic, strong)UICollectionView *collectionV;
 @property (nonatomic, strong)NSArray *titleArr;
 @property (nonatomic, strong)NSArray *imageArr;
+
+@property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
+@property(assign , nonatomic)CGFloat headerImageHeight;
 
 @end
 
@@ -41,12 +45,19 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-
       [self.view addSubview:self.collectionV];
+    self.headerImageHeight = 80 * autoSizeScaleY;
     //注册头视图
 //    [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
+}
+//移除通知
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
 }
 - (void)viewWillAppear:(BOOL)animated{
@@ -74,7 +85,33 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
             [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
             [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
-//            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"price"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            if ([[UserModel defaultUser].price rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[UserModel defaultUser].mark rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[UserModel defaultUser].recNumber rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
+            if ([[UserModel defaultUser].username rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[UserModel defaultUser].truename rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[UserModel defaultUser].group_name rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
             
             [usermodelachivar achive];
         }else{
@@ -153,6 +190,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 
         }
         _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+//        _collectionV.backgroundColor = YYSRGBColor(249, 250, 251, 1);
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
 //        [_collectionV setContentInset:UIEdgeInsetsMake(0, 20, 0, 20)];
@@ -201,7 +239,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 //    cell.cellView.layer.masksToBounds = NO;
 //    cell.cellView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
     cell.cellView.layer.cornerRadius = 5;
-    //    self.bgView.layer.masksToBounds = YES;
+//    cell.cellView.layer.masksToBounds = YES;
     cell.cellView.layer.shadowColor = [UIColor lightGrayColor].CGColor;//shadowColor阴影颜色
     cell.cellView.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
     cell.cellView.layer.shadowOpacity = 0.3;//阴影透明度，默认0
@@ -287,22 +325,8 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
-    
-//    if ([[UserModel defaultUser].group_id integerValue] == 1) {
-    
-        _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 2){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"总监:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 3){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"经理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 4){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"首期代理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 5){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"二期代理:%@",[UserModel defaultUser].truename];
-//    }else if([[UserModel defaultUser].group_id integerValue] == 6){
-//        _header.nameLabel.text= [NSString stringWithFormat:@"会员:%@",[UserModel defaultUser].truename];
-//    }
-    
+    _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
+
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].price floatValue]/10000];
     }else{
@@ -321,20 +345,44 @@ static NSString *headerID = @"GLMine_HeaderView";
 
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
 
-    if ([[UserModel defaultUser].group_id integerValue] != 6) {
+    [_header addSubview:self.cycleScrollView];
+    
+    if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
-        _header.adImageVHeight.constant = 0;
+        _header.middleViewBottom.constant = 0;
+        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, 0);
+        _header.backgroundColor = [UIColor whiteColor];
         
     }else{
         
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
-        _header.adImageVHeight.constant = 70 * autoSizeScaleY;
+        _header.middleViewBottom.constant = _headerImageHeight;
+        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, _headerImageHeight);
+        _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     
     return _header;
+}
+-(SDCycleScrollView*)cycleScrollView
+{
+    if (!_cycleScrollView) {
+        _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, _headerImageHeight)
+                                                              delegate:self
+                                                      placeholderImage:[UIImage imageNamed:@"轮播占位图"]];
+        
+        _cycleScrollView.localizationImageNamesGroup = @[];
+        _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
+        _cycleScrollView.titleLabelBackgroundColor = YYSRGBColor(241, 242, 243, 1);// 图片对应的标题的 背景色。（因为没有设标题）
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播占位图"];
+        _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
+    }
+    
+    return _cycleScrollView;
+    
 }
 // 设置section头视图的参考大小，与tableheaderview类似
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
@@ -346,7 +394,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
     }else{//会员
         
-        return CGSizeMake(SCREEN_WIDTH, 260 * autoSizeScaleY);
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight);
     }
 }
 

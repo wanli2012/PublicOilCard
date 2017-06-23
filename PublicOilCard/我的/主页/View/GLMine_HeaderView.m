@@ -36,7 +36,7 @@
     self.picImageVHeight.constant = 80 *autoSizeScaleY;
     
     self.picImageV.layer.cornerRadius = self.picImageVHeight.constant /2;
-    self.positionLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+
     self.IDLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
     self.nameLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
 

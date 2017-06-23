@@ -54,7 +54,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEG-88-hMR">
                                     <rect key="frame" x="10" y="0.0" width="76.5" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWn-bw-TBT">
@@ -80,7 +80,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1D-If-WEp">
                                     <rect key="frame" x="10" y="0.0" width="76" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全团积分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fc5-Ld-JX9">
@@ -115,7 +115,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B3M-WH-VRC">
                                     <rect key="frame" x="10" y="0.0" width="76" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5A-o0-AGy">
@@ -150,7 +150,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjj-rz-EKP">
                                     <rect key="frame" x="10" y="0.0" width="76" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjG-su-CAp">
@@ -187,7 +187,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="M6O-QY-Reg" firstAttribute="leading" secondItem="lOk-YC-qIA" secondAttribute="trailing" id="2NJ-s3-q8t"/>
                         <constraint firstAttribute="bottom" secondItem="M6O-QY-Reg" secondAttribute="bottom" id="4Gf-CS-t4T"/>
@@ -216,7 +216,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HbI-2F-pf3">
                     <rect key="frame" x="152.5" y="10" width="80" height="80"/>
-                    <color key="backgroundColor" red="0.1551630795" green="0.58942979569999998" blue="0.2282119095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="tPP-xe-Cag"/>
                         <constraint firstAttribute="width" secondItem="HbI-2F-pf3" secondAttribute="height" id="txE-fa-ab5"/>
@@ -228,18 +228,10 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HMx-tc-zZj">
-                    <rect key="frame" x="0.0" y="252" width="385" height="70"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="70" id="3k2-Ht-tYn"/>
-                    </constraints>
-                </imageView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="HMx-tc-zZj" secondAttribute="bottom" id="5ED-yI-gLJ"/>
-                <constraint firstAttribute="trailing" secondItem="HMx-tc-zZj" secondAttribute="trailing" id="645-3W-gxW"/>
+                <constraint firstAttribute="bottom" secondItem="VCu-vD-ESA" secondAttribute="bottom" constant="70" id="1B5-1H-FTb"/>
                 <constraint firstItem="HBs-Uo-Xfs" firstAttribute="centerX" secondItem="HbI-2F-pf3" secondAttribute="centerX" id="6Iw-pU-iYL"/>
                 <constraint firstItem="HbI-2F-pf3" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="IQD-zX-1s3"/>
                 <constraint firstItem="NLN-gn-2cj" firstAttribute="top" secondItem="HbI-2F-pf3" secondAttribute="top" id="Lbk-8f-KOd"/>
@@ -250,20 +242,18 @@
                 <constraint firstItem="HbI-2F-pf3" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="f4f-p1-zUq"/>
                 <constraint firstAttribute="trailing" secondItem="NLN-gn-2cj" secondAttribute="trailing" constant="10" id="ghc-so-vxg"/>
                 <constraint firstItem="86z-G3-9Mf" firstAttribute="centerX" secondItem="HbI-2F-pf3" secondAttribute="centerX" id="i1j-Cy-uGS"/>
-                <constraint firstItem="HMx-tc-zZj" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="idb-5h-ohk"/>
                 <constraint firstItem="HBs-Uo-Xfs" firstAttribute="top" secondItem="86z-G3-9Mf" secondAttribute="bottom" constant="10" id="orK-Zu-qIX"/>
                 <constraint firstItem="nHy-ou-r2B" firstAttribute="leading" secondItem="NLN-gn-2cj" secondAttribute="leading" id="vxs-Jl-hLH"/>
                 <constraint firstItem="86z-G3-9Mf" firstAttribute="top" secondItem="HbI-2F-pf3" secondAttribute="bottom" constant="10" id="x7t-k4-qUV"/>
-                <constraint firstItem="HMx-tc-zZj" firstAttribute="top" secondItem="VCu-vD-ESA" secondAttribute="bottom" id="zC2-2F-Lru"/>
             </constraints>
             <connections>
                 <outlet property="IDLabel" destination="86z-G3-9Mf" id="HGm-Ve-qWP"/>
-                <outlet property="adImageV" destination="HMx-tc-zZj" id="XA7-Rz-nHq"/>
-                <outlet property="adImageVHeight" destination="3k2-Ht-tYn" id="wHE-1J-xal"/>
                 <outlet property="exchangeBtn" destination="nHy-ou-r2B" id="TcK-KW-tYV"/>
                 <outlet property="jiangliLabel" destination="B3M-WH-VRC" id="OY9-01-xHa"/>
                 <outlet property="jifenLabel" destination="d1D-If-WEp" id="ghj-fe-2TH"/>
                 <outlet property="middleView" destination="VCu-vD-ESA" id="kWJ-Qa-Vgl"/>
+                <outlet property="middleViewBottom" destination="1B5-1H-FTb" id="sXc-yP-KIn"/>
+                <outlet property="middleViewHeight" destination="ZOq-fJ-6ep" id="UO9-3v-JS6"/>
                 <outlet property="nameLabel" destination="HBs-Uo-Xfs" id="0r0-yO-elc"/>
                 <outlet property="openCardBtn" destination="NLN-gn-2cj" id="3eO-aj-woK"/>
                 <outlet property="picImageV" destination="HbI-2F-pf3" id="1Ep-7s-fSX"/>
