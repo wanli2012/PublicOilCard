@@ -85,32 +85,39 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
             [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
             [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
             [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
             [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
             [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
-            if ([[UserModel defaultUser].price rangeOfString:@"null"].location != NSNotFound) {
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].price = @"";
             }
-            if ([[UserModel defaultUser].mark rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].mark = @"";
             }
-            if ([[UserModel defaultUser].recNumber rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].recNumber = @"";
             }
-            if ([[UserModel defaultUser].username rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].username = @"";
             }
-            if ([[UserModel defaultUser].truename rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].truename = @"";
             }
-            if ([[UserModel defaultUser].group_name rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].group_name = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveOilCard = @"";
             }
             
             [usermodelachivar achive];
@@ -261,6 +268,9 @@ static NSString *headerID = @"GLMine_HeaderView";
         case 0:
         {
             if ([[UserModel defaultUser].group_id integerValue] != 6) {
+                if ([[UserModel defaultUser].group_id integerValue] == 3) {
+                    [MBProgressHUD showError:@"权限不足,无法开通下级"];
+                }
                 GLMine_OpenController *openVC = [[GLMine_OpenController alloc] init];
                 [self.navigationController pushViewController:openVC animated:YES];
                 
@@ -324,6 +334,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
+    //数据显示
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
 
@@ -344,15 +355,23 @@ static NSString *headerID = @"GLMine_HeaderView";
     }
 
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
-
+    
+    //判断是否显示vip标志
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
+        _header.vipImageV.hidden = NO;
+    }else{
+        _header.vipImageV.hidden = YES;
+    }
+    
     [_header addSubview:self.cycleScrollView];
     
+    //区分会员与其他身份的界面
     if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
         _header.middleViewBottom.constant = 0;
-        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, 0);
+        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY, SCREEN_WIDTH, 0);
         _header.backgroundColor = [UIColor whiteColor];
         
     }else{
@@ -360,7 +379,8 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
         _header.middleViewBottom.constant = _headerImageHeight;
-        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, _headerImageHeight);
+        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY, SCREEN_WIDTH, _headerImageHeight);
+
         _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     

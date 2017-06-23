@@ -228,17 +228,26 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vip" translatesAutoresizingMaskIntoConstraints="NO" id="NrA-w4-U7Y">
+                    <rect key="frame" x="184.5" y="83" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="GVL-Kh-GjF"/>
+                        <constraint firstAttribute="width" constant="15" id="rvj-Jf-ov3"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="VCu-vD-ESA" secondAttribute="bottom" constant="70" id="1B5-1H-FTb"/>
                 <constraint firstItem="HBs-Uo-Xfs" firstAttribute="centerX" secondItem="HbI-2F-pf3" secondAttribute="centerX" id="6Iw-pU-iYL"/>
                 <constraint firstItem="HbI-2F-pf3" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="IQD-zX-1s3"/>
+                <constraint firstItem="NrA-w4-U7Y" firstAttribute="bottom" secondItem="HbI-2F-pf3" secondAttribute="bottom" constant="8" id="JBq-Ah-yAT"/>
                 <constraint firstItem="NLN-gn-2cj" firstAttribute="top" secondItem="HbI-2F-pf3" secondAttribute="top" id="Lbk-8f-KOd"/>
                 <constraint firstItem="VCu-vD-ESA" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="Rbg-Wh-ugT"/>
                 <constraint firstItem="NLN-gn-2cj" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" constant="10" id="VPN-Is-qvp"/>
                 <constraint firstAttribute="trailing" secondItem="VCu-vD-ESA" secondAttribute="trailing" id="adR-Dg-i3m"/>
                 <constraint firstItem="nHy-ou-r2B" firstAttribute="top" secondItem="NLN-gn-2cj" secondAttribute="bottom" constant="10" id="c98-iM-UR2"/>
+                <constraint firstItem="NrA-w4-U7Y" firstAttribute="centerX" secondItem="HbI-2F-pf3" secondAttribute="centerX" id="dug-Vv-rW3"/>
                 <constraint firstItem="HbI-2F-pf3" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="f4f-p1-zUq"/>
                 <constraint firstAttribute="trailing" secondItem="NLN-gn-2cj" secondAttribute="trailing" constant="10" id="ghc-so-vxg"/>
                 <constraint firstItem="86z-G3-9Mf" firstAttribute="centerX" secondItem="HbI-2F-pf3" secondAttribute="centerX" id="i1j-Cy-uGS"/>
@@ -259,9 +268,13 @@
                 <outlet property="picImageV" destination="HbI-2F-pf3" id="1Ep-7s-fSX"/>
                 <outlet property="picImageVHeight" destination="tPP-xe-Cag" id="kWl-oG-b8m"/>
                 <outlet property="tuijianLabel" destination="xjj-rz-EKP" id="bpD-QT-eT6"/>
+                <outlet property="vipImageV" destination="NrA-w4-U7Y" id="Q18-eM-Nkp"/>
                 <outlet property="xiaofeiLabel" destination="xEG-88-hMR" id="KgT-Zq-Ycf"/>
             </connections>
             <point key="canvasLocation" x="67.5" y="-34"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="vip" width="11" height="11"/>
+    </resources>
 </document>

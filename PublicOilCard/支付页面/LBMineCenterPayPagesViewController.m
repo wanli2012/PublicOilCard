@@ -313,11 +313,8 @@
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
             NSString *alipay = [[NSString alloc]init];
-            if( self.pushIndex == 3){
-                alipay = responseObject[@"data"];
-            }else if(self.pushIndex == 2 || self.pushIndex == 1){
-                alipay = responseObject[@"data"][@"alipay"];
-            }
+            alipay = responseObject[@"data"][@"alipay"];
+            
            [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
                
                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];

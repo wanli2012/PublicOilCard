@@ -76,7 +76,7 @@
                      [UserModel defaultUser].pic,
                      [UserModel defaultUser].truename,
                      [UserModel defaultUser].username,
-                     [UserModel defaultUser].pic,
+                     [UserModel defaultUser].username,
                      [UserModel defaultUser].IDCard,
                      [UserModel defaultUser].openbank,
                      [UserModel defaultUser].banknumber,
@@ -291,7 +291,6 @@
 }
 #pragma UITextfieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
 
     if (textField.tag == 11 || textField.tag == 12) {//身份证号只能输入数字和X
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
@@ -343,26 +342,27 @@
         
         cell.titleLabel.text = _keyArr[indexPath.row];
         cell.detailTF.text = _vlaueArr[indexPath.row];
-        cell.detailTF.enabled = [self.canEditArr[indexPath.row] boolValue];
         
         if (indexPath.row == 0 || indexPath.row == 3) {
-            cell.picImageV.hidden = NO;
-            cell.detailTF.hidden = YES;
-//            cell.picImageV.image = [UIImage imageNamed:_vlaueArr[indexPath.row]];
-       
+            
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
                 [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
-                if (cell.picImageV.image) {
+                
+                if (!cell.picImageV.image) {
                     cell.picImageV.image = self.picImage;
                     if (self.picImage == nil) {
                         cell.picImageV.image = [UIImage imageNamed:PlaceHolderImage];
                     }
                 }
+                
             }else{
                 cell.picImageV.layer.cornerRadius = 0;
                 cell.picImageV.image = [self logoQrCode];
             }
+            
+            cell.picImageV.hidden = NO;
+            cell.detailTF.hidden = YES;
         }else{
 
             cell.picImageV.hidden = YES;
@@ -486,7 +486,7 @@
         manager.requestSerializer.timeoutInterval = 10;
         // 加上这行代码，https ssl 验证。
         [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-        [manager POST:[NSString stringWithFormat:@"%@",URL_Base] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,@"UserInfo/save_picture"] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             //将图片以表单形式上传
             
             if (self.picImage) {
@@ -498,7 +498,6 @@
                 NSData *data = UIImagePNGRepresentation(self.picImage);
                 [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
             }
-            
             
         }progress:^(NSProgress *uploadProgress){
             
@@ -517,7 +516,7 @@
             if ([dic[@"code"]integerValue]==1) {
                 
                 [MBProgressHUD showError:dic[@"message"]];
-                
+                [self refresh];
             }else{
                 [MBProgressHUD showError:dic[@"message"]];
             }
@@ -535,6 +534,68 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
         
     
+}
+
+- (void)refresh {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
+            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
+            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveOilCard = @"";
+            }
+            
+            [usermodelachivar achive];
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
 }
 - (NSMutableArray *)vlaueArr{
     if (!_vlaueArr) {

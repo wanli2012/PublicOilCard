@@ -158,11 +158,11 @@
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     if (index == 0) {
-        
-        NSLog(@"6000");
+        pay.upgrade = 1;
+       
     }else{
-        
-        NSLog(@"12000");
+        pay.upgrade = 2;
+     
     }
     pay.pushIndex = 3;//表示从升级管理跳转的
     

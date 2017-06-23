@@ -7,6 +7,7 @@
 //
 
 #import "GLMine_OpenCardController.h"
+#import "LBMineCenterPayPagesViewController.h"
 
 @interface GLMine_OpenCardController ()
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
@@ -38,6 +39,13 @@
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
+}
+- (IBAction)openCard:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
+    pay.pushIndex = 2;
+    [self.navigationController pushViewController:pay animated:YES];
 }
 
 @end

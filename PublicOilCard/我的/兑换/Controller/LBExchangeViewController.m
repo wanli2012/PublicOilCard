@@ -71,8 +71,18 @@
     self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
     self.tableview.tableHeaderView = self.exchangeHeaderView;
     //赋值
-    self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
-    self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].yue];
+    if ([[UserModel defaultUser].mark floatValue] > 100000) {
+        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
+    }else{
+        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
+    }
+    if ([[UserModel defaultUser].yue floatValue] > 100000) {
+        self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].yue floatValue]/10000];
+    }else{
+        self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].yue];
+    }
+//    self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
+//    self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].yue];
     if ([self.exchangeHeaderView.jifenLb.text rangeOfString:@"null"].location != NSNotFound) {
         self.exchangeHeaderView.jifenLb.text = @"0.00";
     }
@@ -262,8 +272,7 @@
         if (tag == 10) {
             self.selectindex = 1;
         }else if (tag == 11){
-            self.selectindex = 0
-        ;
+            self.selectindex = 0;
         }
         
         self.typeStr = self.typeArr [tag - 10];
@@ -386,11 +395,11 @@
     dict[@"user_name"] = [UserModel defaultUser].username;
     dict[@"choice"] = @(self.selectMethod);
     if (self.selectindex == 1) {
-        dict[@"bank_id"] = @"";
+        dict[@"bank_id"] = @"0";
         dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
-    }else if (self.selectindex == 2){
+    }else if (self.selectindex == 0){
         dict[@"bank_id"] = self.bank_id;
-        dict[@"qt_name"] = @"";
+        dict[@"qt_name"] = @"0";
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -401,6 +410,8 @@
         if ([responseObject[@"code"] integerValue]==1) {
             
             [self.navigationController popViewControllerAnimated:YES];
+            [MBProgressHUD showSuccess:responseObject[@"message"]];
+            [self refresh];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -411,9 +422,67 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
     
-
 }
-
+- (void)refresh {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
+            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveOilCard = @"";
+            }
+            
+            [usermodelachivar achive];
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.tableview reloadData];
+        
+    } enError:^(NSError *error) {
+        
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+}
 -(IncentiveModel*)incentiveModelV{
     
     if (!_incentiveModelV) {

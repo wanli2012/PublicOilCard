@@ -79,16 +79,16 @@
 {
     
     int index;
-    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser]) {
+    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser] || [UserModel defaultUser].group_id == nil || [[UserModel defaultUser].group_id integerValue] == 0) {
+        
         index = 1;
         
-    }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer]){
-        index = 1;
+    }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer] || [[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
         
-    }else if ([[UserModel defaultUser].group_id isEqualToString:@"0"] || [UserModel defaultUser].group_id == nil || [[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
-        index = 1;
+        index = 0;
         
     }else{
+        
         index = 1;
         
     }
