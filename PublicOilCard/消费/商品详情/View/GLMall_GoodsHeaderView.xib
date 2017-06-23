@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -176,6 +176,7 @@
                 <outlet property="collectionBt" destination="HIh-2e-kDO" id="UbN-xc-2Hr"/>
                 <outlet property="countLabel" destination="hom-0C-3a7" id="HNm-lu-YPn"/>
                 <outlet property="detailLabel" destination="LcK-Ue-69r" id="RCE-CC-DYF"/>
+                <outlet property="middleViewTop" destination="y8r-sr-bbH" id="OnG-2q-DDv"/>
                 <outlet property="numberLabel" destination="Esl-tY-tsF" id="Dkf-Rv-uxu"/>
                 <outlet property="priceLabel" destination="IvQ-10-0eh" id="wAf-w4-21K"/>
                 <outlet property="reduceBtn" destination="LR6-Hg-1Zx" id="bv5-6x-jhe"/>

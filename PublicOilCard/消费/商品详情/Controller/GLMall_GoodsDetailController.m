@@ -38,7 +38,7 @@
     self.buyBtn.layer.cornerRadius = 5.f;
     self.navigationItem.title = @"详情";
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.headerImageHeight = 120;
+    self.headerImageHeight = 180 *autoSizeScaleY;
     self.isCollection =@"0";
     self.collect_id = @"";
     //设置layout
@@ -330,7 +330,7 @@
     }else{
         [header.collectionBt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
     }
-    
+    header.middleViewTop.constant = _headerImageHeight;
     [header addSubview:self.cycleScrollView];
     
     return header;
@@ -374,7 +374,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 
     CGSize titleSize = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
     
-    return CGSizeMake(SCREEN_WIDTH, titleSize.height + self.headerImageHeight + 130);
+    return CGSizeMake(SCREEN_WIDTH, titleSize.height + _headerImageHeight + 130);
 }
 
 #pragma 懒加载

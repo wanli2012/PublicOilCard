@@ -46,7 +46,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [super viewDidLoad];
  
       [self.view addSubview:self.collectionV];
-    self.headerImageHeight = 70 * autoSizeScaleY;
+    self.headerImageHeight = 80 * autoSizeScaleY;
     //注册头视图
 //    [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
@@ -351,15 +351,16 @@ static NSString *headerID = @"GLMine_HeaderView";
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
-        self.cycleScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 0);
+        _header.middleViewBottom.constant = 0;
+        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, 0);
         _header.backgroundColor = [UIColor whiteColor];
         
     }else{
         
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
-        self.cycleScrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, _headerImageHeight);
-        _header.adImageVHeight.constant = 70 * autoSizeScaleY;
+        _header.middleViewBottom.constant = _headerImageHeight;
+        self.cycleScrollView.frame = CGRectMake(0, CGRectGetMaxY(_header.middleView.frame), SCREEN_WIDTH, _headerImageHeight);
         _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     
@@ -393,7 +394,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
     }else{//会员
         
-        return CGSizeMake(SCREEN_WIDTH, 260 * autoSizeScaleY);
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight);
     }
 }
 

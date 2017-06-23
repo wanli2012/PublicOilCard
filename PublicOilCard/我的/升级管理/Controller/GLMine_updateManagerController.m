@@ -164,7 +164,10 @@
         
         NSLog(@"12000");
     }
-     [self.navigationController pushViewController:pay animated:YES];
+    pay.pushIndex = 3;//表示从升级管理跳转的
+    
+    [self.navigationController pushViewController:pay animated:YES];
+    
 //    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
 //    //    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
 //    dict[@"uid"] = [UserModel defaultUser].uid;

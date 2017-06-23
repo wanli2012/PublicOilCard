@@ -137,7 +137,6 @@
     
     if ( self.selectIndex == 0) {
         
-
     }else{
     
          if (self.selectIndex == 1){
