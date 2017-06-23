@@ -20,7 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic, strong)NSDictionary *dataDic;
@@ -52,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"个人信息";
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self updateInfo];
     
     //自定义右键
@@ -86,8 +85,6 @@
                      [UserModel defaultUser].recommendUser,
                      [UserModel defaultUser].recommendID, nil];
     
-    self.tableViewHeight.constant = 9 * 40 + 2 * 60 + 30;
-
 }
 //MARK: 二维码中间内置图片,可以是公司logo
 -(UIImage *)logoQrCode{

@@ -328,17 +328,17 @@ static NSString *headerID = @"GLMine_HeaderView";
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
 
     if([[UserModel defaultUser].price floatValue]> 100000){
-        _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].price floatValue]/10000];
+        _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].price floatValue]/10000];
     }else{
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];
     }
     if([[UserModel defaultUser].mark floatValue]> 100000){
-        _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].mark floatValue]/10000];
+        _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
         _header.jifenLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].mark];
     }
     if([[UserModel defaultUser].yue floatValue]> 100000){
-        _header.jiangliLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].yue floatValue]/10000];
+        _header.jiangliLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].yue floatValue]/10000];
     }else{
         _header.jiangliLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].yue];
     }
@@ -366,6 +366,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     return _header;
 }
+
 -(SDCycleScrollView*)cycleScrollView
 {
     if (!_cycleScrollView) {
