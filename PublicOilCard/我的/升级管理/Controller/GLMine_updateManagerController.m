@@ -167,43 +167,7 @@
     pay.pushIndex = 3;//表示从升级管理跳转的
     
     [self.navigationController pushViewController:pay animated:YES];
-    
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    //    dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    dict[@"user_name"] = [UserModel defaultUser].token;
-//    dict[@"upgrade"] = [UserModel defaultUser].token;
-//    dict[@"pay_fun"] = [UserModel defaultUser].token;
-//    
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    
-//    [NetworkManager requestPOSTWithURLStr:@"UserInfo/upgrade" paramDic:dict finish:^(id responseObject) {
-//        [self endRefresh];
-//        [_loadV removeloadview];
-//        
-//        if ([responseObject[@"code"] integerValue]==1) {
-//            
-//            self.dataArr = responseObject[@"data"][@"msg"];
-//            self.status = responseObject[@"data"][@"status"];
-//            self.upgrade = responseObject[@"data"][@"upgrade"];
-//            
-//            if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
-//                
-//                [MBProgressHUD showError:responseObject[@"message"]];
-//            }
-//            
-//        }else{
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//        
-//        [self.tableView reloadData];
-//        
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        [self endRefresh];
-//        [MBProgressHUD showError:error.localizedDescription];
-//    }];
+
    
 }
 
@@ -233,7 +197,7 @@
         
         if ([self.status integerValue] == 0) {
             if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"未审核" forState:UIControlStateNormal];
+                [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }else{
                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
@@ -264,7 +228,7 @@
     }else{
         if ([self.status integerValue] == 0) {
             if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"未审核" forState:UIControlStateNormal];
+                [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }else{
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
