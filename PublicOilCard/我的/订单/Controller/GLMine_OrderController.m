@@ -101,7 +101,7 @@
                     
                     orderMode.order_num = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_num"]];
                     orderMode.user_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"user_name"]];
-                    orderMode.should_price = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"should_price"]];
+                    orderMode.realy_price = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"realy_price"]];
                     orderMode.addtime = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"addtime"]];
                     orderMode.total = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"total"]];
                     orderMode.order_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_status"]];
@@ -194,7 +194,7 @@
         vc.order_id = sectionModel.order_id;
         vc.order_num = sectionModel.order_num;
         vc.addtime = sectionModel.addtime;
-        vc.realy_price = sectionModel.should_price;
+        vc.realy_price = sectionModel.realy_price;
         vc.pushIndex = 1;
         vc.goods_id = listmodel.goods_id;
         vc.goods_num = listmodel.goods_num;
