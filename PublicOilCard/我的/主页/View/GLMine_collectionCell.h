@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GLMine_collectionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIView *cellView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *picImageV;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
