@@ -14,7 +14,7 @@
 //订单编号
 @property (nonatomic, copy)NSString *order_num;
 //订单应付款
-@property (nonatomic, copy)NSString *should_price;
+@property (nonatomic, copy)NSString *realy_price;
 //时间
 @property (nonatomic, copy)NSString *addtime;
 // 订单总数量
