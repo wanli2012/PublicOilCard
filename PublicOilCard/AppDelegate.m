@@ -29,15 +29,13 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-//    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
-//        self.window.rootViewController = [[BasetabbarViewController alloc]init];
-//        
-//    }else{
-//        self.window.rootViewController = [[yindaotuViewController alloc]init];
-//    }
-
+    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
+        self.window.rootViewController = [[BasetabbarViewController alloc]init];
+        
+    }else{
+        self.window.rootViewController = [[yindaotuViewController alloc]init];
+    }
     
-    self.window.rootViewController = [[BasetabbarViewController alloc]init];
 //    self.window.rootViewController = [[LBMineCenterPayPagesViewController alloc]init];
 //    self.window.rootViewController = [[GLCompleteInfoController alloc]init];
 //    UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:[[GLLoginController alloc] init]];

@@ -67,14 +67,12 @@
         
     }];
     
-    
     // 设置文字
     [header setTitle:@"快扯我，快点" forState:MJRefreshStateIdle];
     
     [header setTitle:@"数据要来啦" forState:MJRefreshStatePulling];
     
     [header setTitle:@"服务器正在狂奔 ..." forState:MJRefreshStateRefreshing];
-    
     
     self.collectionView.mj_header = header;
     

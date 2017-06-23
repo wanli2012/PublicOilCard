@@ -144,20 +144,35 @@
 
 - (void)edit:(UIButton *)sender {
     
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"请输入油卡卡号";
+        textField.tag = 12;
+        textField.delegate = self;
         
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-            
-        }];
-        __weak typeof(self) weakself = self;
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            
-//            UITextField *openBankTF = alertController.textFields[0];
-//            UITextField *bankNumTF = alertController.textFields[1];
-            UITextField *oilNumTF = alertController.textFields[0];
-            UITextField *qtIdNumTF = alertController.textFields[1];
+        
+    }];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"请输入全团ID";
+        textField.tag = 13;
+        textField.delegate = self;
+        
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+        
+    }];
+    
+    __weak typeof(self) weakself = self;
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        //            UITextField *openBankTF = alertController.textFields[0];
+        //            UITextField *bankNumTF = alertController.textFields[1];
+        UITextField *oilNumTF = alertController.textFields[0];
+        UITextField *qtIdNumTF = alertController.textFields[1];
 
-            
+        
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
 //                [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text qtIdNum:qtIdNumTF.text];
@@ -174,29 +189,16 @@
 //        textField.placeholder = @"请输入开户银行名";
 //        textField.tag = 10;
 //        textField.delegate = self;
-//        
+//
 //    }];
-//    
+//
 //    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
 //        textField.placeholder = @"请输入银行卡号";
 //        textField.tag = 11;
 //        textField.delegate = self;
 //
-//        
+//
 //    }];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入油卡卡号";
-        textField.tag = 12;
-        textField.delegate = self;
-
-        
-    }];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入全团ID";
-        textField.tag = 13;
-        textField.delegate = self;
-
-    }];
     
     [self presentViewController:alertController animated:YES completion:nil];
 

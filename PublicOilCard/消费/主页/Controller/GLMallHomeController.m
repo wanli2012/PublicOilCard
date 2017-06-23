@@ -163,6 +163,7 @@
 - (void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
 }
 - (void)dismiss {
     [UIView animateWithDuration:0.3 animations:^{

@@ -264,10 +264,10 @@
 		4A39F5091EF406A60038C147 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		4A4FA5821EF0CA1100A256D2 /* PublicOilCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicOilCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4FA5861EF0CA1100A256D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4A4FA58B1EF0CA1100A256D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4A4FA58C1EF0CA1100A256D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PublicOilCard/AppDelegate.h; sourceTree = "<group>"; };
+		4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = PublicOilCard/AppDelegate.m; sourceTree = "<group>"; };
+		4A4FA58B1EF0CA1100A256D2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = PublicOilCard/ViewController.h; sourceTree = "<group>"; };
+		4A4FA58C1EF0CA1100A256D2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = PublicOilCard/ViewController.m; sourceTree = "<group>"; };
 		4A4FA5921EF0CA1100A256D2 /* PublicOilCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PublicOilCard.xcdatamodel; sourceTree = "<group>"; };
 		4A4FA5941EF0CA1100A256D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A4FA5971EF0CA1100A256D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -310,8 +310,8 @@
 		4A4FA5D41EF0D97B00A256D2 /* UIView+SFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SFrame.m"; sourceTree = "<group>"; };
 		4A4FA5D51EF0D97B00A256D2 /* UIView+YYExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYExtension.h"; sourceTree = "<group>"; };
 		4A4FA5D61EF0D97B00A256D2 /* UIView+YYExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYExtension.m"; sourceTree = "<group>"; };
-		4A4FA5E11EF0DB8D00A256D2 /* yindaotuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yindaotuViewController.h; sourceTree = "<group>"; };
-		4A4FA5E21EF0DB8D00A256D2 /* yindaotuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = yindaotuViewController.m; sourceTree = "<group>"; };
+		4A4FA5E11EF0DB8D00A256D2 /* yindaotuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = yindaotuViewController.h; path = PublicOilCard/yindaotuViewController.h; sourceTree = "<group>"; };
+		4A4FA5E21EF0DB8D00A256D2 /* yindaotuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = yindaotuViewController.m; path = PublicOilCard/yindaotuViewController.m; sourceTree = "<group>"; };
 		4A4FA5E91EF0DE3100A256D2 /* GLMallHomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMallHomeController.h; sourceTree = "<group>"; };
 		4A4FA5EA1EF0DE3100A256D2 /* GLMallHomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMallHomeController.m; sourceTree = "<group>"; };
 		4A4FA5EB1EF0DE3100A256D2 /* GLMallHomeController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMallHomeController.xib; sourceTree = "<group>"; };
@@ -834,6 +834,12 @@
 		4A4FA5791EF0CA1000A256D2 = {
 			isa = PBXGroup;
 			children = (
+				4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */,
+				4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */,
+				4A4FA58B1EF0CA1100A256D2 /* ViewController.h */,
+				4A4FA58C1EF0CA1100A256D2 /* ViewController.m */,
+				4A4FA5E11EF0DB8D00A256D2 /* yindaotuViewController.h */,
+				4A4FA5E21EF0DB8D00A256D2 /* yindaotuViewController.m */,
 				4A4FA5841EF0CA1100A256D2 /* PublicOilCard */,
 				4A4FA5831EF0CA1100A256D2 /* Products */,
 				7455641AF137B21E33B44638 /* Pods */,
@@ -865,12 +871,6 @@
 				4A4FA5BA1EF0D91300A256D2 /* 数据保存 */,
 				4A4FA5EE1EF0DF1A00A256D2 /* 图片资源 */,
 				4A5BBBEA1EF26AED008270F2 /* 网络请求 */,
-				4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */,
-				4A4FA5891EF0CA1100A256D2 /* AppDelegate.m */,
-				4A4FA58B1EF0CA1100A256D2 /* ViewController.h */,
-				4A4FA58C1EF0CA1100A256D2 /* ViewController.m */,
-				4A4FA5E11EF0DB8D00A256D2 /* yindaotuViewController.h */,
-				4A4FA5E21EF0DB8D00A256D2 /* yindaotuViewController.m */,
 				4A4FA5941EF0CA1100A256D2 /* Assets.xcassets */,
 				4A4FA5B51EF0D86500A256D2 /* PublicOilCard.pch */,
 				4A4FA5A91EF0D07600A256D2 /* Header.h */,

@@ -269,7 +269,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
-    _header.IDLabel.text = [UserModel defaultUser].username;
+    _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     
     if ([[UserModel defaultUser].group_id integerValue] == 1) {
         
@@ -286,10 +286,24 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.nameLabel.text= [NSString stringWithFormat:@"会员:%@",[UserModel defaultUser].truename];
     }
     
-    _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];
-    _header.jifenLabel.text = [NSString stringWithFormat:@"%@分",[UserModel defaultUser].mark];
+    if([[UserModel defaultUser].price floatValue]> 100000){
+        _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].price floatValue]/10000];
+    }else{
+        _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];
+    }
+    if([[UserModel defaultUser].mark floatValue]> 100000){
+        _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].mark floatValue]/10000];
+    }else{
+        _header.jifenLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].mark];
+    }
+    if([[UserModel defaultUser].yue floatValue]> 100000){
+        _header.jiangliLabel.text = [NSString stringWithFormat:@"%.2f万元",[[UserModel defaultUser].yue floatValue]/10000];
+    }else{
+        _header.jiangliLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].yue];
+    }
+
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
-    _header.jiangliLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].yue];
+
     if ([[UserModel defaultUser].group_id integerValue] != 6) {
 
         _header.openCardBtn.hidden = YES;

@@ -45,7 +45,7 @@
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *models;
-@property (nonatomic, strong)NSDictionary *dataDic;
+@property (nonatomic, strong)NSString *bank_id;
 @property (nonatomic, assign)NSInteger page;//页数
 
 @end
@@ -124,7 +124,7 @@
         
         if ([responseObject[@"code"] integerValue]==1) {
 
-            self.dataDic = responseObject[@"data"];
+            self.bank_id = responseObject[@"data"][@"bank_list"][0][@"bank_id"];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -389,7 +389,7 @@
         dict[@"bank_id"] = @"";
         dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
     }else if (self.selectindex == 2){
-        dict[@"bank_id"] = self.dataDic[@"bank_list"][0][@"bank_id"];
+        dict[@"bank_id"] = self.bank_id;
         dict[@"qt_name"] = @"";
     }
     
@@ -495,16 +495,16 @@
     return _arr3;
     
 }
--(NSDictionary*)dataDic{
-    
-    if (!_dataDic) {
-        
-        _dataDic = [NSDictionary dictionary];
-    }
-    
-    return _dataDic;
-    
-}
+//-(NSDictionary*)dataDic{
+//    
+//    if (!_dataDic) {
+//        
+//        _dataDic = [NSDictionary dictionary];
+//    }
+//    
+//    return _dataDic;
+//    
+//}
 -(NSArray*)typeArr{
     
     if (!_typeArr) {
