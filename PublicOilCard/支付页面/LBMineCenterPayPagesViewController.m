@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodsNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
 
 @property (nonatomic, strong)NSDictionary *dataDic;
 
@@ -60,6 +61,9 @@
         
     }
     
+    if (self.pushIndex == 3) {
+        self.topViewHeight.constant = 0;
+    }
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postRepuest:) name:@"input_PasswordNotification" object:nil];
