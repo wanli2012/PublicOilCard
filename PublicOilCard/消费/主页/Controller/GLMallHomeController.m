@@ -121,7 +121,7 @@
         [self endRefresh];
         [_loadV removeloadview];
         
-        if ([responseObject[@"code"] integerValue]==1) {
+        if ([responseObject[@"code"] integerValue] == 1) {
             for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
                 
                 GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];

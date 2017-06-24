@@ -343,7 +343,10 @@ static NSString *headerID = @"GLMine_HeaderView";
     }else{
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];
     }
-    if([[UserModel defaultUser].mark floatValue]> 100000){
+    if([[UserModel defaultUser].mark floatValue]> 10000000){
+        _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f百万",[[UserModel defaultUser].mark floatValue]/1000000];
+        
+    }else if([[UserModel defaultUser].mark floatValue]> 100000){
         _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
         _header.jifenLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].mark];

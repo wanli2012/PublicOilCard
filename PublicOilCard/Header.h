@@ -22,7 +22,7 @@
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
-//#define URL_Base @"http://192.168.0.190/V2/DZGX/index.php/app/"
+//#define URL_Base @"http://www.51qmtg.org/index.php"
 #define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
@@ -57,8 +57,8 @@
 #define SHARE_URL @"http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html?mod=member&act=register&username="
 #define UMSHARE_APPKEY @"58cf31dcf29d982906001f63"
 //微信分享
-#define WEIXI_APPKEY @"wx3719a66cd8983420"
-#define WEIXI_SECRET @"4fae7202764cda777d88c9515b5ca24e"
+#define WEIXI_APPKEY @"wxf482af02a200da8e"
+#define WEIXI_SECRET @"487532cd8355a7ae06f44d5abe2486ba"
 //微博分享
 #define WEIBO_APPKEY @"2203958313"
 #define WEIBO_SECRET @"9a911777f4b18555cd2b42a9bc186389"

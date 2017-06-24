@@ -68,8 +68,14 @@
      *设置tableview 的HeaderView
      */
     self.exchangeHeaderView = [[NSBundle mainBundle]loadNibNamed:@"LBExchangeHeaderView" owner:self options:nil].firstObject;
-    self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
+    self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150*autoSizeScaleY);
     self.tableview.tableHeaderView = self.exchangeHeaderView;
+    
+    /**
+     *设置tableview 的FooterView
+     */
+    self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
+    self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
     if ([[UserModel defaultUser].mark floatValue] > 100000) {
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
@@ -90,11 +96,6 @@
         self.exchangeHeaderView.yuELb.text = @"0.00";
     }
 
-    /**
-     *设置tableview 的FooterView
-     */
-    self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
-    self.tableview.tableFooterView = self.exchangeFooterView;
     /**
      *注册cell
      */
