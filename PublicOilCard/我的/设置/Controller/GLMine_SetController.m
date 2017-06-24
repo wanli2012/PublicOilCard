@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic , assign)float folderSize;//缓存
+@property (weak, nonatomic) IBOutlet UIButton *quitBtn;
 
 @end
 
@@ -31,7 +32,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
     _dataArr = @[@"密码修改",@"内存清理",@"关于公司",@"联系客服",@"版本更新"];
-    
+    self.quitBtn.layer.cornerRadius = 5.f;
     self.folderSize = [self filePath];
 }
 - (void)viewWillAppear:(BOOL)animated{

@@ -158,11 +158,11 @@
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     if (index == 0) {
-        
-        NSLog(@"6000");
+        pay.upgrade = 1;
+       
     }else{
-        
-        NSLog(@"12000");
+        pay.upgrade = 2;
+     
     }
     pay.pushIndex = 3;//表示从升级管理跳转的
     
@@ -184,6 +184,57 @@
     return self.dataArr.count;
 
 }
+- (void)statusEnsure:(NSIndexPath *)indexPath {
+    GLMine_updateNewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    
+    switch ([self.status integerValue]) {
+        case 0://未审核
+        {
+            if([self.upgrade integerValue] == indexPath.row){
+                
+                [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+            cell.openBtn.enabled = NO;
+            
+        }
+            break;
+        case 1://审核成功
+        {
+            if([self.upgrade integerValue] == indexPath.row){
+                
+                [cell.openBtn setTitle:@"已办理" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            }
+            cell.openBtn.enabled = NO;
+        }
+            break;
+        case 2://审核失败
+        {
+            if([self.upgrade integerValue] == indexPath.row){
+            
+                [cell.openBtn setTitle:@"重新开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+            }else{
+                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+                [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+            }
+            cell.openBtn.enabled = YES;
+            
+        }
+            break;
+        default:
+            break;
+    }
+
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLMine_updateNewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateNewCell"];
@@ -192,72 +243,8 @@
     cell.delegate = self;
     cell.index = indexPath.row;
     cell.selectionStyle = 0;
-    
-    if (indexPath.row == 0) {
-        
-        if ([self.status integerValue] == 0) {
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-               [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
-        }else if([self.status integerValue] == 1){
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核成功" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
 
-        }else if([self.status integerValue] == 2){
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核失败" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
-
-        }else{
-            [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-            [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
-        }
-    }else{
-        if ([self.status integerValue] == 0) {
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
-        }else if([self.status integerValue] == 1){
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核成功" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
-            
-        }else if([self.status integerValue] == 2){
-            if ([self.upgrade integerValue] == 1) {
-                [cell.openBtn setTitle:@"审核失败" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }else{
-                [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-                [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            }
-            
-        }else{
-            [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
-            [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
-        }
-
-    }
+    [self statusEnsure:indexPath];
     
     return cell;
 

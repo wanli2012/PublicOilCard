@@ -30,6 +30,19 @@
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
+    /**
+     *清空消息
+     */
+    //    //自定义右键
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [btn addTarget:self action:@selector(delAllMessage) forControlEvents:UIControlEventTouchUpInside];
+    [btn setImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(8, 5, 8, -5)];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -52,12 +65,47 @@
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     
-    
-    
     [self updateData:YES];
     
 }
+- (void)delAllMessage {
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"消息" message:@"你确定要删除所有消息吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:@"UserInfo/del_log" paramDic:dict finish:^(id responseObject) {
+            [_loadV removeloadview];
+            
+            if ([responseObject[@"code"] integerValue]==1) {
+                [self.models removeAllObjects];
+                [MBProgressHUD showSuccess:responseObject[@"message"]];
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+            [self.tableView reloadData];
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            [self endRefresh];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    [alertVC addAction:okAction];
+    [alertVC addAction:cancel];
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
 
+}
 - (void)updateData:(BOOL)status {
     if (status) {
         

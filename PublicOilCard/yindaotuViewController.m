@@ -24,18 +24,18 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
         [self.view addSubview:self.scrollView];
-        [self.view addSubview:self.pagecontroll];
-        
+//        [self.view addSubview:self.pagecontroll];
+    
         for (int i=0; i<3; i++) {
             UIImageView  *image=[[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH*i, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
             image.contentMode=UIViewContentModeScaleAspectFill;
             image.clipsToBounds = YES;
             if (i==0) {
-                image.image=[UIImage imageNamed:@"引导页1"];
+                image.image=[UIImage imageNamed:@"1"];
             }else  if (i==1) {
-                image.image=[UIImage imageNamed:@"引导页2"];
+                image.image=[UIImage imageNamed:@"2"];
             }else{
-                image.image=[UIImage imageNamed:@"引导页3"];
+                image.image=[UIImage imageNamed:@"3"];
                 image.userInteractionEnabled=YES;
                 [image addSubview:self.doneBt];
             }
@@ -105,7 +105,7 @@
 -(UIButton*)doneBt{
 
     if (!_doneBt) {
-        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2,SCREEN_HEIGHT-100, 150, 45)];
+        _doneBt=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-150)/2,SCREEN_HEIGHT-110, 150, 40)];
         [_doneBt setTitle:@"立即进入" forState:UIControlStateNormal];
         [_doneBt setTitleColor:YYSRGBColor(50, 204, 155, 1) forState:UIControlStateNormal];
         _doneBt.titleLabel.font=[UIFont systemFontOfSize:17];
