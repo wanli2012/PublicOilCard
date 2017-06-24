@@ -110,10 +110,25 @@
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
-            
-            self.dataArr = responseObject[@"data"][@"msg"];
-            self.status = responseObject[@"data"][@"status"];
-            self.upgrade = responseObject[@"data"][@"upgrade"];
+            //判空以及赋值
+            if ([responseObject[@"data"][@"msg"] isEqual:[NSNull null]]) {
+                self.dataArr = @[];
+            }else{
+                
+                self.dataArr = responseObject[@"data"][@"msg"];
+            }
+            if ([responseObject[@"data"][@"status"] isEqual:[NSNull null]]) {
+                self.status = @"";
+            }else{
+                
+                self.status = responseObject[@"data"][@"status"];
+            }
+            if ([responseObject[@"data"][@"upgrade"] isEqual:[NSNull null]]) {
+                self.upgrade = @"";
+            }else{
+                
+                self.upgrade = responseObject[@"data"][@"upgrade"];
+            }
             
             if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
                 
@@ -158,7 +173,14 @@
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     if (index == 0) {
-        pay.upgrade = 1;
+        if([self.status integerValue] == 0){
+            [MBProgressHUD showError:@"首期代理资格正在审核中"];
+        }else if([self.status integerValue] == 1){
+            [MBProgressHUD showError:@"已开通首期代理"];
+        }else{
+            
+            pay.upgrade = 1;
+        }
        
     }else{
         pay.upgrade = 2;
@@ -168,7 +190,6 @@
     
     [self.navigationController pushViewController:pay animated:YES];
 
-   
 }
 
 #pragma UITableViewDelegate
@@ -184,17 +205,25 @@
     return self.dataArr.count;
 
 }
-- (void)statusEnsure:(NSIndexPath *)indexPath {
-    GLMine_updateNewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    GLMine_updateNewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateNewCell"];
+    cell.titleLabel.text = self.dataArr[indexPath.row][@"title"];
+    cell.contentLabel.text = self.dataArr[indexPath.row][@"right"];
+    cell.delegate = self;
+    cell.index = indexPath.row;
+    cell.selectionStyle = 0;
+
+//    [self statusEnsure:indexPath];
     switch ([self.status integerValue]) {
         case 0://未审核
         {
-            if([self.upgrade integerValue] == indexPath.row){
+            if(([self.upgrade integerValue] - 1) == indexPath.row){
                 
                 [cell.openBtn setTitle:@"审核中" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
+                
             }else{
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -205,7 +234,7 @@
             break;
         case 1://审核成功
         {
-            if([self.upgrade integerValue] == indexPath.row){
+            if(([self.upgrade integerValue] - 1) == indexPath.row){
                 
                 [cell.openBtn setTitle:@"已办理" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -218,8 +247,8 @@
             break;
         case 2://审核失败
         {
-            if([self.upgrade integerValue] == indexPath.row){
-            
+            if(([self.upgrade integerValue] - 1) == indexPath.row){
+                
                 [cell.openBtn setTitle:@"重新开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
             }else{
@@ -233,18 +262,6 @@
         default:
             break;
     }
-
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    GLMine_updateNewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_updateNewCell"];
-    cell.titleLabel.text = self.dataArr[indexPath.row][@"title"];
-    cell.contentLabel.text = self.dataArr[indexPath.row][@"right"];
-    cell.delegate = self;
-    cell.index = indexPath.row;
-    cell.selectionStyle = 0;
-
-    [self statusEnsure:indexPath];
     
     return cell;
 

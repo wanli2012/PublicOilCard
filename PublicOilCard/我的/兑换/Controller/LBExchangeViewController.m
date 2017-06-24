@@ -69,8 +69,10 @@
      */
     self.exchangeHeaderView = [[NSBundle mainBundle]loadNibNamed:@"LBExchangeHeaderView" owner:self options:nil].firstObject;
     self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150*autoSizeScaleY);
+    self.exchangeHeaderView.autoresizingMask = UIViewAutoresizingNone;
+    self.exchangeHeaderView.jifenLb.font = [UIFont systemFontOfSize:15 * autoSizeScaleY];
+    self.exchangeHeaderView.yuELb.font = [UIFont systemFontOfSize:15 * autoSizeScaleY];
     self.tableview.tableHeaderView = self.exchangeHeaderView;
-    
     /**
      *设置tableview 的FooterView
      */
