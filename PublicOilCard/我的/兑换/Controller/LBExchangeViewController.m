@@ -69,6 +69,7 @@
      */
     self.exchangeHeaderView = [[NSBundle mainBundle]loadNibNamed:@"LBExchangeHeaderView" owner:self options:nil].firstObject;
     self.exchangeHeaderView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 150);
+     self.exchangeHeaderView.autoresizingMask = UIViewAutoresizingNone;
     self.tableview.tableHeaderView = self.exchangeHeaderView;
     //赋值
     self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
