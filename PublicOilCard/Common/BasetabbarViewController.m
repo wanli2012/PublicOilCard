@@ -12,6 +12,7 @@
 #import "GLMineHomeController.h"
 #import "GLLoginController.h"
 #import "GLCompleteInfoController.h"
+#import "GLMine_UploadController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -39,19 +40,24 @@
     GLMallHomeController *mallVC = [[GLMallHomeController alloc] init];
     //个人中心
     GLMineHomeController *mineVC = [[GLMineHomeController alloc] init];
+    //上传凭证
+    GLMine_UploadController *uploadVC = [[GLMine_UploadController alloc] init];
     
     BaseNavigationViewController *mallNav = [[BaseNavigationViewController alloc] initWithRootViewController:mallVC];
     BaseNavigationViewController *mineNav = [[BaseNavigationViewController alloc] initWithRootViewController:mineVC];
+    BaseNavigationViewController *uploadNav = [[BaseNavigationViewController alloc] initWithRootViewController:uploadVC];
     
     mallNav.tabBarItem = [self barTitle:@"消费" image:@"首页未选中状态" selectImage:@"首页选中状态"];
     mineNav.tabBarItem = [self barTitle:@"我的" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-
+    uploadNav.tabBarItem = [self barTitle:@"凭证" image:@"消费商城未选中状态" selectImage:@"消费商城"];
+    
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR] || [[UserModel defaultUser].group_id isEqualToString:MINISTER]) {//经理
             
             self.viewControllers = @[mineNav];
-        }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer]){//商家
-            self.viewControllers = @[mallNav,mineNav];
+            
+        }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer] || [[UserModel defaultUser].group_id isEqualToString:OrdinaryUser]){//商家
+            self.viewControllers = @[mallNav,uploadNav,mineNav];
         }else{
             self.viewControllers = @[mallNav,mineNav];
         }
@@ -79,13 +85,17 @@
 {
     
     int index;
-    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser] || [UserModel defaultUser].group_id == nil || [[UserModel defaultUser].group_id integerValue] == 0) {
+    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser] ) {
         
-        index = 1;
+        index = 2;
         
     }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer] || [[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
         
         index = 0;
+        
+    }else if ( [UserModel defaultUser].group_id == nil || [[UserModel defaultUser].group_id integerValue] == 0){
+        
+        index = 1;
         
     }else{
         

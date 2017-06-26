@@ -19,12 +19,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
-@property (weak, nonatomic) IBOutlet UITextField *IDTF;
-@property (weak, nonatomic) IBOutlet UITextField *oilCardNumTF;
+//@property (weak, nonatomic) IBOutlet UITextField *IDTF;
+//@property (weak, nonatomic) IBOutlet UITextField *oilCardNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *indentifierTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankCardNumTF;
 @property (weak, nonatomic) IBOutlet UITextField *bankNameTF;
 @property (weak, nonatomic) IBOutlet UIButton *exitBtn;
+@property (weak, nonatomic) IBOutlet UITextField *detailTF;
 
 @property (strong, nonatomic)NSString *status;//判断登录是否过期
 @property (strong, nonatomic)LoadWaitView *loadV;
@@ -145,12 +146,13 @@
     dict[@"province"] = self.provinceStrId;
     dict[@"city"] = self.cityStrId;
     dict[@"area"] = self.countryStrId;
-    dict[@"qtIdNum"] = self.IDTF.text;
-    dict[@"jyzSelfCardNum"] = self.oilCardNumTF.text;
+//    dict[@"qtIdNum"] = self.IDTF.text;
+//    dict[@"jyzSelfCardNum"] = self.oilCardNumTF.text;
     dict[@"IDCard"] = self.indentifierTF.text;
   
     dict[@"banknumber"] = self.bankCardNumTF.text;
     dict[@"openbank"] = self.bankNameTF.text;
+    dict[@"openbank"] = self.detailTF.text;
 
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
@@ -198,14 +200,6 @@
             return NO;
         }
 
-    }else if(textField == self.IDTF){//ID号 只能输入数字和字母
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
-        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
-        BOOL basicTest = [string isEqualToString:filtered];
-        if(!basicTest){
-            [MBProgressHUD showError:@"ID号输入不合法"];
-            return NO;
-        }
     }
     return YES;
     

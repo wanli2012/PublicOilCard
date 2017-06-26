@@ -209,7 +209,7 @@
                 
                 [UserModel defaultUser].jyzSelfCardNum = @"";
             }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].qtIdNum == nil) {
                 
                 [UserModel defaultUser].qtIdNum = @"";
             }

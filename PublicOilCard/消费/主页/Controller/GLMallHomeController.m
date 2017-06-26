@@ -91,7 +91,7 @@
     self.collectionView.mj_footer = footer;
     
     self.cate_id = @"1";
-    self.order_num = @"2";
+    self.order_num = @"0";
     self.order_money = @"1";
     [self updateData:YES];
     
@@ -150,6 +150,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 //    [self preferredStatusBarStyle];
     UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
     CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];

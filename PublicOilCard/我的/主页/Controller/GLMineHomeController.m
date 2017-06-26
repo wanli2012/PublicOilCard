@@ -23,8 +23,9 @@
 #import "GLMine_RelationshipController.h"
 #import "LBExchangeViewController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
+#import "GLMine_CompleteInfoView.h"
 
-@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate>
+@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate>
 {
     GLMine_HeaderView *_header;
 }
@@ -35,6 +36,9 @@
 
 @property (nonatomic, strong)SDCycleScrollView *cycleScrollView;
 @property(assign , nonatomic)CGFloat headerImageHeight;
+
+@property (nonatomic, strong)UIView *maskV;
+@property (nonatomic, strong)GLMine_CompleteInfoView *contentV;
 
 @end
 
@@ -53,6 +57,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
+    [self completeInfo];
 }
 //移除通知
 - (void)dealloc {
@@ -64,7 +69,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
         
         self.tabBarController.tabBar.hidden = YES;
@@ -177,42 +182,59 @@ static NSString *headerID = @"GLMine_HeaderView";
     self.hidesBottomBarWhenPushed = NO;
 
 }
-#pragma mark 懒加载
+#pragma mark 完善信息
 
--(UICollectionView *)collectionV{
+- (void)completeInfo {
     
-    if (!_collectionV) {
-        
-        UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-        [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        [flowLayout setMinimumInteritemSpacing:10];
-        [flowLayout setMinimumLineSpacing:10];
-        
-        
-        _collectionV =[[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
-        
-        if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
-
-            _collectionV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
-            flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5,(SCREEN_HEIGHT-64- 200 * autoSizeScaleY)/2 - 10);
-        }else{//会员身份
-            _collectionV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
-            flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5, 140*autoSizeScaleY);
-
-        }
-        _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
-//        _collectionV.backgroundColor = YYSRGBColor(249, 250, 251, 1);
-        _collectionV.alwaysBounceVertical = YES;
-        _collectionV.showsVerticalScrollIndicator = NO;
-//        [_collectionV setContentInset:UIEdgeInsetsMake(0, 20, 0, 20)];
-        //设置代理
-        _collectionV.delegate = self;
-        _collectionV.dataSource = self;
-    }
-    return _collectionV;
+//    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
+//        [UserModel defaultUser].qtIdNum = @"";
+//    }
+//    if ([UserModel defaultUser].qtIdNum.length == 0) {
+    
+    
+        self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+        self.contentV.alpha = 0;
+        [UIView animateWithDuration:0.2 animations:^{
+            
+            self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+            self.contentV.alpha = 1;
+            [self.view addSubview:self.maskV];
+        }completion:^(BOOL finished) {
+            [self.maskV addSubview:self.contentV];
+            
+        }];
+//    }
 }
-#pragma UICollectionviewDelegate
+- (void)maskViewTap {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
+        
+    } completion:^(BOOL finished) {
+        //        [self.contentV removeFromSuperview];
+        [self.maskV removeFromSuperview];
+    }];
+}
+- (void)addQtID:(NSString *)qtID andOilCardID:(NSString *)oilCard{
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"uid"] = self.contentV.qtIDTextF.text;
+    dict[@"uid"] = self.contentV.oilCardTextF.text;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+        }
+        
+    } enError:^(NSError *error) {
+        
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+}
+
+#pragma mark UICollectionviewDelegate
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
     return 4;
@@ -267,6 +289,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 //    }
 //    
 //}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
     switch (indexPath.row) {
@@ -399,6 +422,47 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     return _header;
 }
+// 设置section头视图的参考大小，与tableheaderview类似
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
+referenceSizeForHeaderInSection:(NSInteger)section {
+    
+    if ([[UserModel defaultUser].group_id integerValue] != 6) {//非会员
+        
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY);
+        
+    }else{//会员
+        
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight);
+    }
+}
+
+#pragma mark UITextFieldDelegate
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.contentV.oilCardTextF) {//油卡只能输入数字
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        BOOL basicTest = [string isEqualToString:filtered];
+        if(!basicTest){
+            [MBProgressHUD showError:@"油卡号输入不合法"];
+            return NO;
+        }
+        
+    }else if(textField == self.contentV.qtIDTextF){//全团ID号 只能输入数字和字母
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        BOOL basicTest = [string isEqualToString:filtered];
+        if(!basicTest){
+            [MBProgressHUD showError:@"全团ID号输入不合法"];
+            return NO;
+        }
+    }
+    return YES;
+    
+}
+
+#pragma mark 懒加载
 
 -(SDCycleScrollView*)cycleScrollView
 {
@@ -418,21 +482,40 @@ static NSString *headerID = @"GLMine_HeaderView";
     return _cycleScrollView;
     
 }
-// 设置section头视图的参考大小，与tableheaderview类似
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
-referenceSizeForHeaderInSection:(NSInteger)section {
-    
-    if ([[UserModel defaultUser].group_id integerValue] != 6) {//非会员
-        
-        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY);
-        
-    }else{//会员
-        
-        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight);
-    }
-}
 
-#pragma 懒加载
+-(UICollectionView *)collectionV{
+    
+    if (!_collectionV) {
+        
+        UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+        [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        [flowLayout setMinimumInteritemSpacing:10];
+        [flowLayout setMinimumLineSpacing:10];
+        
+        
+        _collectionV =[[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        
+        if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
+            
+            _collectionV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
+            flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5,(SCREEN_HEIGHT-64- 200 * autoSizeScaleY)/2 - 10);
+        }else{//会员身份
+            _collectionV.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64 - 50);
+            flowLayout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5, 140*autoSizeScaleY);
+            
+        }
+        _collectionV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        //        _collectionV.backgroundColor = YYSRGBColor(249, 250, 251, 1);
+        _collectionV.alwaysBounceVertical = YES;
+        _collectionV.showsVerticalScrollIndicator = NO;
+        //        [_collectionV setContentInset:UIEdgeInsetsMake(0, 20, 0, 20)];
+        //设置代理
+        _collectionV.delegate = self;
+        _collectionV.dataSource = self;
+    }
+    return _collectionV;
+}
 - (NSArray *)titleArr{
     if (!_titleArr) {
 
@@ -454,5 +537,32 @@ referenceSizeForHeaderInSection:(NSInteger)section {
        }
     }
     return _imageArr;
+}
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
+}
+
+- (GLMine_CompleteInfoView *)contentV{
+    if (!_contentV) {
+        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_CompleteInfoView" owner:nil options:nil].lastObject;
+        
+        _contentV.layer.cornerRadius = 5.f;
+        
+        _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 170);
+        
+        [_contentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        [_contentV.okBtn addTarget:self action:@selector(addQtID:andOilCardID:) forControlEvents:UIControlEventTouchUpInside];
+        _contentV.oilCardTextF.delegate = self;
+        _contentV.qtIDTextF.delegate = self;
+  
+    }
+    return _contentV;
 }
 @end
