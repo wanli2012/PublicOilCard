@@ -9,6 +9,7 @@
 #import "GLMine_PersonInfoController.h"
 #import "GLMine_PersonInfoCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
+#import "GLMine_PersonInfoCodeView.h"
 
 
 @interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
@@ -43,6 +44,9 @@
 ////@property (strong, nonatomic)NSString *jyzSelfCardNum;//油卡号
 //@property (strong, nonatomic)NSString *recommendName;//推荐人真名
 //@property (strong, nonatomic)NSString *recommendID;//推荐人ID
+
+@property (nonatomic, strong)UIView *maskV;
+@property (nonatomic, strong)GLMine_PersonInfoCodeView *contentV;
 
 @end
 
@@ -347,6 +351,7 @@
             
             if (indexPath.row == 0) {
                 cell.picImageV.layer.cornerRadius = cell.picImageV.width/2;
+                cell.picImageV.clipsToBounds = YES;
                 [cell.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
                 
                 if (!cell.picImageV.image) {
@@ -381,14 +386,66 @@
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-       
-        UIActionSheet* actionSheet = [[UIActionSheet alloc]initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"去相册选择",@"用相机拍照", nil];
-        [actionSheet showInView:self.view];
-
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"用相机拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+             [self getcamera];//获取照相机
+        }];
+        UIAlertAction *albumAction = [UIAlertAction actionWithTitle:@"去相册选择" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self getpicture];//获取相册
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertVC addAction:cameraAction];
+        [alertVC addAction:albumAction];
+        [alertVC addAction:cancelAction];
+        [self presentViewController:alertVC animated:YES completion:nil];
+    }else if(indexPath.row == 3 && indexPath.section == 0){
         
+        [self.view addSubview:self.maskV];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.contentV.transform=CGAffineTransformMakeScale(1, 1);
+        }completion:^(BOOL finished) {
+            [self.maskV addSubview:self.contentV];
+            
+        }];
     }
+}
+- (void)maskViewTap {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
+        
+    } completion:^(BOOL finished) {
+//        [self.contentV removeFromSuperview];
+        [self.maskV removeFromSuperview];
+    }];
 
+}
+
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(184, 184, 184, 0.5);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
+}
+
+- (GLMine_PersonInfoCodeView *)contentV{
+    if (!_contentV) {
+        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_PersonInfoCodeView" owner:nil options:nil].lastObject;
+
+        _contentV.layer.cornerRadius = 5.f;
+        
+        _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 200);
+        _contentV.codeImageV.image = [self logoQrCode];
+
+    }
+    return _contentV;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -412,20 +469,6 @@
     }
 }
 #pragma 调相机 相册
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    switch (buttonIndex) {
-        case 0:{
-            [self getpicture];//获取相册
-        }break;
-            
-        case 1:{
-            [self getcamera];//获取照相机
-        }break;
-        default:
-            break;
-    }
-}
-
 -(void)getpicture{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     //    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

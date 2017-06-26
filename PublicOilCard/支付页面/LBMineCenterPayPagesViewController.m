@@ -19,6 +19,7 @@
     GLSet_MaskVeiw *_maskV;
 //    GLOrderPayView *_contentView;
 }
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ensurePayBtnHeight;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableview;
 
@@ -47,6 +48,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.selectIndex = -1;
 
+    self.ensurePayBtnHeight.constant = 45 *autoSizeScaleY;
+    
     self.tableview.tableFooterView = [UIView new];
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
@@ -61,7 +64,7 @@
         
     }
     
-    if (self.pushIndex == 3) {
+    if (self.pushIndex == 3 || self.pushIndex== 2) {
         self.topViewHeight.constant = 0;
     }
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
@@ -164,18 +167,13 @@
     }
     
     if ( self.selectIndex == 0) {
-        
+        [self alipayAndWeChatPay:@"1"];
     }else{
-    
-         if (self.selectIndex == 1){
-            //支付宝支付
-            [self alipayAndWeChatPay:@"1"];
-        }else{
-            //微信支付
-            //[self alipayAndWeChatPay:@"2"];
-            
-        }
-    
+        
+        [MBProgressHUD showError:@"暂不支持"];
+        return;
+//        [self alipayAndWeChatPay:@"1"];
+        
     }
     
  }
@@ -377,7 +375,8 @@
     if (!_dataarr) {
    
 //        if (self.payType == 1) {
-            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"线下支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
+//            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"线下支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
+        _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
 //        }else if (self.payType == 2){
 //        
 //           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"米券支付"}, nil];

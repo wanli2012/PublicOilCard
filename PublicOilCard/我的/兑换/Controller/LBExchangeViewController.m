@@ -79,12 +79,17 @@
     self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
-    if ([[UserModel defaultUser].mark floatValue] > 100000) {
+    if ([[UserModel defaultUser].mark floatValue] > 100000000) {
+        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].mark floatValue]/10000000];
+    }else if([[UserModel defaultUser].mark floatValue] > 100000){
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
+        
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
     }
-    if ([[UserModel defaultUser].yue floatValue] > 100000) {
+    if ([[UserModel defaultUser].yue floatValue] > 100000000) {
+        self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].yue floatValue]/10000000];
+    }else if ([[UserModel defaultUser].yue floatValue] > 100000) {
         self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].yue floatValue]/10000];
     }else{
         self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].yue];
@@ -397,13 +402,15 @@
     dict[@"back_money"] = self.money;
     dict[@"user_name"] = [UserModel defaultUser].username;
     dict[@"choice"] = @(self.selectMethod);
-    if (self.selectindex == 1) {
-        dict[@"bank_id"] = @"0";
-        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
-    }else if (self.selectindex == 0){
-        dict[@"bank_id"] = self.bank_id;
-        dict[@"qt_name"] = @"0";
-    }
+    dict[@"bank_id"] = self.bank_id;
+    dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+//    if (self.selectindex == 1) {
+//        dict[@"bank_id"] = @"0";
+//        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+//    }else if (self.selectindex == 0){
+//        dict[@"bank_id"] = self.bank_id;
+//        dict[@"qt_name"] = @"0";
+//    }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

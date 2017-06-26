@@ -34,7 +34,7 @@
 #define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 
 //个人代理
-#define Retailer @"7"
+#define Retailer @"4"
 //会员
 #define OrdinaryUser @"6"
 ////二期代理

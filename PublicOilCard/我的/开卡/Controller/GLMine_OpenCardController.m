@@ -30,6 +30,37 @@
 //    btn.frame = CGRectMake(0, 0, 80, 40);
 //    
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    
+    [self refresh];
+}
+- (void)refresh {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [UserModel defaultUser].cost = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost"]];
+         
+        if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].cost = @"";
+            }
+          
+            [usermodelachivar achive];
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张\n一次性永久服务费",[UserModel defaultUser].cost];
+        
+    } enError:^(NSError *error) {
+        
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
 }
 //物流查询
 - (void)queryLog{

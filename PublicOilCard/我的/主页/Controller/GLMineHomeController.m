@@ -63,7 +63,8 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
         
         self.tabBarController.tabBar.hidden = YES;
@@ -158,6 +159,10 @@ static NSString *headerID = @"GLMine_HeaderView";
 //开卡
 - (void)openCard {
     self.hidesBottomBarWhenPushed = YES;
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
+        [MBProgressHUD showError:@"不能重复开卡"];
+        return;
+    }
     GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
     [self.navigationController pushViewController:openVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
@@ -362,9 +367,14 @@ static NSString *headerID = @"GLMine_HeaderView";
     //判断是否显示vip标志
     if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
         _header.vipImageV.hidden = NO;
+        [_header.openCardBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        _header.openCardBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
     }else{
+        [_header.openCardBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+        _header.openCardBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
         _header.vipImageV.hidden = YES;
     }
+    
     
     [_header addSubview:self.cycleScrollView];
     

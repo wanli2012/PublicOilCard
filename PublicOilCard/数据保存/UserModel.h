@@ -37,6 +37,7 @@
 @property (nonatomic, copy)NSString  *isHaveOilCard;//是否已经开卡
 @property (nonatomic, copy)NSString  *banner;//jyzSelfCardNum
 @property (nonatomic, copy)NSString  *jyzSelfCardNum;//自办卡号
+@property (nonatomic, copy)NSString  *cost;//开卡费
 
 @property (nonatomic, copy)NSString  *yue;//余额
 
