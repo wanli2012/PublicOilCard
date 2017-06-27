@@ -28,7 +28,7 @@
     self.navigationItem.title = @"我要开卡";
     
     self.isAgreel = NO;
-    
+    self.openCardBtn.userInteractionEnabled = NO;
     //自定义右键
 //    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [btn setTitle:@"物流" forState:UIControlStateNormal];

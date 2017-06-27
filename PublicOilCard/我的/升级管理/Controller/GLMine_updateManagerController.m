@@ -188,10 +188,10 @@
                 pay.upgrade = 1;
             }
         }else if([self.upgrade integerValue] == 2){
-            [MBProgressHUD showError:@"正在申请二期代理,暂不能办理首期代理"];
+            [MBProgressHUD showError:@"正在办理二期代理,暂不能办理首期代理"];
             return;
         }else{
-            
+             pay.upgrade = 1;
         }
        
     }else{
@@ -203,12 +203,17 @@
             }else if([self.status integerValue] == 1){
                 [MBProgressHUD showError:@"已开通二期代理"];
                 return;
+            }else if([self.status integerValue] == 2){
+                pay.upgrade = 2;
             }else{
                 pay.upgrade = 2;
+
             }
-        }else{
-            [MBProgressHUD showError:@""];
+        }else if([self.upgrade integerValue] == 1){
+            [MBProgressHUD showError:@"正在办理首期代理,暂不能办理二期代理"];
             return;
+        }else{
+             pay.upgrade = 2;
         }
      
     }
