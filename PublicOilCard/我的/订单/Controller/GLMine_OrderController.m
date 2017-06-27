@@ -115,14 +115,12 @@
                     [self.sectionModels addObject:orderMode];
                 }
             }
-            
-            [self.tableView reloadData];
-            
+                    
         }
         else{
             [MBProgressHUD showError:responseObject[@"message"]];
-            [self.tableView reloadData];
         }
+        [self.tableView reloadData];
     } enError:^(NSError *error) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];

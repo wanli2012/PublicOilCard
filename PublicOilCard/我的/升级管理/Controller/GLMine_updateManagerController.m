@@ -172,18 +172,44 @@
     
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
+    
     if (index == 0) {
-        if([self.status integerValue] == 0){
-            [MBProgressHUD showError:@"首期代理资格正在审核中"];
-        }else if([self.status integerValue] == 1){
-            [MBProgressHUD showError:@"已开通首期代理"];
+        if ([self.upgrade integerValue] == 1) {
+            
+            if([self.status integerValue] == 0){
+                [MBProgressHUD showError:@"首期代理资格正在审核中"];
+                return;
+            }else if([self.status integerValue] == 1){
+                [MBProgressHUD showError:@"已开通首期代理"];
+                return;
+            }else if([self.status integerValue] == 2){
+                pay.upgrade = 1;
+            }else{
+                pay.upgrade = 1;
+            }
+        }else if([self.upgrade integerValue] == 2){
+            [MBProgressHUD showError:@"正在申请二期代理,暂不能办理首期代理"];
+            return;
         }else{
             
-            pay.upgrade = 1;
         }
        
     }else{
-        pay.upgrade = 2;
+        if([self.upgrade integerValue] == 2){
+            
+            if([self.status integerValue] == 0){
+                [MBProgressHUD showError:@"二期代理资格正在审核中"];
+                return;
+            }else if([self.status integerValue] == 1){
+                [MBProgressHUD showError:@"已开通二期代理"];
+                return;
+            }else{
+                pay.upgrade = 2;
+            }
+        }else{
+            [MBProgressHUD showError:@""];
+            return;
+        }
      
     }
     pay.pushIndex = 3;//表示从升级管理跳转的
@@ -228,7 +254,7 @@
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }
-            cell.openBtn.enabled = NO;
+//            cell.openBtn.enabled = NO;
             
         }
             break;
@@ -242,7 +268,7 @@
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }
-            cell.openBtn.enabled = NO;
+//            cell.openBtn.enabled = NO;
         }
             break;
         case 2://审核失败
@@ -252,10 +278,11 @@
                 [cell.openBtn setTitle:@"重新开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
             }else{
+                
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
             }
-            cell.openBtn.enabled = YES;
+//            cell.openBtn.enabled = YES;
             
         }
             break;

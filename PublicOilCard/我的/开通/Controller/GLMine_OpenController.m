@@ -118,6 +118,36 @@
 
 //提交
 - (IBAction)submit:(id)sender {
+    
+    if(self.phoneTF.text.length == 0){
+        [MBProgressHUD showError:@"请输入手机号码"];
+        return;
+    }else if (![predicateModel valiMobile:self.phoneTF.text]) {
+            [MBProgressHUD showError:@"手机号格式不对"];
+            return;
+    }
+    if(![self.pwdTF.text isEqualToString:self.ensurePwdTF.text]){
+        [MBProgressHUD showError:@"两次密码输入不一致"];
+        return;
+    }
+    if(self.pwdTF.text.length == 0){
+        [MBProgressHUD showError:@"请输入密码"];
+        return;
+    }
+    if ([predicateModel checkIsHaveNumAndLetter:self.pwdTF.text] != 3) {
+        
+        [MBProgressHUD showError:@"密码须包含数字和字母"];
+        return;
+    }
+    if (self.pwdTF.text.length < 6 || self.pwdTF.text.length > 20) {
+        [MBProgressHUD showError:@"请输入6-20位密码"];
+        return;
+    }
+    if(self.provinceStrId.length == 0){
+        [MBProgressHUD showError:@"请选择省市区"];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
@@ -171,8 +201,46 @@
     dispatch_resume(_timer);
     
 }
+#pragma mark UITextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    
+    if (textField == self.phoneTF && [string isEqualToString:@"\n"]) {
+        [self.codeTF becomeFirstResponder];
+        return NO;
+        
+    }else if (textField == self.codeTF && [string isEqualToString:@"\n"]){
+        
+        [self.pwdTF becomeFirstResponder];
+        return NO;
+    }else if (textField == self.pwdTF && [string isEqualToString:@"\n"]){
+        
+        [self.ensurePwdTF becomeFirstResponder];
+        return NO;
+    }else if (textField == self.ensurePwdTF && [string isEqualToString:@"\n"]){
+        
+        [self.view endEditing:YES];
+        return NO;
+    }
+    
+    if (textField == self.phoneTF || textField == self.codeTF ||self.pwdTF || self.ensurePwdTF) {
+        
+        for(int i=0; i< [string length];i++){
+            
+            int a = [string characterAtIndex:i];
+            
+            if( a >= 0x4e00 && a <= 0x9fff){
+                
+                [MBProgressHUD showError:@"输入不合法,不能输入中文"];
+                return NO;
+            }
+        }
+    }
+    
+    return YES;
+    
+}
 
-#pragma 动画要用到的代理
+#pragma mark 动画要用到的代理
 //动画
 - (nullable UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source{
     

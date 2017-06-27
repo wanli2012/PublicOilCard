@@ -81,14 +81,18 @@
             
             if (![responseObject[@"data"] isEqual:[NSNull null]]) {
                 [self.dataarr addObjectsFromArray:responseObject[@"data"]];
-                
             }
-            
+            if([responseObject[@"data"] count] == 0){
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
             [self.tableView reloadData];
             
         }else if ([responseObject[@"code"] integerValue]==3){
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
+            if([responseObject[@"data"] count] == 0){
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
             [self.tableView reloadData];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

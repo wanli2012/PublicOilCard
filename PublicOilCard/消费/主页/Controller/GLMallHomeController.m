@@ -90,10 +90,9 @@
     self.collectionView.mj_header = header;
     self.collectionView.mj_footer = footer;
     
-    self.cate_id = @"1";
-    self.order_num = @"2";
+    self.cate_id = @"";
+    self.order_num = @"0";
     self.order_money = @"1";
-    
     [self updateData:YES];
     
 }
@@ -147,6 +146,35 @@
     }];
 
 }
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
+//    [self preferredStatusBarStyle];
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];
+    
+    _chooseVC = [[GLHomeLiveChooseController alloc] init];
+    //    _chooseVC.view.frame = CGRectZero;
+    
+    _chooseVC.view.frame = CGRectMake(0,0, SCREEN_WIDTH, 0);
+    _contentView = _chooseVC.view;
+    _contentView.backgroundColor = [UIColor whiteColor];
+    _contentView.layer.cornerRadius = 4;
+    _contentView.layer.masksToBounds = YES;
+    
+    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(rect), SCREEN_WIDTH, SCREEN_HEIGHT)];
+    _maskV.bgView.alpha = 0.1;
+    
+    [_maskV showViewWithContentView:_contentView];
+    _maskV.alpha = 0;
+    
+    
+}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleLightContent;
+//}
 - (void)endRefresh {
     [self.collectionView.mj_header endRefreshing];
     [self.collectionView.mj_footer endRefreshing];
@@ -180,30 +208,7 @@
     self.timeBtn.imageView.transform = CGAffineTransformMakeRotation(0);
     
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-    
-    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
-    CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];
-    
-    _chooseVC = [[GLHomeLiveChooseController alloc] init];
-    //    _chooseVC.view.frame = CGRectZero;
-    
-    _chooseVC.view.frame = CGRectMake(0,0, SCREEN_WIDTH, 0);
-    _contentView = _chooseVC.view;
-    _contentView.backgroundColor = [UIColor whiteColor];
-    _contentView.layer.cornerRadius = 4;
-    _contentView.layer.masksToBounds = YES;
-    
-    _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(rect), SCREEN_WIDTH, SCREEN_HEIGHT)];
-    _maskV.bgView.alpha = 0.1;
-    
-    [_maskV showViewWithContentView:_contentView];
-    _maskV.alpha = 0;
-    
 
-}
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [_maskV removeFromSuperview];

@@ -79,12 +79,17 @@
     self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
-    if ([[UserModel defaultUser].mark floatValue] > 100000) {
+    if ([[UserModel defaultUser].mark floatValue] > 100000000) {
+        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].mark floatValue]/10000000];
+    }else if([[UserModel defaultUser].mark floatValue] > 100000){
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
+        
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
     }
-    if ([[UserModel defaultUser].yue floatValue] > 100000) {
+    if ([[UserModel defaultUser].yue floatValue] > 100000000) {
+        self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].yue floatValue]/10000000];
+    }else if ([[UserModel defaultUser].yue floatValue] > 100000) {
         self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].yue floatValue]/10000];
     }else{
         self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].yue];
@@ -353,7 +358,13 @@
         [MBProgressHUD showError:@"输入格式错误"];
         return;
     }
-    
+    if(self.selecttype == 0 && [self.money integerValue] % 100 != 0){
+        [MBProgressHUD showError:@"兑换金额须为100的整数倍"];
+        return;
+    }else if (self.selecttype == 1 && [self.money integerValue] % 100 != 0) {
+        [MBProgressHUD showError:@"兑换积分须为100的整数倍"];
+        return;
+    }
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"温馨提示"] message:[NSString stringWithFormat:@"请输入登录密码"]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {
@@ -397,13 +408,15 @@
     dict[@"back_money"] = self.money;
     dict[@"user_name"] = [UserModel defaultUser].username;
     dict[@"choice"] = @(self.selectMethod);
-    if (self.selectindex == 1) {
-        dict[@"bank_id"] = @"0";
-        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
-    }else if (self.selectindex == 0){
-        dict[@"bank_id"] = self.bank_id;
-        dict[@"qt_name"] = @"0";
-    }
+    dict[@"bank_id"] = self.bank_id;
+    dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+//    if (self.selectindex == 1) {
+//        dict[@"bank_id"] = @"0";
+//        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+//    }else if (self.selectindex == 0){
+//        dict[@"bank_id"] = self.bank_id;
+//        dict[@"qt_name"] = @"0";
+//    }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

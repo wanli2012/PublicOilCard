@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineCenterPayPagesViewController">
             <connections>
+                <outlet property="ensurePayBtnHeight" destination="xcS-Ov-cjm" id="6M4-5f-Pyk"/>
                 <outlet property="goodsNameLabel" destination="Tze-FR-r7j" id="vMq-bS-oKE"/>
                 <outlet property="goodsNumLabel" destination="g5d-nh-MtA" id="Rlm-kE-2K4"/>
                 <outlet property="orderMTitleLb" destination="C15-pT-DHN" id="JRB-Gj-CqW"/>

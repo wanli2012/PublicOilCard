@@ -22,7 +22,9 @@
 //    self.navigationBarHidden = YES;
     
     [self.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17],NSForegroundColorAttributeName:[UIColor whiteColor]}];
-    
+//    [self.navigationBar setBarStyle:UIBarStyleDefault];
+//    [self.navigationBar setBackgroundColor:[UIColor clearColor]];
+//    [self.navigationBar setBarTintColor:[UIColor clearColor]];
 }
 
 //+(void)initialize

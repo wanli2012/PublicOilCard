@@ -30,11 +30,13 @@
 #define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
 //注册协议
 #define REGISTER_URL @"https://www.51dztg.com/hyjm/hyjm.html"
+//开卡协议
+#define kOPENCARD_URL @"https://www.baidu.com"
 //公告
 #define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 
 //个人代理
-#define Retailer @"7"
+#define Retailer @"4"
 //会员
 #define OrdinaryUser @"6"
 ////二期代理
