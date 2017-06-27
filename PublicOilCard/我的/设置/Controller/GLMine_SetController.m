@@ -176,4 +176,9 @@
     [ self performSelectorOnMainThread : @selector (clearCachSuccess) withObject : nil waitUntilDone : YES ];
 }
 
+-(void)clearCachSuccess{
+    self.folderSize=[self filePath];
+    
+}
+
 @end
