@@ -163,7 +163,7 @@
             NSString *str=[formatter stringFromDate:[NSDate date]];
             NSString *fileName=[NSString stringWithFormat:@"%@.png",str];
             NSData *data = UIImagePNGRepresentation(self.picImage);
-            [formData appendPartWithFileData:data name:@"pic" fileName:fileName mimeType:@"image/png"];
+            [formData appendPartWithFileData:data name:@"order_pic" fileName:fileName mimeType:@"image/png"];
         }
         
     }progress:^(NSProgress *uploadProgress){
@@ -181,9 +181,9 @@
     }success:^(NSURLSessionDataTask *task, id responseObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         if ([dic[@"code"]integerValue]==1) {
-            
+            self.moneyTextF.text = @"";
             [MBProgressHUD showError:dic[@"message"]];
-            
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
         }

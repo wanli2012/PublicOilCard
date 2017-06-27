@@ -117,7 +117,7 @@
     //再把小图片画上去
     UIImage *sImage = [UIImage imageNamed:@"车马店图"];
     
-    CGFloat sImageW = 100;
+    CGFloat sImageW = 70;
     CGFloat sImageH= sImageW;
     CGFloat sImageX = (qrUIImage.size.width - sImageW) * 0.5;
     CGFloat sImgaeY = (qrUIImage.size.height - sImageH) * 0.5;

@@ -10,4 +10,7 @@
 
 @interface GLMine_UploadRecordCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end

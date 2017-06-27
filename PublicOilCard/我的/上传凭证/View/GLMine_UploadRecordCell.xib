@@ -18,16 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="67"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSn-ZA-Cgt">
-                        <rect key="frame" x="10" y="14" width="40" height="40"/>
-                        <color key="backgroundColor" red="0.1072334722" green="0.61346602439999998" blue="0.7763050199" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="40" id="oHm-S2-B78"/>
-                            <constraint firstAttribute="height" constant="40" id="x6L-ON-xVq"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="金额:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0t-SI-bSy">
-                        <rect key="frame" x="90" y="24" width="110" height="20"/>
+                        <rect key="frame" x="10" y="24" width="190" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="fhm-8a-Mgo"/>
                         </constraints>
@@ -49,17 +41,14 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="OMl-rm-rpD" secondAttribute="trailing" constant="10" id="G0R-YR-nk0"/>
                     <constraint firstItem="OMl-rm-rpD" firstAttribute="centerY" secondItem="P0t-SI-bSy" secondAttribute="centerY" id="GCd-fz-grg"/>
-                    <constraint firstItem="wSn-ZA-Cgt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="HeL-xh-F41"/>
+                    <constraint firstItem="P0t-SI-bSy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Ysj-p6-FXP"/>
                     <constraint firstItem="OMl-rm-rpD" firstAttribute="leading" secondItem="P0t-SI-bSy" secondAttribute="trailing" constant="10" id="fmO-1C-C2h"/>
-                    <constraint firstItem="P0t-SI-bSy" firstAttribute="leading" secondItem="wSn-ZA-Cgt" secondAttribute="trailing" constant="40" id="jP2-fR-hKT"/>
-                    <constraint firstItem="P0t-SI-bSy" firstAttribute="centerY" secondItem="wSn-ZA-Cgt" secondAttribute="centerY" id="uJa-nv-FKe"/>
-                    <constraint firstItem="wSn-ZA-Cgt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vYa-33-mvK"/>
+                    <constraint firstItem="P0t-SI-bSy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hd8-ul-cN5"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="dateLabel" destination="OMl-rm-rpD" id="m2B-yv-ocd"/>
-                <outlet property="imageV" destination="wSn-ZA-Cgt" id="KLJ-eX-o1f"/>
-                <outlet property="sumLabel" destination="P0t-SI-bSy" id="hUA-mi-237"/>
+                <outlet property="dateLabel" destination="OMl-rm-rpD" id="jks-bh-u7y"/>
+                <outlet property="moneyLabel" destination="P0t-SI-bSy" id="5Of-ZE-gfw"/>
             </connections>
             <point key="canvasLocation" x="40.5" y="66"/>
         </tableViewCell>
