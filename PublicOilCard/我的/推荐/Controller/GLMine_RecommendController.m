@@ -63,9 +63,9 @@
     
     //创建网页内容对象
     NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用【友盟+】社会化组件U-Share" descr:@"欢迎使用【友盟+】社会化组件U-Share，SDK包最小，集成成本最低，助力您的产品开发、运营与推广！" thumImage:thumbURL];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用全民油卡App" descr:@"全民油卡,你值得拥有!" thumImage:thumbURL];
     //设置网页地址
-    shareObject.webpageUrl = @"http://mobile.umeng.com/social";
+    shareObject.webpageUrl = @"http://www.baidu.com";
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;
@@ -114,9 +114,8 @@
     //把二维码图片画上去. (这里是以,图形上下文,左上角为 (0,0)点)
     [qrUIImage drawInRect:CGRectMake(0, 0, qrUIImage.size.width, qrUIImage.size.height)];
     
-    
     //再把小图片画上去
-    UIImage *sImage = [UIImage imageNamed:@""];
+    UIImage *sImage = [UIImage imageNamed:@"车马店图"];
     
     CGFloat sImageW = 100;
     CGFloat sImageH= sImageW;

@@ -82,7 +82,101 @@
         weakself.countryStrId = areaid;
     };
 }
-
+- (void)refresh {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
+            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
+            [UserModel defaultUser].isBqInfo = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isBqInfo"]];
+            [UserModel defaultUser].banknumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]];
+            [UserModel defaultUser].openbank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"openbank"]];
+            [UserModel defaultUser].address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"address"]];
+            [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
+            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveOilCard = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].qtIdNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].jyzSelfCardNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isBqInfo] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isBqInfo = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].banknumber = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].openbank] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].openbank = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].address] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].address = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].IDCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].IDCard = @"";
+            }
+            
+            [usermodelachivar achive];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }else{
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+    }enError:^(NSError *error) {
+        
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+}
 //退出
 - (IBAction)exit:(id)sender {
     
@@ -139,6 +233,11 @@
         [MBProgressHUD showError:@"请选择省市区"];
         return;
     }
+    if(self.detailTF.text.length == 0){
+        [MBProgressHUD showError:@"请填写详细地址"];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
@@ -146,20 +245,14 @@
     dict[@"province"] = self.provinceStrId;
     dict[@"city"] = self.cityStrId;
     dict[@"area"] = self.countryStrId;
-//    dict[@"qtIdNum"] = self.IDTF.text;
-//    dict[@"jyzSelfCardNum"] = self.oilCardNumTF.text;
+    
     dict[@"IDCard"] = self.indentifierTF.text;
-  
-    dict[@"banknumber"] = self.bankCardNumTF.text;
+    dict[@"bankNum"] = self.bankCardNumTF.text;
     dict[@"openbank"] = self.bankNameTF.text;
-    dict[@"openbank"] = self.detailTF.text;
-
+    dict[@"address"] = self.detailTF.text;
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    
-    //     NSString *encryptsecret = [RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA];
-    //    NSLog(@"%@",encryptsecret);
-    
+
     [NetworkManager requestPOSTWithURLStr:@"user/userInfoBq" paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
@@ -172,10 +265,7 @@
             
             [MBProgressHUD showError:responseObject[@"message"]];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
-            [UserModel defaultUser].isBqInfo = @"1";
-            
-            [usermodelachivar achive];
+            [self refresh];
 
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

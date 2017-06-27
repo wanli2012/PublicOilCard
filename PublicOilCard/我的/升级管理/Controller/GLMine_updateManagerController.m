@@ -182,12 +182,16 @@
             }else if([self.status integerValue] == 1){
                 [MBProgressHUD showError:@"已开通首期代理"];
                 return;
+            }else if([self.status integerValue] == 2){
+                pay.upgrade = 1;
             }else{
                 pay.upgrade = 1;
             }
-        }else{
+        }else if([self.upgrade integerValue] == 2){
             [MBProgressHUD showError:@"正在申请二期代理,暂不能办理首期代理"];
             return;
+        }else{
+            
         }
        
     }else{

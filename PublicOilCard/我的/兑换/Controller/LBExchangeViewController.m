@@ -358,7 +358,13 @@
         [MBProgressHUD showError:@"输入格式错误"];
         return;
     }
-    
+    if(self.selecttype == 0 && [self.money integerValue] % 100 != 0){
+        [MBProgressHUD showError:@"兑换金额须为100的整数倍"];
+        return;
+    }else if (self.selecttype == 1 && [self.money integerValue] % 100 != 0) {
+        [MBProgressHUD showError:@"兑换积分须为100的整数倍"];
+        return;
+    }
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"温馨提示"] message:[NSString stringWithFormat:@"请输入登录密码"]];
     
     [alertView addAction:[TYAlertAction actionWithTitle:@"取消" style:TYAlertActionStyleCancel handler:^(TYAlertAction *action) {

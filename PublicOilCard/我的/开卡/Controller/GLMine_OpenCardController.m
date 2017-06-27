@@ -8,9 +8,15 @@
 
 #import "GLMine_OpenCardController.h"
 #import "LBMineCenterPayPagesViewController.h"
+#import "LBViewProtocolViewController.h"
 
 @interface GLMine_OpenCardController ()
+
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *openCardBtn;
+@property (weak, nonatomic) IBOutlet UIButton *selectedImageBtn;
+
+@property (assign, nonatomic)BOOL isAgreel;//是否同意注册协议 默认为NO
 
 @end
 
@@ -19,7 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.title = @"升级管理";
+    self.navigationItem.title = @"我要开卡";
+    
+    self.isAgreel = NO;
+    
     //自定义右键
 //    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [btn setTitle:@"物流" forState:UIControlStateNormal];
@@ -66,13 +75,39 @@
 - (void)queryLog{
     
 }
+//是否同意协议
+- (IBAction)isAgreeProtocol:(id)sender {
+    self.isAgreel = !self.isAgreel;
+    
+    if (self.isAgreel) {
+        self.openCardBtn.userInteractionEnabled = YES;
+        self.openCardBtn.backgroundColor = TABBARTITLE_COLOR;
+        [self.selectedImageBtn setImage:[UIImage imageNamed:@"注册协议选中"] forState:UIControlStateNormal];
+    }else{
+        self.openCardBtn.userInteractionEnabled = NO;
+        self.openCardBtn.backgroundColor = [UIColor lightGrayColor];
+        [self.selectedImageBtn setImage:[UIImage imageNamed:@"注册协议未选中"] forState:UIControlStateNormal];
+    }
+}
+- (IBAction)protocol:(id)sender {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
+    vc.navTitle = @"开卡协议";
+    vc.webUrl = kOPENCARD_URL;
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBar.hidden = NO;
 }
 - (IBAction)openCard:(id)sender {
-    
+    if (_isAgreel == NO) {
+        [MBProgressHUD showError:@"勾选注册协议"];
+        return;
+    }
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     pay.pushIndex = 2;

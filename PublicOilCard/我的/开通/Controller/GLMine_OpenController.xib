@@ -51,7 +51,10 @@
                                             <rect key="frame" x="82" y="0.0" width="274" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="3cu-S4-gRR"/>
+                                            </connections>
                                         </textField>
                                         <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znO-wQ-SVa">
                                             <rect key="frame" x="0.0" y="49" width="366" height="1"/>
@@ -91,7 +94,10 @@
                                             <rect key="frame" x="82" y="0.0" width="164" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="VfG-af-tZu"/>
+                                            </connections>
                                         </textField>
                                         <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SVQ-rm-wJa">
                                             <rect key="frame" x="0.0" y="49" width="366" height="1"/>
@@ -143,11 +149,14 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-5h-h6S">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码须包含数字和字母" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zwm-5h-h6S">
                                             <rect key="frame" x="82" y="0.0" width="274" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="feS-As-VGn"/>
+                                            </connections>
                                         </textField>
                                         <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VqG-db-Pz1">
                                             <rect key="frame" x="0.0" y="49" width="366" height="1"/>
@@ -188,7 +197,10 @@
                                             <rect key="frame" x="82" y="0.0" width="274" height="50"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="A5b-8T-hCD"/>
+                                            </connections>
                                         </textField>
                                         <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jrW-X6-S6I">
                                             <rect key="frame" x="0.0" y="49" width="366" height="1"/>

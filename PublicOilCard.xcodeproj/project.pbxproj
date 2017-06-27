@@ -1675,6 +1675,7 @@
 				4A5BBBBF1EF2659F008270F2 /* 登录注册 */,
 				4A39F4881EF3838C0038C147 /* 补全信息 */,
 				4A4FA5E41EF0DDF500A256D2 /* 消费 */,
+				4A69C8DF1F00ED8000035664 /* 上传凭证 */,
 				4A4FA59F1EF0CEEF00A256D2 /* 我的 */,
 				4A39F4D21EF3C6420038C147 /* 支付页面 */,
 				4A4FA5B61EF0D8EE00A256D2 /* Tool(工具类) */,
@@ -1711,7 +1712,6 @@
 				4A39F4911EF3AF9E0038C147 /* 设置 */,
 				4AEEC9C01EF28B2D00F827BB /* 开卡 */,
 				4A39F49F1EF3B60E0038C147 /* 兑换 */,
-				4A69C8DF1F00ED8000035664 /* 上传凭证 */,
 				4AEC05A01EF1471600B39497 /* 消息 */,
 				4AEC05811EF13C7600B39497 /* 收藏 */,
 				4AEC05931EF1425F00B39497 /* 升级管理 */,
@@ -2786,18 +2786,19 @@
 				4A69C8E11F00ED8000035664 /* Model */,
 				4A69C8E21F00ED8000035664 /* View */,
 			);
-			path = "上传凭证";
+			name = "上传凭证";
+			path = "我的/上传凭证";
 			sourceTree = "<group>";
 		};
 		4A69C8E01F00ED8000035664 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A69C8E31F00EDE100035664 /* GLMine_UploadController.h */,
-				4A69C8E41F00EDE100035664 /* GLMine_UploadController.m */,
-				4A69C8E51F00EDE100035664 /* GLMine_UploadController.xib */,
 				4A69C8ED1F010B6A00035664 /* GLMine_UploadRecordController.h */,
 				4A69C8EE1F010B6B00035664 /* GLMine_UploadRecordController.m */,
 				4A69C8EF1F010B6B00035664 /* GLMine_UploadRecordController.xib */,
+				4A69C8E31F00EDE100035664 /* GLMine_UploadController.h */,
+				4A69C8E41F00EDE100035664 /* GLMine_UploadController.m */,
+				4A69C8E51F00EDE100035664 /* GLMine_UploadController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

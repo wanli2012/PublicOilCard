@@ -59,15 +59,15 @@
     [self updateInfo];
     
     //自定义右键
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:@"修改" forState:UIControlStateNormal];
-    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
-    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-    [btn addTarget:self  action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    btn.frame = CGRectMake(0, 0, 80, 40);
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn setTitle:@"修改" forState:UIControlStateNormal];
+//    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+//    [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
+//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+//    [btn addTarget:self  action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+//    btn.frame = CGRectMake(0, 0, 80, 40);
+//    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
 }
@@ -294,6 +294,7 @@
     }];
 }
 #pragma UITextfieldDelegate
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
     if (textField.tag == 11 || textField.tag == 12) {//身份证号只能输入数字和X
@@ -468,7 +469,7 @@
         return 40;
     }
 }
-#pragma 调相机 相册
+#pragma mark 调相机 相册
 -(void)getpicture{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     //    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

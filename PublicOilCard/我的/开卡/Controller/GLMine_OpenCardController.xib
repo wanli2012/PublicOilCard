@@ -12,6 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_OpenCardController">
             <connections>
                 <outlet property="noticeLabel" destination="Fdf-va-KP9" id="l12-Xm-YLE"/>
+                <outlet property="openCardBtn" destination="YVN-gj-7ac" id="H0H-PK-dzY"/>
+                <outlet property="selectedImageBtn" destination="Ntd-dA-WvG" id="lz7-pK-8I6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -61,26 +63,70 @@
                         <action selector="openCard:" destination="-1" eventType="touchUpInside" id="qB5-cu-3pA"/>
                     </connections>
                 </button>
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVH-kt-ziX">
+                    <rect key="frame" x="208.5" y="516" width="70" height="20"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="fAo-9m-3oz"/>
+                        <constraint firstAttribute="height" constant="20" id="m6R-PX-h0t"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="3SK-1N-HmI" appends="YES" id="dKl-mc-W98"/>
+                    </connections>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本人已阅读并同意" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RND-v3-R60">
+                    <rect key="frame" x="102" y="516" width="106.5" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ntd-dA-WvG">
+                    <rect key="frame" x="77" y="513.5" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="guG-hE-AJJ"/>
+                        <constraint firstAttribute="height" constant="25" id="wAd-OC-XZ2"/>
+                    </constraints>
+                    <state key="normal" image="注册协议未选中"/>
+                    <connections>
+                        <action selector="isAgreeProtocol:" destination="-1" eventType="touchUpInside" id="BFk-ah-BPn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Pnd-mB-bf6" firstAttribute="trailing" secondItem="Fdf-va-KP9" secondAttribute="trailing" id="23D-jg-9Jw"/>
                 <constraint firstItem="YVN-gj-7ac" firstAttribute="leading" secondItem="Pnd-mB-bf6" secondAttribute="leading" id="88C-eE-nKp"/>
                 <constraint firstItem="rD9-uY-5I8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="AYV-RU-EGG"/>
+                <constraint firstItem="RND-v3-R60" firstAttribute="centerY" secondItem="YVH-kt-ziX" secondAttribute="centerY" id="Czs-xA-KgP"/>
+                <constraint firstItem="Ntd-dA-WvG" firstAttribute="top" secondItem="YVN-gj-7ac" secondAttribute="bottom" constant="20" id="FIx-MW-R4n"/>
                 <constraint firstAttribute="trailing" secondItem="rD9-uY-5I8" secondAttribute="trailing" id="Fb6-F3-qtV"/>
+                <constraint firstItem="YVH-kt-ziX" firstAttribute="leading" secondItem="RND-v3-R60" secondAttribute="trailing" id="Hxc-Zf-NQp"/>
                 <constraint firstItem="Pnd-mB-bf6" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JQW-CN-Hjn"/>
                 <constraint firstItem="YVN-gj-7ac" firstAttribute="top" secondItem="Pnd-mB-bf6" secondAttribute="bottom" id="OXq-tw-bkL"/>
                 <constraint firstItem="YVN-gj-7ac" firstAttribute="trailing" secondItem="Pnd-mB-bf6" secondAttribute="trailing" id="Sbe-oD-NCP"/>
                 <constraint firstItem="Pnd-mB-bf6" firstAttribute="leading" secondItem="Fdf-va-KP9" secondAttribute="leading" id="TPN-Ex-gev"/>
                 <constraint firstItem="Pnd-mB-bf6" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Yqo-mU-ZY6"/>
                 <constraint firstItem="rD9-uY-5I8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEb-gv-0Hn"/>
+                <constraint firstItem="Ntd-dA-WvG" firstAttribute="leading" secondItem="YVN-gj-7ac" secondAttribute="leading" id="l7O-8O-5gk"/>
+                <constraint firstItem="RND-v3-R60" firstAttribute="leading" secondItem="Ntd-dA-WvG" secondAttribute="trailing" id="msL-ad-dCi"/>
+                <constraint firstItem="RND-v3-R60" firstAttribute="height" secondItem="YVH-kt-ziX" secondAttribute="height" id="vEU-08-U9N"/>
+                <constraint firstItem="RND-v3-R60" firstAttribute="centerY" secondItem="Ntd-dA-WvG" secondAttribute="centerY" id="vaS-IN-AMl"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="3SK-1N-HmI">
+            <connections>
+                <action selector="protocol:" destination="-1" id="k7B-QK-2cf"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="图片" width="214" height="207"/>
+        <image name="注册协议未选中" width="15" height="15"/>
     </resources>
 </document>

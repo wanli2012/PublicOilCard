@@ -90,7 +90,7 @@
     self.collectionView.mj_header = header;
     self.collectionView.mj_footer = footer;
     
-    self.cate_id = @"1";
+    self.cate_id = @"";
     self.order_num = @"0";
     self.order_money = @"1";
     [self updateData:YES];

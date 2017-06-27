@@ -12,7 +12,7 @@
 #import "GLMineHomeController.h"
 #import "GLLoginController.h"
 #import "GLCompleteInfoController.h"
-#import "GLMine_UploadController.h"
+#import "GLMine_UploadRecordController.h"
 
 @interface BasetabbarViewController ()<UITabBarControllerDelegate>
 
@@ -41,7 +41,7 @@
     //个人中心
     GLMineHomeController *mineVC = [[GLMineHomeController alloc] init];
     //上传凭证
-    GLMine_UploadController *uploadVC = [[GLMine_UploadController alloc] init];
+    GLMine_UploadRecordController *uploadVC = [[GLMine_UploadRecordController alloc] init];
     
     BaseNavigationViewController *mallNav = [[BaseNavigationViewController alloc] initWithRootViewController:mallVC];
     BaseNavigationViewController *mineNav = [[BaseNavigationViewController alloc] initWithRootViewController:mineVC];
@@ -49,7 +49,7 @@
     
     mallNav.tabBarItem = [self barTitle:@"消费" image:@"首页未选中状态" selectImage:@"首页选中状态"];
     mineNav.tabBarItem = [self barTitle:@"我的" image:@"消费商城未选中状态" selectImage:@"消费商城"];
-    uploadNav.tabBarItem = [self barTitle:@"凭证" image:@"消费商城未选中状态" selectImage:@"消费商城"];
+    uploadNav.tabBarItem = [self barTitle:@"凭证" image:@"凭证未点钟" selectImage:@"凭证点中"];
     
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR] || [[UserModel defaultUser].group_id isEqualToString:MINISTER]) {//经理

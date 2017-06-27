@@ -28,6 +28,7 @@
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate>
 {
     GLMine_HeaderView *_header;
+    LoadWaitView *_loadV;
 }
 
 @property (nonatomic, strong)UICollectionView *collectionV;
@@ -96,6 +97,9 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
             [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
             [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
+             [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -125,8 +129,20 @@ static NSString *headerID = @"GLMine_HeaderView";
                 
                 [UserModel defaultUser].isHaveOilCard = @"";
             }
-            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].qtIdNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].jyzSelfCardNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].IDCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].IDCard = @"";
+            }
             [usermodelachivar achive];
+            
         }else{
             
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -186,11 +202,11 @@ static NSString *headerID = @"GLMine_HeaderView";
 
 - (void)completeInfo {
     
-//    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
-//        [UserModel defaultUser].qtIdNum = @"";
-//    }
-//    if ([UserModel defaultUser].qtIdNum.length == 0) {
+    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
+        [UserModel defaultUser].qtIdNum = @"";
+    }
     
+    if ([UserModel defaultUser].qtIdNum.length == 0) {
     
         self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
         self.contentV.alpha = 0;
@@ -203,7 +219,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             [self.maskV addSubview:self.contentV];
             
         }];
-//    }
+    }
 }
 - (void)maskViewTap {
     [UIView animateWithDuration:0.3 animations:^{
@@ -214,22 +230,36 @@ static NSString *headerID = @"GLMine_HeaderView";
         [self.maskV removeFromSuperview];
     }];
 }
-- (void)addQtID:(NSString *)qtID andOilCardID:(NSString *)oilCard{
+- (void)addQtIDandOilCardID{
+    
+    if ( self.contentV.qtIDTextF.text == nil || self.contentV.oilCardTextF.text == nil) {
+        [self maskViewTap];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"uid"] = self.contentV.qtIDTextF.text;
-    dict[@"uid"] = self.contentV.oilCardTextF.text;
-    
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    dict[@"jyzSelfCardNum"] = self.contentV.oilCardTextF.text;
+    dict[@"qtIdNum"] = self.contentV.qtIDTextF.text;
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
             
+            [self refresh];
+            [self maskViewTap];
         }
+            
+        [MBProgressHUD showError:responseObject[@"message"]];
         
     } enError:^(NSError *error) {
+        [_loadV removeloadview];
         
         [MBProgressHUD showError:error.localizedDescription];
+        
     }];
 }
 
@@ -260,35 +290,15 @@ static NSString *headerID = @"GLMine_HeaderView";
         cell.topViewHeight.constant = 8;
         cell.bottomViewHeight.constant = 15;
     }
-//    cell.cellView.layer.cornerRadius = 10;
-//    cell.cellView.layer.cornerRadius = 10.0f;
-//    cell.cellView.layer.borderWidth = 0.5f;
-//    cell.cellView.layer.borderColor = [UIColor clearColor].CGColor;
-//    cell.cellView.layer.masksToBounds = YES;
-//    
-//    cell.cellView.layer.shadowColor = [UIColor darkGrayColor].CGColor;
-//    cell.cellView.layer.shadowOffset = CGSizeMake(0, 0);
-//    cell.cellView.layer.shadowRadius = 4.0f;
-//    cell.cellView.layer.shadowOpacity = 0.5f;
-//    cell.cellView.layer.masksToBounds = NO;
-//    cell.cellView.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
+
     cell.cellView.layer.cornerRadius = 5;
-//    cell.cellView.layer.masksToBounds = YES;
+
     cell.cellView.layer.shadowColor = [UIColor lightGrayColor].CGColor;//shadowColor阴影颜色
     cell.cellView.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
     cell.cellView.layer.shadowOpacity = 0.3;//阴影透明度，默认0
     cell.cellView.layer.shadowRadius = 5;//阴影半径，默认3
     return cell;
 }
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-//    
-//    if (section == 0 || section == 2) {
-//        return UIEdgeInsetsMake(0, 30, 0, 0);
-//    }else{
-//        return UIEdgeInsetsMake(0, 0, 0, 30);
-//    }
-//    
-//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.hidesBottomBarWhenPushed = YES;
@@ -558,7 +568,9 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 170);
         
         [_contentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
-        [_contentV.okBtn addTarget:self action:@selector(addQtID:andOilCardID:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_contentV.okBtn addTarget:self action:@selector(addQtIDandOilCardID) forControlEvents:UIControlEventTouchUpInside];
+        
         _contentV.oilCardTextF.delegate = self;
         _contentV.qtIDTextF.delegate = self;
   
