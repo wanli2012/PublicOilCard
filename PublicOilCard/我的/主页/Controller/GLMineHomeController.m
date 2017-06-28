@@ -417,6 +417,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     //判断是否显示vip标志
     if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
         _header.vipImageV.hidden = NO;
+        [_header.openCardBtn setTitle:@"已开卡" forState:UIControlStateNormal];
         [_header.openCardBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         _header.openCardBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
     }else{
@@ -466,7 +467,16 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 #pragma mark UITextFieldDelegate
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
+    if (textField == self.contentV.oilCardTextF && [string isEqualToString:@"\n"]) {
+        [self.contentV.qtIDTextF becomeFirstResponder];
+        return NO;
+        
+    }else if (textField == self.contentV.qtIDTextF && [string isEqualToString:@"\n"]){
+        
+        [self.view endEditing:YES];
+        return NO;
+    }
+
     if (textField == self.contentV.oilCardTextF) {//油卡只能输入数字
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];

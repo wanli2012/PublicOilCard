@@ -150,12 +150,14 @@
     }
     
     cell.moemylb.text = [NSString stringWithFormat:@"¥%@",self.dataarr[indexPath.row][@"back_money"]];
+
     return cell;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
-}
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44;
+    return self.tableView.rowHeight;}
 -(NodataView*)nodataV{
     
     if (!_nodataV) {

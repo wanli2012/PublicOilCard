@@ -50,7 +50,7 @@
     self.submitBtn.layer.cornerRadius = 5.f;
     self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
     self.userNameLabel.text = [UserModel defaultUser].username;
-    
+    self.noticeLabel.text = @" 1.该凭证为用户加油站加油成功后提供的加油小票的图片\n 2.该凭证不作为奖励积分的依据\n 3.请保证凭证图片的真实性";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
