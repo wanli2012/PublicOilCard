@@ -61,13 +61,11 @@
 
 - (void)updateData:(BOOL)status {
     if (status) {
-        
         self.page = 1;
         [self.models removeAllObjects];
         
     }else{
         _page ++;
-        
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
