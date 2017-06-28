@@ -47,8 +47,8 @@
             break;
         case 1:
             self.statusLabel.text = @"支付成功";
-            self.payNowBtn.hidden = YES;
-            self.cancelBtn.hidden = NO;
+            self.payNowBtn.hidden = NO;
+            self.cancelBtn.hidden = YES;
               [self.payNowBtn setTitle:@"删除" forState:UIControlStateNormal];
             break;
         case 2:
