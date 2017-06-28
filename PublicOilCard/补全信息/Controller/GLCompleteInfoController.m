@@ -177,6 +177,7 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
+
 //退出
 - (IBAction)exit:(id)sender {
     
@@ -199,17 +200,11 @@
     if(self.nameTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入真实姓名"];
         return;
-    }else if([predicateModel IsChinese:self.nameTF.text]){
-        
+    }else if(![predicateModel IsChinese:self.nameTF.text]){
+        [MBProgressHUD showError:@"真实姓名只能为汉字"];
+        return;
     }
-//    if(self.IDTF.text.length <= 0){
-//        [MBProgressHUD showError:@"请输入全团ID号"];
-//        return;
-//    }
-//    if(self.oilCardNumTF.text.length <= 0){
-//        [MBProgressHUD showError:@"请输入油卡卡号"];
-//        return;
-//    }
+
     if(self.indentifierTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入身份证号"];
         return;

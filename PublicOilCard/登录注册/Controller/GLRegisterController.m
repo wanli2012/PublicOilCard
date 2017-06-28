@@ -176,8 +176,8 @@
     [NetworkManager requestPOSTWithURLStr:@"user/register" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
-             [MBProgressHUD showError:responseObject[@"message"]];
-             [self dismissViewControllerAnimated:YES completion:nil];
+             [MBProgressHUD showError:@"注册成功"];
+            [self.navigationController popViewControllerAnimated:YES];
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }

@@ -24,6 +24,7 @@
 #import "LBExchangeViewController.h"
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "GLMine_CompleteInfoView.h"
+#import <SDWebImage/UIButton+WebCache.h>
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate>
 {
@@ -89,6 +90,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
   
         if ([responseObject[@"code"] integerValue]==1) {
+            [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
             [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
             [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
@@ -101,6 +103,9 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
              [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
             
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
+                [UserModel defaultUser].pic = @"";
+             }
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].price = @"";
@@ -380,14 +385,17 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     //数据显示
+    [_header.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
-
+    //消费
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].price floatValue]/10000];
     }else{
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];
     }
+    //积分
     if([[UserModel defaultUser].mark floatValue]> 10000000){
         _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f百万",[[UserModel defaultUser].mark floatValue]/1000000];
         
@@ -396,12 +404,13 @@ static NSString *headerID = @"GLMine_HeaderView";
     }else{
         _header.jifenLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].mark];
     }
+    //余额
     if([[UserModel defaultUser].yue floatValue]> 100000){
         _header.jiangliLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].yue floatValue]/10000];
     }else{
         _header.jiangliLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].yue];
     }
-
+    //推荐
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
     
     //判断是否显示vip标志

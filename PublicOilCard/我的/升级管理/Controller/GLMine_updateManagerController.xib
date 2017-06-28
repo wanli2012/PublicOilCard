@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oXs-RC-Rkc">
-                    <rect key="frame" x="0.0" y="74" width="369" height="540"/>
+                    <rect key="frame" x="0.0" y="64" width="369" height="550"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="TM9-GP-UQ1"/>
@@ -34,7 +34,7 @@
                 <constraint firstAttribute="bottom" secondItem="oXs-RC-Rkc" secondAttribute="bottom" id="4et-6J-2Eq"/>
                 <constraint firstItem="oXs-RC-Rkc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="IwY-Px-b32"/>
                 <constraint firstAttribute="trailing" secondItem="oXs-RC-Rkc" secondAttribute="trailing" id="W3f-fE-Y0C"/>
-                <constraint firstItem="oXs-RC-Rkc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="szp-wA-G3j"/>
+                <constraint firstItem="oXs-RC-Rkc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="szp-wA-G3j"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

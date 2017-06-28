@@ -15,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="330" height="143"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="330" height="143"/>
+                <rect key="frame" x="0.0" y="0.0" width="330" height="142"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TcH-BP-gxP">
-                        <rect key="frame" x="10" y="50" width="310" height="22"/>
+                        <rect key="frame" x="10" y="60" width="310" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21.5" id="0a0-ze-eWx"/>
                         </constraints>
@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XfP-ia-TdR">
-                        <rect key="frame" x="115" y="93" width="100" height="30"/>
+                        <rect key="frame" x="115" y="103" width="100" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="Cqc-LB-s57"/>
                             <constraint firstAttribute="height" constant="30" id="w6t-R4-o3v"/>
@@ -42,7 +42,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首期:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7I-mp-4hP">
-                        <rect key="frame" x="0.0" y="0.0" width="330" height="40"/>
+                        <rect key="frame" x="0.0" y="10" width="330" height="40"/>
                         <color key="backgroundColor" red="1" green="0.31372549020000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="NuY-dO-MmD"/>
@@ -54,12 +54,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="XfP-ia-TdR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="KcG-Ib-nYL"/>
-                    <constraint firstItem="M7I-mp-4hP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WyZ-u6-PHO"/>
+                    <constraint firstItem="M7I-mp-4hP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="WyZ-u6-PHO"/>
                     <constraint firstItem="M7I-mp-4hP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XVQ-1D-SpO"/>
-                    <constraint firstAttribute="bottom" secondItem="XfP-ia-TdR" secondAttribute="bottom" constant="20" id="fGf-16-PAt"/>
                     <constraint firstAttribute="trailing" secondItem="M7I-mp-4hP" secondAttribute="trailing" id="ivq-Eg-pFl"/>
                     <constraint firstItem="TcH-BP-gxP" firstAttribute="top" secondItem="M7I-mp-4hP" secondAttribute="bottom" constant="10" id="kAw-dI-QnS"/>
                     <constraint firstItem="TcH-BP-gxP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="kPe-5M-Wd4"/>
+                    <constraint firstAttribute="bottom" secondItem="XfP-ia-TdR" secondAttribute="bottom" constant="9" id="p4l-EA-rt0"/>
                     <constraint firstAttribute="trailing" secondItem="TcH-BP-gxP" secondAttribute="trailing" constant="10" id="pa1-1A-qpy"/>
                     <constraint firstItem="XfP-ia-TdR" firstAttribute="top" secondItem="TcH-BP-gxP" secondAttribute="bottom" constant="20.5" id="stI-St-Q5i"/>
                 </constraints>

@@ -102,15 +102,16 @@
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
-            
-            self.dataDic = responseObject[@"data"][@"goods_details"];
-            self.isCollection = responseObject[@"data"][@"collect"];
-            self.collect_id = responseObject[@"data"][@"collect_id"];
-
-            for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
+            if([responseObject[@"data"] count] != 0){
+                self.dataDic = responseObject[@"data"][@"goods_details"];
+                self.isCollection = responseObject[@"data"][@"collect"];
+                self.collect_id = responseObject[@"data"][@"collect_id"];
                 
-                GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
-                [self.models addObject:model];
+                for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
+                    
+                    GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
+                    [self.models addObject:model];
+                }
             }
             if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
                 
@@ -336,13 +337,17 @@
     }
     header.middleViewTop.constant = _headerImageHeight;
     if (self.dataDic != nil) {
-        NSMutableArray *bannerM = [NSMutableArray array];
-        for (NSString *banner in self.dataDic[@"banner"]) {
-            [bannerM addObject:banner];
+        if (![self.dataDic[@"banner"] isEqual:[NSNull null]]) {
+            
+            NSMutableArray *bannerM = [NSMutableArray array];
+            for (NSString *banner in self.dataDic[@"banner"]) {
+                [bannerM addObject:banner];
+            }
+            self.cycleScrollView.imageURLStringsGroup = bannerM;
+        }else{
+            self.cycleScrollView.imageURLStringsGroup = @[];
         }
-        self.cycleScrollView.imageURLStringsGroup = bannerM;
     }
-    
     [header addSubview:self.cycleScrollView];
     
     return header;
@@ -355,6 +360,8 @@
                                                       placeholderImage:[UIImage imageNamed:@"轮播占位图"]];
         
         _cycleScrollView.localizationImageNamesGroup = @[];
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
+        
         _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = YYSRGBColor(241, 242, 243, 1);// 图片对应的标题的 背景色。（因为没有设标题）
