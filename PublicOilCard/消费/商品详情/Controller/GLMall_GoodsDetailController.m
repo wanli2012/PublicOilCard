@@ -10,6 +10,7 @@
 #import "GLMall_GoodsHeaderView.h"
 #import "GLMallHomeCell.h"
 #import "LBMineCenterPayPagesViewController.h"
+#import "JZAlbumViewController.h"
 
 @interface GLMall_GoodsDetailController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,GLMall_GoodsHeaderViewDelegate>
 {
@@ -351,6 +352,16 @@
     [header addSubview:self.cycleScrollView];
     
     return header;
+}
+#pragma mark -- SDCycleScrollViewDelegate 点击看大图
+/** 点击图片回调 */
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    
+    JZAlbumViewController *jzAlbumVC = [[JZAlbumViewController alloc]init];
+    jzAlbumVC.currentIndex =index;//这个参数表示当前图片的index，默认是0
+    jzAlbumVC.imgArr = [self.cycleScrollView.imageURLStringsGroup copy];//图片数组，可以是url，也可以是UIImage
+    [self presentViewController:jzAlbumVC animated:NO completion:nil];
+    
 }
 -(SDCycleScrollView*)cycleScrollView
 {

@@ -52,13 +52,15 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-gj-7ac">
                     <rect key="frame" x="77" y="443.5" width="220" height="50"/>
-                    <color key="backgroundColor" red="1" green="0.46750163459999999" blue="0.1170392269" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="2fo-S9-gF0"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QU3-ZC-X43"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="我要开卡"/>
+                    <state key="normal" title="我要开卡">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
                     <connections>
                         <action selector="openCard:" destination="-1" eventType="touchUpInside" id="qB5-cu-3pA"/>
                     </connections>
