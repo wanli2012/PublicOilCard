@@ -12,4 +12,5 @@
 
 @property (nonatomic, copy)NSString  *goods_id;
 
+@property (nonatomic, assign)NSInteger pushIndex;//1:从商城跳转 2:从收藏列表里跳转
 @end

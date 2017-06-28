@@ -234,7 +234,14 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     if ( self.contentV.qtIDTextF.text == nil || self.contentV.oilCardTextF.text == nil) {
         [self maskViewTap];
+        
+    }
+    if (self.contentV.qtIDTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入全团ID"];
         return;
+    }
+    if (self.contentV.oilCardTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入油卡卡号"];
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];

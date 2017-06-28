@@ -140,6 +140,10 @@
         [MBProgressHUD showError:@"你还未绑定油卡"];
         return;
     }
+    if(self.moneyTextF.text.length == 0){
+        [MBProgressHUD showError:@"请输入金额"];
+        return;
+    }
     //拿到图片准备上传
     NSDictionary *dic;
     dic=@{@"token":[UserModel defaultUser].token ,

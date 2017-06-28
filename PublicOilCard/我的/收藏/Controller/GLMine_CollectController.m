@@ -18,6 +18,8 @@
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, assign)NSInteger page;//页数
 
+@property (assign, nonatomic) NSInteger isdelete;//是否需要移除下标
+
 @end
 
 @implementation GLMine_CollectController
@@ -53,6 +55,7 @@
     self.tableView.mj_footer = footer;
     
     [self updateData:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removedatasource) name:@"deleteTheCollectionCellNotification" object:nil];
     
 }
 
@@ -138,11 +141,15 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.isdelete = indexPath.row;
+    
     self.hidesBottomBarWhenPushed = YES;
     GLMall_GoodsDetailController *detailVC = [[GLMall_GoodsDetailController alloc] init];
     GLMine_CollectModel *model = self.models[indexPath.row];
     detailVC.goods_id = model.goods_id;
+    detailVC.pushIndex = 2;
     [self.navigationController pushViewController:detailVC animated:YES];
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 100;
@@ -210,6 +217,11 @@
 - (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return NO;
+}
+-(void)removedatasource{
+    [self.models removeObjectAtIndex:self.isdelete];
+    [self.tableView reloadData];
+    
 }
 #pragma 懒加载
 - (NSMutableArray *)models{

@@ -216,6 +216,9 @@
             if ([responseObject[@"code"]integerValue] == 1) {
                 [collectionbt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
                 self.isCollection = @"0";
+                if (self.pushIndex == 2) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"deleteTheCollectionCellNotification" object:nil];
+                }
                 [MBProgressHUD showError:@"取消收藏成功"];
             }else{
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -332,6 +335,14 @@
         [header.collectionBt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
     }
     header.middleViewTop.constant = _headerImageHeight;
+    if (self.dataDic != nil) {
+        NSMutableArray *bannerM = [NSMutableArray array];
+        for (NSString *banner in self.dataDic[@"banner"]) {
+            [bannerM addObject:banner];
+        }
+        self.cycleScrollView.imageURLStringsGroup = bannerM;
+    }
+    
     [header addSubview:self.cycleScrollView];
     
     return header;

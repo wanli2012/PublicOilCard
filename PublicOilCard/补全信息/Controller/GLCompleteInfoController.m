@@ -199,6 +199,8 @@
     if(self.nameTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入真实姓名"];
         return;
+    }else if([predicateModel IsChinese:self.nameTF.text]){
+        
     }
 //    if(self.IDTF.text.length <= 0){
 //        [MBProgressHUD showError:@"请输入全团ID号"];

@@ -121,12 +121,15 @@
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue] == 1) {
-            for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
+            if([responseObject[@"data"] count] != 0){
                 
-                GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
-                [self.models addObject:model];
+                for (NSDictionary * dic in responseObject[@"data"][@"guess_goods"]) {
+                    
+                    GLMallHomeGoodsModel *model = [GLMallHomeGoodsModel mj_objectWithKeyValues:dic];
+                    [self.models addObject:model];
+                }
+                self.dataArr = responseObject[@"data"][@"goods_details"];
             }
-            self.dataArr = responseObject[@"data"][@"goods_details"];
             
             if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
                 
@@ -369,6 +372,7 @@
     GLMallHomeGoodsModel *model = self.models[indexPath.row];
     
     detailVC.goods_id = model.goods_id;
+    detailVC.pushIndex = 1;
     
     [self.navigationController pushViewController:detailVC animated:YES];
     
