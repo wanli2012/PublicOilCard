@@ -27,9 +27,9 @@
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //关于公司网址
-#define ABOUTUS_URL @"https://www.51dztg.com/hyjm/hyjm.html"
+#define ABOUTUS_URL @"http://www.51qmtg.org/youka/about.html"
 //注册协议
-#define REGISTER_URL @"https://www.51dztg.com/hyjm/hyjm.html"
+#define REGISTER_URL @"http://www.51qmtg.org/youka/agreement.html"
 //开卡协议
 #define kOPENCARD_URL @"https://www.baidu.com"
 //公告

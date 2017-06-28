@@ -34,7 +34,7 @@
     _exchangeBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
     
     self.picImageVHeight.constant = 80 *autoSizeScaleY;
-    
+    self.picImageV.contentMode = UIViewContentModeScaleAspectFill;
     self.picImageV.layer.cornerRadius = self.picImageVHeight.constant /2;
 
     self.IDLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];

@@ -385,6 +385,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     //数据显示
+//    [_header.picImageV sd_setBackgroundImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     [_header.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];

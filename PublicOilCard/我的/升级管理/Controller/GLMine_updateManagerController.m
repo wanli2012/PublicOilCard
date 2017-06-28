@@ -34,7 +34,7 @@
 
 @property (nonatomic, copy)NSString *status;//审核状态  0未审核 1审核成功  2审核失败
 @property (nonatomic, copy)NSString *upgrade;//升级类型 1首期代理   2二期代理
-
+@property (nonatomic, copy)NSString *is_pay;//是否支付
 @end
 
 @implementation GLMine_updateManagerController
@@ -176,7 +176,7 @@
     if (index == 0) {
         if ([self.upgrade integerValue] == 1) {
             
-            if([self.status integerValue] == 0){
+            if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
                 [MBProgressHUD showError:@"首期代理资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){
@@ -197,7 +197,7 @@
     }else{
         if([self.upgrade integerValue] == 2){
             
-            if([self.status integerValue] == 0){
+            if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
                 [MBProgressHUD showError:@"二期代理资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){
@@ -246,7 +246,6 @@
     cell.index = indexPath.row;
     cell.selectionStyle = 0;
 
-//    [self statusEnsure:indexPath];
     switch ([self.status integerValue]) {
         case 0://未审核
         {
@@ -259,7 +258,6 @@
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }
-//            cell.openBtn.enabled = NO;
             
         }
             break;
@@ -273,7 +271,6 @@
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             }
-//            cell.openBtn.enabled = NO;
         }
             break;
         case 2://审核失败
@@ -287,11 +284,14 @@
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
             }
-//            cell.openBtn.enabled = YES;
             
         }
             break;
         default:
+        {
+            [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
+            [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+        }
             break;
     }
     

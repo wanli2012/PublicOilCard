@@ -15,6 +15,7 @@
 }
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UIView *contentV;
+@property (weak, nonatomic) IBOutlet UILabel *currentVersionLabel;
 
 @end
 
@@ -28,6 +29,12 @@
 
     self.contentV.layer.cornerRadius = 5.f;
     self.contentV.clipsToBounds = YES;
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    CFShow((__bridge CFTypeRef)(infoDictionary));
+    // app版本
+    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    
+    self.currentVersionLabel.text = [NSString stringWithFormat:@"当前版本: v%@",app_Version];
     
     [self logoQrCode];
     

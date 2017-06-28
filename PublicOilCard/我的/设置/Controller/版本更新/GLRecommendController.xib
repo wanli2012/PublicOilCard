@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="codeImageV" destination="Sf4-oB-aJ6" id="Daw-Ke-VvD"/>
                 <outlet property="contentV" destination="X19-4R-kP4" id="GfI-v0-RHQ"/>
+                <outlet property="currentVersionLabel" destination="G9S-dX-C9X" id="Pm6-Uq-XCD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,8 +33,8 @@
                                 <constraint firstAttribute="width" constant="150" id="5GI-oJ-RWv"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本: v2.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9S-dX-C9X">
-                            <rect key="frame" x="128" y="215" width="64.5" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前版本: v2.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9S-dX-C9X">
+                            <rect key="frame" x="114" y="205" width="93" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -41,7 +42,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brk-y7-QwE">
                             <rect key="frame" x="0.0" y="250" width="320" height="50"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成都中石油" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALe-kF-CFm">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全民中油" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALe-kF-CFm">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,7 +63,7 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Brk-y7-QwE" secondAttribute="trailing" id="4OY-2a-0zI"/>
                         <constraint firstItem="G9S-dX-C9X" firstAttribute="centerX" secondItem="X19-4R-kP4" secondAttribute="centerX" id="5ao-h5-a5r"/>
-                        <constraint firstItem="G9S-dX-C9X" firstAttribute="top" secondItem="Sf4-oB-aJ6" secondAttribute="bottom" constant="20" id="OB8-wR-zKZ"/>
+                        <constraint firstItem="G9S-dX-C9X" firstAttribute="top" secondItem="Sf4-oB-aJ6" secondAttribute="bottom" constant="10" id="OB8-wR-zKZ"/>
                         <constraint firstItem="Sf4-oB-aJ6" firstAttribute="centerY" secondItem="X19-4R-kP4" secondAttribute="centerY" constant="-30" id="Rdq-F7-iwL"/>
                         <constraint firstAttribute="height" constant="300" id="Xdr-R6-Wc2"/>
                         <constraint firstAttribute="bottom" secondItem="Brk-y7-QwE" secondAttribute="bottom" id="hzA-6V-TXM"/>
