@@ -26,6 +26,8 @@
 //#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
+//获取appStore上的最新版本号地址
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1228047806"
 //关于公司网址
 #define ABOUTUS_URL @"http://www.51qmtg.org/youka/about.html"
 //注册协议

@@ -156,6 +156,7 @@
     
     GLMine_OrderSectionModel *model = self.sectionModels[indexPath.section];
     cell.WaitOrdersListModel = model.dataArr[indexPath.row];
+    cell.countLabel.hidden = NO;
     
     return cell;
 }
@@ -165,6 +166,7 @@
     GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
     headerview.sectionModel = sectionModel;
     headerview.delegete = self;
+    headerview.section = section;
     headerview.expandCallback = ^(BOOL isExpanded) {
         
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];

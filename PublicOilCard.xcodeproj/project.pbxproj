@@ -447,6 +447,8 @@
 		F95D46001EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45FE1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.m */; };
 		F95D46011EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95D45FF1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib */; };
 		F95D46041EFA5C090011C69B /* recordeManger.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D46031EFA5C090011C69B /* recordeManger.m */; };
+		F95F710C1F04A0B100FF7AB5 /* MinePhoneAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95F710A1F04A0B100FF7AB5 /* MinePhoneAlertView.m */; };
+		F95F710D1F04A0B100FF7AB5 /* MinePhoneAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95F710B1F04A0B100FF7AB5 /* MinePhoneAlertView.xib */; };
 		F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */; };
 		F9652D5B1EF76B1600DD229F /* LBModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9652D591EF76B1600DD229F /* LBModifyPasswordViewController.m */; };
 		F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5A1EF76B1600DD229F /* LBModifyPasswordViewController.xib */; };
@@ -1272,6 +1274,9 @@
 		F95D45FF1EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_ExchangeRecord_UnCheckController.xib; sourceTree = "<group>"; };
 		F95D46021EFA5C090011C69B /* recordeManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = recordeManger.h; path = "PublicOilCard/我的/兑换/Controller/recordeManger.h"; sourceTree = SOURCE_ROOT; };
 		F95D46031EFA5C090011C69B /* recordeManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = recordeManger.m; path = "PublicOilCard/我的/兑换/Controller/recordeManger.m"; sourceTree = SOURCE_ROOT; };
+		F95F71091F04A0B100FF7AB5 /* MinePhoneAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinePhoneAlertView.h; sourceTree = "<group>"; };
+		F95F710A1F04A0B100FF7AB5 /* MinePhoneAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MinePhoneAlertView.m; sourceTree = "<group>"; };
+		F95F710B1F04A0B100FF7AB5 /* MinePhoneAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MinePhoneAlertView.xib; sourceTree = "<group>"; };
 		F9652D531EF766AF00DD229F /* LBExchangeFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBExchangeFooterView.h; sourceTree = "<group>"; };
 		F9652D541EF766AF00DD229F /* LBExchangeFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBExchangeFooterView.m; sourceTree = "<group>"; };
 		F9652D581EF76B1600DD229F /* LBModifyPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBModifyPasswordViewController.h; sourceTree = "<group>"; };
@@ -1447,6 +1452,9 @@
 		4A39F4941EF3AF9E0038C147 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				F95F71091F04A0B100FF7AB5 /* MinePhoneAlertView.h */,
+				F95F710A1F04A0B100FF7AB5 /* MinePhoneAlertView.m */,
+				F95F710B1F04A0B100FF7AB5 /* MinePhoneAlertView.xib */,
 				4A39F49A1EF3B0810038C147 /* GLMine_SetCell.h */,
 				4A39F49B1EF3B0810038C147 /* GLMine_SetCell.m */,
 				4A39F49C1EF3B0810038C147 /* GLMine_SetCell.xib */,
@@ -1457,6 +1465,7 @@
 		4A39F49F1EF3B60E0038C147 /* 兑换 */ = {
 			isa = PBXGroup;
 			children = (
+				4AEC05931EF1425F00B39497 /* 升级管理 */,
 				4A39F4A01EF3B60E0038C147 /* Controller */,
 				4A39F4A11EF3B60E0038C147 /* Model */,
 				4A39F4A21EF3B60E0038C147 /* View */,
@@ -1712,7 +1721,6 @@
 				4A39F49F1EF3B60E0038C147 /* 兑换 */,
 				4AEC05A01EF1471600B39497 /* 消息 */,
 				4AEC05811EF13C7600B39497 /* 收藏 */,
-				4AEC05931EF1425F00B39497 /* 升级管理 */,
 				4AEC058F1EF1425F00B39497 /* 订单 */,
 				4AEC05971EF1425F00B39497 /* 推荐 */,
 				4A1CE7101EF5042700895ADF /* 开通 */,
@@ -2936,7 +2944,8 @@
 				4AEC05951EF1425F00B39497 /* Model */,
 				4AEC05961EF1425F00B39497 /* View */,
 			);
-			path = "升级管理";
+			name = "升级管理";
+			path = "../升级管理";
 			sourceTree = "<group>";
 		};
 		4AEC05941EF1425F00B39497 /* Controller */ = {
@@ -3318,6 +3327,7 @@
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
 				4A39F4C81EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib in Resources */,
 				F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */,
+				F95F710D1F04A0B100FF7AB5 /* MinePhoneAlertView.xib in Resources */,
 				4A6ADC931EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib in Resources */,
 				4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
@@ -3729,6 +3739,7 @@
 				4A5BBBA81EF23513008270F2 /* GLMine_OrderController.m in Sources */,
 				4A5331521EFE763F009C3593 /* ZXDecoderResult.m in Sources */,
 				4A5BBB951EF21617008270F2 /* GLMine_InfoCell.m in Sources */,
+				F95F710C1F04A0B100FF7AB5 /* MinePhoneAlertView.m in Sources */,
 				4A5331281EFE763F009C3593 /* ZXExpandedProductParsedResult.m in Sources */,
 				4A5331511EFE763F009C3593 /* ZXCharacterSetECI.m in Sources */,
 				4A6ADCA71EF7EC0100C99498 /* GLMallHomeGoodsModel.m in Sources */,

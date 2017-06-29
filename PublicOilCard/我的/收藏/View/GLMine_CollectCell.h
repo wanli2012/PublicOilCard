@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong)GLMine_CollectModel *model;
 @property (strong, nonatomic)LBWaitOrdersListModel *WaitOrdersListModel;
-
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
 
 
 @end
