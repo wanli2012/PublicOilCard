@@ -186,7 +186,7 @@
 {
     NSString * cachPath = [ NSSearchPathForDirectoriesInDomains ( NSCachesDirectory , NSUserDomainMask , YES ) firstObject ];
     NSArray * files = [[ NSFileManager defaultManager ] subpathsAtPath :cachPath];
-    //NSLog ( @"cachpath = %@" , cachPath);
+
     for ( NSString * p in files) {
         NSError * error = nil ;
         NSString * path = [cachPath stringByAppendingPathComponent :p];
