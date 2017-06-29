@@ -213,8 +213,8 @@
                 
                 [usermodelachivar achive];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-                
-                [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            
+            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

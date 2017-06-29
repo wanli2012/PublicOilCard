@@ -12,7 +12,7 @@
 #import "LBMineCenterChooseAreaViewController.h"
 #import "editorMaskPresentationController.h"
 
-@interface GLCompleteInfoController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning>
+@interface GLCompleteInfoController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,UIAlertViewDelegate>
 {
     BOOL _ishidecotr;//判断是否隐藏弹出控制器
 }
@@ -181,20 +181,38 @@
 //退出
 - (IBAction)exit:(id)sender {
     
-    if ([self.status isEqualToString:@"1"]) {
-        
-        GLLoginController *loginVC = [[GLLoginController alloc] init];
-        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nav animated:YES completion:nil];
-        
-    }else{
-    
-        [self dismissViewControllerAnimated:YES completion:nil];
+//    if ([self.status isEqualToString:@"1"]) {
+//        
+//        GLLoginController *loginVC = [[GLLoginController alloc] init];
+//        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+//        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        [self presentViewController:nav animated:YES completion:nil];
+//        
+//    }else{
+//    
+//        [self dismissViewControllerAnimated:YES completion:nil];
+//        
+//    }
+    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定要退出吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    alert.tag = 10;
+    [alert show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        if (alertView.tag == 10) {
+            
+            [UserModel defaultUser].loginstatus = NO;
+            [UserModel defaultUser].pic = @"";
+            [UserModel defaultUser].group_id = @"0";
+            [usermodelachivar achive];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+            
+        }
         
     }
+    
 }
-
 //提交
 - (IBAction)submit:(id)sender {
     if(self.nameTF.text.length <= 0){

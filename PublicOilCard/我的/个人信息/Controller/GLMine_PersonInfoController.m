@@ -10,6 +10,7 @@
 #import "GLMine_PersonInfoCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "GLMine_PersonInfoCodeView.h"
+#import "GLMine_CompleteInfoView.h"
 
 
 @interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
@@ -23,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @property (strong, nonatomic)LoadWaitView *loadV;
+
 @property (nonatomic, strong)NSDictionary *dataDic;
 
 @property (nonatomic, strong)NSMutableArray *canEditArr;
@@ -35,18 +37,13 @@
 
 @property (strong, nonatomic)UIImage *picImage;//头像
 
-//@property (strong, nonatomic)NSString *trueName;//真实姓名
-//@property (strong, nonatomic)NSString *IDNum;//ID
 @property (strong, nonatomic)UIImage *codeImage;//二维码
-//@property (strong, nonatomic)NSString *shenfenCode;//身份证号
-////@property (strong, nonatomic)NSString *bankNum;//银行卡号
-//@property (strong, nonatomic)NSString *openBank;//开户行
-////@property (strong, nonatomic)NSString *jyzSelfCardNum;//油卡号
-//@property (strong, nonatomic)NSString *recommendName;//推荐人真名
-//@property (strong, nonatomic)NSString *recommendID;//推荐人ID
 
 @property (nonatomic, strong)UIView *maskV;
+
 @property (nonatomic, strong)GLMine_PersonInfoCodeView *contentV;
+
+@property (nonatomic, strong)GLMine_CompleteInfoView *infoContentV;
 
 @end
 
@@ -59,35 +56,56 @@
     [self updateInfo];
     
     //自定义右键
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setTitle:@"修改" forState:UIControlStateNormal];
-//    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//    [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
-//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    [btn addTarget:self  action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-//    btn.frame = CGRectMake(0, 0, 80, 40);
-//    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setTitle:@"修改" forState:UIControlStateNormal];
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [btn.titleLabel setTextAlignment:NSTextAlignmentRight];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [btn addTarget:self  action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(0, 0, 80, 40);
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_PersonInfoCell" bundle:nil] forCellReuseIdentifier:@"GLMine_PersonInfoCell"];
 }
 
 - (void)updateInfo{
-    
-    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"加油站自办芯片卡号",@"全团ID",@"推荐人",@"推荐人ID"];
+    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团ID",@"推荐人",@"推荐人ID"];
+    }else{
+        
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"加油站自办芯片卡号",@"全团ID",@"推荐人",@"推荐人ID"];
+    }
 
-    self.vlaueArr = [NSMutableArray arrayWithObjects:
-                     [UserModel defaultUser].pic,
-                     [UserModel defaultUser].truename,
-                     [UserModel defaultUser].username,
-                     [UserModel defaultUser].username,
-                     [UserModel defaultUser].IDCard,
-                     [UserModel defaultUser].openbank,
-                     [UserModel defaultUser].banknumber,
-                     [UserModel defaultUser].jyzSelfCardNum,
-                     [UserModel defaultUser].qtIdNum,
-                     [UserModel defaultUser].recommendUser,
-                     [UserModel defaultUser].recommendID, nil];
+    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
+        
+        self.vlaueArr = [NSMutableArray arrayWithObjects:
+                         [UserModel defaultUser].pic,
+                         [UserModel defaultUser].truename,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].IDCard,
+                         [UserModel defaultUser].openbank,
+                         [UserModel defaultUser].banknumber,
+                         [UserModel defaultUser].qtIdNum,
+                         [UserModel defaultUser].recommendUser,
+                         [UserModel defaultUser].recommendID, nil];
+
+    }else{
+        
+        self.vlaueArr = [NSMutableArray arrayWithObjects:
+                         [UserModel defaultUser].pic,
+                         [UserModel defaultUser].truename,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].IDCard,
+                         [UserModel defaultUser].openbank,
+                         [UserModel defaultUser].banknumber,
+                         [UserModel defaultUser].jyzSelfCardNum,
+                         [UserModel defaultUser].qtIdNum,
+                         [UserModel defaultUser].recommendUser,
+                         [UserModel defaultUser].recommendID, nil];
+    }
     
 }
 //MARK: 二维码中间内置图片,可以是公司logo
@@ -144,66 +162,63 @@
 }
 
 - (void)edit:(UIButton *)sender {
+    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
+        [UserModel defaultUser].qtIdNum = @"";
+    }
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+    if ([UserModel defaultUser].qtIdNum.length != 0) {
+        [MBProgressHUD showError:@"信息已补全"];
+        return;
+    }
     
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入油卡卡号";
-        textField.tag = 12;
-        textField.delegate = self;
-        
-        
-    }];
-    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.placeholder = @"请输入全团ID";
-        textField.tag = 13;
-        textField.delegate = self;
-        
-    }];
     
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-        
-    }];
-    
-    __weak typeof(self) weakself = self;
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        
-        //            UITextField *openBankTF = alertController.textFields[0];
-        //            UITextField *bankNumTF = alertController.textFields[1];
-        UITextField *oilNumTF = alertController.textFields[0];
-        UITextField *qtIdNumTF = alertController.textFields[1];
+   if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
+       
+       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+       
+       [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+           textField.placeholder = @"请输入全团ID";
+           textField.tag = 13;
+           textField.delegate = self;
+           
+       }];
+       
+       UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+           
+       }];
+       
+       __weak typeof(self) weakself = self;
+       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+           
+            UITextField *oilNumTF = alertController.textFields[0];
+           UITextField *qtIdNumTF = alertController.textFields[1];
+           
+           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+               [weakself modifyInfo:oilNumTF.text qtIdNum:qtIdNumTF.text];
+           });
+           
+       }];
+       
+       [alertController addAction:cancelAction];
+       [alertController addAction:okAction];
+       
+       [self presentViewController:alertController animated:YES completion:nil];
 
-        
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-//                [weakself modifyInfo:bankNumTF.text OilNum:oilNumTF.text andOpenbank:openBankTF.text qtIdNum:qtIdNumTF.text];
-                [weakself modifyInfo:oilNumTF.text qtIdNum:qtIdNumTF.text];
-            });
-            
-            
-        }];
+   }else{
+       
+       [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
+       [self.maskV addSubview:self.infoContentV];
+       self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+       [UIView animateWithDuration:0.2 animations:^{
+           
+           self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+       }];
+       
+   }
     
-        [alertController addAction:cancelAction];
-        [alertController addAction:okAction];
-    
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//        textField.placeholder = @"请输入开户银行名";
-//        textField.tag = 10;
-//        textField.delegate = self;
-//
-//    }];
-//
-//    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-//        textField.placeholder = @"请输入银行卡号";
-//        textField.tag = 11;
-//        textField.delegate = self;
-//
-//
-//    }];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+}
 
- }
 - (void)modifyInfo:(NSString *)oilNum qtIdNum:(NSString *)qtIdNum{
   
     if ( oilNum.length == 0 && qtIdNum.length == 0) {
@@ -213,23 +228,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
-//    
-//    if (openbank.length != 0) {
-//        
-//        if (![predicateModel IsChinese:openbank]) {
-//            [MBProgressHUD showError:@"开户行只能是中文"];
-//            return;
-//        }
-//        dict[@"openbank"] = openbank;
-//    }
-//    if(bankNum.length != 0){
-//        
-//        dict[@"banknumber"] = bankNum;
-////        if (![predicateModel IsBankCard:bankNum]) {
-////            [MBProgressHUD showError:@"请输入正确的银行卡号"];
-////            return;
-////        }
-//    }
+
     if (oilNum.length != 0) {
         
         dict[@"jyzSelfCardNum"] = oilNum;
@@ -269,12 +268,9 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
-        
-//        NSLog(@"%@",responseObject);
+
         if ([responseObject[@"code"] integerValue]==1) {
-            
-//            [UserModel defaultUser].openbank = responseObject[@"data"][@"openbank"];
-//            [UserModel defaultUser].banknumber = responseObject[@"data"][@"banknumber"];
+
             [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
             [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
             
@@ -378,11 +374,15 @@
     }else{
         cell.picImageV.hidden = YES;
         cell.detailTF.hidden = NO;
-        cell.titleLabel.text = _keyArr[indexPath.row + 9];
-        cell.detailTF.text = _vlaueArr[indexPath.row + 9];
-        
+        if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
+            cell.titleLabel.text = _keyArr[indexPath.row + 8];
+            cell.detailTF.text = _vlaueArr[indexPath.row + 8];
+        }else{
+            
+            cell.titleLabel.text = _keyArr[indexPath.row + 9];
+            cell.detailTF.text = _vlaueArr[indexPath.row + 9];
+        }
     }
-
     return cell;
     
 }
@@ -398,56 +398,22 @@
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
             
         }];
+        
         [alertVC addAction:cameraAction];
         [alertVC addAction:albumAction];
         [alertVC addAction:cancelAction];
         [self presentViewController:alertVC animated:YES completion:nil];
     }else if(indexPath.row == 3 && indexPath.section == 0){
         
-        [self.view addSubview:self.maskV];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
+        [self.maskV addSubview:self.contentV];
+        self.contentV.transform = CGAffineTransformMakeScale(0.1, 0.1);
         [UIView animateWithDuration:0.2 animations:^{
             self.contentV.transform=CGAffineTransformMakeScale(1, 1);
-        }completion:^(BOOL finished) {
-            [self.maskV addSubview:self.contentV];
-            
         }];
     }
 }
-- (void)maskViewTap {
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
-        
-    } completion:^(BOOL finished) {
-//        [self.contentV removeFromSuperview];
-        [self.maskV removeFromSuperview];
-    }];
 
-}
-
-- (UIView *)maskV{
-    if (!_maskV) {
-        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _maskV.backgroundColor = YYSRGBColor(184, 184, 184, 0.5);
-        
-        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
-        [_maskV addGestureRecognizer:maskViewTap];
-    }
-    return _maskV;
-}
-
-- (GLMine_PersonInfoCodeView *)contentV{
-    if (!_contentV) {
-        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_PersonInfoCodeView" owner:nil options:nil].lastObject;
-
-        _contentV.layer.cornerRadius = 5.f;
-        
-        _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 200);
-        _contentV.codeImageV.image = [self logoQrCode];
-
-    }
-    return _contentV;
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 0;
@@ -517,8 +483,7 @@
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
         self.picImage = [UIImage imageWithData:data];
-        
-        
+
         
         //拿到图片准备上传
          NSDictionary *dic;
@@ -565,7 +530,6 @@
             [_loadV removeloadview];
             [MBProgressHUD showError:error.localizedDescription];
         }];
-        
     }
     
     [self.tableView reloadData];
@@ -594,6 +558,8 @@
             [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
             [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
             [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -623,6 +589,14 @@
                 
                 [UserModel defaultUser].isHaveOilCard = @"";
             }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].qtIdNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].jyzSelfCardNum = @"";
+            }
             
             [usermodelachivar achive];
         }else{
@@ -637,11 +611,105 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
+- (void)addQtIDandOilCardID{
+    
+    if ( self.infoContentV.qtIDTextF.text == nil || self.infoContentV.oilCardTextF.text == nil) {
+        [self maskViewTap];
+        
+    }
+    if (self.infoContentV.qtIDTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入全团ID"];
+        return;
+    }
+    if (self.infoContentV.oilCardTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入油卡卡号"];
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"jyzSelfCardNum"] = self.infoContentV.oilCardTextF.text;
+    dict[@"qtIdNum"] = self.infoContentV.qtIDTextF.text;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [self refresh];
+            [self maskViewTap];
+        }
+        
+        [MBProgressHUD showError:responseObject[@"message"]];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+}
 - (NSMutableArray *)vlaueArr{
     if (!_vlaueArr) {
         _vlaueArr = [[NSMutableArray alloc] init];
         
     }
     return _vlaueArr;
+}
+
+- (void)maskViewTap {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
+        
+    } completion:^(BOOL finished) {
+        [self.contentV removeFromSuperview];
+        [self.infoContentV removeFromSuperview];
+        [self.maskV removeFromSuperview];
+    }];
+    
+}
+
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
+}
+
+- (GLMine_PersonInfoCodeView *)contentV{
+    if (!_contentV) {
+        _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_PersonInfoCodeView" owner:nil options:nil].lastObject;
+        
+        _contentV.layer.cornerRadius = 5.f;
+        
+        _contentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 200);
+        _contentV.codeImageV.image = [self logoQrCode];
+        
+    }
+    return _contentV;
+}
+- (GLMine_CompleteInfoView *)infoContentV{
+    if (!_infoContentV) {
+        _infoContentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_CompleteInfoView" owner:nil options:nil].lastObject;
+        
+        _infoContentV.layer.cornerRadius = 5.f;
+        
+        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 170);
+        
+        [_infoContentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
+        
+        [_infoContentV.okBtn addTarget:self action:@selector(addQtIDandOilCardID) forControlEvents:UIControlEventTouchUpInside];
+        
+        _infoContentV.oilCardTextF.delegate = self;
+        _infoContentV.qtIDTextF.delegate = self;
+        
+    }
+    return _infoContentV;
 }
 @end

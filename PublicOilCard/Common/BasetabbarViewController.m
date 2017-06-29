@@ -54,8 +54,20 @@
     if ([UserModel defaultUser].loginstatus == YES) {//登录状态
         if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR] || [[UserModel defaultUser].group_id isEqualToString:MINISTER]) {//经理
             
+//            if ([UserModel defaultUser].loginstatus == YES) {
+//                
+//                if ([[UserModel defaultUser].isBqInfo integerValue] == 0) {
+//                    
+//                    GLCompleteInfoController *infoVC = [[GLCompleteInfoController alloc] init];
+//                    infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                    [self presentViewController:infoVC animated:YES completion:nil];
+//                    
+//                }
+//            }
+//            self.tabBarController.tabBar.delegate = self;
+//            [self setSelectedIndex:0];
             self.viewControllers = @[mineNav];
-            
+
         }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer] || [[UserModel defaultUser].group_id isEqualToString:OrdinaryUser]){//商家
             self.viewControllers = @[mallNav,uploadNav,mineNav];
         }else{
@@ -80,16 +92,29 @@
     item.titlePositionAdjustment = UIOffsetMake(0, -4);
     return item;
 }
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    if ([UserModel defaultUser].loginstatus == YES) {
+        
+        if ([[UserModel defaultUser].isBqInfo integerValue] == 0) {
+            
+            GLCompleteInfoController *infoVC = [[GLCompleteInfoController alloc] init];
+            infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            [self presentViewController:infoVC animated:YES completion:nil];
+     
+        }
+    }
+}
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     
     int index;
-    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser] ) {
+    if ([[UserModel defaultUser].group_id isEqualToString:OrdinaryUser] || [[UserModel defaultUser].group_id isEqualToString:Retailer] ) {
         
         index = 2;
         
-    }else if ([[UserModel defaultUser].group_id isEqualToString:Retailer] || [[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
+    }else if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
         
         index = 0;
         
@@ -106,7 +131,7 @@
 
         if ([UserModel defaultUser].loginstatus == YES) {
             
-            if ([[UserModel defaultUser].isBqInfo isEqualToString:@"0"]) {
+            if ([[UserModel defaultUser].isBqInfo integerValue] == 0) {
                 
                 GLCompleteInfoController *infoVC = [[GLCompleteInfoController alloc] init];
                 infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -116,6 +141,7 @@
             }
             return YES;
         }
+        
         GLLoginController *loginVC = [[GLLoginController alloc] init];
         BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
         nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

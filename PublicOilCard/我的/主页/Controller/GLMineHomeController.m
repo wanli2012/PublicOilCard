@@ -25,6 +25,7 @@
 #import <SDCycleScrollView/SDCycleScrollView.h>
 #import "GLMine_CompleteInfoView.h"
 #import <SDWebImage/UIButton+WebCache.h>
+#import "GLCompleteInfoController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate>
 {
@@ -72,10 +73,11 @@ static NSString *headerID = @"GLMine_HeaderView";
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
+    
    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
         
-        self.tabBarController.tabBar.hidden = YES;
-        
+       
+       self.tabBarController.tabBar.hidden = YES;
     }else{
         self.tabBarController.tabBar.hidden = NO;
     }
@@ -231,7 +233,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
         
     } completion:^(BOOL finished) {
-        //        [self.contentV removeFromSuperview];
+
         [self.maskV removeFromSuperview];
     }];
 }
