@@ -299,6 +299,7 @@
         {
             [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
             [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+            cell.openBtn.hidden = NO;
         }
             break;
     }

@@ -310,9 +310,6 @@
         [_loadV removeloadview];
         [self dismiss];
         if ([responseObject[@"code"] integerValue] == 1){
-            if (self.pushIndex == 3) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
-            }
             
             NSString *alipay = [[NSString alloc]init];
             alipay = responseObject[@"data"][@"alipay"];
@@ -329,7 +326,9 @@
                        [self.navigationController popViewControllerAnimated:YES];
                    }
                    self.hidesBottomBarWhenPushed = NO;
-                   
+                   if (self.pushIndex == 3) {
+                       [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
+                   }
                }else{
                    NSString *returnStr;
                    switch (orderState) {

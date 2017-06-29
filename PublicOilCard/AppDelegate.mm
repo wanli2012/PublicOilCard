@@ -99,6 +99,8 @@
                     
                     [[NSNotificationCenter defaultCenter]postNotificationName:@"Alipaysucess" object:nil];
                     
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
+                    
                 }else{
                     NSString *returnStr;
                     switch (orderState) {
