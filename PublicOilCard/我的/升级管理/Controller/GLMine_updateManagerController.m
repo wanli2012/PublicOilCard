@@ -129,6 +129,7 @@
                 
                 self.upgrade = responseObject[@"data"][@"upgrade"];
             }
+            self.is_pay = responseObject[@"data"][@"is_pay"];
             
             if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
                 

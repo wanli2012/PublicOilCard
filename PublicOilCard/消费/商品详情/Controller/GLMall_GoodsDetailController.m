@@ -397,6 +397,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         
         [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+
         content = [str string];
     }else{
         content = @"暂无";

@@ -15,5 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *typelb;
 
 @property (weak, nonatomic) IBOutlet UILabel *moemylb;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstent;
+@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *reasonLabelHeight;
+
 
 @end
