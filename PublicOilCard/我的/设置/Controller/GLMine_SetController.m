@@ -11,6 +11,8 @@
 #import "LBModifyPasswordViewController.h"
 #import "GLRecommendController.h"
 #import "LBViewProtocolViewController.h"
+#import "MinePhoneAlertView.h"
+
 
 @interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 {
@@ -20,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeight;
 @property (nonatomic , assign)float folderSize;//缓存
 @property (weak, nonatomic) IBOutlet UIButton *quitBtn;
+@property(nonatomic ,strong)MinePhoneAlertView  *phoneView;
+@property(nonatomic ,strong)NSString  *phonestr;//服务热线
 
 @end
 
@@ -28,6 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.phonestr = @"15228988355";
     self.navigationItem.title = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
@@ -108,7 +113,23 @@
             break;
         case 3:
         {
+            self.phoneView.transform=CGAffineTransformMakeScale(0, 0);
+
+                NSString *str=[NSString stringWithFormat:@"是否拨打电话? %@",self.phonestr];
+                NSMutableAttributedString *textColor = [[NSMutableAttributedString alloc]initWithString:str];
+                NSRange rangel = [[textColor string] rangeOfString:self.phonestr];
+                [textColor addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:76/255.0 green:140/255.0 blue:247/255.0 alpha:1] range:rangel];
+                //[textColor addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangel];
+                [_phoneView.titleLb setAttributedText:textColor];
+          
+            [[UIApplication sharedApplication].keyWindow addSubview:self.phoneView];
             
+            [UIView animateWithDuration:0.3 animations:^{
+                _phoneView.transform=CGAffineTransformIdentity;
+                
+            } completion:^(BOOL finished) {
+                
+            }];
         }
             break;
         case 4:
@@ -178,6 +199,35 @@
 
 -(void)clearCachSuccess{
     self.folderSize=[self filePath];
+    
+}
+-(MinePhoneAlertView *)phoneView{
+    
+    if (!_phoneView) {
+        _phoneView=[[NSBundle mainBundle]loadNibNamed:@"MinePhoneAlertView" owner:nil options:nil].firstObject;
+        _phoneView.frame=CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        _phoneView.backgroundColor=[UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        [_phoneView.cancelBt addTarget:self action:@selector(cancelbutton) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneView.sureBt addTarget:self action:@selector(surebuttonE) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _phoneView;
+}
+-(void)cancelbutton{
+    [UIView animateWithDuration:0.3 animations:^{
+        _phoneView.transform=CGAffineTransformMakeScale(0.000001, 0.000001);
+        
+    } completion:^(BOOL finished) {
+        
+        if (finished) {
+            [_phoneView removeFromSuperview];
+        }
+    }];
+    
+}
+-(void)surebuttonE{
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",self.phonestr]]]; //拨号
     
 }
 

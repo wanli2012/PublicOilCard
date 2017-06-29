@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UIView *contentV;
 @property (weak, nonatomic) IBOutlet UILabel *currentVersionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *zuixinLabel;
 
 @end
 
@@ -38,12 +39,61 @@
     
     [self logoQrCode];
     
+    [self Postpath:GET_VERSION];
+    
 }
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+
+- (IBAction)versionUpdate:(UIButton *)sender {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:DOWNLOAD_URL]];
+    
+}
+
+-(void)Postpath:(NSString *)path
+{
+    
+    NSURL *url = [NSURL URLWithString:path];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                                       timeoutInterval:10];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    
+    NSOperationQueue *queue = [NSOperationQueue new];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response,NSData *data,NSError *error){
+        NSMutableDictionary *receiveStatusDic=[[NSMutableDictionary alloc]init];
+        if (data) {
+            
+            NSDictionary *receiveDic = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:nil];
+            if ([[receiveDic valueForKey:@"resultCount"] intValue]>0) {
+                
+                [receiveStatusDic setValue:@"1" forKey:@"status"];
+                [receiveStatusDic setValue:[[[receiveDic valueForKey:@"results"] objectAtIndex:0] valueForKey:@"version"]   forKey:@"version"];
+            }else{
+                
+                [receiveStatusDic setValue:@"-1" forKey:@"status"];
+            }
+        }else{
+            [receiveStatusDic setValue:@"-1" forKey:@"status"];
+        }
+        
+        [self performSelectorOnMainThread:@selector(receiveData:) withObject:receiveStatusDic waitUntilDone:NO];
+    }];
+    
+}
+
+-(void)receiveData:(id)sender
+{
+    self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本:v%@",sender[@"version"]];
+    
+}
 
 
 //设置导航栏
@@ -63,7 +113,7 @@
     [qrImageFilter setDefaults];
     
     //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
-    NSString *contentStr = [NSString stringWithFormat:@"%@%@",SHARE_URL,[UserModel defaultUser].username];
+    NSString *contentStr = [NSString stringWithFormat:@"%@",DOWNLOAD_URL];
 //    NSString *contentStr = @"";
     NSData *qrImageData = [contentStr dataUsingEncoding:NSUTF8StringEncoding];
     
