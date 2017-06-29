@@ -105,10 +105,10 @@
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/check_yzm" paramDic:@{@"userphone":self.phoneTf.text,@"yzm":self.yabzTf.text} finish:^(id responseObject) {
 
+        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
             [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_pwd" paramDic:@{@"phone":self.phoneTf.text , @"new_pwd":self.secretTf.text , @"group_id":self.usertype } finish:^(id responseObject) {
-                [_loadV removeloadview];
                 if ([responseObject[@"code"] integerValue]==1) {
                     [MBProgressHUD showError:responseObject[@"message"]];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -246,10 +246,24 @@
     }];
     
 }
-//商家
+//首期代理
 -(void)lingbuttonE{
     _usertype = Retailer;
-    self.usertypeTf.text=@"个人代理";
+    self.usertypeTf.text=@"首期代理";
+    [UIView animateWithDuration:0.3 animations:^{
+        self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
+        
+    } completion:^(BOOL finished) {
+        
+        [self.maskView removeFromSuperview];
+        [self.selectUserTypeView removeFromSuperview];
+    }];
+    
+}
+//二期代理
+-(void)secondDelegateBtnE{
+    _usertype = TWODELEGATE;
+    self.usertypeTf.text=@"二期代理";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
@@ -350,16 +364,17 @@
     }
     
     return _maskView;
-    
 }
 
 -(SelectUserTypeView*)selectUserTypeView{
     
     if (!_selectUserTypeView) {
         _selectUserTypeView=[[NSBundle mainBundle]loadNibNamed:@"SelectUserTypeView" owner:self options:nil].firstObject;
-        _selectUserTypeView.frame=CGRectMake(10, 25, SCREEN_WIDTH-20, 180);
+        _selectUserTypeView.frame=CGRectMake(10, 10, SCREEN_WIDTH-20, 210);
+        
         [_selectUserTypeView.shanBt addTarget:self action:@selector(shangbuttonE) forControlEvents:UIControlEventTouchUpInside];
         [_selectUserTypeView.lingBt addTarget:self action:@selector(lingbuttonE) forControlEvents:UIControlEventTouchUpInside];
+        [_selectUserTypeView.secondDelegateBtn addTarget:self action:@selector(secondDelegateBtnE) forControlEvents:UIControlEventTouchUpInside];
         [_selectUserTypeView.ServiceBt addTarget:self action:@selector(ServiceBtE) forControlEvents:UIControlEventTouchUpInside];
         [_selectUserTypeView.ManufacturerBt addTarget:self action:@selector(ManufacturerBtE) forControlEvents:UIControlEventTouchUpInside];
         [_selectUserTypeView.TraderBt addTarget:self action:@selector(TraderBtE) forControlEvents:UIControlEventTouchUpInside];

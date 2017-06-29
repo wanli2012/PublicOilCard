@@ -35,12 +35,12 @@
 //公告
 #define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 
-//个人代理
+//个人代理 首期代理
 #define Retailer @"4"
 //会员
 #define OrdinaryUser @"6"
-////二期代理
-//#define TWODELEGATE @"5"
+//二期代理
+#define TWODELEGATE @"5"
 ////首期代理
 //#define ONEDELEGATE @"4"
 //经理

@@ -258,6 +258,7 @@
             }else{
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                cell.openBtn.hidden = YES;
             }
             
         }
@@ -271,6 +272,8 @@
             }else{
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                cell.openBtn.hidden = YES;
+
             }
         }
             break;
@@ -284,6 +287,7 @@
                 
                 [cell.openBtn setTitle:@"立即开通" forState:UIControlStateNormal];
                 [cell.openBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
+                cell.openBtn.hidden = YES;
             }
             
         }

@@ -58,9 +58,17 @@
     self.tableView.mj_footer = footer;
     
     [self updateData:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUI) name:@"UploadSuccessfulNotification" object:nil];
     
 }
+- (void)refreshUI{
+    [self updateData:YES];
+}
 
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)updateData:(BOOL)status {
     if (status) {
         
@@ -123,6 +131,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
+    
 }
 
 - (IBAction)upload:(id)sender {

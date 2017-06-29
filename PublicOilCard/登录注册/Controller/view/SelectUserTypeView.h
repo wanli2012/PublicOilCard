@@ -11,13 +11,15 @@
 @interface SelectUserTypeView : UIView
 //会员
 @property (weak, nonatomic) IBOutlet UIButton *shanBt;
-//商家
+//首期代理
 @property (weak, nonatomic) IBOutlet UIButton *lingBt;
-//副总
+//二期代理
+@property (weak, nonatomic) IBOutlet UIButton *secondDelegateBtn;
+//经理
 @property (weak, nonatomic) IBOutlet UIButton *ServiceBt;
-//高级推广员
+//总监
 @property (weak, nonatomic) IBOutlet UIButton *ManufacturerBt;
-//推广员
+//部长
 @property (weak, nonatomic) IBOutlet UIButton *TraderBt;
 ////零售
 //@property (weak, nonatomic) IBOutlet UIButton *lingshouBt;

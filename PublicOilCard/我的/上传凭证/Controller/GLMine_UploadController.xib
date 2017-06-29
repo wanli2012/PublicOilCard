@@ -24,11 +24,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="388" height="700"/>
+            <rect key="frame" x="0.0" y="0.0" width="388" height="627"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgM-U9-sKL">
-                    <rect key="frame" x="0.0" y="64" width="388" height="636"/>
+                    <rect key="frame" x="0.0" y="64" width="388" height="563"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOm-Sx-RzM">
                             <rect key="frame" x="0.0" y="0.0" width="388" height="695"/>
@@ -173,6 +173,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="next"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="RFu-Qq-xxY"/>
+                                            </connections>
                                         </textField>
                                         <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7MC-ub-JPY">
                                             <rect key="frame" x="0.0" y="49" width="328" height="1"/>
@@ -253,7 +256,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="40" y="70"/>
+            <point key="canvasLocation" x="40" y="33.5"/>
         </view>
         <tapGestureRecognizer id="xZm-FM-Ogz">
             <connections>

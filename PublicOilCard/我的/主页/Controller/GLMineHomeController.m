@@ -317,9 +317,11 @@ static NSString *headerID = @"GLMine_HeaderView";
     switch (indexPath.row) {
         case 0:
         {
-            if ([[UserModel defaultUser].group_id integerValue] != 6) {
+            if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
+
                 if ([[UserModel defaultUser].group_id integerValue] == 3) {
                     [MBProgressHUD showError:@"权限不足,无法开通下级"];
+                    return;
                 }
                 GLMine_OpenController *openVC = [[GLMine_OpenController alloc] init];
                 [self.navigationController pushViewController:openVC animated:YES];
@@ -333,7 +335,8 @@ static NSString *headerID = @"GLMine_HeaderView";
             break;
         case 1:
         {
-            if ([[UserModel defaultUser].group_id integerValue] != 6) {
+            if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
+
                 GLMine_RelationshipController *vc = [[GLMine_RelationshipController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
                 
@@ -347,7 +350,8 @@ static NSString *headerID = @"GLMine_HeaderView";
             break;
         case 2:
         {
-            if ([[UserModel defaultUser].group_id integerValue] != 6) {
+            if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
+
                 
                 LBExchangeViewController *exchageVC = [[LBExchangeViewController alloc] init];
                 [self.navigationController pushViewController:exchageVC animated:YES];
@@ -454,7 +458,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
     
-    if ([[UserModel defaultUser].group_id integerValue] != 6) {//非会员
+    if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {//非会员
         
         return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY);
         
@@ -556,7 +560,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 - (NSArray *)titleArr{
     if (!_titleArr) {
 
-        if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4) {
+        if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4 || [[UserModel defaultUser].group_id integerValue] == 5) {
              _titleArr=[NSArray arrayWithObjects:@"收藏",@"订单",@"升级管理",@"推荐", nil];
         }else if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
             _titleArr=[NSArray arrayWithObjects:@"开通",@"关系",@"兑换",@"推荐", nil];
@@ -566,7 +570,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 }
 - (NSArray *)imageArr{
     if (!_imageArr) {
-       if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4) {
+       if ([[UserModel defaultUser].group_id integerValue] == 6 || [[UserModel defaultUser].group_id integerValue] == 4||[[UserModel defaultUser].group_id integerValue] == 5) {
            
            _imageArr = [NSArray arrayWithObjects:@"收藏",@"订单",@"升级管理",@"推荐", nil];
        }else{

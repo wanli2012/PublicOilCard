@@ -12,6 +12,7 @@
 @interface GLMine_UploadController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     LoadWaitView *_loadV;
+        bool isHaveDian;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
@@ -77,6 +78,73 @@
     [self presentViewController:alertVC animated:YES completion:nil];
 
 }
+#pragma mark - UITextField delegate
+//textField.text 输入之前的值 string 输入的字符
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+
+    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+        isHaveDian = NO;
+    }
+    if ([string length] > 0) {
+        
+        unichar single = [string characterAtIndex:0];//当前输入的字符
+        
+        if ((single >= '0' && single <= '9') || single == '.') {//数据格式正确
+            
+            //首字母不能为0和小数点
+            if([textField.text length] == 0){
+                if(single == '.') {
+                    [MBProgressHUD showError:@"亲，第一个数字不能为小数点"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+                if (single == '0') {
+                    [MBProgressHUD showError:@"亲，第一个数字不能为0"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }
+            
+            //输入的字符是否是小数点
+            if (single == '.') {
+                if(!isHaveDian)//text中还没有小数点
+                {
+                    isHaveDian = YES;
+                    return YES;
+                    
+                }else{
+                    [MBProgressHUD showError:@"亲，您已经输入过小数点了"];
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }else{
+                if (isHaveDian) {//存在小数点
+                    
+                    //判断小数点的位数
+                    NSRange ran = [textField.text rangeOfString:@"."];
+                    if (range.location - ran.location <= 2) {
+                        return YES;
+                    }else{
+                        [MBProgressHUD showError:@"亲，您最多输入两位小数"];
+                        return NO;
+                    }
+                }else{
+                    return YES;
+                }
+            }
+        }else{//输入的数据格式不正确
+            [MBProgressHUD showError:@"亲，您输入的格式不正确"];
+            [textField.text stringByReplacingCharactersInRange:range withString:@""];
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+}
+
 #pragma mark 调相机 相册
 -(void)getpicture{
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -143,6 +211,9 @@
     if(self.moneyTextF.text.length == 0){
         [MBProgressHUD showError:@"请输入金额"];
         return;
+    }else if([self.moneyTextF.text floatValue] <= 0){
+        [MBProgressHUD showError:@"金额必须大于0"];
+        return;
     }
     //拿到图片准备上传
     NSDictionary *dic;
@@ -173,9 +244,9 @@
     }progress:^(NSProgress *uploadProgress){
         
         [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        [SVProgressHUD setCornerRadius:8.0];
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+//        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//        [SVProgressHUD setCornerRadius:8.0];
         
         if (uploadProgress.fractionCompleted == 1.0) {
             [SVProgressHUD dismiss];
@@ -188,6 +259,7 @@
             self.moneyTextF.text = @"";
             [MBProgressHUD showError:dic[@"message"]];
             [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadSuccessfulNotification" object:nil];
         }else{
             [MBProgressHUD showError:dic[@"message"]];
         }

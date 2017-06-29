@@ -125,7 +125,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)invocation
 {
-    invocation.target = @"";
+//    invocation.target = @"";
     [invocation invoke];
 }
 

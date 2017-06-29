@@ -37,6 +37,31 @@
 }
 //提交
 - (IBAction)submitevent:(UIButton *)sender {
+    if (self.newaTf.text.length <= 0) {
+        [MBProgressHUD showError:@"密码不能为空"];
+        return;
+    }
+    if (self.newaTf.text.length < 6 || self.newaTf.text.length > 20) {
+        [MBProgressHUD showError:@"请输入6-20位密码"];
+        return;
+    }
+    
+    if ([predicateModel checkIsHaveNumAndLetter:self.newaTf.text] != 3) {
+        
+        [MBProgressHUD showError:@"密码须包含数字和字母"];
+        return;
+    }
+    
+    if (self.repeatTf.text.length <= 0) {
+        [MBProgressHUD showError:@"请输入确认密码"];
+        return;
+    }
+    
+    if (![self.newaTf.text isEqualToString:self.repeatTf.text]) {
+        [MBProgressHUD showError:@"两次输入的密码不一致"];
+        return;
+    }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
     dict[@"uid"] = [UserModel defaultUser].uid;

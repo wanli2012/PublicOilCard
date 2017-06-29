@@ -150,7 +150,7 @@
     }
     
     cell.moemylb.text = [NSString stringWithFormat:@"¥%@",self.dataarr[indexPath.row][@"back_money"]];
-
+    cell.reasonLabel.text = [NSString stringWithFormat:@"失败理由:%@",self.dataarr[indexPath.row][@"fail_reason"]];
     return cell;
     
 }
