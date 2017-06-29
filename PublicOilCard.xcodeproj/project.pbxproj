@@ -51,6 +51,12 @@
 		4A39F5041EF3F6480038C147 /* GLMall_GoodsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A39F5021EF3F6480038C147 /* GLMall_GoodsHeaderView.xib */; };
 		4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F5071EF406A60038C147 /* JZAlbumViewController.m */; };
 		4A39F50B1EF406A60038C147 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A39F5091EF406A60038C147 /* PhotoView.m */; };
+		4A4924161F04DEFA00C549EB /* GLMine_UploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A49240C1F04DEFA00C549EB /* GLMine_UploadController.m */; };
+		4A4924171F04DEFA00C549EB /* GLMine_UploadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A49240D1F04DEFA00C549EB /* GLMine_UploadController.xib */; };
+		4A4924181F04DEFA00C549EB /* GLMine_UploadRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A49240F1F04DEFA00C549EB /* GLMine_UploadRecordController.m */; };
+		4A4924191F04DEFA00C549EB /* GLMine_UploadRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4924101F04DEFA00C549EB /* GLMine_UploadRecordController.xib */; };
+		4A49241A1F04DEFA00C549EB /* GLMine_UploadRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */; };
+		4A49241B1F04DEFA00C549EB /* GLMine_UploadRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */; };
 		4A4FA5871EF0CA1100A256D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5861EF0CA1100A256D2 /* main.m */; };
 		4A4FA58A1EF0CA1100A256D2 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5891EF0CA1100A256D2 /* AppDelegate.mm */; };
 		4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA58C1EF0CA1100A256D2 /* ViewController.m */; };
@@ -358,14 +364,8 @@
 		4A5BBBE81EF26A35008270F2 /* NodataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBBE31EF26A35008270F2 /* NodataView.m */; };
 		4A5BBBE91EF26A35008270F2 /* NodataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BBBE41EF26A35008270F2 /* NodataView.xib */; };
 		4A5BBBED1EF26AED008270F2 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBBEC1EF26AED008270F2 /* NetworkManager.m */; };
-		4A69C8E61F00EDE100035664 /* GLMine_UploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A69C8E41F00EDE100035664 /* GLMine_UploadController.m */; };
-		4A69C8E71F00EDE100035664 /* GLMine_UploadController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A69C8E51F00EDE100035664 /* GLMine_UploadController.xib */; };
 		4A69C8EA1F00F07F00035664 /* GLMine_CompleteInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A69C8E91F00F07F00035664 /* GLMine_CompleteInfoView.m */; };
 		4A69C8EC1F00F08B00035664 /* GLMine_CompleteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A69C8EB1F00F08B00035664 /* GLMine_CompleteInfoView.xib */; };
-		4A69C8F01F010B6B00035664 /* GLMine_UploadRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A69C8EE1F010B6B00035664 /* GLMine_UploadRecordController.m */; };
-		4A69C8F11F010B6B00035664 /* GLMine_UploadRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A69C8EF1F010B6B00035664 /* GLMine_UploadRecordController.xib */; };
-		4A69C8F51F010BAA00035664 /* GLMine_UploadRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A69C8F31F010BAA00035664 /* GLMine_UploadRecordCell.m */; };
-		4A69C8F61F010BAA00035664 /* GLMine_UploadRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A69C8F41F010BAA00035664 /* GLMine_UploadRecordCell.xib */; };
 		4A6ADC921EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADC901EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m */; };
 		4A6ADC931EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6ADC911EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib */; };
 		4A6ADC961EF7BB0900C99498 /* editorMaskPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADC951EF7BB0900C99498 /* editorMaskPresentationController.m */; };
@@ -400,8 +400,6 @@
 		4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEEC9CB1EF28C3700F827BB /* GLMine_updateManagerController.xib */; };
 		4AEEC9D11EF28DF500F827BB /* GLMine_updateManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEC9CF1EF28DF500F827BB /* GLMine_updateManagerCell.m */; };
 		4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D01EF28DF500F827BB /* GLMine_updateManagerCell.xib */; };
-		4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D41EF2A62300F827BB /* GLMine_updateManagerAllCell.m */; };
-		4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEEC9D51EF2A62300F827BB /* GLMine_updateManagerAllCell.xib */; };
 		847D8655779E28C7BBDF27AB /* Pods_PublicOilCard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24F5205C5ECB12FF995636AD /* Pods_PublicOilCard.framework */; };
 		F91CA9611EFB6F3700817DEF /* LBViewProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F91CA95F1EFB6F3700817DEF /* LBViewProtocolViewController.m */; };
 		F91CA9621EFB6F3700817DEF /* LBViewProtocolViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91CA9601EFB6F3700817DEF /* LBViewProtocolViewController.xib */; };
@@ -532,6 +530,15 @@
 		4A39F5071EF406A60038C147 /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
 		4A39F5081EF406A60038C147 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
 		4A39F5091EF406A60038C147 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		4A49240B1F04DEFA00C549EB /* GLMine_UploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadController.h; sourceTree = "<group>"; };
+		4A49240C1F04DEFA00C549EB /* GLMine_UploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadController.m; sourceTree = "<group>"; };
+		4A49240D1F04DEFA00C549EB /* GLMine_UploadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadController.xib; sourceTree = "<group>"; };
+		4A49240E1F04DEFA00C549EB /* GLMine_UploadRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadRecordController.h; sourceTree = "<group>"; };
+		4A49240F1F04DEFA00C549EB /* GLMine_UploadRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadRecordController.m; sourceTree = "<group>"; };
+		4A4924101F04DEFA00C549EB /* GLMine_UploadRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadRecordController.xib; sourceTree = "<group>"; };
+		4A4924131F04DEFA00C549EB /* GLMine_UploadRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadRecordCell.h; sourceTree = "<group>"; };
+		4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadRecordCell.m; sourceTree = "<group>"; };
+		4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadRecordCell.xib; sourceTree = "<group>"; };
 		4A4FA5821EF0CA1100A256D2 /* PublicOilCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicOilCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4FA5861EF0CA1100A256D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PublicOilCard/AppDelegate.h; sourceTree = "<group>"; };
@@ -1139,18 +1146,9 @@
 		4A5BBBE41EF26A35008270F2 /* NodataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodataView.xib; sourceTree = "<group>"; };
 		4A5BBBEB1EF26AED008270F2 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		4A5BBBEC1EF26AED008270F2 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
-		4A69C8E31F00EDE100035664 /* GLMine_UploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadController.h; sourceTree = "<group>"; };
-		4A69C8E41F00EDE100035664 /* GLMine_UploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadController.m; sourceTree = "<group>"; };
-		4A69C8E51F00EDE100035664 /* GLMine_UploadController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadController.xib; sourceTree = "<group>"; };
 		4A69C8E81F00F07F00035664 /* GLMine_CompleteInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_CompleteInfoView.h; sourceTree = "<group>"; };
 		4A69C8E91F00F07F00035664 /* GLMine_CompleteInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_CompleteInfoView.m; sourceTree = "<group>"; };
 		4A69C8EB1F00F08B00035664 /* GLMine_CompleteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_CompleteInfoView.xib; sourceTree = "<group>"; };
-		4A69C8ED1F010B6A00035664 /* GLMine_UploadRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadRecordController.h; sourceTree = "<group>"; };
-		4A69C8EE1F010B6B00035664 /* GLMine_UploadRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadRecordController.m; sourceTree = "<group>"; };
-		4A69C8EF1F010B6B00035664 /* GLMine_UploadRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadRecordController.xib; sourceTree = "<group>"; };
-		4A69C8F21F010BAA00035664 /* GLMine_UploadRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadRecordCell.h; sourceTree = "<group>"; };
-		4A69C8F31F010BAA00035664 /* GLMine_UploadRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadRecordCell.m; sourceTree = "<group>"; };
-		4A69C8F41F010BAA00035664 /* GLMine_UploadRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadRecordCell.xib; sourceTree = "<group>"; };
 		4A6ADC8F1EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBMineCenterChooseAreaViewController.h; sourceTree = "<group>"; };
 		4A6ADC901EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBMineCenterChooseAreaViewController.m; sourceTree = "<group>"; };
 		4A6ADC911EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LBMineCenterChooseAreaViewController.xib; sourceTree = "<group>"; };
@@ -1465,7 +1463,6 @@
 		4A39F49F1EF3B60E0038C147 /* 兑换 */ = {
 			isa = PBXGroup;
 			children = (
-				4AEC05931EF1425F00B39497 /* 升级管理 */,
 				4A39F4A01EF3B60E0038C147 /* Controller */,
 				4A39F4A11EF3B60E0038C147 /* Model */,
 				4A39F4A21EF3B60E0038C147 /* View */,
@@ -1651,6 +1648,46 @@
 			path = "IOS图片浏览器";
 			sourceTree = "<group>";
 		};
+		4A4924091F04DEFA00C549EB /* 上传凭证 */ = {
+			isa = PBXGroup;
+			children = (
+				4A49240A1F04DEFA00C549EB /* Controller */,
+				4A4924111F04DEFA00C549EB /* Model */,
+				4A4924121F04DEFA00C549EB /* View */,
+			);
+			path = "上传凭证";
+			sourceTree = "<group>";
+		};
+		4A49240A1F04DEFA00C549EB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A49240B1F04DEFA00C549EB /* GLMine_UploadController.h */,
+				4A49240C1F04DEFA00C549EB /* GLMine_UploadController.m */,
+				4A49240D1F04DEFA00C549EB /* GLMine_UploadController.xib */,
+				4A49240E1F04DEFA00C549EB /* GLMine_UploadRecordController.h */,
+				4A49240F1F04DEFA00C549EB /* GLMine_UploadRecordController.m */,
+				4A4924101F04DEFA00C549EB /* GLMine_UploadRecordController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A4924111F04DEFA00C549EB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A4924121F04DEFA00C549EB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A4924131F04DEFA00C549EB /* GLMine_UploadRecordCell.h */,
+				4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */,
+				4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4A4FA5791EF0CA1000A256D2 = {
 			isa = PBXGroup;
 			children = (
@@ -1682,7 +1719,7 @@
 				4A5BBBBF1EF2659F008270F2 /* 登录注册 */,
 				4A39F4881EF3838C0038C147 /* 补全信息 */,
 				4A4FA5E41EF0DDF500A256D2 /* 消费 */,
-				4A69C8DF1F00ED8000035664 /* 上传凭证 */,
+				4A4924091F04DEFA00C549EB /* 上传凭证 */,
 				4A4FA59F1EF0CEEF00A256D2 /* 我的 */,
 				4A39F4D21EF3C6420038C147 /* 支付页面 */,
 				4A4FA5B61EF0D8EE00A256D2 /* Tool(工具类) */,
@@ -1718,6 +1755,7 @@
 				4A6ADC971EF7E00700C99498 /* 个人信息 */,
 				4A39F4911EF3AF9E0038C147 /* 设置 */,
 				4AEEC9C01EF28B2D00F827BB /* 开卡 */,
+				4AEC05931EF1425F00B39497 /* 升级管理 */,
 				4A39F49F1EF3B60E0038C147 /* 兑换 */,
 				4AEC05A01EF1471600B39497 /* 消息 */,
 				4AEC05811EF13C7600B39497 /* 收藏 */,
@@ -2784,47 +2822,6 @@
 			path = "网络请求";
 			sourceTree = "<group>";
 		};
-		4A69C8DF1F00ED8000035664 /* 上传凭证 */ = {
-			isa = PBXGroup;
-			children = (
-				4A69C8E01F00ED8000035664 /* Controller */,
-				4A69C8E11F00ED8000035664 /* Model */,
-				4A69C8E21F00ED8000035664 /* View */,
-			);
-			name = "上传凭证";
-			path = "我的/上传凭证";
-			sourceTree = "<group>";
-		};
-		4A69C8E01F00ED8000035664 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				4A69C8ED1F010B6A00035664 /* GLMine_UploadRecordController.h */,
-				4A69C8EE1F010B6B00035664 /* GLMine_UploadRecordController.m */,
-				4A69C8EF1F010B6B00035664 /* GLMine_UploadRecordController.xib */,
-				4A69C8E31F00EDE100035664 /* GLMine_UploadController.h */,
-				4A69C8E41F00EDE100035664 /* GLMine_UploadController.m */,
-				4A69C8E51F00EDE100035664 /* GLMine_UploadController.xib */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		4A69C8E11F00ED8000035664 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		4A69C8E21F00ED8000035664 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A69C8F21F010BAA00035664 /* GLMine_UploadRecordCell.h */,
-				4A69C8F31F010BAA00035664 /* GLMine_UploadRecordCell.m */,
-				4A69C8F41F010BAA00035664 /* GLMine_UploadRecordCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		4A6ADC971EF7E00700C99498 /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2944,8 +2941,7 @@
 				4AEC05951EF1425F00B39497 /* Model */,
 				4AEC05961EF1425F00B39497 /* View */,
 			);
-			name = "升级管理";
-			path = "../升级管理";
+			path = "升级管理";
 			sourceTree = "<group>";
 		};
 		4AEC05941EF1425F00B39497 /* Controller */ = {
@@ -3297,12 +3293,13 @@
 				F95D46011EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib in Resources */,
 				F92DA95C1EF518B400530237 /* LBWriteInfoTableViewCell.xib in Resources */,
 				4AEC058E1EF13CE400B39497 /* GLMine_CollectCell.xib in Resources */,
-				4A69C8F11F010B6B00035664 /* GLMine_UploadRecordController.xib in Resources */,
 				4AEC05801EF1151600B39497 /* GLMine_HeaderView.xib in Resources */,
 				4A5BBBA91EF23513008270F2 /* GLMine_OrderController.xib in Resources */,
 				4A5331111EFE763E009C3593 /* CodeScan.bundle in Resources */,
+				4A4924171F04DEFA00C549EB /* GLMine_UploadController.xib in Resources */,
 				4A39F5041EF3F6480038C147 /* GLMall_GoodsHeaderView.xib in Resources */,
 				4A5BBBB51EF2555C008270F2 /* GLMine_OrderSectionHeader.xib in Resources */,
+				4A49241B1F04DEFA00C549EB /* GLMine_UploadRecordCell.xib in Resources */,
 				4A39F4C01EF3B7AA0038C147 /* GLMine_ExchangeRecord_SuccessController.xib in Resources */,
 				4A39F4901EF383EB0038C147 /* GLCompleteInfoController.xib in Resources */,
 				4A5BBBD51EF2659F008270F2 /* GLRegisterController.xib in Resources */,
@@ -3313,7 +3310,6 @@
 				4AEEC9B11EF2742E00F827BB /* GLMine_RecommendRecordController.xib in Resources */,
 				4A2924821EFB58860081F797 /* GLShareView.xib in Resources */,
 				4A39F4E71EF3DA600038C147 /* GLMallHomeCell.xib in Resources */,
-				4A69C8F61F010BAA00035664 /* GLMine_UploadRecordCell.xib in Resources */,
 				4A5BBBE91EF26A35008270F2 /* NodataView.xib in Resources */,
 				4A39F4991EF3AFB00038C147 /* GLMine_SetController.xib in Resources */,
 				F95D45FC1EFA51FF0011C69B /* GLMine_ExchangeRecord_FailController.xib in Resources */,
@@ -3325,11 +3321,11 @@
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
+				4A4924191F04DEFA00C549EB /* GLMine_UploadRecordController.xib in Resources */,
 				4A39F4C81EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib in Resources */,
 				F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */,
 				F95F710D1F04A0B100FF7AB5 /* MinePhoneAlertView.xib in Resources */,
 				4A6ADC931EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib in Resources */,
-				4AEEC9D71EF2A62300F827BB /* GLMine_updateManagerAllCell.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
 				F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
@@ -3343,7 +3339,6 @@
 				F92DA9571EF5170400530237 /* LBChooseTypeTableViewCell.xib in Resources */,
 				4A4FA5951EF0CA1100A256D2 /* Assets.xcassets in Resources */,
 				4AEC05A81EF1472900B39497 /* GLMine_InfoController.xib in Resources */,
-				4A69C8E71F00EDE100035664 /* GLMine_UploadController.xib in Resources */,
 				4A532EE81EFE755A009C3593 /* ScanResultViewController.xib in Resources */,
 				4A5BBB961EF21617008270F2 /* GLMine_InfoCell.xib in Resources */,
 				4A4FA5F41EF0E16A00A256D2 /* Common.xcassets in Resources */,
@@ -3435,6 +3430,7 @@
 				4A5331271EFE763F009C3593 /* ZXEmailDoCoMoResultParser.m in Sources */,
 				4A5BBBD41EF2659F008270F2 /* GLRegisterController.m in Sources */,
 				4A4FA5D91EF0D97B00A256D2 /* MBProgressHUD+LB.m in Sources */,
+				4A4924161F04DEFA00C549EB /* GLMine_UploadController.m in Sources */,
 				4A53315A1EFE763F009C3593 /* ZXStringUtils.m in Sources */,
 				4A5331691EFE763F009C3593 /* ZXDataMatrixDataBlock.m in Sources */,
 				F9652D5B1EF76B1600DD229F /* LBModifyPasswordViewController.m in Sources */,
@@ -3478,7 +3474,6 @@
 				4A5331A01EFE763F009C3593 /* ZXCodaBarWriter.m in Sources */,
 				4A5331881EFE763F009C3593 /* ZXAI013x0xDecoder.m in Sources */,
 				4A39F4821EF365D10038C147 /* GLMine_updateManagerModel.m in Sources */,
-				4A69C8F51F010BAA00035664 /* GLMine_UploadRecordCell.m in Sources */,
 				4A5331DD1EFE763F009C3593 /* ZXQRCodeAlignmentPatternFinder.m in Sources */,
 				4A4FA5FD1EF1068C00A256D2 /* GLMine_collectionCell.m in Sources */,
 				4A5331C91EFE763F009C3593 /* ZXPDF417BarcodeMatrix.m in Sources */,
@@ -3501,12 +3496,12 @@
 				4A5331931EFE763F009C3593 /* ZXRSSExpandedFieldParser.m in Sources */,
 				4A5331651EFE763F009C3593 /* ZXResult.m in Sources */,
 				4A5331A81EFE763F009C3593 /* ZXEAN8Reader.m in Sources */,
+				4A4924181F04DEFA00C549EB /* GLMine_UploadRecordController.m in Sources */,
 				4A5331661EFE763F009C3593 /* ZXResultPoint.m in Sources */,
 				F95D45F31EFA4A980011C69B /* TYAlertView.m in Sources */,
 				4AEEC9BD1EF281A300F827BB /* PopMenuTableViewCell.m in Sources */,
 				4A5331D01EFE763F009C3593 /* ZXPDF417ResultMetadata.m in Sources */,
 				4A5331241EFE763F009C3593 /* ZXCalendarParsedResult.m in Sources */,
-				4A69C8E61F00EDE100035664 /* GLMine_UploadController.m in Sources */,
 				4A532F1C1EFE75E0009C3593 /* UIAlertView+LBXAlertAction.m in Sources */,
 				F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */,
 				4A5331771EFE763F009C3593 /* ZXDataMatrixSymbolInfo144.m in Sources */,
@@ -3679,7 +3674,6 @@
 				4A53314B1EFE763F009C3593 /* ZXReedSolomonEncoder.m in Sources */,
 				F92DA9601EF5194900530237 /* LBExchangeJiFenTableViewCell.m in Sources */,
 				4AEC057F1EF1151600B39497 /* GLMine_HeaderView.m in Sources */,
-				4A69C8F01F010B6B00035664 /* GLMine_UploadRecordController.m in Sources */,
 				4A53318A1EFE763F009C3593 /* ZXAI01decoder.m in Sources */,
 				4A532F1B1EFE75E0009C3593 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				4A39F4981EF3AFB00038C147 /* GLMine_SetController.m in Sources */,
@@ -3780,11 +3774,11 @@
 				4A5331571EFE763F009C3593 /* ZXHybridBinarizer.m in Sources */,
 				4A53316A1EFE763F009C3593 /* ZXDataMatrixDecodedBitStreamParser.m in Sources */,
 				4A5331B01EFE763F009C3593 /* ZXOneDReader.m in Sources */,
-				4AEEC9D61EF2A62300F827BB /* GLMine_updateManagerAllCell.m in Sources */,
 				4A53317D1EFE763F009C3593 /* ZXMaxiCodeDecodedBitStreamParser.m in Sources */,
 				4A5331D31EFE763F009C3593 /* ZXQRCodeDataBlock.m in Sources */,
 				4A5331B51EFE763F009C3593 /* ZXUPCEANExtensionSupport.m in Sources */,
 				4A5201E31EF904FE0096DB0C /* GLMine_CollectModel.m in Sources */,
+				4A49241A1F04DEFA00C549EB /* GLMine_UploadRecordCell.m in Sources */,
 				4A5331C31EFE763F009C3593 /* ZXPDF417DetectionResultColumn.m in Sources */,
 				4A6ADCA11EF7E00700C99498 /* GLMine_PersonInfoController.m in Sources */,
 			);

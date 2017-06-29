@@ -84,9 +84,12 @@
     self.tableView.mj_footer = footer;
     
     [self updateData:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"updateManagerNotification" object:nil];
     
 }
-
+- (void)refresh {
+    [self updateData:YES];
+}
 - (void)updateData:(BOOL)status {
     if (status) {
         
