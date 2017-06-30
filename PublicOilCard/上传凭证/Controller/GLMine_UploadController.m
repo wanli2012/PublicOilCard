@@ -8,18 +8,20 @@
 
 #import "GLMine_UploadController.h"
 #import "GLMine_UploadRecordController.h"
+#import "HZQDatePickerView.h"
 
-@interface GLMine_UploadController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface GLMine_UploadController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HZQDatePickerViewDelegate>
 {
     LoadWaitView *_loadV;
         bool isHaveDian;
+    HZQDatePickerView *_pikerView;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 @property (weak, nonatomic) IBOutlet UILabel *oilCardNumLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTextF;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
@@ -50,8 +52,8 @@
     self.navigationItem.title = @"上传凭证";
     self.submitBtn.layer.cornerRadius = 5.f;
     self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
-    self.userNameLabel.text = [UserModel defaultUser].username;
-    self.noticeLabel.text = @" 1.该凭证为用户加油站加油成功后提供的加油小票的图片\n 2.该凭证不作为奖励积分的依据\n 3.请保证凭证图片的真实性";
+//    self.userNameLabel.text = [UserModel defaultUser].username;
+    self.noticeLabel.text = @" 1.会员到全国中石油及中石化加油网点加油消费后，会员应打印当次真实消费凭据，拍摄相片上传至本系统，并在输入消费金额填写栏，填写消费金额.\n 2.该金额会员须输入与当次真实消费凭据金额相同，会员不能虚填或错填，此数据是作为真实消费凭据及奖励核对.\n 3.如会员输入该金额与真实消费金额不符或恶意错填等，因此造成该消费相应奖励不及时或取消，则由会员自行负责";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -59,7 +61,27 @@
     self.navigationController.navigationBar.hidden = NO;
     
 }
-//上传图片
+#pragma mark 选择时间
+- (IBAction)chooseDate:(id)sender {
+    [self setupDateView:DateTypeOfStart];
+}
+- (void)setupDateView:(DateType)type {
+    
+    _pikerView = [HZQDatePickerView instanceDatePickerView];
+    _pikerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT + 20);
+    [_pikerView setBackgroundColor:[UIColor clearColor]];
+    _pikerView.delegate = self;
+    _pikerView.type = type;
+    [_pikerView.datePickerView setMinimumDate:[NSDate date]];
+    [self.view addSubview:_pikerView];
+    
+}
+- (void)getSelectDate:(NSString *)date type:(DateType)type {
+    
+    self.dateLabel.text = date;
+    
+}
+#pragma mark 上传图片
 - (IBAction)choosePicture:(id)sender {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"用相机拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -186,9 +208,9 @@
         NSData *data;
         if (UIImagePNGRepresentation(image) == nil) {
             
-            data = UIImageJPEGRepresentation(image, 0.2);
+            data = UIImageJPEGRepresentation(image, 1);
         }else {
-            data=    UIImageJPEGRepresentation(image, 0.2);
+            data=    UIImageJPEGRepresentation(image, 1);
         }
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
@@ -202,7 +224,7 @@
     
     
 }
-
+#pragma mark 提交
 - (IBAction)submit:(id)sender {
     if([UserModel defaultUser].jyzSelfCardNum.length == 0){
         [MBProgressHUD showError:@"你还未绑定油卡"];
@@ -215,13 +237,22 @@
         [MBProgressHUD showError:@"金额必须大于0"];
         return;
     }
+//    NSDate * senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+    [dateformatter setDateFormat:@"YYYY-MM-dd"];
+//    NSString *  locationString=[dateformatter stringFromDate:senddate];
+    NSDate * now = [dateformatter dateFromString:self.dateLabel.text];
+    //转成时间戳
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[now timeIntervalSince1970]];
+  
     //拿到图片准备上传
     NSDictionary *dic;
     dic=@{@"token":[UserModel defaultUser].token ,
           @"uid":[UserModel defaultUser].uid ,
-          @"user_name":[UserModel defaultUser].username,
+          @"buytime":timeSp,
           @"qt_id":[UserModel defaultUser].qtIdNum ,
-          @"order_money":self.moneyTextF.text};
+          @"order_money":self.moneyTextF.text,
+          @"user_name":[UserModel defaultUser].username};
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -272,9 +303,6 @@
  
 }
 
-- (void)record{
-    
-}
 - (IBAction)record:(id)sender {
     self.hidesBottomBarWhenPushed = YES;
     GLMine_UploadRecordController *recordVC = [[GLMine_UploadRecordController alloc] init];

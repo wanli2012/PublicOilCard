@@ -57,6 +57,9 @@
 		4A4924191F04DEFA00C549EB /* GLMine_UploadRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4924101F04DEFA00C549EB /* GLMine_UploadRecordController.xib */; };
 		4A49241A1F04DEFA00C549EB /* GLMine_UploadRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */; };
 		4A49241B1F04DEFA00C549EB /* GLMine_UploadRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */; };
+		4A4C0E5D1F05F78E00FF53A4 /* HZQDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C0E591F05F78E00FF53A4 /* HZQDatePickerView.m */; };
+		4A4C0E5E1F05F78E00FF53A4 /* HZQDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4C0E5A1F05F78E00FF53A4 /* HZQDatePickerView.xib */; };
+		4A4C0E5F1F05F78E00FF53A4 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4C0E5C1F05F78E00FF53A4 /* UIColor+HexString.m */; };
 		4A4FA5871EF0CA1100A256D2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5861EF0CA1100A256D2 /* main.m */; };
 		4A4FA58A1EF0CA1100A256D2 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA5891EF0CA1100A256D2 /* AppDelegate.mm */; };
 		4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A4FA58C1EF0CA1100A256D2 /* ViewController.m */; };
@@ -539,6 +542,11 @@
 		4A4924131F04DEFA00C549EB /* GLMine_UploadRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_UploadRecordCell.h; sourceTree = "<group>"; };
 		4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_UploadRecordCell.m; sourceTree = "<group>"; };
 		4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_UploadRecordCell.xib; sourceTree = "<group>"; };
+		4A4C0E581F05F78E00FF53A4 /* HZQDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZQDatePickerView.h; sourceTree = "<group>"; };
+		4A4C0E591F05F78E00FF53A4 /* HZQDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZQDatePickerView.m; sourceTree = "<group>"; };
+		4A4C0E5A1F05F78E00FF53A4 /* HZQDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HZQDatePickerView.xib; sourceTree = "<group>"; };
+		4A4C0E5B1F05F78E00FF53A4 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
+		4A4C0E5C1F05F78E00FF53A4 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		4A4FA5821EF0CA1100A256D2 /* PublicOilCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicOilCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A4FA5861EF0CA1100A256D2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4A4FA5881EF0CA1100A256D2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = PublicOilCard/AppDelegate.h; sourceTree = "<group>"; };
@@ -1661,6 +1669,7 @@
 		4A49240A1F04DEFA00C549EB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A4C0E571F05F78E00FF53A4 /* HZQDatePickerView */,
 				4A49240B1F04DEFA00C549EB /* GLMine_UploadController.h */,
 				4A49240C1F04DEFA00C549EB /* GLMine_UploadController.m */,
 				4A49240D1F04DEFA00C549EB /* GLMine_UploadController.xib */,
@@ -1686,6 +1695,18 @@
 				4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4A4C0E571F05F78E00FF53A4 /* HZQDatePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				4A4C0E581F05F78E00FF53A4 /* HZQDatePickerView.h */,
+				4A4C0E591F05F78E00FF53A4 /* HZQDatePickerView.m */,
+				4A4C0E5A1F05F78E00FF53A4 /* HZQDatePickerView.xib */,
+				4A4C0E5B1F05F78E00FF53A4 /* UIColor+HexString.h */,
+				4A4C0E5C1F05F78E00FF53A4 /* UIColor+HexString.m */,
+			);
+			path = HZQDatePickerView;
 			sourceTree = "<group>";
 		};
 		4A4FA5791EF0CA1000A256D2 = {
@@ -3356,6 +3377,7 @@
 				F946A5C41EFCAF050080954C /* AlipaySDK.bundle in Resources */,
 				4AEEC9C81EF28B2D00F827BB /* GLMine_OpenCardController.xib in Resources */,
 				4A1CE71F1EF50CD300895ADF /* GLMine_RelationshipController.xib in Resources */,
+				4A4C0E5E1F05F78E00FF53A4 /* HZQDatePickerView.xib in Resources */,
 				4A4FA5F01EF0DF2E00A256D2 /* Mall.xcassets in Resources */,
 				4A1CE7301EF52A8C00895ADF /* GLMine_RelationshipCell.xib in Resources */,
 				4A5BBBD91EF2659F008270F2 /* SelectUserTypeView.xib in Resources */,
@@ -3646,6 +3668,7 @@
 				4AEEC9C71EF28B2D00F827BB /* GLMine_OpenCardController.m in Sources */,
 				4A39F4EF1EF3E79F0038C147 /* GLMall_GoodsDetailController.m in Sources */,
 				4A5331CC1EFE763F009C3593 /* ZXPDF417ErrorCorrection.m in Sources */,
+				4A4C0E5D1F05F78E00FF53A4 /* HZQDatePickerView.m in Sources */,
 				4A5331531EFE763F009C3593 /* ZXDefaultGridSampler.m in Sources */,
 				4A5331A21EFE763F009C3593 /* ZXCode128Writer.m in Sources */,
 				4A5331451EFE763F009C3593 /* ZXMathUtils.m in Sources */,
@@ -3684,6 +3707,7 @@
 				4A39F4861EF378430038C147 /* GLMine_updateManagerDealNowCell.m in Sources */,
 				4A39F4C31EF3B8C00038C147 /* UIView+XBExtension.m in Sources */,
 				4A5331401EFE763F009C3593 /* ZXWifiParsedResult.m in Sources */,
+				4A4C0E5F1F05F78E00FF53A4 /* UIColor+HexString.m in Sources */,
 				4A5331CF1EFE763F009C3593 /* ZXPDF417Reader.m in Sources */,
 				4A5331481EFE763F009C3593 /* ZXGenericGF.m in Sources */,
 				4A39F4B81EF3B6960038C147 /* XBTagTitleModel.m in Sources */,

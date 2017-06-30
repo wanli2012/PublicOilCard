@@ -169,7 +169,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"userphone"] = self.phoneTf.text;
     dict[@"password"] = self.secretTf.text;
-    dict[@"uid"] = self.recomendId.text;
+    dict[@"user_name"] = self.recomendId.text;
     dict[@"yzm"] = self.verificationTf.text;
  
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];

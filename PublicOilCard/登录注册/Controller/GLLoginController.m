@@ -11,6 +11,9 @@
 #import "BasetabbarViewController.h"
 #import "LoginIdentityView.h"
 #import "LBHomeLoginFortgetSecretViewController.h"
+#import "BaseNavigationViewController.h"
+#import "GLMineHomeController.h"
+#import "GLCompleteInfoController.h"
 
 @interface GLLoginController ()<UITextFieldDelegate>
 
@@ -214,7 +217,31 @@
                 [usermodelachivar achive];
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             
-            [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
+                
+//                GLMineHomeController *homevc = [[GLMineHomeController alloc] init];
+//                BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:homevc];
+//                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+                
+                if ([UserModel defaultUser].loginstatus == YES) {
+
+                    if ([[UserModel defaultUser].isBqInfo integerValue] == 0) {
+
+                        GLCompleteInfoController *infoVC = [[GLCompleteInfoController alloc] init];
+                        infoVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                        [self presentViewController:infoVC animated:YES completion:nil];
+                    }
+
+                }
+                GLMineHomeController *homevc = [[GLMineHomeController alloc] init];
+                BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:homevc];
+                nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentViewController:nav animated:YES completion:nil];
+
+            }else{
+                
+                [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+            }
             
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];

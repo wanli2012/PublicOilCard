@@ -14,4 +14,6 @@
 
 @property(nonatomic , strong) UILabel *namelebel;
 
+@property (nonatomic, strong)UILabel *noticeLabel;
+
 @end

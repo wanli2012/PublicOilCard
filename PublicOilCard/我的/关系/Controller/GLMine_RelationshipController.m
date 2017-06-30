@@ -74,6 +74,7 @@
     dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"group_id"] = [UserModel defaultUser].group_id;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

@@ -11,6 +11,8 @@
 #import "BaseNavigationViewController.h"
 #import "LBMineCenterChooseAreaViewController.h"
 #import "editorMaskPresentationController.h"
+#import "BasetabbarViewController.h"
+#import "GLMineHomeController.h"
 
 @interface GLCompleteInfoController ()<UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,UITextFieldDelegate,UIViewControllerTransitioningDelegate,UIViewControllerAnimatedTransitioning,UIAlertViewDelegate>
 {
@@ -165,7 +167,19 @@
             }
             
             [usermodelachivar achive];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            if ([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 ||[[UserModel defaultUser].group_id integerValue] == 3 ) {
+                
+                GLMineHomeController *homevc = [[GLMineHomeController alloc] init];
+                BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:homevc];
+                nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                [self presentViewController:nav animated:YES completion:nil];
+                
+            }else{
+                
+                [self dismissViewControllerAnimated:YES completion:nil];
+            }
+
             
         }else{
             
@@ -181,21 +195,21 @@
 //退出
 - (IBAction)exit:(id)sender {
     
-//    if ([self.status isEqualToString:@"1"]) {
-//        
-//        GLLoginController *loginVC = [[GLLoginController alloc] init];
-//        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
-//        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        [self presentViewController:nav animated:YES completion:nil];
-//        
-//    }else{
-//    
+    if ([self.status isEqualToString:@"1"]) {
+        
+        GLLoginController *loginVC = [[GLLoginController alloc] init];
+        BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:loginVC];
+        nav.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nav animated:YES completion:nil];
+        
+    }else{
+    
 //        [self dismissViewControllerAnimated:YES completion:nil];
-//        
-//    }
-    UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定要退出吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    alert.tag = 10;
-    [alert show];
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"您确定要退出吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alert.tag = 10;
+        [alert show];
+        
+    }
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
@@ -205,13 +219,13 @@
             [UserModel defaultUser].pic = @"";
             [UserModel defaultUser].group_id = @"0";
             [usermodelachivar achive];
+//            [self dismissViewControllerAnimated:YES completion:nil];
+            BasetabbarViewController *baseVc = [[BasetabbarViewController alloc] init];
+            [self presentViewController:baseVc animated:YES completion:nil];
+            [UIApplication sharedApplication].keyWindow.rootViewController = [[BasetabbarViewController alloc] init];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
         }
-        
     }
-    
 }
 //提交
 - (IBAction)submit:(id)sender {

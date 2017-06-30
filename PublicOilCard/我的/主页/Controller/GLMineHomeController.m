@@ -27,7 +27,7 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "GLCompleteInfoController.h"
 
-@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate>
+@interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
     GLMine_HeaderView *_header;
     LoadWaitView *_loadV;
@@ -42,6 +42,8 @@
 
 @property (nonatomic, strong)UIView *maskV;
 @property (nonatomic, strong)GLMine_CompleteInfoView *contentV;
+
+@property (nonatomic, strong)NSMutableArray *bannerArrM;
 
 @end
 
@@ -76,7 +78,6 @@ static NSString *headerID = @"GLMine_HeaderView";
     
    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ) {
         
-       
        self.tabBarController.tabBar.hidden = YES;
     }else{
         self.tabBarController.tabBar.hidden = NO;
@@ -103,7 +104,8 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
             [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
             [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
-             [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
+            [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
+            [UserModel defaultUser].KfPhone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"KfPhone"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].pic = @"";
@@ -148,7 +150,17 @@ static NSString *headerID = @"GLMine_HeaderView";
                 
                 [UserModel defaultUser].IDCard = @"";
             }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].KfPhone] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].KfPhone = @"";
+            }
+            
             [usermodelachivar achive];
+            
+            [self.bannerArrM removeAllObjects];
+            for (NSDictionary *dic in responseObject[@"data"][@"banner"]) {
+                [self.bannerArrM addObject:dic[@"banner_pic"]];
+            }
             
         }else{
             
@@ -214,19 +226,95 @@ static NSString *headerID = @"GLMine_HeaderView";
     }
     
     if ([UserModel defaultUser].qtIdNum.length == 0) {
-    
-        self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-        self.contentV.alpha = 0;
-        [UIView animateWithDuration:0.2 animations:^{
+        if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
             
-            self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-            self.contentV.alpha = 1;
-            [self.view addSubview:self.maskV];
-        }completion:^(BOOL finished) {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+                textField.placeholder = @"请输入全团ID";
+                textField.tag = 13;
+                textField.delegate = self;
+                
+            }];
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
+                
+            }];
+            
+            __weak typeof(self) weakself = self;
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                
+                UITextField *qtIdNumTF = alertController.textFields.firstObject;
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    [weakself modifyQtIdNum:qtIdNumTF.text];
+
+                });
+                
+            }];
+            
+            [alertController addAction:cancelAction];
+            [alertController addAction:okAction];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
+            
+        }else{
+            
+            [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
             [self.maskV addSubview:self.contentV];
-            
-        }];
+            self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+            [UIView animateWithDuration:0.2 animations:^{
+                
+                self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+            }];
+        }
+//        self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+//        self.contentV.alpha = 0;
+//        [UIView animateWithDuration:0.2 animations:^{
+//            
+//            self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+//            self.contentV.alpha = 1;
+//            [self.view addSubview:self.maskV];
+//        }completion:^(BOOL finished) {
+//            [self.maskV addSubview:self.contentV];
+//            
+//        }];
     }
+}
+- (void)modifyQtIdNum:(NSString *)qtIdNum{
+    
+    if (qtIdNum.length == 0) {
+        return;
+    }
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    
+    if (qtIdNum.length != 0) {
+        
+        dict[@"qtIdNum"] = qtIdNum;
+    }
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            [self refresh];
+            [MBProgressHUD showSuccess:responseObject[@"message"]];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+        }
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
 }
 - (void)maskViewTap {
     [UIView animateWithDuration:0.3 animations:^{
@@ -247,8 +335,10 @@ static NSString *headerID = @"GLMine_HeaderView";
         [MBProgressHUD showError:@"未输入全团ID"];
         return;
     }
+
     if (self.contentV.oilCardTextF.text.length == 0) {
         [MBProgressHUD showError:@"未输入油卡卡号"];
+        return;
     }
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -338,7 +428,11 @@ static NSString *headerID = @"GLMine_HeaderView";
         case 1:
         {
             if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
-
+                
+                if ([[UserModel defaultUser].group_id integerValue] == 3) {
+                    [MBProgressHUD showError:@"权限不足,无法查看关系"];
+                    return;
+                }
                 GLMine_RelationshipController *vc = [[GLMine_RelationshipController alloc] init];
                 [self.navigationController pushViewController:vc animated:YES];
                 
@@ -358,7 +452,10 @@ static NSString *headerID = @"GLMine_HeaderView";
                 LBExchangeViewController *exchageVC = [[LBExchangeViewController alloc] init];
                 [self.navigationController pushViewController:exchageVC animated:YES];
             }else{
-                
+                if([[UserModel defaultUser].isHaveOilCard integerValue] == 0){
+                    [MBProgressHUD showError:@"请先开卡"];
+                    return;
+                }
                 GLMine_updateManagerController *updateVC = [[GLMine_updateManagerController alloc] init];
                 [self.navigationController pushViewController:updateVC animated:YES];
                 
@@ -432,7 +529,6 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.vipImageV.hidden = YES;
     }
     
-    
     [_header addSubview:self.cycleScrollView];
     
     //区分会员与其他身份的界面
@@ -450,7 +546,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.exchangeBtn.hidden = NO;
         _header.middleViewBottom.constant = _headerImageHeight;
         self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY, SCREEN_WIDTH, _headerImageHeight);
-
+        self.cycleScrollView.imageURLStringsGroup = self.bannerArrM;
         _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
     
@@ -609,5 +705,11 @@ referenceSizeForHeaderInSection:(NSInteger)section {
   
     }
     return _contentV;
+}
+- (NSMutableArray *)bannerArrM{
+    if (!_bannerArrM) {
+        _bannerArrM = [NSMutableArray array];
+    }
+    return _bannerArrM;
 }
 @end

@@ -35,11 +35,12 @@
 @property (nonatomic, copy)NSString  *isBqInfo;//是否补全信息
 @property (nonatomic, copy)NSString  *isHaveNewMsg;//是否存在新的消息
 @property (nonatomic, copy)NSString  *isHaveOilCard;//是否已经开卡
-@property (nonatomic, copy)NSString  *banner;//
+@property (nonatomic, copy)NSString  *banner;
 @property (nonatomic, copy)NSString  *jyzSelfCardNum;//自办卡号
 @property (nonatomic, copy)NSString  *cost;//开卡费
 
 @property (nonatomic, copy)NSString  *yue;//余额
+@property (nonatomic, copy)NSString  *KfPhone;//客服电话
 
 
 +(UserModel*)defaultUser;

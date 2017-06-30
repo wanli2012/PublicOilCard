@@ -12,6 +12,7 @@
 #import "GLRecommendController.h"
 #import "LBViewProtocolViewController.h"
 #import "MinePhoneAlertView.h"
+#import "BasetabbarViewController.h"
 
 
 @interface GLMine_SetController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
@@ -32,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.phonestr = @"15228988355";
+    self.phonestr = [UserModel defaultUser].KfPhone;
     self.navigationItem.title = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
@@ -60,7 +61,11 @@
             [UserModel defaultUser].group_id = @"0";
             [usermodelachivar achive];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
+            BasetabbarViewController *baseVc = [[BasetabbarViewController alloc] init];
+            [self presentViewController:baseVc animated:YES completion:nil];
+            [UIApplication sharedApplication].keyWindow.rootViewController = [[BasetabbarViewController alloc] init];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             
         }else if (alertView.tag == 11){
             

@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *pwdTF;
 @property (weak, nonatomic) IBOutlet UITextField *ensurePwdTF;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic, strong)NSMutableArray *dataArr;
@@ -48,6 +49,7 @@
     self.contentViewHeight.constant = 300;
     
     self.navigationItem.title = @"开通下级";
+    self.noticeLabel.text = @" 1.部长：开通总监   总计名额 20个.\n 2.总监：开通经理   总计名额 20个.";
     [self getCityList];
 }
 - (void)getCityList {

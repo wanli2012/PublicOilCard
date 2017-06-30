@@ -74,7 +74,7 @@
         _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团ID",@"推荐人",@"推荐人ID"];
     }else{
         
-        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"加油站自办芯片卡号",@"全团ID",@"推荐人",@"推荐人ID"];
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团ID",@"推荐人",@"推荐人ID"];
     }
 
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
@@ -162,6 +162,7 @@
 }
 
 - (void)edit:(UIButton *)sender {
+    
     if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
         [UserModel defaultUser].qtIdNum = @"";
     }
@@ -189,13 +190,12 @@
        
        __weak typeof(self) weakself = self;
        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-           
-            UITextField *oilNumTF = alertController.textFields[0];
-           UITextField *qtIdNumTF = alertController.textFields[1];
+
+           UITextField *qtIdNumTF = alertController.textFields.firstObject;
            
            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-               [weakself modifyInfo:oilNumTF.text qtIdNum:qtIdNumTF.text];
+               [weakself modifyQtIdNum:qtIdNumTF.text];
            });
            
        }];
@@ -219,9 +219,9 @@
     
 }
 
-- (void)modifyInfo:(NSString *)oilNum qtIdNum:(NSString *)qtIdNum{
+- (void)modifyQtIdNum:(NSString *)qtIdNum{
   
-    if ( oilNum.length == 0 && qtIdNum.length == 0) {
+    if (qtIdNum.length == 0) {
         
         return;
     }
@@ -229,11 +229,6 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
 
-    if (oilNum.length != 0) {
-        
-        dict[@"jyzSelfCardNum"] = oilNum;
-    }
-    
     if (qtIdNum.length != 0) {
         
         dict[@"qtIdNum"] = qtIdNum;

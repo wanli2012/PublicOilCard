@@ -16,13 +16,13 @@
 
 @interface GLMine_updateManagerController ()<UITableViewDelegate,UITableViewDataSource,GLMine_updateNewCellDelegate>
 {
-    //假数据源
-    NSArray *_keyArr;
+    
     NSMutableArray *_tempArr;
     BOOL _isCheckAll;
-
+    
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 
 @property (nonatomic, strong)NSMutableArray *tempArr;
 
@@ -44,20 +44,9 @@
     
     self.navigationItem.title = @"升级管理";
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerCell"];
-//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerAllCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerAllCell"];
-//    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateManagerDealNowCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateManagerDealNowCell"];
+
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateNewCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateNewCell"];
-    
-    _keyArr = @[@"赠送6000积分送6000积分送6000积分送6000积分送6000积分",
-                @"用户赠送6000积分送6000积分送6000积分送6000积分送6000积分名",
-                @"I赠送6000积分送6000积分送6000积分送6000积分送6000积分D",
-                @"二维赠送6000积分送6000积分送6000积分送6000积分送6000积分码",
-                @"身份证赠送6000积分送6000积分送6000积分送6000积分送6000积分号码",
-                @"推赠送6000积分送6000积分送6000积分送6000积分送6000积分荐人",
-                @"推荐人ID"];
-
-
+    self.noticeLabel.text = @" 1.会员升级成为个代，首先会员须是本系统星级会员资格方可申请.\n 2.当星级会员在本页面购买个代资格并成功付款后，星级会员将自动升级为本系统个代资格，系统将开通个代所享有的相关政策";
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     

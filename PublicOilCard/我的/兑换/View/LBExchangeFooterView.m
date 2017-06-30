@@ -27,6 +27,7 @@
 
     [self addSubview:self.namelebel];
     [self addSubview:self.infoLabel];
+    [self addSubview:self.noticeLabel];
     
     [self.namelebel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self).offset(0);
@@ -34,22 +35,12 @@
         make.top.equalTo(self).offset(20);
         make.height.equalTo(@20);
     }];
-
-}
-
--(UILabel*)infoLabel{
-    
-    if (!_infoLabel) {
-        _infoLabel=[[UILabel alloc]init];
-        _infoLabel.backgroundColor=YYSRGBColor(239, 239, 239, 1);
-        _infoLabel.textColor=YYSRGBColor(50, 50, 50, 1);
-        _infoLabel.font=[UIFont systemFontOfSize:12 ];
-        _infoLabel.textAlignment=NSTextAlignmentCenter;
-        _infoLabel.numberOfLines=0;
-        [_infoLabel sizeToFit];
-    }
-    return _infoLabel;
-    
+    [self.noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self).offset(-10);
+        make.leading.equalTo(self).offset(10);
+        make.top.equalTo(self.namelebel.mas_bottom).offset(10);
+//        make.bottom.equalTo(self).offset(20);
+    }];
 }
 
 -(UILabel*)namelebel{
@@ -65,6 +56,19 @@
     return _namelebel;
     
 }
+-(UILabel*)noticeLabel{
+    
+    if (!_noticeLabel) {
+        _noticeLabel=[[UILabel alloc]init];
+        _noticeLabel.backgroundColor=[UIColor clearColor];
+        _noticeLabel.textColor=[UIColor darkGrayColor];
+        _noticeLabel.font=[UIFont systemFontOfSize:13];
+        _noticeLabel.textAlignment = NSTextAlignmentLeft;
+        _noticeLabel.numberOfLines = 0;
 
+    }
+    return _noticeLabel;
+    
+}
 
 @end

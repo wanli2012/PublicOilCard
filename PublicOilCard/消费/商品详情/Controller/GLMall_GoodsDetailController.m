@@ -158,6 +158,9 @@
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0) {
+        [MBProgressHUD showError:@"请先开卡"];
+    }
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
     

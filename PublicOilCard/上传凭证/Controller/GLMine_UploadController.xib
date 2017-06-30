@@ -13,12 +13,12 @@
             <connections>
                 <outlet property="contentViewHeight" destination="asl-38-Ct3" id="1i3-Oe-pXp"/>
                 <outlet property="contentViewWidth" destination="lpJ-CO-kEx" id="JeO-06-eSw"/>
+                <outlet property="dateLabel" destination="WLR-jm-B2r" id="2Kl-Iz-irh"/>
                 <outlet property="imageV" destination="rKt-hF-mJY" id="JZ1-RR-JdJ"/>
                 <outlet property="moneyTextF" destination="DYi-Ru-XOg" id="Sng-H7-gck"/>
                 <outlet property="noticeLabel" destination="M84-0z-Xgx" id="GPQ-WQ-emG"/>
                 <outlet property="oilCardNumLabel" destination="J6d-lL-XtO" id="sm4-rH-JVG"/>
                 <outlet property="submitBtn" destination="8Uc-aP-X26" id="mDM-hj-XW5"/>
-                <outlet property="userNameLabel" destination="WLR-jm-B2r" id="fSl-g9-iYz"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -33,7 +33,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOm-Sx-RzM">
                             <rect key="frame" x="0.0" y="0.0" width="388" height="695"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户须知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91S-iP-Z7w">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上传凭证须知" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91S-iP-Z7w">
                                     <rect key="frame" x="10" y="10" width="368" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="58d-OT-A54"/>
@@ -127,7 +127,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBZ-26-Fww">
                                     <rect key="frame" x="30" y="330" width="328" height="50"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="购买会员:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQL-Y5-g52">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="消费时间:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQL-Y5-g52">
                                             <rect key="frame" x="10" y="15" width="61.5" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="GvM-H9-Axq"/>
@@ -144,11 +144,15 @@
                                                 <constraint firstAttribute="height" constant="1" id="6Nv-tn-6p5"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLR-jm-B2r">
+                                        <label opaque="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLR-jm-B2r">
                                             <rect key="frame" x="81.5" y="0.0" width="246.5" height="49"/>
+                                            <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="jdR-FH-2GC" appends="YES" id="2BI-UW-xW6"/>
+                                            </connections>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -261,6 +265,11 @@
         <tapGestureRecognizer id="xZm-FM-Ogz">
             <connections>
                 <action selector="choosePicture:" destination="-1" id="iIS-oo-Kzg"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="jdR-FH-2GC">
+            <connections>
+                <action selector="chooseDate:" destination="-1" id="YUS-v5-y74"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

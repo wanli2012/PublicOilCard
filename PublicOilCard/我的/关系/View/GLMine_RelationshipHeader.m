@@ -59,8 +59,7 @@
     
     self.IDLabel.text = [NSString stringWithFormat:@"%@", sectionModel.user_name];
     self.nameLabel.text = [NSString stringWithFormat:@"%@", sectionModel.truename];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@", sectionModel.regtime];
-
+    self.dateLabel.text = [NSString stringWithFormat:@"%@", [formattime formateTime:sectionModel.regtime]];
 }
 
 -(void)tapgestureSection{
@@ -80,7 +79,6 @@
         _IDLabel.backgroundColor=[UIColor clearColor];
         _IDLabel.textColor=[UIColor blackColor];
         _IDLabel.font=[UIFont systemFontOfSize:13];
-        _IDLabel.text = @"AB123456789";
     }
     
     return _IDLabel;
@@ -92,7 +90,6 @@
         _nameLabel.backgroundColor=[UIColor clearColor];
         _nameLabel.textColor=[UIColor blackColor];
         _nameLabel.font=[UIFont systemFontOfSize:13];
-        _nameLabel.text = @"梁朝伟";
     }
     
     return _nameLabel;
@@ -104,7 +101,6 @@
         _dateLabel.backgroundColor=[UIColor clearColor];
         _dateLabel.textColor=[UIColor blackColor];
         _dateLabel.font=[UIFont systemFontOfSize:13];
-        _dateLabel.text = @"2017-06-16";
     }
     
     return _dateLabel;

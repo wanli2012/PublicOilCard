@@ -91,7 +91,7 @@
 
 -(void)receiveData:(id)sender
 {
-    self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本:v%@",sender[@"version"]];
+    self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本: v%@",sender[@"version"]];
     
 }
 
