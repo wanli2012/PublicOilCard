@@ -207,6 +207,10 @@
 
    }else{
        
+       if([[UserModel defaultUser].isHaveOilCard integerValue] == 0){
+           [MBProgressHUD showError:@"请先开卡"];
+           return;
+       }
        [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
        [self.maskV addSubview:self.infoContentV];
        self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
@@ -254,31 +258,89 @@
         
     }];
 }
+- (void)addQtIDandOilCardID{
+    
+    if ( self.infoContentV.qtIDTextF.text == nil || self.infoContentV.oilCardTextF.text == nil) {
+        [self maskViewTap];
+        
+    }
+    if (self.infoContentV.qtIDTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入全团ID"];
+        return;
+    }
+    if (self.infoContentV.oilCardTextF.text.length == 0) {
+        [MBProgressHUD showError:@"未输入油卡卡号"];
+    }
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"token"] = [UserModel defaultUser].token;
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"jyzSelfCardNum"] = self.infoContentV.oilCardTextF.text;
+    dict[@"qtIdNum"] = self.infoContentV.qtIDTextF.text;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue]==1) {
+            
+            //            [self refresh];
+            [self updateData];
+            [self maskViewTap];
+        }
+        
+        [MBProgressHUD showError:responseObject[@"message"]];
+        
+    } enError:^(NSError *error) {
+        [_loadV removeloadview];
+        
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+}
 - (void)updateData {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
+//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
-        [_loadV removeloadview];
+        
+//        [_loadV removeloadview];
 
         if ([responseObject[@"code"] integerValue]==1) {
 
-            [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
-            [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
-            
-            [usermodelachivar achive];
-            [self updateInfo];
-            [MBProgressHUD showSuccess:@"修改资料成功"];
+            if ([responseObject[@"data"] count] != 0) {
+                
+                [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
+                [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
+                [UserModel defaultUser].pic = responseObject[@"data"][@"pic"];
+                
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || responseObject[@"data"][@"qtIdNum"] == nil) {
+                    
+                    [UserModel defaultUser].qtIdNum = @"";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound|| responseObject[@"data"][@"jyzSelfCardNum"] == nil) {
+                    
+                    [UserModel defaultUser].jyzSelfCardNum = @"";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound|| responseObject[@"data"][@"pic"] == nil) {
+                    
+                    [UserModel defaultUser].pic = @"";
+                }
+
+                [usermodelachivar achive];
+                [self updateInfo];
+                [MBProgressHUD showSuccess:@"修改资料成功"];
+            }
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
             
         }
         [self.tableView reloadData];
     } enError:^(NSError *error) {
-        [_loadV removeloadview];
+//        [_loadV removeloadview];
         
         [MBProgressHUD showError:error.localizedDescription];
         
@@ -478,12 +540,12 @@
         //#warning 这里来做操作，提交的时候要上传
         // 图片保存的路径
         self.picImage = [UIImage imageWithData:data];
-
         
         //拿到图片准备上传
          NSDictionary *dic;
          dic=@{@"token":[UserModel defaultUser].token ,
                @"uid":[UserModel defaultUser].uid};
+        
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -512,15 +574,16 @@
             }
 
         }success:^(NSURLSessionDataTask *task, id responseObject) {
+            [_loadV removeloadview];
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
             if ([dic[@"code"]integerValue]==1) {
                 
                 [MBProgressHUD showError:dic[@"message"]];
-                [self refresh];
+//                [self refresh];
+                [self updateData];
             }else{
                 [MBProgressHUD showError:dic[@"message"]];
             }
-            [_loadV removeloadview];
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             [_loadV removeloadview];
             [MBProgressHUD showError:error.localizedDescription];
@@ -535,116 +598,6 @@
     
 }
 
-- (void)refresh {
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
-        
-        if ([responseObject[@"code"] integerValue]==1) {
-            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
-            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
-            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
-            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
-            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
-            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
-            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
-            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
-            [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
-            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
-            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
-            
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].price = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].mark = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].recNumber = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].username = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].truename = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].group_name = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].isHaveOilCard = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].qtIdNum = @"";
-            }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
-                
-                [UserModel defaultUser].jyzSelfCardNum = @"";
-            }
-            
-            [usermodelachivar achive];
-        }else{
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
-        }
-        
-        [self.tableView reloadData];
-        
-    } enError:^(NSError *error) {
-        
-        [MBProgressHUD showError:error.localizedDescription];
-    }];
-}
-- (void)addQtIDandOilCardID{
-    
-    if ( self.infoContentV.qtIDTextF.text == nil || self.infoContentV.oilCardTextF.text == nil) {
-        [self maskViewTap];
-        
-    }
-    if (self.infoContentV.qtIDTextF.text.length == 0) {
-        [MBProgressHUD showError:@"未输入全团ID"];
-        return;
-    }
-    if (self.infoContentV.oilCardTextF.text.length == 0) {
-        [MBProgressHUD showError:@"未输入油卡卡号"];
-    }
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"jyzSelfCardNum"] = self.infoContentV.oilCardTextF.text;
-    dict[@"qtIdNum"] = self.infoContentV.qtIDTextF.text;
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
-        [_loadV removeloadview];
-        
-        if ([responseObject[@"code"] integerValue]==1) {
-            
-            [self refresh];
-            [self maskViewTap];
-        }
-        
-        [MBProgressHUD showError:responseObject[@"message"]];
-        
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        
-        [MBProgressHUD showError:error.localizedDescription];
-        
-    }];
-}
 - (NSMutableArray *)vlaueArr{
     if (!_vlaueArr) {
         _vlaueArr = [[NSMutableArray alloc] init];

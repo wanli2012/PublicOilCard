@@ -11,6 +11,9 @@
 #import "LBViewProtocolViewController.h"
 
 @interface GLMine_OpenCardController ()
+{
+    LoadWaitView *_loadV;
+}
 
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openCardBtn;
@@ -29,16 +32,6 @@
     
     self.isAgreel = NO;
     self.openCardBtn.userInteractionEnabled = NO;
-    //自定义右键
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setTitle:@"物流" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    [btn addTarget:self  action:@selector(queryLog) forControlEvents:UIControlEventTouchUpInside];
-//    btn.frame = CGRectMake(0, 0, 80, 40);
-//    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
     
     [self refresh];
 }
@@ -48,17 +41,28 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
+    _loadV = [LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
         
+        [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
-            [UserModel defaultUser].cost = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost"]];
-         
-        if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost] rangeOfString:@"null"].location != NSNotFound) {
+            if ([responseObject[@"data"] count] != 0) {
                 
-                [UserModel defaultUser].cost = @"";
+                [UserModel defaultUser].cost = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost"]];
+                [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+                
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].cost = @"";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].isHaveOilCard = @"";
+                }
+                
+                [usermodelachivar achive];
             }
-          
-            [usermodelachivar achive];
+            
         }else{
             
             [MBProgressHUD showError:responseObject[@"message"]];
@@ -67,7 +71,7 @@
         self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张\n一次性永久服务费",[UserModel defaultUser].cost];
         
     } enError:^(NSError *error) {
-        
+        [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
@@ -105,9 +109,10 @@
 }
 - (IBAction)openCard:(id)sender {
     if (_isAgreel == NO) {
-        [MBProgressHUD showError:@"勾选注册协议"];
+        [MBProgressHUD showError:@"未勾选注册协议"];
         return;
     }
+
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     pay.pushIndex = 2;

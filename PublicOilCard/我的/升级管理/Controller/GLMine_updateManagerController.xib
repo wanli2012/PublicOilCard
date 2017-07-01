@@ -44,7 +44,7 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14.5" id="ixt-U9-mvh"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>

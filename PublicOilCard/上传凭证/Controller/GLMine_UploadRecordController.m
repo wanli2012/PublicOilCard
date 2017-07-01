@@ -19,6 +19,9 @@
 @property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *dataArr;
 @property (nonatomic, assign)NSInteger page;//页数
+@property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *uploadBtn;
 
 @end
 
@@ -31,6 +34,21 @@
     self.navigationItem.title = @"凭证记录";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_UploadRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_UploadRecordCell"];
+    
+//    //设置渐变色
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)YYSRGBColor(255, 80, 0, 1).CGColor,(__bridge id)YYSRGBColor(246, 109, 2, 1).CGColor];
+    //    gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+    gradientLayer.locations = @[@0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.type = kCAGradientLayerAxial;
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = self.navView.bounds;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.navView.bounds];
+    [backgroundView.layer addSublayer:gradientLayer];
+    
+    [self.navView insertSubview:backgroundView atIndex:0];
+
     
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;

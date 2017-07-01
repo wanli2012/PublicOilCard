@@ -77,7 +77,7 @@
      *设置tableview 的FooterView
      */
     self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
-    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000银积分\n 2、银积分单笔兑换须以100分整数兑换，不足100分则不能兑换\n 3、银积分兑换，收取手续费6%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费率";
+    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000积分\n 2、积分单笔兑换须以100的整数倍兑换，不足100分则不能兑换\n 3、积分兑换，收取手续费6%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费";
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
     if ([[UserModel defaultUser].mark floatValue] > 100000000) {
@@ -183,7 +183,7 @@
     }else if (indexPath.row == _curetarr.count + 1) {
          return 80;
     }else if (indexPath.row == _curetarr.count + 2) {
-         return 80;
+         return 60;
     }
     return 0;
 }
@@ -581,6 +581,7 @@
     return _arr3;
     
 }
+
 //-(NSDictionary*)dataDic{
 //    
 //    if (!_dataDic) {
@@ -591,6 +592,7 @@
 //    return _dataDic;
 //    
 //}
+
 -(NSArray*)typeArr{
     
     if (!_typeArr) {
@@ -600,10 +602,13 @@
     return _typeArr;
     
 }
+
 -(NSArray*)mothodArr{
     
     if (!_mothodArr) {
-        _mothodArr = [NSArray arrayWithObjects:@"T + 1",@" T + 3",@"T + 7", nil];
+//        _mothodArr = [NSArray arrayWithObjects:@"T + 1",@" T + 3",@"T + 7", nil];
+        
+        _mothodArr = [NSArray arrayWithObjects:@"T + 1", nil];
     }
     
     return _mothodArr;

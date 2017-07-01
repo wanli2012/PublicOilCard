@@ -254,7 +254,7 @@
     if(self.bankNameTF.text.length <= 0){
         [MBProgressHUD showError:@"请输入银行名称"];
         return;
-    }else if([predicateModel IsChinese:self.bankCardNumTF.text]){
+    }else if(![predicateModel IsChinese:self.bankNameTF.text]){
         [MBProgressHUD showError:@"银行名只能为中文"];
         return;
     }

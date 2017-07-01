@@ -38,6 +38,8 @@
 @property (nonatomic, copy)NSString *order_money;//售价排序
 @property (nonatomic, copy)NSString *order_num;//销量排序
 
+@property (weak, nonatomic) IBOutlet UIView *navView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
@@ -54,6 +56,20 @@
     
     [self.timeBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
     [self.timeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    
+    //    //设置渐变色
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)YYSRGBColor(255, 80, 0, 1).CGColor,(__bridge id)YYSRGBColor(246, 109, 2, 1).CGColor];
+    //    gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+    gradientLayer.locations = @[@0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.type = kCAGradientLayerAxial;
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = self.navView.bounds;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.navView.bounds];
+    [backgroundView.layer addSublayer:gradientLayer];
+    
+    [self.navView insertSubview:backgroundView atIndex:0];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 -5, 224);

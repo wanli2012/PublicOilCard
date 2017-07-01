@@ -44,6 +44,10 @@
 @property (nonatomic, strong)GLMine_CompleteInfoView *contentV;
 
 @property (nonatomic, strong)NSMutableArray *bannerArrM;
+@property (weak, nonatomic) IBOutlet UIView *topView;
+@property (weak, nonatomic) IBOutlet UIButton *setBtn;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *infoBtn;
 
 @end
 
@@ -57,12 +61,27 @@ static NSString *headerID = @"GLMine_HeaderView";
       [self.view addSubview:self.collectionV];
     self.headerImageHeight = 80 * autoSizeScaleY;
     //注册头视图
-//    [self.collectionV registerClass:[GLMine_HeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
+
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_HeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerID];
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
     [self completeInfo];
+    
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)YYSRGBColor(255, 80, 0, 1).CGColor,(__bridge id)YYSRGBColor(246, 109, 2, 1).CGColor];
+//    gradientLayer.colors = @[(__bridge id)[UIColor redColor].CGColor,(__bridge id)[UIColor whiteColor].CGColor];
+    gradientLayer.locations = @[@0.5, @1.0];
+    gradientLayer.startPoint = CGPointMake(0, 0);
+    gradientLayer.type = kCAGradientLayerAxial;
+    gradientLayer.endPoint = CGPointMake(1.0, 0);
+    gradientLayer.frame = self.topView.bounds;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:self.topView.bounds];
+    [backgroundView.layer addSublayer:gradientLayer];
+    
+    [self.topView insertSubview:backgroundView atIndex:0];
+
 }
 //移除通知
 - (void)dealloc {
@@ -198,7 +217,9 @@ static NSString *headerID = @"GLMine_HeaderView";
 }
 //开卡
 - (void)openCard {
+    
     self.hidesBottomBarWhenPushed = YES;
+    
     if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
         [MBProgressHUD showError:@"不能重复开卡"];
         return;
@@ -256,30 +277,20 @@ static NSString *headerID = @"GLMine_HeaderView";
             
             [alertController addAction:cancelAction];
             [alertController addAction:okAction];
-            
             [self presentViewController:alertController animated:YES completion:nil];
             
         }else{
             
-            [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
-            [self.maskV addSubview:self.contentV];
-            self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-            [UIView animateWithDuration:0.2 animations:^{
+            if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1 || [[UserModel defaultUser].isHaveOilCard integerValue] == 2) {
                 
-                self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-            }];
+                [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
+                [self.maskV addSubview:self.contentV];
+                self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+                [UIView animateWithDuration:0.2 animations:^{
+                    self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+                }];
+            }
         }
-//        self.contentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-//        self.contentV.alpha = 0;
-//        [UIView animateWithDuration:0.2 animations:^{
-//            
-//            self.contentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-//            self.contentV.alpha = 1;
-//            [self.view addSubview:self.maskV];
-//        }completion:^(BOOL finished) {
-//            [self.maskV addSubview:self.contentV];
-//            
-//        }];
     }
 }
 - (void)modifyQtIdNum:(NSString *)qtIdNum{
@@ -506,7 +517,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     }else if([[UserModel defaultUser].mark floatValue]> 100000){
         _header.jifenLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
-        _header.jifenLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].mark];
+        _header.jifenLabel.text = [NSString stringWithFormat:@"%@分",[UserModel defaultUser].mark];
     }
     //余额
     if([[UserModel defaultUser].yue floatValue]> 100000){
@@ -524,6 +535,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         [_header.openCardBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
         _header.openCardBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
     }else{
+        [_header.openCardBtn setTitle:@"开卡" forState:UIControlStateNormal];
         [_header.openCardBtn setTitleColor:TABBARTITLE_COLOR forState:UIControlStateNormal];
         _header.openCardBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
         _header.vipImageV.hidden = YES;
@@ -613,6 +625,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         _cycleScrollView.localizationImageNamesGroup = @[];
         _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
+        _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.titleLabelBackgroundColor = YYSRGBColor(241, 242, 243, 1);// 图片对应的标题的 背景色。（因为没有设标题）
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播占位图"];
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);

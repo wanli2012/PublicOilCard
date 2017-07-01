@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +14,9 @@
             <connections>
                 <outlet property="collectionView" destination="Cmd-it-WaP" id="iPZ-hn-PJ0"/>
                 <outlet property="moneyBtn" destination="zpV-8m-HY2" id="eHA-9j-vqS"/>
+                <outlet property="navView" destination="PuX-vg-d5W" id="c4v-CP-i55"/>
                 <outlet property="timeBtn" destination="IdZ-2S-Mi4" id="UHH-mf-pyk"/>
+                <outlet property="titleLabel" destination="qyn-O1-NSd" id="Ijt-zr-0df"/>
                 <outlet property="topView" destination="pch-CC-9be" id="qfn-T9-ANg"/>
                 <outlet property="typeBtn" destination="meo-CH-msP" id="2P8-AS-Y3h"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

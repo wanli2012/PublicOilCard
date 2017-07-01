@@ -8,8 +8,7 @@
 
 #import "LBMineCenterPayPagesViewController.h"
 #import "LBMineCenterPayPagesTableViewCell.h"
-//#import "LBIntegralMallViewController.h"
-//#import "GLOrderPayView.h"
+#import "GLMineHomeController.h"
 #import "GLSet_MaskVeiw.h"
 #import <AlipaySDK/AlipaySDK.h>
 
@@ -88,11 +87,22 @@
     if(self.pushIndex == 1){
         [self.navigationController popToRootViewControllerAnimated:YES];
         
+    }else if(self.pushIndex == 2){
+        
+        for (UIViewController * controller in self.navigationController.viewControllers) { //遍历
+            if ([controller isKindOfClass:[GLMineHomeController class]]) { //这里判断是否为你想要跳转的页面
+                [self.navigationController popToViewController:controller animated:YES]; //跳转
+            }
+        }
+        
     }else{
+        
         [self.navigationController popViewControllerAnimated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
     }
+
     self.hidesBottomBarWhenPushed = NO;
-    
+
 }
 -(void)wxpaysucess{
     
@@ -319,16 +329,25 @@
                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                if (orderState==9000) {
                    self.hidesBottomBarWhenPushed = YES;
+                   
                    if(self.pushIndex == 1){
                        [self.navigationController popToRootViewControllerAnimated:YES];
        
+                   }else if(self.pushIndex == 2){
+                       
+                       for (UIViewController * controller in self.navigationController.viewControllers) { //遍历
+                           if ([controller isKindOfClass:[GLMineHomeController class]]) { //这里判断是否为你想要跳转的页面
+                                [self.navigationController popToViewController:controller animated:YES]; //跳转
+                           }
+                       }
+                       
                    }else{
+                       
                        [self.navigationController popViewControllerAnimated:YES];
-                   }
-                   self.hidesBottomBarWhenPushed = NO;
-                   if (self.pushIndex == 3) {
                        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
                    }
+                   self.hidesBottomBarWhenPushed = NO;
+                
                }else{
                    NSString *returnStr;
                    switch (orderState) {

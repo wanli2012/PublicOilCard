@@ -11,7 +11,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_UploadRecordController">
             <connections>
+                <outlet property="navView" destination="B2V-Xn-jmT" id="aYA-Wy-vjw"/>
                 <outlet property="tableView" destination="Mtq-ZS-LHe" id="1YC-KN-HoE"/>
+                <outlet property="titleLabel" destination="GGC-yH-ZsC" id="YNa-ei-heZ"/>
+                <outlet property="uploadBtn" destination="Xa3-gS-p4V" id="aqN-MP-ldv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

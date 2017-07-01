@@ -149,8 +149,11 @@
         
         switch (resp.errCode) {
             case WXSuccess:
+                
                 strMsg = @"支付结果：成功！";
+                
                 [[NSNotificationCenter defaultCenter]postNotificationName:@"wxpaysucess" object:nil];
+                
                 break;
             case WXErrCodeUserCancel:
                 strMsg = @"支付结果：取消！";
@@ -163,7 +166,6 @@
     }
     [MBProgressHUD showError:strMsg];
 }
-
 
 //支持目前所有iOS系统
 - (void)configUSharePlatforms
