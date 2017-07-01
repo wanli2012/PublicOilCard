@@ -150,6 +150,7 @@
     GLMine_OrderSectionModel *model=self.sectionModels[section];
     return model.isExpanded?model.dataArr.count:0;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_CollectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_CollectCell"];
     cell.selectionStyle = 0;
@@ -159,7 +160,9 @@
     cell.countLabel.hidden = NO;
     
     return cell;
+    
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     GLMine_OrderSectionHeader *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"GLMine_OrderSectionHeader"];

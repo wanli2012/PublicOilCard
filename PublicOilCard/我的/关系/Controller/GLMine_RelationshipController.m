@@ -145,6 +145,7 @@
         headerView = [[GLMine_RelationshipHeader alloc] initWithReuseIdentifier:@"GLMine_RelationshipHeader"];
     }
     headerView.sectionModel = self.models[section];
+    
     headerView.expandCallback = ^(BOOL isExpanded) {
         [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
