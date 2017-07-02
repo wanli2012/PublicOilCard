@@ -125,6 +125,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
             [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
             [UserModel defaultUser].KfPhone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"KfPhone"]];
+             [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].pic = @"";

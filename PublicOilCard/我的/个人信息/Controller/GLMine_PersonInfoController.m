@@ -72,9 +72,11 @@
 - (void)updateInfo{
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
         _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团ID",@"推荐人",@"推荐人ID"];
-    }else{
+    }else if([[UserModel defaultUser].group_id integerValue] == 6){
         
         _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团ID",@"推荐人",@"推荐人ID"];
+    }else{
+    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团ID",@"剩余见点奖励数量",@"推荐人",@"推荐人ID"];
     }
 
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
@@ -91,7 +93,7 @@
                          [UserModel defaultUser].recommendUser,
                          [UserModel defaultUser].recommendID, nil];
 
-    }else{
+    } else if([[UserModel defaultUser].group_id integerValue] == 6 ){
         
         self.vlaueArr = [NSMutableArray arrayWithObjects:
                          [UserModel defaultUser].pic,
@@ -105,6 +107,22 @@
                          [UserModel defaultUser].qtIdNum,
                          [UserModel defaultUser].recommendUser,
                          [UserModel defaultUser].recommendID, nil];
+    }else{
+    
+        self.vlaueArr = [NSMutableArray arrayWithObjects:
+                         [UserModel defaultUser].pic,
+                         [UserModel defaultUser].truename,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].username,
+                         [UserModel defaultUser].IDCard,
+                         [UserModel defaultUser].openbank,
+                         [UserModel defaultUser].banknumber,
+                         [UserModel defaultUser].jyzSelfCardNum,
+                         [UserModel defaultUser].qtIdNum,
+                         [UserModel defaultUser].s_meber,
+                         [UserModel defaultUser].recommendUser,
+                         [UserModel defaultUser].recommendID, nil];
+    
     }
     
 }
@@ -434,10 +452,13 @@
         if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
             cell.titleLabel.text = _keyArr[indexPath.row + 8];
             cell.detailTF.text = _vlaueArr[indexPath.row + 8];
-        }else{
+        }else if([[UserModel defaultUser].group_id integerValue] == 6){
             
             cell.titleLabel.text = _keyArr[indexPath.row + 9];
             cell.detailTF.text = _vlaueArr[indexPath.row + 9];
+        }else{
+            cell.titleLabel.text = _keyArr[indexPath.row + 10];
+            cell.detailTF.text = _vlaueArr[indexPath.row + 10];
         }
     }
     return cell;
