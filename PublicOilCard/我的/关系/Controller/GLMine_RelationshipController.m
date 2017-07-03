@@ -140,10 +140,9 @@
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
     GLMine_RelationshipHeader * headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"GLMine_RelationshipHeader"];
-    if (!headerView) {
-        headerView = [[GLMine_RelationshipHeader alloc] initWithReuseIdentifier:@"GLMine_RelationshipHeader"];
-    }
+    
     headerView.sectionModel = self.models[section];
     
     headerView.expandCallback = ^(BOOL isExpanded) {

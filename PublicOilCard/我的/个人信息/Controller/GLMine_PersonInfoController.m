@@ -231,7 +231,7 @@
        [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
        [self.maskV addSubview:self.infoContentV];
        self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-       [UIView animateWithDuration:0.2 animations:^{
+       [UIView animateWithDuration:0.3 animations:^{
            
            self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
        }];
@@ -479,6 +479,15 @@
         [alertVC addAction:cameraAction];
         [alertVC addAction:albumAction];
         [alertVC addAction:cancelAction];
+        
+        //当在ipad里弹出时.需要用到该代码
+        UIPopoverPresentationController *popover = alertVC.popoverPresentationController;
+        GLMine_PersonInfoCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        popover.sourceView = cell;
+        
+        popover.sourceRect = cell.bounds;
+        
+        popover.permittedArrowDirections=UIPopoverArrowDirectionAny;
         [self presentViewController:alertVC animated:YES completion:nil];
     }else if(indexPath.row == 3 && indexPath.section == 0){
         
@@ -629,8 +638,8 @@
 - (void)maskViewTap {
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.contentV.transform=CGAffineTransformMakeScale(0.1, 0.00001);
-        
+        self.contentV.transform = CGAffineTransformMakeScale(0.1, 0.00001);
+        self.infoContentV.transform = CGAffineTransformMakeScale(0.1, 0.00001);
     } completion:^(BOOL finished) {
         [self.contentV removeFromSuperview];
         [self.infoContentV removeFromSuperview];

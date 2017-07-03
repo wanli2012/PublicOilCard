@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *getcodeBt;
 @property (weak, nonatomic) IBOutlet UIButton *registerBt;
 @property (strong, nonatomic)LoadWaitView *loadV;
-@property (weak, nonatomic) IBOutlet UIImageView *imagev;
+@property (weak, nonatomic) IBOutlet UIButton *isAgreeBtn;
 
 @property (assign, nonatomic)BOOL isAgreel;//是否同意注册协议 默认为NO
 
@@ -191,21 +191,20 @@
 /**
  *是否同意注册协议
  */
-- (IBAction)IsAgreeRegist:(UITapGestureRecognizer *)sender {
-    
+- (IBAction)isAgreeRegist:(id)sender {
     self.isAgreel = !self.isAgreel;
     
     if (self.isAgreel) {
         self.registerBt.userInteractionEnabled = YES;
         self.registerBt.backgroundColor = TABBARTITLE_COLOR;
-        self.imagev.image =[UIImage imageNamed:@"注册协议选中"];
+        [self.isAgreeBtn setImage:[UIImage imageNamed:@"注册协议选中"] forState:UIControlStateNormal];
     }else{
         self.registerBt.userInteractionEnabled = NO;
         self.registerBt.backgroundColor = [UIColor lightGrayColor];
-        self.imagev.image =[UIImage imageNamed:@"注册协议未选中"];
+        [self.isAgreeBtn setImage:[UIImage imageNamed:@"注册协议未选中"] forState:UIControlStateNormal];
     }
-    
 }
+
 /**
  *查看注册协议
  */

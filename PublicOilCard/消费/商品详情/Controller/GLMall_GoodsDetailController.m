@@ -15,6 +15,7 @@
 @interface GLMall_GoodsDetailController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,GLMall_GoodsHeaderViewDelegate>
 {
     NSInteger _sum;//商品购买数量
+    GLMall_GoodsHeaderView *_header;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *buyBtn;
@@ -292,60 +293,68 @@
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     
-    GLMall_GoodsHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView" forIndexPath:indexPath];
-    
-    NSString *attrStr = self.dataDic[@"goods_info"];
-    attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
-//    attrStr = [attrStr stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-//    attrStr = [attrStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-    NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
-    long len1 = [strone length];
-    NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
-    
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
-    
-    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
-    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(0,len1)];
-    
-    if(attrStr.length <= 0){
+    _header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView" forIndexPath:indexPath];
+    NSMutableAttributedString *str;
+    if (self.dataDic) {
         
-        header.detailLabel.text = self.dataDic[@"goods_name"];
+        NSString *attrStr = self.dataDic[@"goods_info"];
+        attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符
         
-    }else{
+        NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
+        long len1 = [strone length];
+        NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
+        str = [[NSMutableAttributedString alloc]initWithString:strtwo];
         
-        header.detailLabel.attributedText = str;
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(0,len1)];
+        [str addAttribute:NSForegroundColorAttributeName value:[UIColor darkGrayColor] range:NSMakeRange(len1 ,strtwo.length - len1)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(len1 ,strtwo.length - len1)];
+    }
+    
+    _header.detailTextView.textContainerInset = UIEdgeInsetsZero;
+    _header.detailTextView.textContainer.lineFragmentPadding = 0;
+
+    if (self.dataDic != nil) {
+        
+        if(self.dataDic[@"goods_info"] == nil){
+            
+            _header.detailTextView.text = self.dataDic[@"goods_name"];
+            
+        }else{
+            
+            _header.detailTextView.attributedText = str;
+        }
     }
 
     if([self.dataDic[@"discount"] isEqual:[NSNull null]] || self.dataDic[@"discount"] == nil){
-        header.priceLabel.text = @"¥0";
+        _header.priceLabel.text = @"¥0";
     }else{
         
-        header.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"discount"]];
+        _header.priceLabel.text = [NSString stringWithFormat:@"¥%@",self.dataDic[@"discount"]];
     }
     
     if([self.dataDic[@"salenum"] isEqual:[NSNull null]]|| self.dataDic[@"salenum"] == nil){
-        header.countLabel.text = @"总销量:0";
+        _header.countLabel.text = @"总销量:0";
     }else{
     
-        header.countLabel.text = [NSString stringWithFormat:@"总销量:%@",self.dataDic[@"salenum"]];
+        _header.countLabel.text = [NSString stringWithFormat:@"总销量:%@",self.dataDic[@"salenum"]];
     }
     
     if([self.dataDic[@"goods_num"] isEqual:[NSNull null]]|| self.dataDic[@"goods_num"] == nil){
-        header.stockLabel.text = @"库存:0";
+        _header.stockLabel.text = @"库存:0";
     }else{
-        header.stockLabel.text = [NSString stringWithFormat:@"库存:%@",self.dataDic[@"goods_num"]];
+        _header.stockLabel.text = [NSString stringWithFormat:@"库存:%@",self.dataDic[@"goods_num"]];
     }
     
-    header.stockNum = self.dataDic[@"goods_num"];
-    header.delegate = self;
+    _header.stockNum = self.dataDic[@"goods_num"];
+    _header.delegate = self;
     
     if ([self.isCollection integerValue] == 1) {
-        [header.collectionBt setImage:[UIImage imageNamed:@"已收藏"] forState:UIControlStateNormal];
+        [_header.collectionBt setImage:[UIImage imageNamed:@"已收藏"] forState:UIControlStateNormal];
     }else{
-        [header.collectionBt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
+        [_header.collectionBt setImage:[UIImage imageNamed:@"未收藏"] forState:UIControlStateNormal];
     }
-    header.middleViewTop.constant = _headerImageHeight;
+    _header.middleViewTop.constant = _headerImageHeight;
     if (self.dataDic != nil) {
         if (![self.dataDic[@"banner"] isEqual:[NSNull null]]) {
             
@@ -358,9 +367,9 @@
             self.cycleScrollView.imageURLStringsGroup = @[];
         }
     }
-    [header addSubview:self.cycleScrollView];
+    [_header addSubview:self.cycleScrollView];
     
-    return header;
+    return _header;
 }
 #pragma mark -- SDCycleScrollViewDelegate 点击看大图
 /** 点击图片回调 */
@@ -377,15 +386,15 @@
     if (!_cycleScrollView) {
         _cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, _headerImageHeight)
                                                               delegate:self
-                                                      placeholderImage:[UIImage imageNamed:@"轮播占位图"]];
+                                                      placeholderImage:[UIImage imageNamed:LUNBO_PlaceHolder]];
         
-        _cycleScrollView.localizationImageNamesGroup = @[];
+        _cycleScrollView.localizationImageNamesGroup = @[LUNBO_PlaceHolder];
         _cycleScrollView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
         
         _cycleScrollView.placeholderImageContentMode = UIViewContentModeScaleAspectFill;
         _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;// 翻页 右下角
         _cycleScrollView.titleLabelBackgroundColor = YYSRGBColor(241, 242, 243, 1);// 图片对应的标题的 背景色。（因为没有设标题）
-        _cycleScrollView.placeholderImage = [UIImage imageNamed:@"轮播占位图"];
+        _cycleScrollView.placeholderImage = [UIImage imageNamed:LUNBO_PlaceHolder];
         _cycleScrollView.pageControlDotSize = CGSizeMake(10, 10);
     }
     
@@ -395,27 +404,31 @@
 // 设置section头视图的参考大小，与tableheaderview类似
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout
 referenceSizeForHeaderInSection:(NSInteger)section {
-    NSString *content;
+
+    NSMutableAttributedString *str;
     if (self.dataDic) {
         
         NSString *attrStr = self.dataDic[@"goods_info"];
         attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
+        
         NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
         long len1 = [strone length];
         NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
-        NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
+        str = [[NSMutableAttributedString alloc]initWithString:strtwo];
         
         [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
         [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(0,len1)];
-
-        content = [str string];
-    }else{
-        content = @"暂无";
     }
 
-    CGSize titleSize = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+    CGSize titleSize = [str boundingRectWithSize:CGSizeMake([UIScreen mainScreen].bounds.size.width - 60, MAXFLOAT)
+                                    options:NSStringDrawingUsesLineFragmentOrigin
+                                    context:nil].size;
+
+    CGRect textViewFrame = _header.detailTextView.frame;
+    textViewFrame.size.height = titleSize.height;
+    _header.detailTextView.frame = textViewFrame;
     
-    return CGSizeMake(SCREEN_WIDTH, titleSize.height + 18 + _headerImageHeight + 160);
+    return CGSizeMake(SCREEN_WIDTH, textViewFrame.size.height + _headerImageHeight + 140);
 }
 
 #pragma 懒加载

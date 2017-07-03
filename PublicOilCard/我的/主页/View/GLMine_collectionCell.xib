@@ -43,6 +43,9 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cil-MT-s2P">
                         <rect key="frame" x="170" y="0.0" width="30" height="170"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="dVe-Ic-Ehn"/>
+                        </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0a-KI-8Kk">
                         <rect key="frame" x="30" y="20" width="140" height="130"/>
@@ -75,7 +78,6 @@
             </view>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
             <constraints>
-                <constraint firstItem="Cil-MT-s2P" firstAttribute="width" secondItem="e2S-lj-r1M" secondAttribute="width" id="1By-vy-iKC"/>
                 <constraint firstItem="c0a-KI-8Kk" firstAttribute="leading" secondItem="e2S-lj-r1M" secondAttribute="trailing" id="3bo-qd-lLY"/>
                 <constraint firstAttribute="trailing" secondItem="5zx-3I-Y57" secondAttribute="trailing" id="8Ay-nK-SPd"/>
                 <constraint firstAttribute="trailing" secondItem="Cil-MT-s2P" secondAttribute="trailing" id="8FF-Vc-zau"/>
@@ -100,7 +102,7 @@
                 <outlet property="leftViewWidth" destination="AKG-Xl-mW0" id="gS2-0Y-4af"/>
                 <outlet property="picImageV" destination="n8w-Rv-kC1" id="ZzQ-td-La8"/>
                 <outlet property="picImageVWidth" destination="efu-tR-cfc" id="ODm-Uc-6Nb"/>
-                <outlet property="rightViewWidth" destination="1By-vy-iKC" id="AHH-aG-rcW"/>
+                <outlet property="rightViewWidth" destination="dVe-Ic-Ehn" id="flx-cs-HmT"/>
                 <outlet property="titleLabel" destination="iw6-62-Qxa" id="gNG-7t-WhC"/>
                 <outlet property="topViewHeight" destination="OJT-ZS-ZhK" id="8Vs-wh-QfQ"/>
             </connections>

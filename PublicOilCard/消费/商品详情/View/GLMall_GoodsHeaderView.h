@@ -19,6 +19,7 @@
 
 @interface GLMall_GoodsHeaderView : UICollectionReusableView
 
+@property (weak, nonatomic) IBOutlet UITextView *detailTextView;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
@@ -26,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *collectionBt;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewTop;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextViewHeight;
 
 @property (nonatomic, copy)NSString * stockNum;
 

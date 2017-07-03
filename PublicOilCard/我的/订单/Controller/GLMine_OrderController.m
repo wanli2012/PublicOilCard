@@ -105,6 +105,7 @@
                     orderMode.addtime = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"addtime"]];
                     orderMode.total = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"total"]];
                     orderMode.order_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_status"]];
+                    orderMode.sh_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"sh_status"]];
                     orderMode.order_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][i][@"order_id"]];
                     orderMode.isExpanded = NO;
                     for (int j =0; j < [responseObject[@"data"][i][@"goods"]count]; j++) {
@@ -166,8 +167,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     GLMine_OrderSectionHeader *headerview = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"GLMine_OrderSectionHeader"];
-    GLMine_OrderSectionModel *sectionModel = self.sectionModels[section];
-    headerview.sectionModel = sectionModel;
+
     headerview.delegete = self;
     headerview.section = section;
     headerview.expandCallback = ^(BOOL isExpanded) {
@@ -184,7 +184,6 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 110;
 }
-
 
 #pragma mark == GLMine_OrderSectionHeaderDelegete
 

@@ -26,19 +26,24 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4K8-wq-opg">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUa-Gj-qTf">
-                            <rect key="frame" x="10" y="27" width="27" height="27"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUa-Gj-qTf">
+                            <rect key="frame" x="0.0" y="27" width="47" height="27"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="27" id="aBD-Ij-XOA"/>
+                                <constraint firstAttribute="width" constant="47" id="aBD-Ij-XOA"/>
                                 <constraint firstAttribute="height" constant="27" id="fXx-bt-MFp"/>
                             </constraints>
+                            <inset key="imageEdgeInsets" minX="15" minY="5" maxX="15" maxY="5"/>
                             <state key="normal" image="设置"/>
                             <connections>
                                 <action selector="set:" destination="-1" eventType="touchUpInside" id="KDv-iZ-e7w"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvv-Aa-cFS">
-                            <rect key="frame" x="340" y="28" width="25" height="25"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvv-Aa-cFS">
+                            <rect key="frame" x="328" y="27" width="47" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="47" id="5lF-b8-pGP"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="15" minY="5" maxX="15" maxY="5"/>
                             <state key="normal" image="消息提示"/>
                             <connections>
                                 <action selector="info:" destination="-1" eventType="touchUpInside" id="06y-Ri-8vf"/>
@@ -56,9 +61,10 @@
                         <constraint firstItem="yvv-Aa-cFS" firstAttribute="centerY" secondItem="jUa-Gj-qTf" secondAttribute="centerY" id="2Og-14-KaK"/>
                         <constraint firstItem="Y4N-ec-ZMa" firstAttribute="centerX" secondItem="4K8-wq-opg" secondAttribute="centerX" id="2Ur-7t-LDS"/>
                         <constraint firstItem="Y4N-ec-ZMa" firstAttribute="centerY" secondItem="jUa-Gj-qTf" secondAttribute="centerY" id="8Rd-cc-5fD"/>
-                        <constraint firstItem="jUa-Gj-qTf" firstAttribute="leading" secondItem="4K8-wq-opg" secondAttribute="leading" constant="10" id="UtB-eD-uQN"/>
+                        <constraint firstItem="yvv-Aa-cFS" firstAttribute="height" secondItem="jUa-Gj-qTf" secondAttribute="height" id="R4m-fq-eDE"/>
+                        <constraint firstItem="jUa-Gj-qTf" firstAttribute="leading" secondItem="4K8-wq-opg" secondAttribute="leading" id="UtB-eD-uQN"/>
                         <constraint firstAttribute="bottom" secondItem="jUa-Gj-qTf" secondAttribute="bottom" constant="10" id="cn4-XE-0Sa"/>
-                        <constraint firstAttribute="trailing" secondItem="yvv-Aa-cFS" secondAttribute="trailing" constant="10" id="dMt-eW-rVS"/>
+                        <constraint firstAttribute="trailing" secondItem="yvv-Aa-cFS" secondAttribute="trailing" id="dMt-eW-rVS"/>
                         <constraint firstAttribute="height" constant="64" id="zJ9-NT-ECw"/>
                     </constraints>
                 </view>

@@ -53,8 +53,8 @@
 #define MINISTER @"1"
 
 #define PlaceHolderImage @"picnodata"
-#define LUNBO_PlaceHolder @"轮播暂位图"
-#define MERCHAT_PlaceHolder @"商户暂位图"
+#define LUNBO_PlaceHolder @"轮播占位图"
+#define kGOODS_PlaceHolder @"产品占位图"
 
 //http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html
 //分享

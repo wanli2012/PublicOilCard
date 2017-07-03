@@ -394,7 +394,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     if (indexPath.row == 0 || indexPath.row == 2) {
         
         cell.leftViewWidth.constant = 30;
-        cell.rightViewWidth.constant = -22;
+        cell.rightViewWidth.constant = 8;
     }else{
         cell.leftViewWidth.constant = 8;
         cell.rightViewWidth.constant = 30;

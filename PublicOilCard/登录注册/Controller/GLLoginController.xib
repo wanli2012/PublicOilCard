@@ -112,10 +112,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4x-Xh-Nk5">
-                            <rect key="frame" x="295" y="219.5" width="30" height="23"/>
+                            <rect key="frame" x="295" y="218.5" width="30" height="25"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="23" id="PKQ-MT-oGc"/>
+                                <constraint firstAttribute="height" constant="25" id="PKQ-MT-oGc"/>
                                 <constraint firstAttribute="width" constant="30" id="Sf7-bP-8DJ"/>
                             </constraints>
                             <state key="normal" image="显示"/>

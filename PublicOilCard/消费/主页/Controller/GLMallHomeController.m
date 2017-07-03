@@ -49,13 +49,13 @@
     [super viewDidLoad];
     
     [self.typeBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.typeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    [self.typeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 80, 0, 0)];
     
     [self.moneyBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.moneyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    [self.moneyBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 80, 0, 0)];
     
     [self.timeBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 30)];
-    [self.timeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 70, 0, 0)];
+    [self.timeBtn setImageEdgeInsets:UIEdgeInsetsMake(0, 80, 0, 0)];
     
     //    //设置渐变色
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];
@@ -82,7 +82,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismiss) name:@"maskView_dismiss" object:nil];
     
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMallHomeCell" bundle:nil] forCellWithReuseIdentifier:@"GLMallHomeCell"];
-    
     
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -383,7 +382,7 @@
     
     GLMallHomeGoodsModel *goodsmodel = self.models[indexPath.row];
     
-    if ([goodsmodel.goods_id isEqualToString:@"1"] && !([[UserModel defaultUser].group_id isEqualToString:@"4"] || [[UserModel defaultUser].group_id isEqualToString:@"5"])) {
+    if ([goodsmodel.cate_id isEqualToString:@"1"] && !([[UserModel defaultUser].group_id isEqualToString:@"4"] || [[UserModel defaultUser].group_id isEqualToString:@"5"])) {
         [MBProgressHUD showError:@"只有代理商可以购买"];
         return;
     }
@@ -409,27 +408,5 @@
     }
     return _models;
 }
-//- (GLHomeLiveChooseController *)chooseVC{
-//    if (!_chooseVC) {
-//        _chooseVC = [[GLHomeLiveChooseController alloc] init];
-//        
-//        UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
-//        CGRect rect=[self.topView convertRect:self.topView.bounds toView:window];
-//        
-//        _chooseVC = [[GLHomeLiveChooseController alloc] init];
-//        //    _chooseVC.view.frame = CGRectZero;
-//        
-//        _chooseVC.view.frame = CGRectMake(0,0, SCREEN_WIDTH, 0);
-//        _chooseVC.view.backgroundColor = [UIColor whiteColor];
-//        _chooseVC.view.layer.cornerRadius = 4;
-//        _chooseVC.view.layer.masksToBounds = YES;
-//        
-//        _maskV = [[GLSet_MaskVeiw alloc] initWithFrame:CGRectMake(0,CGRectGetMaxY(rect), SCREEN_WIDTH, SCREEN_HEIGHT)];
-//        _maskV.bgView.alpha = 0.1;
-//        
-//        [_maskV showViewWithContentView:_chooseVC.view];
-//        _maskV.alpha = 0;
-//    }
-//    return _chooseVC;
-//}
+
 @end

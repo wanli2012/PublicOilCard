@@ -38,9 +38,9 @@
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [btn addTarget:self action:@selector(delAllMessage) forControlEvents:UIControlEventTouchUpInside];
     [btn setImage:[UIImage imageNamed:@"垃圾桶"] forState:UIControlStateNormal];
-    [btn setImageEdgeInsets:UIEdgeInsetsMake(8, 5, 8, -5)];
-    btn.frame = CGRectMake(0, 0, 80, 40);
-    
+    [btn setImageEdgeInsets:UIEdgeInsetsMake(13, 60, 13, 0)];
+    btn.frame = CGRectMake(0, 0, 80, 44);
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     __weak __typeof(self) weakSelf = self;

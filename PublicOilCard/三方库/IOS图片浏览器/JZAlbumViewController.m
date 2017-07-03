@@ -102,7 +102,7 @@
     
     UIImageView *imagev = [[UIImageView alloc]init];
     if ([self.imgArr[index] isKindOfClass:[NSString class]]) {
-       [ imagev sd_setImageWithURL:self.imgArr[index] ];
+       [ imagev sd_setImageWithURL:self.imgArr[index]];
     }else if ([self.imgArr[index] isKindOfClass:[UIImage class]]){
         imagev.image = (UIImage*)self.imgArr[index];
     }

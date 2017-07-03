@@ -31,13 +31,14 @@
     self.contentView.backgroundColor = [UIColor whiteColor];
     
 }
+
 - (void)setSectionModel:(GLMine_OrderSectionModel *)sectionModel{
     _sectionModel = sectionModel;
 
      self.orderNumLabel.text = [NSString stringWithFormat:@"订单号:%@",_sectionModel.order_num];
      self.dateLabel.text = [formattime formateTime:[NSString stringWithFormat:@"%@",_sectionModel.addtime]];
     //订单状态(0订单异常1 已下单,未付款2 已付款,待发货3 已发货,待验收4 已验收,待用户确认订单生效5 确认订单生效6 交易失败7 申请退款8 退款成功9 退款失败10取消订单 11待评论
-    switch ([_sectionModel.order_status integerValue]) {
+    switch ([_sectionModel.sh_status integerValue]) {
         case 0:
             self.statusLabel.text = @"未支付";
             [self.payNowBtn setTitle:@"立即支付" forState:UIControlStateNormal];
@@ -47,9 +48,9 @@
             break;
         case 1:
             self.statusLabel.text = @"待充值";
-            self.payNowBtn.hidden = NO;
+            self.payNowBtn.hidden = YES;
             self.cancelBtn.hidden = YES;
-              [self.payNowBtn setTitle:@"删除" forState:UIControlStateNormal];
+//              [self.payNowBtn setTitle:@"删除" forState:UIControlStateNormal];
             break;
         case 2:
             self.statusLabel.text = @"支付失败";
@@ -70,11 +71,9 @@
             self.cancelBtn.hidden = YES;
             break;
         
-            
         default:
             break;
     }
-    
     
 }
 //取消订单

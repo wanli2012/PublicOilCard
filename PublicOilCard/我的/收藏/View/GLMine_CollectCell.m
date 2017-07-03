@@ -27,7 +27,7 @@
 
 - (void)setModel:(GLMine_CollectModel *)model{
     _model = model;
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:model.thumb] placeholderImage:[UIImage imageNamed:kGOODS_PlaceHolder]];
     self.titleLabel.text = model.goods_name;
     self.detailLabel.text = model.goods_info;
     self.priceLabel.text = [NSString stringWithFormat:@"¥%@",model.discount];
@@ -37,7 +37,7 @@
 -(void)setWaitOrdersListModel:(LBWaitOrdersListModel *)WaitOrdersListModel{
     _WaitOrdersListModel =WaitOrdersListModel;
 
-    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.thumb] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    [self.picImageV sd_setImageWithURL:[NSURL URLWithString:_WaitOrdersListModel.thumb] placeholderImage:[UIImage imageNamed:kGOODS_PlaceHolder]];
     self.titleLabel.text =  [NSString stringWithFormat:@"名称: %@",_WaitOrdersListModel.goods_name];
     self.detailLabel.text =  [NSString stringWithFormat:@"%@",_WaitOrdersListModel.goods_info];
     self.priceLabel.text =  [NSString stringWithFormat:@"¥%@",_WaitOrdersListModel.goods_price];

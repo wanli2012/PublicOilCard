@@ -100,6 +100,12 @@
     [alertVC addAction:cameraAction];
     [alertVC addAction:albumAction];
     [alertVC addAction:cancelAction];
+    
+    //当在ipad里弹出时.需要用到该代码
+    UIPopoverPresentationController *popover = alertVC.popoverPresentationController;
+    popover.sourceView = self.imageV;
+    
+    popover.sourceRect = self.imageV.bounds;
     [self presentViewController:alertVC animated:YES completion:nil];
 
 }
