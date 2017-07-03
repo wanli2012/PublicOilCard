@@ -295,13 +295,18 @@
     GLMall_GoodsHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView" forIndexPath:indexPath];
     
     NSString *attrStr = self.dataDic[@"goods_info"];
+    attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
+//    attrStr = [attrStr stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//    attrStr = [attrStr stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
     NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
     long len1 = [strone length];
     NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
+    
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
     
     [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
-    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(0,len1)];
     
     if(attrStr.length <= 0){
         
@@ -394,13 +399,14 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     if (self.dataDic) {
         
         NSString *attrStr = self.dataDic[@"goods_info"];
+        attrStr = [attrStr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]; //去除掉首尾的空白字符和换行字符
         NSString *strone = [NSString stringWithFormat:@"[%@]",attrStr];
         long len1 = [strone length];
         NSString *strtwo = [NSString stringWithFormat:@"[%@] %@",attrStr,self.dataDic[@"goods_name"]];
         NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:strtwo];
         
         [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,len1)];
-        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17.0f] range:NSMakeRange(0,len1)];
+        [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15.0f] range:NSMakeRange(0,len1)];
 
         content = [str string];
     }else{
@@ -409,7 +415,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
 
     CGSize titleSize = [content boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
     
-    return CGSizeMake(SCREEN_WIDTH, titleSize.height + _headerImageHeight + 130);
+    return CGSizeMake(SCREEN_WIDTH, titleSize.height + 18 + _headerImageHeight + 160);
 }
 
 #pragma 懒加载
