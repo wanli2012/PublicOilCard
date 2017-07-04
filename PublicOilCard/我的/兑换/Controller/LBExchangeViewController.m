@@ -77,7 +77,7 @@
      *设置tableview 的FooterView
      */
     self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
-    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000积分\n 2、积分单笔兑换须以100的整数倍兑换，不足100分则不能兑换\n 3、积分兑换，收取手续费6%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费";
+    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000积分\n 2、单笔兑换须以100的整数倍兑换，不足100则不能兑换\n 3、积分兑换，收取手续费6%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费";
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
     if ([[UserModel defaultUser].mark floatValue] > 100000000) {
@@ -85,7 +85,6 @@
     }else if([[UserModel defaultUser].mark floatValue] > 100000){
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
     }else{
-        
         self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
     }
     if ([[UserModel defaultUser].yue floatValue] > 100000000) {
@@ -364,6 +363,10 @@
         return;
     }else if (self.selecttype == 1 && [self.money integerValue] % 100 != 0) {
         [MBProgressHUD showError:@"兑换积分须为100的整数倍"];
+        return;
+    }
+    if([self.money integerValue] > 50000){
+        [MBProgressHUD showError:@"单笔兑换最多可兑换50000!"];
         return;
     }
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"温馨提示"] message:[NSString stringWithFormat:@"请输入登录密码"]];
