@@ -69,7 +69,7 @@
 }
 -(void)initdatasource{
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/mark_list" paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"status":@"0",@"back_type":[recordeManger defaultUser].recordeType} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kEXCHANGELIST_URL paramDic:@{@"uid":[UserModel defaultUser].uid , @"token":[UserModel defaultUser].token , @"page" :[NSNumber numberWithInteger:self.page] ,@"status":@"0",@"back_type":[recordeManger defaultUser].recordeType} finish:^(id responseObject) {
         [_loadV removeloadview];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];

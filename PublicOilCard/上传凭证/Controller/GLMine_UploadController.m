@@ -36,17 +36,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-//    //自定义右键
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setTitle:@"记录" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [btn.titleLabel setFont:[UIFont systemFontOfSize:14]];
-//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    [btn addTarget:self  action:@selector(record) forControlEvents:UIControlEventTouchUpInside];
-//    btn.frame = CGRectMake(0, 0, 80, 40);
-    //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
-    
+
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = 680;
@@ -276,7 +266,7 @@
     manager.requestSerializer.timeoutInterval = 10;
     // 加上这行代码，https ssl 验证。
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,@"ShopInfo/app_order_line"] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kSHOPINFO_UPLOAD_URL] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
         
         if (self.picImage) {

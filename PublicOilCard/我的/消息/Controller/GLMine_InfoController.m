@@ -124,7 +124,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"user/msg_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kINFOLIST_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         

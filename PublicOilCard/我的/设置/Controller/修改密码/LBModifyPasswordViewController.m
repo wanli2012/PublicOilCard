@@ -71,7 +71,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/upd_pwd" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kUPDATEPWD_URL paramDic:dict finish:^(id responseObject) {
 
         [_loadV removeloadview];
         

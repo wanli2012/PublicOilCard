@@ -97,7 +97,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/upgrade_user" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kDELEGATEINFO_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         

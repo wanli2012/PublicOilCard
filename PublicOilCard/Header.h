@@ -21,9 +21,73 @@
 #define autoSizeScaleY (SCREEN_HEIGHT/568.f)
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
+
+///接口
 //119.23.213.255  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
 #define URL_Base @"http://api.51qmtg.org/index.php/app/"
 //#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
+
+#define kLOGIN_URL @"User/login" //登录
+
+#define kREGISTER_URL @"User/register" //注册
+
+#define kGET_CODE_URL @"User/get_yzm" //获取验证码
+
+#define kGET_CITYLIST_URL @"User/getCityList" //城市列表
+
+#define kREFRESH_URL @"User/refresh" //刷新
+
+#define kINFO_BQ @"User/userInfoBq" //信息补全
+
+#define kSHOP_Main_URL  @"ShopInfo/shop_index"//商城首页
+
+#define kSHOP_DETAIL_URL @"ShopInfo/goods_info"//商品详情
+
+#define kSHOP_BUYNOW_URL @"ShopInfo/buy_order"//立即购买
+
+#define kSHOP_DEL_COLLECT_URL @"UserInfo/del_collect"//删除收藏
+
+#define kSHOP_ADD_COLLECT_URL @"UserInfo/collec_add"//添加收藏
+
+#define kSHOPINFO_UPLOAD_URL @"ShopInfo/app_order_line"//上传凭证
+
+#define kSHOPINFO_ORDERLIST_URL @"ShopInfo/line_list"//凭证列表
+
+#define kMODIFY_INFO_URL @"UserInfo/user_info_in"//修改个人信息
+
+#define kUPLOADPIC_URL @"UserInfo/save_picture"//上传图片
+
+#define kUPDATEPWD_URL @"UserInfo/upd_pwd"//修改密码
+
+#define kDELEGATEINFO_URL @"UserInfo/upgrade_user"//升级个人代理界面信息
+
+#define kEXCHANGE_URL @"UserInfo/back_operate"//兑换接口
+
+#define kEXCHANGELIST_URL @"UserInfo/mark_list"//兑换记录列表
+
+#define kINFOLIST_URL @"User/msg_list"//消息列表
+
+#define kCOLLECTEIONLIST_URL @"UserInfo/collec_list"//收藏列表
+
+#define kORDERLIST_URL @"UserInfo/order_list"//订单列表
+
+#define kDEL_ORDER_URL @"UserInfo/del_order"//删除订单
+
+#define kCANCEL_ORDER_URL @"UserInfo/cancel_order"//取消定单
+
+#define kRECOMMENDLIST_URL @"UserInfo/groom_list"//推荐列表
+
+#define kOPEN_UNDER_URL @"UserInfo/open_under"//开同下级
+
+#define kRELATIONSHIPLIST_URL @"UserInfo/bz_groom_list"//关系 列表
+
+#define kORDER_PAY_URL @"ShopInfo/order_pay"//订单支付
+
+#define kOPENCARD_URL @"UserInfo/operate_card"//开卡
+
+#define kUPGRADE_URL @"UserInfo/upgrade"//升级成个代
+
+
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
 //获取appStore上的最新版本号地址

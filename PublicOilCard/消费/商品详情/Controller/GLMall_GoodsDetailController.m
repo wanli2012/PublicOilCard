@@ -99,7 +99,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/goods_info" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kSHOP_DETAIL_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         
@@ -176,7 +176,7 @@
     dict[@"goods_num"] = [NSString stringWithFormat:@"%zd",_sum];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/buy_order" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kSHOP_BUYNOW_URL paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         
@@ -216,7 +216,7 @@
         dict[@"collect_id"] = self.collect_id;
         
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"UserInfo/del_collect" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:kSHOP_DEL_COLLECT_URL paramDic:dict finish:^(id responseObject) {
             [self endRefresh];
             [_loadV removeloadview];
             
@@ -243,7 +243,7 @@
         dict[@"goods_id"] = self.goods_id;
         
         _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-        [NetworkManager requestPOSTWithURLStr:@"UserInfo/collec_add" paramDic:dict finish:^(id responseObject) {
+        [NetworkManager requestPOSTWithURLStr:kSHOP_ADD_COLLECT_URL paramDic:dict finish:^(id responseObject) {
             [self endRefresh];
             [_loadV removeloadview];
             [MBProgressHUD showError:responseObject[@"message"]];

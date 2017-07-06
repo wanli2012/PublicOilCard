@@ -131,7 +131,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"ShopInfo/shop_index" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kSHOP_Main_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         

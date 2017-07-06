@@ -109,7 +109,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
 
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kREFRESH_URL paramDic:dict finish:^(id responseObject) {
   
         if ([responseObject[@"code"] integerValue]==1) {
             [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
@@ -309,7 +309,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kMODIFY_INFO_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
@@ -360,7 +360,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     dict[@"qtIdNum"] = self.contentV.qtIDTextF.text;
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kMODIFY_INFO_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {

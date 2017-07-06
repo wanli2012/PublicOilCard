@@ -55,7 +55,7 @@
 - (void)getCityList {
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kGET_CITYLIST_URL paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.dataArr = responseObject[@"data"];
@@ -81,7 +81,7 @@
     }
     
     [self startTime];//获取倒计时
-    [NetworkManager requestPOSTWithURLStr:@"user/get_yzm" paramDic:@{@"phone":self.phoneTF.text} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kGET_CODE_URL paramDic:@{@"phone":self.phoneTF.text} finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             
         }else{
@@ -158,7 +158,7 @@
     dict[@"province"] = self.provinceStrId;
     dict[@"city"] = self.cityStrId;
     dict[@"area"] = self.countryStrId;
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/open_under" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kOPEN_UNDER_URL paramDic:dict finish:^(id responseObject) {
         if ([responseObject[@"code"] integerValue]==1) {
             [MBProgressHUD showSuccess:@"开通下级成功"];
             [self.navigationController popViewControllerAnimated:YES];

@@ -78,7 +78,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/bz_groom_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kRELATIONSHIPLIST_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         

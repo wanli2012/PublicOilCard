@@ -256,7 +256,7 @@
     }
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kMODIFY_INFO_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
    
         if ([responseObject[@"code"] integerValue]==1) {
@@ -296,7 +296,7 @@
     dict[@"qtIdNum"] = self.infoContentV.qtIDTextF.text;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/user_info_in" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kMODIFY_INFO_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
@@ -322,7 +322,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     
 //    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kREFRESH_URL paramDic:dict finish:^(id responseObject) {
         
 //        [_loadV removeloadview];
 
@@ -581,7 +581,7 @@
         manager.requestSerializer.timeoutInterval = 10;
         // 加上这行代码，https ssl 验证。
         [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-        [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,@"UserInfo/save_picture"] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kUPLOADPIC_URL] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             //将图片以表单形式上传
             
             if (self.picImage) {

@@ -296,14 +296,14 @@
         dict[@"order_num"] = self.order_num;
         dict[@"goods_id"] = self.goods_id;
         dict[@"goods_num"] = self.goods_num;
-        urlstr = @"ShopInfo/order_pay";
+        urlstr = kORDER_PAY_URL;
         
     }else if(self.pushIndex == 2){
        
         dict[@"token"] = [UserModel defaultUser].token;
         dict[@"uid"] = [UserModel defaultUser].uid;
         dict[@"pay_fun"] = payType;
-         urlstr = @"UserInfo/operate_card";
+         urlstr = kOPENCARD_URL;
     }else if(self.pushIndex == 3){
         
         dict[@"token"] = [UserModel defaultUser].token;
@@ -311,7 +311,7 @@
         dict[@"user_name"] = [UserModel defaultUser].username;
         dict[@"upgrade"] = @(self.upgrade);
         dict[@"pay_fun"] = payType;
-        urlstr = @"UserInfo/upgrade";
+        urlstr = kUPGRADE_URL;
     }
   
     
@@ -324,7 +324,7 @@
             NSString *alipay = [[NSString alloc]init];
             alipay = responseObject[@"data"][@"alipay"];
             
-           [ [AlipaySDK defaultService]payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
+           [ [AlipaySDK defaultService] payOrder:alipay fromScheme:@"publicOilCardAlipay" callback:^(NSDictionary *resultDic) {
                
                NSInteger orderState=[resultDic[@"resultStatus"] integerValue];
                if (orderState==9000) {

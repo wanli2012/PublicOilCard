@@ -424,7 +424,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_operate" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kEXCHANGE_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
@@ -449,7 +449,7 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kREFRESH_URL paramDic:dict finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue]==1) {
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];

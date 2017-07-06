@@ -49,7 +49,7 @@
 - (void)getCityList {
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
-    [NetworkManager requestPOSTWithURLStr:@"user/getCityList" paramDic:@{} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kGET_CITYLIST_URL paramDic:@{} finish:^(id responseObject) {
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             self.dataArr = responseObject[@"data"];
@@ -90,7 +90,7 @@
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     
-    [NetworkManager requestPOSTWithURLStr:@"user/refresh" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kREFRESH_URL paramDic:dict finish:^(id responseObject) {
         
         if ([responseObject[@"code"] integerValue]==1) {
             [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
@@ -282,7 +282,7 @@
 
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
 
-    [NetworkManager requestPOSTWithURLStr:@"user/userInfoBq" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kINFO_BQ paramDic:dict finish:^(id responseObject) {
         
         [_loadV removeloadview];
         

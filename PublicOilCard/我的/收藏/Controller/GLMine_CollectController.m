@@ -75,7 +75,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/collec_list" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kCOLLECTEIONLIST_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         
@@ -189,7 +189,7 @@
             
             _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
             
-            [NetworkManager requestPOSTWithURLStr:@"UserInfo/del_collect" paramDic:dict finish:^(id responseObject) {
+            [NetworkManager requestPOSTWithURLStr:kSHOP_DEL_COLLECT_URL paramDic:dict finish:^(id responseObject) {
                 [self endRefresh];
                 [_loadV removeloadview];
                 if ([responseObject[@"code"] integerValue]==1) {
