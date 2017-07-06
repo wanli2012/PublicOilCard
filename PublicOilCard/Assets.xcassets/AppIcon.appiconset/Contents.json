@@ -3,60 +3,61 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@2x.png",
+      "filename" : "ios-template-40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@3x.png",
+      "filename" : "ios-template-80.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@2x-1.png",
+      "filename" : "ios-template-58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@3x-1.png",
+      "filename" : "ios-template-76.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@2x-2.png",
+      "filename" : "ios-template-81.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@3x-2.png",
+      "filename" : "ios-template-120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@2x-3.png",
+      "filename" : "ios-template-121.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "矢量智能对象@3x-3.png",
+      "filename" : "ios-template-180.png",
       "scale" : "3x"
     },
     {
+      "size" : "29x29",
       "idiom" : "ipad",
-      "size" : "29x29",
+      "filename" : "ios-template-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "矢量智能对象@2x-4.png",
+      "filename" : "ios-template-59.png",
       "scale" : "2x"
     },
     {

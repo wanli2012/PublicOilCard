@@ -68,7 +68,7 @@
             [MBProgressHUD showError:responseObject[@"message"]];
         }
         
-        self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张\n一次性永久服务费",[UserModel defaultUser].cost];
+        self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost];
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -98,7 +98,7 @@
     self.hidesBottomBarWhenPushed = YES;
     LBViewProtocolViewController *vc=[[LBViewProtocolViewController alloc]init];
     vc.navTitle = @"开卡协议";
-    vc.webUrl = kOPENCARD_URL;
+    vc.webUrl = kOPENCARD_DELEGATE_URL;
     [self.navigationController pushViewController:vc animated:YES];
 
 }

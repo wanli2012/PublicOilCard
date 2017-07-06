@@ -66,7 +66,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     [self.collectionV registerNib:[UINib nibWithNibName:@"GLMine_collectionCell" bundle:nil] forCellWithReuseIdentifier:cellID];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:UIApplicationWillEnterForegroundNotification object:[UIApplication sharedApplication]];
-    [self completeInfo];
+//    [self completeInfo];
     
     
     CAGradientLayer *gradientLayer = [CAGradientLayer layer];

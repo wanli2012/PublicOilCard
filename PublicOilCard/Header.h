@@ -24,8 +24,8 @@
 
 ///接口
 //119.23.213.255  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
-#define URL_Base @"http://api.51qmtg.org/index.php/app/"
 //#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
+#define URL_Base @"http://api.51qmtg.org/index.php/app/"
 
 #define kLOGIN_URL @"User/login" //登录
 
@@ -93,14 +93,13 @@
 //获取appStore上的最新版本号地址
 #define GET_VERSION  @"https://itunes.apple.com/lookup?id=1228047806"
 //关于公司网址
-#define ABOUTUS_URL @"http://www.51qmtg.org/youka/about.html"
+#define ABOUTUS_URL @"http://api.51qmtg.org/youka/about.html"
 //注册协议
-#define REGISTER_URL @"http://www.51qmtg.org/youka/agreement.html"
+#define REGISTER_URL @"http://api.51qmtg.org/youka/agreement.html"
 //开卡协议
-#define kOPENCARD_URL @"https://www.baidu.com"
+#define kOPENCARD_DELEGATE_URL @"https://www.baidu.com"
 //公告
-#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
-
+//#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 //个人代理 首期代理
 #define Retailer @"4"
 //会员
