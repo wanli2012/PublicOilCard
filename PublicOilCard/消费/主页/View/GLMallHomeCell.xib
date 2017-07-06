@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,6 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="192" height="150"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="ck8-m0-rLG" secondAttribute="height" multiplier="32:25" id="Bo3-qr-k3R"/>
                             <constraint firstAttribute="height" constant="150" id="ptd-ZW-vhI"/>
                         </constraints>
                     </imageView>

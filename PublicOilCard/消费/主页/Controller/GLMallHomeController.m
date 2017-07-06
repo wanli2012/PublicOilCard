@@ -72,7 +72,7 @@
     [self.navView insertSubview:backgroundView atIndex:0];
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 -5, 224);
+    layout.itemSize = CGSizeMake(SCREEN_WIDTH / 2 - 5, 224);
     layout.minimumLineSpacing = 5;
     layout.minimumInteritemSpacing = 5;
     self.collectionView.collectionViewLayout = layout;

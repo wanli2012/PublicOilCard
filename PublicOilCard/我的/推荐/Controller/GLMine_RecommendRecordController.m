@@ -145,6 +145,13 @@
 }
 #pragma UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (self.models.count == 0) {
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden = YES;
+    }
+    
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

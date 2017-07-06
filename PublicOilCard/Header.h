@@ -21,8 +21,8 @@
 #define autoSizeScaleY (SCREEN_HEIGHT/568.f)
 
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
-//119.23.213.255   http://www.51qmtg.org/index.php/app/
-#define URL_Base @"http://www.51qmtg.org/index.php/app/"
+//119.23.213.255  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
+#define URL_Base @"http://api.51qmtg.org/index.php/app/"
 //#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
