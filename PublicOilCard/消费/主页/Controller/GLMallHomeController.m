@@ -383,7 +383,7 @@
     GLMallHomeGoodsModel *goodsmodel = self.models[indexPath.row];
     
     if ([goodsmodel.cate_id isEqualToString:@"1"] && !([[UserModel defaultUser].group_id isEqualToString:@"4"] || [[UserModel defaultUser].group_id isEqualToString:@"5"])) {
-        [MBProgressHUD showError:@"只有代理商可以购买"];
+        [MBProgressHUD showError:@"只有招商总管可以购买"];
         return;
     }
     

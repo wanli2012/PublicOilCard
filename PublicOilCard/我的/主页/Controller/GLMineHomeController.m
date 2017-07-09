@@ -663,7 +663,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
         _collectionV.alwaysBounceVertical = YES;
         _collectionV.showsVerticalScrollIndicator = NO;
         //        [_collectionV setContentInset:UIEdgeInsetsMake(0, 20, 0, 20)];
-        //设置代理
+        //设置招商总管
         _collectionV.delegate = self;
         _collectionV.dataSource = self;
     }

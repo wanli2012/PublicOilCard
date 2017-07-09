@@ -433,6 +433,7 @@
 		F946A5D91EFCB0B40080954C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F946A5D71EFCB0B40080954C /* libssl.a */; };
 		F94AFF261EF92AC000DC34F8 /* GLMine_OrderSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */; };
 		F94AFF291EF92AD800DC34F8 /* LBWaitOrdersListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */; };
+		F95CFA641F123028006A4F74 /* LBPayFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F95CFA631F123028006A4F74 /* LBPayFooterView.m */; };
 		F95D45EE1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */; };
 		F95D45EF1EFA4A980011C69B /* TYAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DD1EFA4A980011C69B /* TYAlertController.m */; };
 		F95D45F01EFA4A980011C69B /* TYAlertDropDownAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = F95D45DF1EFA4A980011C69B /* TYAlertDropDownAnimation.m */; };
@@ -1253,6 +1254,8 @@
 		F94AFF251EF92AC000DC34F8 /* GLMine_OrderSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_OrderSectionModel.m; sourceTree = "<group>"; };
 		F94AFF271EF92AD800DC34F8 /* LBWaitOrdersListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBWaitOrdersListModel.h; sourceTree = "<group>"; };
 		F94AFF281EF92AD800DC34F8 /* LBWaitOrdersListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBWaitOrdersListModel.m; sourceTree = "<group>"; };
+		F95CFA621F123028006A4F74 /* LBPayFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBPayFooterView.h; sourceTree = "<group>"; };
+		F95CFA631F123028006A4F74 /* LBPayFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBPayFooterView.m; sourceTree = "<group>"; };
 		F95D45DB1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TYAlertController+TransitionAnimate.m"; sourceTree = "<group>"; };
 		F95D45DC1EFA4A980011C69B /* TYAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYAlertController.h; sourceTree = "<group>"; };
 		F95D45DD1EFA4A980011C69B /* TYAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYAlertController.m; sourceTree = "<group>"; };
@@ -1604,6 +1607,8 @@
 				4A39F4D71EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.h */,
 				4A39F4D81EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.m */,
 				4A39F4D91EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.xib */,
+				F95CFA621F123028006A4F74 /* LBPayFooterView.h */,
+				F95CFA631F123028006A4F74 /* LBPayFooterView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -3652,6 +3657,7 @@
 				4A4FA5EC1EF0DE3100A256D2 /* GLMallHomeController.m in Sources */,
 				4A5331D51EFE763F009C3593 /* ZXQRCodeDecodedBitStreamParser.m in Sources */,
 				4A53317B1EFE763F009C3593 /* ZXDataMatrixWriter.m in Sources */,
+				F95CFA641F123028006A4F74 /* LBPayFooterView.m in Sources */,
 				4A5331971EFE763F009C3593 /* ZXRSSExpandedReader.m in Sources */,
 				4A53313D1EFE763F009C3593 /* ZXVEventResultParser.m in Sources */,
 				4A5331341EFE763F009C3593 /* ZXSMSTOMMSTOResultParser.m in Sources */,

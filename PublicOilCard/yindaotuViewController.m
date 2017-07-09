@@ -73,7 +73,7 @@
             _scrollView.showsHorizontalScrollIndicator=NO;
             //设置是否显示纵向指示器
             _scrollView.showsVerticalScrollIndicator=NO;
-            //设置代理
+            //设置招商总管
             _scrollView.delegate=self;
             //设置是否分页
             _scrollView.pagingEnabled=YES;

@@ -246,10 +246,10 @@
     }];
     
 }
-//首期代理
+//首期招商总管
 -(void)lingbuttonE{
     _usertype = Retailer;
-    self.usertypeTf.text=@"首期代理";
+    self.usertypeTf.text=@"首期招商总管";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         
@@ -260,10 +260,10 @@
     }];
     
 }
-//二期代理
+//二期招商总管
 -(void)secondDelegateBtnE{
     _usertype = TWODELEGATE;
-    self.usertypeTf.text=@"二期代理";
+    self.usertypeTf.text=@"二期招商总管";
     [UIView animateWithDuration:0.3 animations:^{
         self.selectUserTypeView.transform=CGAffineTransformMakeScale(1.0, 0.00001);
         

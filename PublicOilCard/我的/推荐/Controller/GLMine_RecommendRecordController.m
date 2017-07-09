@@ -133,7 +133,7 @@
 -(void)filte{
     __weak typeof(self) weakself = self;
     
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"非会员",@"imageName":@""}, @{@"title":@"会员",@"imageName":@""},@{@"title":@"首期代理",@"imageName":@""},@{@"title":@"二期代理",@"imageName":@""}] width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5) action:^(NSInteger index) {
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"非会员",@"imageName":@""}, @{@"title":@"会员",@"imageName":@""},@{@"title":@"首期招商总管",@"imageName":@""},@{@"title":@"二期招商总管",@"imageName":@""}] width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5) action:^(NSInteger index) {
         
         self.type = index;
         [weakself updateData:YES];

@@ -22,7 +22,7 @@
 @property(nonatomic, strong) UIImageView *imageView;
 //2.
 /**
- *  代理
+ *  招商总管
  */
 @property(nonatomic, assign) id<PhotoViewDelegate> delegate;
 

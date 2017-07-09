@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong)UILabel *noticeLabel;
 
+@property (nonatomic, strong)UILabel *Remarks;//备注
+
 @end

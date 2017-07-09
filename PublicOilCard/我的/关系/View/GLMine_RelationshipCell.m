@@ -32,7 +32,7 @@
         self.subordinateLabel.text = [NSString stringWithFormat:@"经理:%@人",model.jl];
     }
     self.memberLabel.text = [NSString stringWithFormat:@"会员:%@人",model.hy];
-    self.delegateOneLabel.text = [NSString stringWithFormat:@"首期代理:%@人",model.ad];
-    self.delegateTwoLabel.text = [NSString stringWithFormat:@"二期代理:%@人",model.bd];
+    self.delegateOneLabel.text = [NSString stringWithFormat:@"首期招商总管:%@人",model.ad];
+    self.delegateTwoLabel.text = [NSString stringWithFormat:@"二期招商总管:%@人",model.bd];
 }
 @end

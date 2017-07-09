@@ -10,4 +10,9 @@
 
 @interface LBPayFooterView : UIView
 
+@property(nonatomic , strong) UILabel *namelebel;
+
+@property (nonatomic, strong)UILabel *noticeLabel;
+
+
 @end
