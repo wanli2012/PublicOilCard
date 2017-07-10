@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *codeImageV;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noticezLabel2;
+
 @property (weak, nonatomic) IBOutlet UILabel *noticeContentLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
@@ -38,14 +40,16 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
-    self.noticeLabel.text = @"推广须知";
-    self.noticeContentLabel.text = @" 本二维码为系统APP下载安装码，长按点击分享微信，朋友圈，新浪微博均可。本码分享新会员注册并拥有本系统的会员ID身份及相互关系，需再次分享推广者的系统个人ID二维码注册建立相互关系。";
+    self.noticeLabel.text = @"分享推广注册须知";
+    self.noticeContentLabel.text = @"  本二维码为个人分享推广码，新会员安装系统APP后方可扫码注册，扫码注册时须使用APP内的扫描功能键（注：微信及支付宝等扫描不能注册)";
+    self.noticezLabel2.text = @"  点击长按即可分享APP安装地址给微信、朋友圈、新浪好友，新会员点击下载安装APP系统，即能安装成功。";
     self.codeImageV.image = [self logoQrCode];
     CGSize maxSize = CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT);
     NSDictionary *attributesDict = @{NSFontAttributeName:FONT(12)};
     CGRect subviewRect = [self.noticeContentLabel.text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributesDict context:nil];
+    CGRect subviewRect2 = [self.noticezLabel2.text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributesDict context:nil];
     self.contentViewWidth.constant = SCREEN_WIDTH;
-    self.contentViewHeight.constant = 520 + subviewRect.size.height;
+    self.contentViewHeight.constant = 500 + subviewRect.size.height + subviewRect2.size.height;
 }
 
 - (void)dealloc{
@@ -71,8 +75,7 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     
     //创建网页内容对象
-    NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用全民油卡App" descr:@"全民油卡,你值得拥有!" thumImage:thumbURL];
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用全民油卡App" descr:@"零售成品油、成品油储油卡系统开发与推广、成品油储油卡发行与推广，欢迎下载" thumImage:[UIImage imageNamed:@"logo-80"]];
     //设置网页地址
     shareObject.webpageUrl = DOWNLOAD_URL;
     
