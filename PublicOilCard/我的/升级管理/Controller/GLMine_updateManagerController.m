@@ -31,7 +31,7 @@
 @property (nonatomic, assign)NSInteger page;//页数
 
 @property (nonatomic, copy)NSString *status;//审核状态  0未审核 1审核成功  2审核失败
-@property (nonatomic, copy)NSString *upgrade;//升级类型 1首期代理   2二期代理
+@property (nonatomic, copy)NSString *upgrade;//升级类型 1首期招商总管   2二期招商总管
 @property (nonatomic, copy)NSString *is_pay;//是否支付
 @end
 
@@ -44,7 +44,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_updateNewCell" bundle:nil] forCellReuseIdentifier:@"GLMine_updateNewCell"];
-    self.noticeLabel.text = @" 1.会员升级成为个代，首先会员须是本系统星级会员资格方可申请.\n 2.当星级会员在本页面购买个代资格并成功付款后，星级会员将自动升级为本系统个代资格，系统将开通个代所享有的相关政策";
+    self.noticeLabel.text = @"        会员升级为招商总管，首先会员需是本系统会员资格方可申请，当会员在本系统商城购买商品并成功付款后，会员将自动升级为本系统的招商总管资格，系统将开通招商总管所享有的相关权益政策。";
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
@@ -158,7 +158,7 @@
 }
 
 #pragma GLMine_updateNewDelegate
-//开通代理商
+//开通招商总管
 - (void)open:(NSInteger)index{
     
     self.hidesBottomBarWhenPushed = YES;
@@ -168,10 +168,10 @@
         if ([self.upgrade integerValue] == 1) {
             
             if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
-                [MBProgressHUD showError:@"首期代理资格正在审核中"];
+                [MBProgressHUD showError:@"首期招商总管资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){
-                [MBProgressHUD showError:@"已开通首期代理"];
+                [MBProgressHUD showError:@"已开通首期招商总管"];
                 return;
             }else if([self.status integerValue] == 2){
                 pay.upgrade = 1;
@@ -179,7 +179,7 @@
                 pay.upgrade = 1;
             }
         }else if([self.upgrade integerValue] == 2){
-            [MBProgressHUD showError:@"正在办理二期代理,暂不能办理首期代理"];
+            [MBProgressHUD showError:@"正在办理二期招商总管,暂不能办理首期招商总管"];
             return;
         }else{
              pay.upgrade = 1;
@@ -189,10 +189,10 @@
         if([self.upgrade integerValue] == 2){
             
             if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
-                [MBProgressHUD showError:@"二期代理资格正在审核中"];
+                [MBProgressHUD showError:@"二期招商总管资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){
-                [MBProgressHUD showError:@"已开通二期代理"];
+                [MBProgressHUD showError:@"已开通二期招商总管"];
                 return;
             }else if([self.status integerValue] == 2){
                 pay.upgrade = 2;
@@ -201,7 +201,7 @@
 
             }
         }else if([self.upgrade integerValue] == 1){
-            [MBProgressHUD showError:@"正在办理首期代理,暂不能办理二期代理"];
+            [MBProgressHUD showError:@"正在办理首期招商总管,暂不能办理二期招商总管"];
             return;
         }else{
              pay.upgrade = 2;

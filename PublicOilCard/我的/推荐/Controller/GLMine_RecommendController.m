@@ -39,7 +39,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn];
 
     self.noticeLabel.text = @"推广须知";
-    self.noticeContentLabel.text = @" 1.会员扫码注册拥有会员自己在本系统的ID身份，并已具有分享推广资格.\n 2.当会员发送自己ID或二维码注册会员时，新会员注册，老会员不享受本系统相关油卡代办消费及分享会员奖励的相关政策；\n 3.当老会员升级成为本系统星级会员时，星级会员则享有相关油卡代办消费资格，同时在分享推广新会员注册成功并升级为星级会员或代理商资格时，则享有分享星级会员和代理商的阶段性分享奖励。";
+    self.noticeContentLabel.text = @" 本二维码为系统APP下载安装码，长按点击分享微信，朋友圈，新浪微博均可。本码分享新会员注册并拥有本系统的会员ID身份及相互关系，需再次分享推广者的系统个人ID二维码注册建立相互关系。";
     self.codeImageV.image = [self logoQrCode];
     CGSize maxSize = CGSizeMake(SCREEN_WIDTH - 20, MAXFLOAT);
     NSDictionary *attributesDict = @{NSFontAttributeName:FONT(12)};

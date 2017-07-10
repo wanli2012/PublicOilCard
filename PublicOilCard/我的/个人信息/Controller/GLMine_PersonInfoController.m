@@ -71,12 +71,12 @@
 
 - (void)updateInfo{
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
-        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团ID",@"推荐人",@"推荐人ID"];
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团了ID",@"推荐人",@"推荐人ID"];
     }else if([[UserModel defaultUser].group_id integerValue] == 6){
         
-        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团ID",@"推荐人",@"推荐人ID"];
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团了ID",@"推荐人",@"推荐人ID"];
     }else{
-    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团ID",@"剩余见点奖励数量",@"推荐人",@"推荐人ID"];
+    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团了ID",@"剩余见点奖励数量",@"推荐人",@"推荐人ID"];
     }
 
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {

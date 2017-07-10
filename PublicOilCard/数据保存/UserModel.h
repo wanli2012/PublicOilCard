@@ -38,7 +38,7 @@
 @property (nonatomic, copy)NSString  *banner;
 @property (nonatomic, copy)NSString  *jyzSelfCardNum;//自办卡号
 @property (nonatomic, copy)NSString  *cost;//开卡费
-@property (nonatomic, copy)NSString  *s_meber;//代理商网体剩余见点奖励数量
+@property (nonatomic, copy)NSString  *s_meber;//招商总管网体剩余见点奖励数量
 
 @property (nonatomic, copy)NSString  *yue;//余额
 @property (nonatomic, copy)NSString  *KfPhone;//客服电话

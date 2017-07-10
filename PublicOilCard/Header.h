@@ -59,7 +59,7 @@
 
 #define kUPDATEPWD_URL @"UserInfo/upd_pwd"//修改密码
 
-#define kDELEGATEINFO_URL @"UserInfo/upgrade_user"//升级个人代理界面信息
+#define kDELEGATEINFO_URL @"UserInfo/upgrade_user"//升级个人招商总管界面信息
 
 #define kEXCHANGE_URL @"UserInfo/back_operate"//兑换接口
 
@@ -102,13 +102,13 @@
 #define kOPENCARD_DELEGATE_URL @"http://api.51qmtg.org/youka/protocol.html"
 //公告
 //#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
-//个人代理 首期代理
+//个人招商总管首期招商总管
 #define Retailer @"4"
 //会员
 #define OrdinaryUser @"6"
-//二期代理
+//二期招商总管
 #define TWODELEGATE @"5"
-////首期代理
+////首期招商总管
 //#define ONEDELEGATE @"4"
 //经理
 #define MANAGER @"3"

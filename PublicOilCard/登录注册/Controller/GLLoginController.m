@@ -52,7 +52,7 @@
     //选择会员
     UITapGestureRecognizer *shanVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(shangViewgesture)];
     [self.loginView.shangView addGestureRecognizer:shanVgesture];
-    //个人代理
+    //个人招商总管
     UITapGestureRecognizer *lingVgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lingViewgesture)];
     [self.loginView.lingView addGestureRecognizer:lingVgesture];
     //选择经理
@@ -250,7 +250,7 @@
     self.currentloginViewimage.image=[UIImage imageNamed:@"登录未选中"];
     self.currentloginViewimage = self.loginView.shangImage;
 }
-//个人代理
+//个人招商总管
 -(void)lingViewgesture{
     
     self.usertype = Retailer;

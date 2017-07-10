@@ -24,9 +24,9 @@
 
 @property (nonatomic, copy)NSString *hy;//会员个数
 
-@property (nonatomic, copy)NSString *ad;//首期代理
+@property (nonatomic, copy)NSString *ad;//首期招商总管
 
-@property (nonatomic, copy)NSString *bd;//二期代理
+@property (nonatomic, copy)NSString *bd;//二期招商总管
 
 @property (nonatomic, assign)BOOL isExpanded;//是否展开
 
