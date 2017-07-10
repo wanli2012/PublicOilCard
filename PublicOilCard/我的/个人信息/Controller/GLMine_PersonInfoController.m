@@ -192,7 +192,7 @@
     
    if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
        
-       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"修改信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
+       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"补全信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
        
        [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
            textField.placeholder = @"请输入全团ID";

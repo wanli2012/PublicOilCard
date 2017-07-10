@@ -63,7 +63,7 @@
                                 <constraint firstAttribute="bottom" secondItem="sJd-PU-h8L" secondAttribute="bottom" id="yvi-nD-3YD"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新版本: v1.0.1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGS-GV-NhS">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最新版本: v" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QGS-GV-NhS">
                             <rect key="frame" x="10" y="224" width="300" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="Cov-r1-Aul"/>

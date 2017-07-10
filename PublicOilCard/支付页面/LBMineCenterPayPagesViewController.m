@@ -53,7 +53,9 @@
     self.ensurePayBtnHeight.constant = 45 *autoSizeScaleY;
     
     self.payFooterView = [[LBPayFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 230)];
-    self.payFooterView.noticeLabel.text = @"         会员二次油卡消费在充值，不能在线下任何加油站进行充值，充值卡可能被格式化的风险，系统将无法对会员二次充值及加油站的交易进行结算，从而导致无法对会员消费进行相应奖励及优惠; 会员须自己在系统指定的充值端口线上进行充值；如因个人原因操作不当导致系统不能结算并无法提供奖励及优惠均由会员自行负责，特此公告!";
+    
+    self.payFooterView.noticeLabel.text = @"         会员二次油卡消费再充值，不能在线下任何加油站进行充值，充值卡存在被格式化的风险，系统将无法对会员二次充值及加油站的交易进行结算，从而导致无法对会员消费进行相应奖励及优惠; 会员须自己在系统指定的充值端口线上进行充值；如因个人原因操作不当导致系统不能结算并无法提供奖励及优惠均由会员自行负责，特此公告!";
+    
     self.payFooterView.namelebel.text = @"温馨提示";
     self.tableview.tableFooterView = self.payFooterView;
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];

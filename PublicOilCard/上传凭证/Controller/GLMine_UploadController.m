@@ -44,7 +44,7 @@
     self.submitBtn.layer.cornerRadius = 5.f;
     self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
 //    self.userNameLabel.text = [UserModel defaultUser].username;
-    self.noticeLabel.text = @" 1.会员到全国中石油及中石化加油网点加油消费后，会员应打印当次真实消费凭据，拍摄相片上传至本系统，并在输入消费金额填写栏，填写消费金额.\n 2.会员输入的金额应与当次真实消费凭据金额相同，会员不能虚填或错填，此数据是作为真实消费凭据及奖励核对.\n 3.如会员输入该金额与真实消费金额不符或恶意错填等，因此造成该消费相应奖励不及时或取消，则由会员自行负责";
+    self.noticeLabel.text = @" 1. 会员到全国中石油及中石化加油网点加油消费后，会员应打印当次真实消费凭据，拍摄相片上传至本系统，并在输入消费金额填写栏，填写消费金额.\n 2. 会员输入的金额应与当次真实消费凭据金额相同，会员不能虚填或错填，此数据是作为真实消费凭据及奖励核对.\n 3. 如会员输入该金额与真实消费金额不符或恶意错填等，因此造成该消费相应奖励不及时或取消，则由会员自行负责";
 }
 
 - (void)viewWillAppear:(BOOL)animated{

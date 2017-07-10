@@ -91,7 +91,19 @@
 
 -(void)receiveData:(id)sender
 {
-    self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本: v%@",sender[@"version"]];
+    if (sender) {
+        if ([sender[@"version"] rangeOfString:@"null"].location != NSNotFound || sender[@"version"] == nil) {
+            NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+            CFShow((__bridge CFTypeRef)(infoDictionary));
+            // app版本
+            NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+            self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本: v%@",app_Version];
+
+        }else{
+            
+            self.zuixinLabel.text = [NSString stringWithFormat:@"最新版本: v%@",sender[@"version"]];
+        }
+    }
     
 }
 

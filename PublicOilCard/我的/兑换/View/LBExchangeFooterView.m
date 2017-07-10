@@ -40,7 +40,7 @@
     [self.namelebel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self).offset(0);
         make.leading.equalTo(self).offset(0);
-       make.top.equalTo(self.Remarks.mas_bottom).offset(10);
+       make.top.equalTo(self.Remarks.mas_bottom).offset(20);
         make.height.equalTo(@20);
     }];
     [self.noticeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,8 +72,8 @@
         _Remarks=[[UILabel alloc]init];
         _Remarks.backgroundColor=[UIColor clearColor];
         _Remarks.textColor=[UIColor darkGrayColor];
-        _Remarks.font=[UIFont systemFontOfSize:13];
-        _Remarks.textAlignment = NSTextAlignmentCenter;
+        _Remarks.font=[UIFont systemFontOfSize:12];
+        _Remarks.textAlignment = NSTextAlignmentLeft;
         _Remarks.numberOfLines = 0;
         
     }
