@@ -16,9 +16,9 @@
 #import "UserModel.h"
 #import "usermodelachivar.h"
 #import <MJRefresh/MJRefresh.h>
-#import "MJExtension.h"
-#import "predicateModel.h"
 
+#import "predicateModel.h"
+#import <MJExtension/MJExtension.h>
 #import "LoadWaitView.h"
 #import "NodataView.h"
 #import "formattime.h"

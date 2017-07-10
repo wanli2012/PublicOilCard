@@ -7,8 +7,8 @@
 //
 
 #import "JZAlbumViewController.h"
-#import "UIImageView+WebCache.h"
-#import "MBProgressHUD.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 #import "PhotoView.h"
 
 #define screen_width  [UIScreen mainScreen].bounds.size.width

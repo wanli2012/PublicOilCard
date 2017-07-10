@@ -65,6 +65,8 @@
 
 #define kEXCHANGELIST_URL @"UserInfo/mark_list"//兑换记录列表
 
+#define kEXCHANGEINFO_URL @"UserInfo/sel_user"//兑换界面信息
+
 #define kINFOLIST_URL @"User/msg_list"//消息列表
 
 #define kCOLLECTEIONLIST_URL @"UserInfo/collec_list"//收藏列表
@@ -89,15 +91,15 @@
 
 
 //下载地址
-#define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1228047806?mt=8"
+#define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1256847817?mt=8"
 //获取appStore上的最新版本号地址
-#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1228047806"
+#define GET_VERSION  @"https://itunes.apple.com/lookup?id=1256847817"
 //关于公司网址
 #define ABOUTUS_URL @"http://api.51qmtg.org/youka/about.html"
 //注册协议
 #define REGISTER_URL @"http://api.51qmtg.org/youka/agreement.html"
 //开卡协议
-#define kOPENCARD_DELEGATE_URL @"https://www.baidu.com"
+#define kOPENCARD_DELEGATE_URL @"http://api.51qmtg.org/youka/protocol.html"
 //公告
 //#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 //个人代理 首期代理

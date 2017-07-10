@@ -37,19 +37,7 @@
     }else{
         self.window.rootViewController = [[yindaotuViewController alloc]init];
     }
-    
-//    self.window.rootViewController = [[LBMineCenterPayPagesViewController alloc]init];
-//    self.window.rootViewController = [[GLCompleteInfoController alloc]init];
-//    UINavigationController *loginNav = [[UINavigationController alloc] initWithRootViewController:[[GLLoginController alloc] init]];
-//    
-//    self.window.rootViewController = loginNav;
-    
-//    if ([[[NSUserDefaults standardUserDefaults]objectForKey:@"isdirect1"] isEqualToString:@"YES"]) {
-//        
-//    }else{
-//        self.window.rootViewController = [[yindaotuViewController alloc]init];
-//    }
-    
+
     /* 打开调试日志 */
     [[UMSocialManager defaultManager] openLog:YES];
     

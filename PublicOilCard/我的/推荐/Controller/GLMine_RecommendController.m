@@ -8,7 +8,6 @@
 
 #import "GLMine_RecommendController.h"
 #import "GLMine_RecommendRecordController.h"
-
 #import <UShareUI/UShareUI.h>
 
 @interface GLMine_RecommendController ()
@@ -48,6 +47,7 @@
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = 520 + subviewRect.size.height;
 }
+
 - (void)dealloc{
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -62,9 +62,9 @@
             [self shareWebPageToPlatformType:platformType];
             
         }];
-        
     }
 }
+
 - (void)shareWebPageToPlatformType:(UMSocialPlatformType)platformType
 {
     //创建分享消息对象
@@ -74,7 +74,7 @@
     NSString* thumbURL =  @"https://mobile.umeng.com/images/pic/home/social/img-1.png";
     UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"欢迎使用全民油卡App" descr:@"全民油卡,你值得拥有!" thumImage:thumbURL];
     //设置网页地址
-    shareObject.webpageUrl = @"http://www.baidu.com";
+    shareObject.webpageUrl = DOWNLOAD_URL;
     
     //分享消息对象设置分享内容对象
     messageObject.shareObject = shareObject;

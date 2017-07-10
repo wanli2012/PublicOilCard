@@ -75,10 +75,7 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
 }
-//物流查询
-- (void)queryLog{
-    
-}
+
 //是否同意协议
 - (IBAction)isAgreeProtocol:(id)sender {
     self.isAgreel = !self.isAgreel;

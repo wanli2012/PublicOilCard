@@ -77,7 +77,12 @@
      *设置tableview 的FooterView
      */
     self.exchangeFooterView = [[LBExchangeFooterView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
-    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000积分\n 2、单笔兑换须以100的整数倍兑换，不足100则不能兑换\n 3、积分兑换，收取手续费6%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费";
+    if(self.selectindex == 1){//积分
+        
+    }else{
+        
+    }
+    self.exchangeFooterView.noticeLabel.text = @" 1、单笔兑换最多可兑换50000积分或余额\n 2、单笔兑换须以50的整数倍兑换，不足50则不能兑换\n 3、积分兑换不收取手续费，余额兑换收取手续费0%\n 4、兑换后到账时间 T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费";
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
     if ([[UserModel defaultUser].mark floatValue] > 100000000) {
@@ -137,13 +142,17 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:@"UserInfo/sel_user" paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kEXCHANGEINFO_URL paramDic:dict finish:^(id responseObject) {
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
 
-            self.bank_id = responseObject[@"data"][@"bank_list"][0][@"bank_id"];
-            
+            if (responseObject[@"data"] != nil) {
+                
+                self.bank_id = responseObject[@"data"][@"bank_list"][0][@"bank_id"];
+                
+                self.exchangeFooterView.noticeLabel.text = [NSString stringWithFormat:@" 1、单笔兑换最多可兑换50000积分或余额\n 2、单笔兑换须以50的整数倍兑换，不足50则不能兑换\n 3、积分兑换不收取手续费，余额兑换收取手续费%.2f%%\n 4、兑换后到账时间T+1到账（周六、周日及法定节假日除外)\n 5、平台按人民银行规定收取跨行转账费",[responseObject[@"data"][@"routine"] floatValue] * 100];
+            }
         }else{
             [MBProgressHUD showError:responseObject[@"message"]];
         }
@@ -358,15 +367,15 @@
         [MBProgressHUD showError:@"输入格式错误"];
         return;
     }
-    if(self.selecttype == 0 && [self.money integerValue] % 100 != 0){
-        [MBProgressHUD showError:@"兑换金额须为100的整数倍"];
+    if(self.selecttype == 0 && [self.money integerValue] % 50 != 0){
+        [MBProgressHUD showError:@"兑换金额须为50的整数倍"];
         return;
-    }else if (self.selecttype == 1 && [self.money integerValue] % 100 != 0) {
-        [MBProgressHUD showError:@"兑换积分须为100的整数倍"];
+    }else if (self.selecttype == 1 && [self.money integerValue] % 50 != 0) {
+        [MBProgressHUD showError:@"兑换积分须为50的整数倍"];
         return;
     }
     if([self.money integerValue] > 50000){
-        [MBProgressHUD showError:@"单笔兑换最多可兑换50000!"];
+        [MBProgressHUD showError:@"单笔兑换最多可兑换50000"];
         return;
     }
     TYAlertView *alertView = [TYAlertView alertViewWithTitle:[NSString stringWithFormat:@"温馨提示"] message:[NSString stringWithFormat:@"请输入登录密码"]];

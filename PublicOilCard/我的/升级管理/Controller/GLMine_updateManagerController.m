@@ -8,9 +8,6 @@
 
 #import "GLMine_updateManagerController.h"
 #import "GLMine_updateManagerModel.h"
-//#import "GLMine_updateManagerCell.h"
-//#import "GLMine_updateManagerAllCell.h"
-//#import "GLMine_updateManagerDealNowCell.h"
 #import "GLMine_updateNewCell.h"
 #import "LBMineCenterPayPagesViewController.h"
 
@@ -21,6 +18,7 @@
     BOOL _isCheckAll;
     
 }
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
 
@@ -239,6 +237,10 @@
     cell.index = indexPath.row;
     cell.selectionStyle = 0;
 
+    if (indexPath.row == 1) {
+        cell.hidden = YES;
+    }
+    
     switch ([self.status integerValue]) {
         case 0://未审核
         {

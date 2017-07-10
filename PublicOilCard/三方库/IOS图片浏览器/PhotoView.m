@@ -7,8 +7,8 @@
 //
 
 #import "PhotoView.h"
-#import "UIImageView+WebCache.h"
-#import "MBProgressHUD.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface PhotoView ()<UIScrollViewDelegate>
 {
