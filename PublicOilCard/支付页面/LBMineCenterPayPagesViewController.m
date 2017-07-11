@@ -311,7 +311,9 @@
         dict[@"token"] = [UserModel defaultUser].token;
         dict[@"uid"] = [UserModel defaultUser].uid;
         dict[@"pay_fun"] = payType;
-         urlstr = kOPENCARD_URL;
+        dict[@"card_fun"] = [NSString stringWithFormat:@"%zd",self.openCardType + 1];
+        urlstr = kOPENCARD_URL;
+        
     }else if(self.pushIndex == 3){
         
         dict[@"token"] = [UserModel defaultUser].token;

@@ -13,11 +13,14 @@
 #import "GLMine_CompleteInfoView.h"
 
 
-@interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
+@interface GLMine_PersonInfoController ()<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
     //假数据源
     NSArray *_keyArr;
 //    NSArray *_vlaueArr;
+    NSString *_qtNum;
+    NSString *_youCardNum;
+    NSString *_huaCardNum;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
@@ -74,9 +77,9 @@
         _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"全团了ID",@"推荐人",@"推荐人ID"];
     }else if([[UserModel defaultUser].group_id integerValue] == 6){
         
-        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团了ID",@"推荐人",@"推荐人ID"];
+        _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"中石油卡号",@"中石化卡号",@"全团了ID",@"推荐人",@"推荐人ID"];
     }else{
-    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"平台油卡编号",@"全团了ID",@"剩余见点奖励数量",@"推荐人",@"推荐人ID"];
+    _keyArr = @[@"头像",@"真实姓名",@"ID",@"二维码",@"身份证号码",@"开户银行",@"银行卡号",@"中石油卡号",@"中石化卡号",@"全团了ID",@"剩余见点奖励数量",@"推荐人",@"推荐人ID"];
     }
 
     if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
@@ -104,6 +107,7 @@
                          [UserModel defaultUser].openbank,
                          [UserModel defaultUser].banknumber,
                          [UserModel defaultUser].jyzSelfCardNum,
+                         [UserModel defaultUser].hua_card,
                          [UserModel defaultUser].qtIdNum,
                          [UserModel defaultUser].recommendUser,
                          [UserModel defaultUser].recommendID, nil];
@@ -118,6 +122,7 @@
                          [UserModel defaultUser].openbank,
                          [UserModel defaultUser].banknumber,
                          [UserModel defaultUser].jyzSelfCardNum,
+                         [UserModel defaultUser].hua_card,
                          [UserModel defaultUser].qtIdNum,
                          [UserModel defaultUser].s_meber,
                          [UserModel defaultUser].recommendUser,
@@ -181,62 +186,56 @@
 
 - (void)edit:(UIButton *)sender {
     
-    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
-        [UserModel defaultUser].qtIdNum = @"";
-    }
-    
-    if ([UserModel defaultUser].qtIdNum.length != 0) {
-        [MBProgressHUD showError:@"信息已补全"];
+    if (([[UserModel defaultUser].group_id integerValue] == 3 || [[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 ) && [UserModel defaultUser].qtIdNum.length != 0) {
+        [MBProgressHUD showError:@"已完善资料"];
         return;
     }
     
-   if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
-       
-       UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"补全信息" message:@"请输入要修改的信息" preferredStyle:UIAlertControllerStyleAlert];
-       
-       [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-           textField.placeholder = @"请输入全团ID";
-           textField.tag = 13;
-           textField.delegate = self;
-           
-       }];
-       
-       UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action){
-           
-       }];
-       
-       __weak typeof(self) weakself = self;
-       UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    if ([[UserModel defaultUser].qtIdNum isEqual:[NSNull null]] || [UserModel defaultUser].qtIdNum == nil) {
+        [UserModel defaultUser].qtIdNum = @"";
+    }
 
-           UITextField *qtIdNumTF = alertController.textFields.firstObject;
-           
-           dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self.navigationController.view addSubview:self.maskV];
+    [self.maskV addSubview:self.infoContentV];
+
+    if ([UserModel defaultUser].qtIdNum.length != 0) {
+        
+        self.infoContentV.qtIDTextF.text = [UserModel defaultUser].qtIdNum;
+        self.infoContentV.qtIDTextF.enabled = NO;
+    }
+    
+    if ([[UserModel defaultUser].jyzSelfCardNum integerValue] == 0) {
+        self.infoContentV.oilCardTextF.enabled = NO;
+        self.infoContentV.oilCardTextF.placeholder = @"还未开通中石油油卡";
+    }else{
+        if ([UserModel defaultUser].jyzSelfCardNum.length != 0) {
             
-               [weakself modifyQtIdNum:qtIdNumTF.text];
-           });
-           
-       }];
-       
-       [alertController addAction:cancelAction];
-       [alertController addAction:okAction];
-       
-       [self presentViewController:alertController animated:YES completion:nil];
+            self.infoContentV.oilCardTextF.text = [UserModel defaultUser].jyzSelfCardNum;
+        }
+    }
 
-   }else{
-       
-       if([[UserModel defaultUser].isHaveOilCard integerValue] == 0){
-           [MBProgressHUD showError:@"请先开卡"];
-           return;
-       }
-       [[UIApplication sharedApplication].keyWindow addSubview:self.maskV];
-       [self.maskV addSubview:self.infoContentV];
-       self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
-       [UIView animateWithDuration:0.3 animations:^{
-           
-           self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
-       }];
-       
-   }
+    if([[UserModel defaultUser].hua_status integerValue] == 0){
+        
+        self.infoContentV.oilCardTextF2.enabled = NO;
+        self.infoContentV.oilCardTextF2.placeholder = @"还未开通中石化油卡";
+        
+    }else{
+        
+        if ([UserModel defaultUser].hua_card.length != 0) {
+            
+            self.infoContentV.oilCardTextF2.text = [UserModel defaultUser].hua_card;
+        }
+        
+    }
+    _qtNum = self.infoContentV.qtIDTextF.text;
+    _youCardNum = self.infoContentV.oilCardTextF.text;
+    _huaCardNum = self.infoContentV.oilCardTextF2.text;
+    self.infoContentV.transform = CGAffineTransformMakeScale(0.01f, 0.01f);
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.infoContentV.transform=CGAffineTransformMakeScale(1.0f, 1.0f);
+        
+    }];
     
 }
 
@@ -277,23 +276,20 @@
 }
 - (void)addQtIDandOilCardID{
     
-    if ( self.infoContentV.qtIDTextF.text == nil || self.infoContentV.oilCardTextF.text == nil) {
-        [self maskViewTap];
-        
-    }
-    if (self.infoContentV.qtIDTextF.text.length == 0) {
-        [MBProgressHUD showError:@"未输入全团ID"];
+//    if ( self.infoContentV.qtIDTextF.text == nil || self.infoContentV.oilCardTextF.text == nil) {
+//        [self maskViewTap];
+//        
+//    }
+    if ([_qtNum isEqualToString:self.infoContentV.qtIDTextF.text] && [_huaCardNum isEqualToString:self.infoContentV.oilCardTextF2.text] && [_youCardNum isEqualToString: self.infoContentV.oilCardTextF.text]) {
+        [MBProgressHUD showError:@"未做任何修改"];
         return;
     }
-    if (self.infoContentV.oilCardTextF.text.length == 0) {
-        [MBProgressHUD showError:@"未输入油卡卡号"];
-    }
-    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"jyzSelfCardNum"] = self.infoContentV.oilCardTextF.text;
     dict[@"qtIdNum"] = self.infoContentV.qtIDTextF.text;
+    dict[@"hua_card"] = self.infoContentV.oilCardTextF2.text;
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:[UIApplication sharedApplication].keyWindow];
     [NetworkManager requestPOSTWithURLStr:kMODIFY_INFO_URL paramDic:dict finish:^(id responseObject) {
@@ -301,7 +297,6 @@
         
         if ([responseObject[@"code"] integerValue]==1) {
             
-            //            [self refresh];
             [self updateData];
             [self maskViewTap];
         }
@@ -332,7 +327,9 @@
                 
                 [UserModel defaultUser].jyzSelfCardNum = responseObject[@"data"][@"jyzSelfCardNum"];
                 [UserModel defaultUser].qtIdNum = responseObject[@"data"][@"qtIdNum"];
+                [UserModel defaultUser].hua_card = responseObject[@"data"][@"hua_card"];
                 [UserModel defaultUser].pic = responseObject[@"data"][@"pic"];
+                
                 
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || responseObject[@"data"][@"qtIdNum"] == nil) {
                     
@@ -341,6 +338,10 @@
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound|| responseObject[@"data"][@"jyzSelfCardNum"] == nil) {
                     
                     [UserModel defaultUser].jyzSelfCardNum = @"";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_card] rangeOfString:@"null"].location != NSNotFound|| responseObject[@"data"][@"hua_card"] == nil) {
+                    
+                    [UserModel defaultUser].hua_card = @"";
                 }
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound|| responseObject[@"data"][@"pic"] == nil) {
                     
@@ -367,7 +368,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
 
-    if (textField.tag == 11 || textField.tag == 12) {//身份证号只能输入数字和X
+    if (textField == self.infoContentV.oilCardTextF || textField == self.infoContentV.oilCardTextF2) {//只能输入数字
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890"] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         BOOL basicTest = [string isEqualToString:filtered];
@@ -376,7 +377,7 @@
             return NO;
         }
         
-    }else if (textField.tag == 13){
+    }else if (textField == self.infoContentV.qtIDTextF){
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         BOOL basicTest = [string isEqualToString:filtered];
@@ -385,6 +386,7 @@
             return NO;
         }
     }
+    
     return YES;
     
 }
@@ -449,15 +451,17 @@
         cell.picImageV.hidden = YES;
         cell.detailTF.hidden = NO;
         if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
-            cell.titleLabel.text = _keyArr[indexPath.row + 8];
-            cell.detailTF.text = _vlaueArr[indexPath.row + 8];
-        }else if([[UserModel defaultUser].group_id integerValue] == 6){
-            
             cell.titleLabel.text = _keyArr[indexPath.row + 9];
             cell.detailTF.text = _vlaueArr[indexPath.row + 9];
-        }else{
+            
+        }else if([[UserModel defaultUser].group_id integerValue] == 6){
+            
             cell.titleLabel.text = _keyArr[indexPath.row + 10];
             cell.detailTF.text = _vlaueArr[indexPath.row + 10];
+        }else{
+            
+            cell.titleLabel.text = _keyArr[indexPath.row + 11];
+            cell.detailTF.text = _vlaueArr[indexPath.row + 11];
         }
     }
     return cell;
@@ -654,11 +658,24 @@
         _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
         
         UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        maskViewTap.delegate = self;
         [_maskV addGestureRecognizer:maskViewTap];
     }
     return _maskV;
 }
 
+// 只有点击在mask上才调maskViewTap
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if (touch.view == self.maskV){
+        
+        return YES;
+        
+    }
+    
+    return NO;
+    
+}
 - (GLMine_PersonInfoCodeView *)contentV{
     if (!_contentV) {
         _contentV = [[NSBundle mainBundle] loadNibNamed:@"GLMine_PersonInfoCodeView" owner:nil options:nil].lastObject;
@@ -677,14 +694,24 @@
         
         _infoContentV.layer.cornerRadius = 5.f;
         
-        _infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 170);
-        
+        if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
+            
+            self.infoContentV.petroChinaViewHeight.constant = 0;
+            self.infoContentV.SinopecViewHeight.constant = 0;
+            self.infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 120);
+        }else{
+            self.infoContentV.petroChinaViewHeight.constant = 50;
+            self.infoContentV.SinopecViewHeight.constant = 50;
+            self.infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 220);
+        }
+
         [_infoContentV.cancelBtn addTarget:self action:@selector(maskViewTap) forControlEvents:UIControlEventTouchUpInside];
         
         [_infoContentV.okBtn addTarget:self action:@selector(addQtIDandOilCardID) forControlEvents:UIControlEventTouchUpInside];
         
         _infoContentV.oilCardTextF.delegate = self;
         _infoContentV.qtIDTextF.delegate = self;
+        _infoContentV.oilCardTextF2.delegate = self;
         
     }
     return _infoContentV;

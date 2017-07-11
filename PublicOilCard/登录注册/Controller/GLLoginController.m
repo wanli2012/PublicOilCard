@@ -151,56 +151,61 @@
 
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1 && ![responseObject[@"data"] isEqual:[NSNull null]]) {
+            
+            [MBProgressHUD showError:responseObject[@"message"]];
+            
+            [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
+            [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
+            [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
+            [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
+            [UserModel defaultUser].phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"phone"]];
+            [UserModel defaultUser].address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"address"]];
+            [UserModel defaultUser].recommendUser = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendUser"]];
+            [UserModel defaultUser].recommendID = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendID"]];
+            [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
+            [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
+            [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
+            [UserModel defaultUser].banknumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]];
+            [UserModel defaultUser].group_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_id"]];
+            [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
+            [UserModel defaultUser].openbank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"openbank"]];
+            [UserModel defaultUser].version = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"version"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].isBqInfo = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isBqInfo"]];
+            [UserModel defaultUser].isHaveNewMsg = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveNewMsg"]];
+            [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].token = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"token"]];
+            [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
+            
+            [UserModel defaultUser].loginstatus = YES;
+            [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
+            [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
+            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
+            [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
+            [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
+            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber] rangeOfString:@"null"].location != NSNotFound) {
                 
-                [MBProgressHUD showError:responseObject[@"message"]];
+                [UserModel defaultUser].banknumber = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].openbank] rangeOfString:@"null"].location != NSNotFound) {
+                [UserModel defaultUser].openbank = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
                 
-                [UserModel defaultUser].pic = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"pic"]];
-                [UserModel defaultUser].username = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"username"]];
-                [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
-                [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
-                [UserModel defaultUser].phone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"phone"]];
-                [UserModel defaultUser].address = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"address"]];
-                [UserModel defaultUser].recommendUser = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendUser"]];
-                [UserModel defaultUser].recommendID = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recommendID"]];
-                [UserModel defaultUser].price = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"price"]];
-                [UserModel defaultUser].mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"mark"]];
-                [UserModel defaultUser].recNumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"recNumber"]];
-                [UserModel defaultUser].banknumber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"banknumber"]];
-                [UserModel defaultUser].group_id = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_id"]];
-                [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
-                [UserModel defaultUser].openbank = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"openbank"]];
-                [UserModel defaultUser].version = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"version"]];
-                [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
-                [UserModel defaultUser].isBqInfo = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isBqInfo"]];
-                [UserModel defaultUser].isHaveNewMsg = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveNewMsg"]];
-                [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
-                [UserModel defaultUser].token = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"token"]];
-                [UserModel defaultUser].uid = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"uid"]];
+                [UserModel defaultUser].jyzSelfCardNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].qtIdNum == nil) {
                 
-                [UserModel defaultUser].loginstatus = YES;
-                [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
-                [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
-                [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
-                [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
+                [UserModel defaultUser].qtIdNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_card] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].hua_card == nil) {
                 
-                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber] rangeOfString:@"null"].location != NSNotFound) {
-                    
-                    [UserModel defaultUser].banknumber = @"";
-                }
-                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].openbank] rangeOfString:@"null"].location != NSNotFound) {
-                    [UserModel defaultUser].openbank = @"";
-                }
-                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
-                    
-                    [UserModel defaultUser].jyzSelfCardNum = @"";
-                }
-                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].qtIdNum == nil) {
-                    
-                    [UserModel defaultUser].qtIdNum = @"";
-                }
-                
-                [usermodelachivar achive];
-                [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
+                [UserModel defaultUser].hua_card = @"";
+            }
+            
+            [usermodelachivar achive];
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             
             if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
                 

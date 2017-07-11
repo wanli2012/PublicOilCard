@@ -67,8 +67,12 @@
             
             [MBProgressHUD showError:responseObject[@"message"]];
         }
-        
-        self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost];
+        if (self.type == 1) {
+            
+            self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost];
+        }else{
+            self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost2];
+        }
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
@@ -113,6 +117,7 @@
     self.hidesBottomBarWhenPushed = YES;
     LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
     pay.pushIndex = 2;
+    pay.openCardType = self.type;
     [self.navigationController pushViewController:pay animated:YES];
 }
 

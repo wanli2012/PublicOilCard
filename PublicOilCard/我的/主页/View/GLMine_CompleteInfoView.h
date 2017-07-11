@@ -13,5 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelBtn;
 @property (weak, nonatomic) IBOutlet UITextField *qtIDTextF;
 @property (weak, nonatomic) IBOutlet UITextField *oilCardTextF;
+@property (weak, nonatomic) IBOutlet UITextField *oilCardTextF2;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *petroChinaViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *SinopecViewHeight;
 
 @end

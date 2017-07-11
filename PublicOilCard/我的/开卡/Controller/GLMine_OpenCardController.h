@@ -10,4 +10,6 @@
 
 @interface GLMine_OpenCardController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;
+
 @end

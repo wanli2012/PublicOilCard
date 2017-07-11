@@ -26,6 +26,7 @@
 #import "GLMine_CompleteInfoView.h"
 #import <SDWebImage/UIButton+WebCache.h>
 #import "GLCompleteInfoController.h"
+#import "QQPopMenuView.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
@@ -125,7 +126,9 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
             [UserModel defaultUser].IDCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"IDCard"]];
             [UserModel defaultUser].KfPhone = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"KfPhone"]];
-             [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
+            [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
+            [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
+            [UserModel defaultUser].hua_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_status"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].pic = @"";
@@ -174,7 +177,14 @@ static NSString *headerID = @"GLMine_HeaderView";
                 
                 [UserModel defaultUser].KfPhone = @"";
             }
-            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_card] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].hua_card = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_status] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].hua_status = @"";
+            }
             [usermodelachivar achive];
             
             [self.bannerArrM removeAllObjects];
@@ -221,13 +231,36 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     self.hidesBottomBarWhenPushed = YES;
     
-    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1 && [[UserModel defaultUser].hua_status integerValue] == 1) {
         [MBProgressHUD showError:@"不能重复开卡"];
         return;
     }
-    GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
-    [self.navigationController pushViewController:openVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+    __weak typeof(self) weakself = self;
+    
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"中石油",@"imageName":@""}, @{@"title":@"中石化",@"imageName":@""}] width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 10 + 30 + 5 ) action:^(NSInteger index) {
+        
+        if (index == 0) {
+            if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1){
+                [MBProgressHUD showError:@"已拥有中石油油卡"];
+                return ;
+            }
+        }else{
+            if ([[UserModel defaultUser].hua_status integerValue] == 1){
+                [MBProgressHUD showError:@"已拥有中石化油卡"];
+                return ;
+            }
+        }
+        
+        GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
+        openVC.type = index;
+        [weakself.navigationController pushViewController:openVC animated:YES];
+        weakself.hidesBottomBarWhenPushed = NO;
+        
+    }];
+    
+    popview.isHideImage = YES;
+    
+    [popview show];
 }
 //兑换
 - (void)exchange {
@@ -530,7 +563,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     _header.tuijianLabel.text = [NSString stringWithFormat:@"%@人",[UserModel defaultUser].recNumber];
     
     //判断是否显示vip标志
-    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1) {
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 1 && [[UserModel defaultUser].hua_status integerValue] == 1) {
         _header.vipImageV.hidden = NO;
         [_header.openCardBtn setTitle:@"已开卡" forState:UIControlStateNormal];
         [_header.openCardBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];

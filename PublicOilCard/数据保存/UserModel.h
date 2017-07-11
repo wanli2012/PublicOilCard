@@ -36,8 +36,11 @@
 @property (nonatomic, copy)NSString  *isHaveNewMsg;//是否存在新的消息
 @property (nonatomic, copy)NSString  *isHaveOilCard;//是否已经开卡
 @property (nonatomic, copy)NSString  *banner;
-@property (nonatomic, copy)NSString  *jyzSelfCardNum;//自办卡号
-@property (nonatomic, copy)NSString  *cost;//开卡费
+@property (nonatomic, copy)NSString  *jyzSelfCardNum;//中石油卡号
+@property (nonatomic, copy)NSString  *hua_card;//中石化卡号
+@property (nonatomic, copy)NSString  *cost;//中石油开卡费
+@property (nonatomic, copy)NSString  *cost2;//中石化开卡费
+@property (nonatomic, copy)NSString  *hua_status;//中石化卡:0 未开卡  1:已开卡
 @property (nonatomic, copy)NSString  *s_meber;//招商总管网体剩余见点奖励数量
 
 @property (nonatomic, copy)NSString  *yue;//余额
