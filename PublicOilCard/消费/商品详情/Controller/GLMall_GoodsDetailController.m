@@ -159,7 +159,7 @@
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
-    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0) {
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0 || [[UserModel defaultUser].hua_status integerValue] == 0 ) {
         [MBProgressHUD showError:@"请先开卡"];
         return;
     }
