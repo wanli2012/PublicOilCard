@@ -24,8 +24,8 @@
 
 ///接口
 //119.23.213.255  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
-//#define URL_Base @"http://192.168.0.190/CARD/index.php/app/"
-#define URL_Base @"http://api.51qmtg.org/index.php/app/"
+//#define URL_Base @"http://192.168.0.132/CMcard/index.php/App/"
+#define URL_Base @"http://api.51qmtg.org/index.php/App/"
 
 #define kLOGIN_URL @"User/login" //登录
 
@@ -138,7 +138,7 @@
 #define NormalMoney @"米子"
 #define SpecialMoney @"推荐米子"
 //公钥RSA
-#define public_RSA @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDF4IeiOMGVERr/4oTZWuthQx+eesKBx70SH5xPavN8s07rFbPf3VQ8yhqsX2TuBhsVz5PDjFyn3NgfJPXr5uVCSu3nONGttK3pnYsIlkHLOQAq3uDl3UwvuDnz6j7Urjxkkonh011o8FZ5pGMSSmGkMVyJ8RVTUIKgcQhNk4VXwIDAQAB"
+#define public_RSA @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC14XtGpmuHCYlu7dgLbr8hoYNh6d8XRNY+pHulx/F+hMmOsPRX0HWZOTeFCpG11t9lVRQEcQdm587EyiUDiHEL7yrFPEnJ2Dlce55GrSSCP4IpEyH06gudK3O56t8AC02LSD9nrJ4e6WrGrPaahQVfvJBz4v+NSfvAao/xFthVlwIDAQAB"
 
 #define NMUBERS @"0123456789./*-+~!@#$%^&()_+-=,./;'[]{}:<>?`"
 

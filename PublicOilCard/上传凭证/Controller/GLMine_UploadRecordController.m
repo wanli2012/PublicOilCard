@@ -110,14 +110,16 @@
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue] == 1) {
-            
-            for (NSDictionary *dic in responseObject[@"data"]) {
-                [self.dataArr addObject:dic];
-            }
-            
-            if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
+            if([responseObject[@"data"] count] != 0){
                 
-                [MBProgressHUD showError:responseObject[@"message"]];
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    [self.dataArr addObject:dic];
+                }
+                
+                if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
+                    
+                    [MBProgressHUD showError:responseObject[@"message"]];
+                }
             }
             
         }else{
@@ -177,6 +179,13 @@
     cell.moneyLabel.text = [NSString stringWithFormat:@"金额:%@",self.dataArr[indexPath.row][@"order_money"]];
 
     cell.dateLabel.text = [NSString stringWithFormat:@"%@",[formattime formateTime:self.dataArr[indexPath.row][@"addtime"]]];
+    
+    if ([self.dataArr[indexPath.row][@"type"] integerValue] == 1) {
+        
+        cell.typeLabel.text = @"中石油";
+    }else{
+        cell.typeLabel.text = @"中石化";
+    }
     return cell;
     
 }

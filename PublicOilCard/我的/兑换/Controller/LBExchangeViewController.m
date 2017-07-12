@@ -408,20 +408,14 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"pwd"] = str;
+    dict[@"pwd"] = [RSAEncryptor encryptString:str publicKey:public_RSA] ;
     dict[@"back_type"] = @(self.selectindex);
     dict[@"back_money"] = self.money;
     dict[@"user_name"] = [UserModel defaultUser].username;
     dict[@"choice"] = @(self.selectMethod);
     dict[@"bank_id"] = self.bank_id;
     dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
-//    if (self.selectindex == 1) {
-//        dict[@"bank_id"] = @"0";
-//        dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
-//    }else if (self.selectindex == 0){
-//        dict[@"bank_id"] = self.bank_id;
-//        dict[@"qt_name"] = @"0";
-//    }
+
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

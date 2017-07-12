@@ -204,7 +204,7 @@
         self.infoContentV.qtIDTextF.enabled = NO;
     }
     
-    if ([[UserModel defaultUser].jyzSelfCardNum integerValue] == 0) {
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0) {
         self.infoContentV.oilCardTextF.enabled = NO;
         self.infoContentV.oilCardTextF.placeholder = @"还未开通中石油油卡";
     }else{

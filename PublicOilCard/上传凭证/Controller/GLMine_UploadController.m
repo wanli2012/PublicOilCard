@@ -9,9 +9,10 @@
 #import "GLMine_UploadController.h"
 #import "GLMine_UploadRecordController.h"
 #import "HZQDatePickerView.h"
+#import "GL_CardTypeChooseView.h"
 
 
-@interface GLMine_UploadController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HZQDatePickerViewDelegate>
+@interface GLMine_UploadController ()<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,HZQDatePickerViewDelegate,UIGestureRecognizerDelegate>
 {
     LoadWaitView *_loadV;
         bool isHaveDian;
@@ -27,7 +28,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewWidth;
 
+@property (nonatomic, strong) UIView *maskV;
+@property (nonatomic, strong) GL_CardTypeChooseView *contentView;
+@property (weak, nonatomic) IBOutlet UIView *cardView;
 
+@property (nonatomic, assign)NSInteger type;
 @property (nonatomic, strong)UIImage *picImage;
 
 @end
@@ -45,11 +50,29 @@
     self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
 //    self.userNameLabel.text = [UserModel defaultUser].username;
     self.noticeLabel.text = @" 1. 会员到全国中石油及中石化加油网点加油消费后，会员应打印当次真实消费凭据，拍摄相片上传至本系统，并在输入消费金额填写栏，填写消费金额.\n 2. 会员输入的金额应与当次真实消费凭据金额相同，会员不能虚填或错填，此数据是作为真实消费凭据及奖励核对.\n 3. 如会员输入该金额与真实消费金额不符或恶意错填等，因此造成该消费相应奖励不及时或取消，则由会员自行负责";
+    self.type = 1;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
+    
+}
+
+//选择油卡类型
+- (IBAction)changeCardType:(id)sender {
+    
+    UIWindow * window=[[[UIApplication sharedApplication] delegate] window];
+    CGRect rect=[self.cardView convertRect:self.cardView.bounds toView:window];
+    
+    [self.navigationController.view addSubview:self.maskV];
+    [self.maskV addSubview:self.contentView];
+    self.contentView.frame = CGRectMake(30,CGRectGetMaxY(rect), SCREEN_WIDTH- 60, 0);
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.contentView.height = 100;
+    }];
     
 }
 #pragma mark 选择时间
@@ -216,17 +239,22 @@
         self.picImage = [UIImage imageWithData:data];
         
         self.imageV.image = self.picImage;
-        
     }
-
+    
     [picker dismissViewControllerAnimated:YES completion:nil];
-    
-    
 }
 #pragma mark 提交
 - (IBAction)submit:(id)sender {
-    if([UserModel defaultUser].jyzSelfCardNum.length == 0){
+    
+    self.submitBtn.enabled = NO;
+    self.submitBtn.backgroundColor = [UIColor lightGrayColor];
+    
+    if([UserModel defaultUser].jyzSelfCardNum.length == 0 && [[UserModel defaultUser].hua_status integerValue] == 0){
         [MBProgressHUD showError:@"你还未绑定油卡"];
+        return;
+    }
+    if (self.oilCardNumLabel.text.length == 0) {
+        [MBProgressHUD showError:@"请选择油卡类型"];
         return;
     }
     if(self.moneyTextF.text.length == 0){
@@ -259,7 +287,8 @@
           @"buytime":timeSp,
           @"qt_id":[UserModel defaultUser].qtIdNum ,
           @"order_money":self.moneyTextF.text,
-          @"user_name":[UserModel defaultUser].username};
+          @"user_name":[UserModel defaultUser].username,
+          @"type":[NSString stringWithFormat:@"%zd",self.type]};
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
@@ -306,8 +335,6 @@
         [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
     }];
-    
- 
 }
 
 - (IBAction)record:(id)sender {
@@ -317,4 +344,80 @@
     self.hidesBottomBarWhenPushed = NO;
 }
 
+- (void)changeCard:(UIGestureRecognizer *)tap {
+    
+    if (tap.view == self.contentView.youLabel) {
+        
+        if ([UserModel defaultUser].jyzSelfCardNum.length == 0) {
+            [MBProgressHUD showError:@"未开通中石油油卡"];
+            [self maskViewTap];
+            self.oilCardNumLabel.text = @"";
+            return;
+        }
+        self.type = 1;
+        self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
+        [self maskViewTap];
+    }else{
+        
+        if ([UserModel defaultUser].hua_card.length == 0) {
+            [MBProgressHUD showError:@"未开通中石化油卡"];
+            [self maskViewTap];
+            self.oilCardNumLabel.text = @"";
+            
+            return;
+        }
+        self.type = 2;
+        self.oilCardNumLabel.text = [UserModel defaultUser].hua_card;
+        [self maskViewTap];
+    }
+}
+- (void)maskViewTap {
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.contentView.height = 0;
+        
+    } completion:^(BOOL finished) {
+        [self.contentView removeFromSuperview];
+
+        [self.maskV removeFromSuperview];
+    }];
+    
+}
+// 只有点击在mask上才调maskViewTap
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    if (touch.view == self.maskV){
+        
+        return YES;
+        
+    }
+    
+    return NO;
+    
+}
+- (UIView *)maskV{
+    if (!_maskV) {
+        _maskV = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _maskV.backgroundColor = YYSRGBColor(0, 0, 0, 0.2);
+        
+        UITapGestureRecognizer *maskViewTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(maskViewTap)];
+        maskViewTap.delegate = self;
+        [_maskV addGestureRecognizer:maskViewTap];
+    }
+    return _maskV;
+}
+- (GL_CardTypeChooseView *)contentView{
+    if (!_contentView) {
+        _contentView = [[NSBundle mainBundle] loadNibNamed:@"GL_CardTypeChooseView" owner:nil options:nil].lastObject;
+        
+        _contentView.layer.cornerRadius = 5.f;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeCard:)];
+        [_contentView.youLabel addGestureRecognizer:tap];
+        
+        UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeCard:)];
+        [_contentView.huaLabel addGestureRecognizer:tap2];
+    }
+    return _contentView;
+}
 @end

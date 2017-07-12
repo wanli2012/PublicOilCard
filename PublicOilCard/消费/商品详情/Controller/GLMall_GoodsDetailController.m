@@ -51,14 +51,6 @@
     self.collectionView.collectionViewLayout = layout;
     
     _sum = 1;
-    
-//    //自定义右键
-//    _btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    _btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-//    [_btn addTarget:self  action:@selector(collect) forControlEvents:UIControlEventTouchUpInside];
-//    _btn.frame = CGRectMake(0, 0, 80, 40);
-//    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_btn];
 
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMall_GoodsHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"GLMall_GoodsHeaderView"];
     [self.collectionView registerNib:[UINib nibWithNibName:@"GLMallHomeCell" bundle:nil] forCellWithReuseIdentifier:@"GLMallHomeCell"];
@@ -159,7 +151,7 @@
         [MBProgressHUD showError:@"请先登录"];
         return;
     }
-    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0 || [[UserModel defaultUser].hua_status integerValue] == 0 ) {
+    if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0 && [[UserModel defaultUser].hua_status integerValue] == 0 ) {
         [MBProgressHUD showError:@"请先开卡"];
         return;
     }

@@ -97,18 +97,13 @@
         return;
     }
     
-//    NSString *encryptphone = [RSAEncryptor encryptString:self.phoneTf.text publicKey:public_RSA];
-//    NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
-//    NSString *encryptUsertype = [RSAEncryptor encryptString:[NSString stringWithFormat:@"%ld",(long)self.usertype] publicKey:public_RSA];
-//    NSString *encrypYzm = [RSAEncryptor encryptString:self.yabzTf.text publicKey:public_RSA];
-    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     [NetworkManager requestPOSTWithURLStr:@"user/check_yzm" paramDic:@{@"userphone":self.phoneTf.text,@"yzm":self.yabzTf.text} finish:^(id responseObject) {
 
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue]==1) {
             
-            [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_pwd" paramDic:@{@"phone":self.phoneTf.text , @"new_pwd":self.secretTf.text , @"group_id":self.usertype } finish:^(id responseObject) {
+            [NetworkManager requestPOSTWithURLStr:@"UserInfo/back_pwd" paramDic:@{@"phone":self.phoneTf.text , @"new_pwd":[RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA] , @"group_id":self.usertype } finish:^(id responseObject) {
                 if ([responseObject[@"code"] integerValue]==1) {
                     [MBProgressHUD showError:responseObject[@"message"]];
                     [self.navigationController popViewControllerAnimated:YES];

@@ -343,6 +343,9 @@
 		4A5331ED1EFE763F009C3593 /* ZXMultiFormatWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A53310A1EFE763E009C3593 /* ZXMultiFormatWriter.m */; };
 		4A5331EE1EFE763F009C3593 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4A53310C1EFE763E009C3593 /* README.md */; };
 		4A5331EF1EFE763F009C3593 /* UIImageView+CornerRadius.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5331101EFE763E009C3593 /* UIImageView+CornerRadius.m */; };
+		4A5920311F15EF1800D8A5E3 /* GL_CardTypeChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5920301F15EF1800D8A5E3 /* GL_CardTypeChooseView.m */; };
+		4A5920331F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5920321F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib */; };
+		4A5920371F1601C500D8A5E3 /* RSAEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5920361F1601C500D8A5E3 /* RSAEncryptor.m */; };
 		4A5BBB951EF21617008270F2 /* GLMine_InfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBB931EF21617008270F2 /* GLMine_InfoCell.m */; };
 		4A5BBB961EF21617008270F2 /* GLMine_InfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BBB941EF21617008270F2 /* GLMine_InfoCell.xib */; };
 		4A5BBBA81EF23513008270F2 /* GLMine_OrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBBA61EF23513008270F2 /* GLMine_OrderController.m */; };
@@ -1118,6 +1121,11 @@
 		4A53310C1EFE763E009C3593 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4A53310F1EFE763E009C3593 /* UIImageView+CornerRadius.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+CornerRadius.h"; sourceTree = "<group>"; };
 		4A5331101EFE763E009C3593 /* UIImageView+CornerRadius.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+CornerRadius.m"; sourceTree = "<group>"; };
+		4A59202F1F15EF1800D8A5E3 /* GL_CardTypeChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GL_CardTypeChooseView.h; sourceTree = "<group>"; };
+		4A5920301F15EF1800D8A5E3 /* GL_CardTypeChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GL_CardTypeChooseView.m; sourceTree = "<group>"; };
+		4A5920321F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GL_CardTypeChooseView.xib; sourceTree = "<group>"; };
+		4A5920351F1601C500D8A5E3 /* RSAEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSAEncryptor.h; sourceTree = "<group>"; };
+		4A5920361F1601C500D8A5E3 /* RSAEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSAEncryptor.m; sourceTree = "<group>"; };
 		4A5BBB921EF21617008270F2 /* GLMine_InfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_InfoCell.h; sourceTree = "<group>"; };
 		4A5BBB931EF21617008270F2 /* GLMine_InfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_InfoCell.m; sourceTree = "<group>"; };
 		4A5BBB941EF21617008270F2 /* GLMine_InfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_InfoCell.xib; sourceTree = "<group>"; };
@@ -1698,6 +1706,9 @@
 				4A4924131F04DEFA00C549EB /* GLMine_UploadRecordCell.h */,
 				4A4924141F04DEFA00C549EB /* GLMine_UploadRecordCell.m */,
 				4A4924151F04DEFA00C549EB /* GLMine_UploadRecordCell.xib */,
+				4A59202F1F15EF1800D8A5E3 /* GL_CardTypeChooseView.h */,
+				4A5920301F15EF1800D8A5E3 /* GL_CardTypeChooseView.m */,
+				4A5920321F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1741,6 +1752,7 @@
 		4A4FA5841EF0CA1100A256D2 /* PublicOilCard */ = {
 			isa = PBXGroup;
 			children = (
+				4A5920341F1601C500D8A5E3 /* RSA密钥 */,
 				F91CA95D1EFB6F3700817DEF /* 使用加载网页 */,
 				4A5BBBBF1EF2659F008270F2 /* 登录注册 */,
 				4A39F4881EF3838C0038C147 /* 补全信息 */,
@@ -2777,6 +2789,15 @@
 			path = CornerRadiusCategory;
 			sourceTree = "<group>";
 		};
+		4A5920341F1601C500D8A5E3 /* RSA密钥 */ = {
+			isa = PBXGroup;
+			children = (
+				4A5920351F1601C500D8A5E3 /* RSAEncryptor.h */,
+				4A5920361F1601C500D8A5E3 /* RSAEncryptor.m */,
+			);
+			path = "RSA密钥";
+			sourceTree = "<group>";
+		};
 		4A5BBBBF1EF2659F008270F2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3344,6 +3365,7 @@
 				F92DA9611EF5194900530237 /* LBExchangeJiFenTableViewCell.xib in Resources */,
 				4A4FA5ED1EF0DE3100A256D2 /* GLMallHomeController.xib in Resources */,
 				4A532EDD1EFE5626009C3593 /* GLMine_PersonInfoCodeView.xib in Resources */,
+				4A5920331F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
@@ -3483,6 +3505,7 @@
 				4A53315E1EFE763F009C3593 /* ZXDecodeHints.m in Sources */,
 				4A5331E51EFE763F009C3593 /* ZXQRCodeMaskUtil.m in Sources */,
 				4A5331741EFE763F009C3593 /* ZXDataMatrixErrorCorrection.m in Sources */,
+				4A5920311F15EF1800D8A5E3 /* GL_CardTypeChooseView.m in Sources */,
 				4A5331911EFE763F009C3593 /* ZXRSSExpandedDecodedNumeric.m in Sources */,
 				4A5331321EFE763F009C3593 /* ZXSMSMMSResultParser.m in Sources */,
 				F95D45EE1EFA4A980011C69B /* TYAlertController+TransitionAnimate.m in Sources */,
@@ -3577,6 +3600,7 @@
 				4A5331291EFE763F009C3593 /* ZXExpandedProductResultParser.m in Sources */,
 				4A5331C81EFE763F009C3593 /* ZXPDF417.m in Sources */,
 				4A5331631EFE763F009C3593 /* ZXLuminanceSource.m in Sources */,
+				4A5920371F1601C500D8A5E3 /* RSAEncryptor.m in Sources */,
 				4A5331351EFE763F009C3593 /* ZXSMTPResultParser.m in Sources */,
 				4A53314C1EFE763F009C3593 /* ZXBitArray.m in Sources */,
 				4A532F1A1EFE75E0009C3593 /* UIActionSheet+LBXAlertAction.m in Sources */,

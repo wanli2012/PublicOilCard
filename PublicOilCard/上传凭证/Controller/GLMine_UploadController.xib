@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_UploadController">
             <connections>
+                <outlet property="cardView" destination="XGR-8S-p3Q" id="KAq-J7-bg9"/>
                 <outlet property="contentViewHeight" destination="asl-38-Ct3" id="1i3-Oe-pXp"/>
                 <outlet property="contentViewWidth" destination="lpJ-CO-kEx" id="JeO-06-eSw"/>
                 <outlet property="dateLabel" destination="WLR-jm-B2r" id="2Kl-Iz-irh"/>
@@ -104,25 +105,39 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6d-lL-XtO">
-                                            <rect key="frame" x="81.5" y="0.0" width="246.5" height="49"/>
+                                            <rect key="frame" x="81.5" y="0.0" width="217.5" height="49"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下选三角形" translatesAutoresizingMaskIntoConstraints="NO" id="P5H-ht-E9g">
+                                            <rect key="frame" x="309" y="23" width="9" height="5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="9" id="928-7W-8GV"/>
+                                                <constraint firstAttribute="height" constant="5" id="sNv-7a-Vyn"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="P5H-ht-E9g" secondAttribute="trailing" constant="10" id="0bf-8S-2T1"/>
                                         <constraint firstItem="OXg-bK-KWH" firstAttribute="top" secondItem="J6d-lL-XtO" secondAttribute="bottom" id="19f-2g-gF3"/>
                                         <constraint firstItem="OXg-bK-KWH" firstAttribute="leading" secondItem="XGR-8S-p3Q" secondAttribute="leading" id="4nA-mk-U2U"/>
                                         <constraint firstAttribute="trailing" secondItem="OXg-bK-KWH" secondAttribute="trailing" id="5Pb-Ve-RbZ"/>
                                         <constraint firstItem="2Kl-Tm-9Si" firstAttribute="centerY" secondItem="XGR-8S-p3Q" secondAttribute="centerY" id="Mb8-7j-bEs"/>
                                         <constraint firstAttribute="height" constant="50" id="VrS-Ca-ua7"/>
                                         <constraint firstItem="J6d-lL-XtO" firstAttribute="top" secondItem="XGR-8S-p3Q" secondAttribute="top" id="iEd-K6-UEE"/>
-                                        <constraint firstAttribute="trailing" secondItem="J6d-lL-XtO" secondAttribute="trailing" id="jj7-44-ylk"/>
+                                        <constraint firstItem="P5H-ht-E9g" firstAttribute="centerY" secondItem="2Kl-Tm-9Si" secondAttribute="centerY" id="meE-WZ-Q00"/>
+                                        <constraint firstItem="P5H-ht-E9g" firstAttribute="leading" secondItem="J6d-lL-XtO" secondAttribute="trailing" constant="10" id="qOe-8I-ffg"/>
                                         <constraint firstItem="J6d-lL-XtO" firstAttribute="leading" secondItem="2Kl-Tm-9Si" secondAttribute="trailing" constant="10" id="rUE-Pt-kRN"/>
                                         <constraint firstItem="2Kl-Tm-9Si" firstAttribute="leading" secondItem="XGR-8S-p3Q" secondAttribute="leading" constant="10" id="w1Z-Lc-56F"/>
                                         <constraint firstAttribute="bottom" secondItem="OXg-bK-KWH" secondAttribute="bottom" id="w71-MM-95B"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="DBX-T0-etf" appends="YES" id="DwA-lX-BtZ"/>
+                                    </connections>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBZ-26-Fww">
                                     <rect key="frame" x="30" y="330" width="328" height="50"/>
@@ -272,8 +287,14 @@
                 <action selector="chooseDate:" destination="-1" id="YUS-v5-y74"/>
             </connections>
         </tapGestureRecognizer>
+        <tapGestureRecognizer id="DBX-T0-etf">
+            <connections>
+                <action selector="changeCardType:" destination="-1" id="J7V-LP-Bml"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="下选三角形" width="8" height="5"/>
         <image name="照片框-拷贝-9" width="98" height="96"/>
     </resources>
 </document>

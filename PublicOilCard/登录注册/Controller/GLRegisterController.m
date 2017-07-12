@@ -168,7 +168,7 @@
 
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"userphone"] = self.phoneTf.text;
-    dict[@"password"] = self.secretTf.text;
+    dict[@"password"] = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
     dict[@"user_name"] = self.recomendId.text;
     dict[@"yzm"] = self.verificationTf.text;
  

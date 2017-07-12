@@ -37,7 +37,7 @@
     self.navigationItem.title = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SetCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SetCell"];
-    _dataArr = @[@"密码修改",@"内存清理",@"关于公司",@"联系客服",@"版本更新"];
+    _dataArr = @[@"密码修改",@"内存清理",@"关于公司",@"联系客服"];
     self.quitBtn.layer.cornerRadius = 5.f;
     self.folderSize = [self filePath];
 }
@@ -77,7 +77,7 @@
 }
 #pragma UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return _dataArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_SetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_SetCell"];
@@ -137,13 +137,13 @@
             }];
         }
             break;
-        case 4:
-        {
-            self.hidesBottomBarWhenPushed = YES;
-            GLRecommendController *vc=[[GLRecommendController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-            break;
+//        case 4:
+//        {
+//            self.hidesBottomBarWhenPushed = YES;
+//            GLRecommendController *vc=[[GLRecommendController alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//            break;
             
         default:
             break;

@@ -66,8 +66,8 @@
     
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"new_pwd"] = self.newaTf.text;
-    dict[@"old_pwd"] = self.oldTf.text;
+    dict[@"new_pwd"] = [RSAEncryptor encryptString:self.newaTf.text publicKey:public_RSA];
+    dict[@"old_pwd"] = [RSAEncryptor encryptString:self.oldTf.text publicKey:public_RSA];
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     

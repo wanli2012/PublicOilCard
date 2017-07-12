@@ -147,7 +147,7 @@
     
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:@{@"userphone":self.phone.text,@"password":self.scretTf.text,@"groupID":self.usertype} finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kLOGIN_URL paramDic:@{@"userphone":self.phone.text,@"password":[RSAEncryptor encryptString:self.scretTf.text publicKey:public_RSA],@"groupID":self.usertype} finish:^(id responseObject) {
 
         [_loadV removeloadview];
         if ([responseObject[@"code"] integerValue] == 1 && ![responseObject[@"data"] isEqual:[NSNull null]]) {

@@ -154,7 +154,7 @@
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
     dict[@"phone"] = self.phoneTF.text;
-    dict[@"pwd"] = self.pwdTF.text;
+    dict[@"pwd"] = [RSAEncryptor encryptString:self.pwdTF.text publicKey:public_RSA];
     dict[@"province"] = self.provinceStrId;
     dict[@"city"] = self.cityStrId;
     dict[@"area"] = self.countryStrId;

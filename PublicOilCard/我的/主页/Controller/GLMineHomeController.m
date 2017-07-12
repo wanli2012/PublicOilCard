@@ -497,7 +497,7 @@ static NSString *headerID = @"GLMine_HeaderView";
                 LBExchangeViewController *exchageVC = [[LBExchangeViewController alloc] init];
                 [self.navigationController pushViewController:exchageVC animated:YES];
             }else{
-                if([[UserModel defaultUser].isHaveOilCard integerValue] == 0){
+                if([[UserModel defaultUser].isHaveOilCard integerValue] == 0 && [[UserModel defaultUser].hua_status integerValue] == 0){
                     [MBProgressHUD showError:@"请先开卡"];
                     return;
                 }
