@@ -75,7 +75,51 @@
     
 }
 - (void)refresh {
-    [self updateData:YES];
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"uid"] = [UserModel defaultUser].uid;
+    dict[@"token"] = [UserModel defaultUser].token;
+    
+    [NetworkManager requestPOSTWithURLStr:kDELEGATEINFO_URL paramDic:dict finish:^(id responseObject) {
+        [self endRefresh];
+        if ([responseObject[@"code"] integerValue]==1) {
+            //判空以及赋值
+            if ([responseObject[@"data"][@"msg"] isEqual:[NSNull null]]) {
+                self.dataArr = @[];
+            }else{
+                
+                self.dataArr = responseObject[@"data"][@"msg"];
+            }
+            if ([responseObject[@"data"][@"status"] isEqual:[NSNull null]]) {
+                self.status = @"";
+            }else{
+                
+                self.status = responseObject[@"data"][@"status"];
+            }
+            if ([responseObject[@"data"][@"upgrade"] isEqual:[NSNull null]]) {
+                self.upgrade = @"";
+            }else{
+                
+                self.upgrade = responseObject[@"data"][@"upgrade"];
+            }
+            self.is_pay = responseObject[@"data"][@"is_pay"];
+            
+            if ([responseObject[@"data"] count] == 0 && self.dataArr.count != 0) {
+                
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+        
+        [self.tableView reloadData];
+        
+    } enError:^(NSError *error) {
+        [self endRefresh];
+        [MBProgressHUD showError:error.localizedDescription];
+    }];
+
 }
 - (void)updateData:(BOOL)status {
     if (status) {
