@@ -451,8 +451,8 @@
         cell.picImageV.hidden = YES;
         cell.detailTF.hidden = NO;
         if ([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3) {
-            cell.titleLabel.text = _keyArr[indexPath.row + 9];
-            cell.detailTF.text = _vlaueArr[indexPath.row + 9];
+            cell.titleLabel.text = _keyArr[indexPath.row + 8];
+            cell.detailTF.text = _vlaueArr[indexPath.row + 8];
             
         }else if([[UserModel defaultUser].group_id integerValue] == 6){
             
@@ -698,10 +698,11 @@
             
             self.infoContentV.petroChinaViewHeight.constant = 0;
             self.infoContentV.SinopecViewHeight.constant = 0;
+            self.infoContentV.youView.alpha = 0;
+            self.infoContentV.huaView.alpha = 0;
             self.infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 120);
         }else{
-            self.infoContentV.petroChinaViewHeight.constant = 50;
-            self.infoContentV.SinopecViewHeight.constant = 50;
+            
             self.infoContentV.frame = CGRectMake(20, (SCREEN_HEIGHT - 200)/2, SCREEN_WIDTH - 40, 220);
         }
 

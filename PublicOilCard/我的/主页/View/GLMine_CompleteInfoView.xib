@@ -195,11 +195,13 @@
             <connections>
                 <outlet property="SinopecViewHeight" destination="LXQ-lp-Cua" id="XfF-Xd-Ubq"/>
                 <outlet property="cancelBtn" destination="dvG-Ea-jGq" id="6IO-Vt-ull"/>
+                <outlet property="huaView" destination="MkI-ao-tPv" id="gjf-Gl-2WM"/>
                 <outlet property="oilCardTextF" destination="VoG-gl-Iz0" id="Cqb-0s-Rrb"/>
                 <outlet property="oilCardTextF2" destination="vKC-cY-dGY" id="kJw-Qn-PyW"/>
                 <outlet property="okBtn" destination="YCe-Ea-LqS" id="mDa-w4-cnN"/>
                 <outlet property="petroChinaViewHeight" destination="NSL-xG-fK9" id="vhE-Dd-hix"/>
                 <outlet property="qtIDTextF" destination="xgr-XY-uHq" id="jeb-Ln-Af2"/>
+                <outlet property="youView" destination="G3j-kC-ytX" id="217-Gw-em4"/>
             </connections>
             <point key="canvasLocation" x="-6.5" y="-167"/>
         </view>

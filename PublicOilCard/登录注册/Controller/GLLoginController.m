@@ -180,38 +180,114 @@
             [UserModel defaultUser].loginstatus = YES;
             [UserModel defaultUser].yue = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"yue"]];
             [UserModel defaultUser].jyzSelfCardNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"jyzSelfCardNum"]];
-            [UserModel defaultUser].qtIdNum = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"qtIdNum"]];
             [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
             [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
             
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].pic = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].username] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].username = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].truename] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].truename = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].IDCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].IDCard = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].phone] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].phone = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recommendUser] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recommendUser = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recommendID] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recommendID = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].price = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].mark = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].recNumber] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].recNumber = @"";
+            }
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].banknumber] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].banknumber = @"";
             }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_id] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_id = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].group_name] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].group_name = @"";
+            }
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].openbank] rangeOfString:@"null"].location != NSNotFound) {
+                
                 [UserModel defaultUser].openbank = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].version] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].version = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].qtIdNum = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isBqInfo] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isBqInfo = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveNewMsg] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveNewMsg = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].isHaveOilCard = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].token] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].token = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].uid] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].uid = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].yue] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].yue = @"";
             }
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].jyzSelfCardNum] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].jyzSelfCardNum = @"";
             }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].qtIdNum] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].qtIdNum == nil) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].s_meber] rangeOfString:@"null"].location != NSNotFound) {
                 
-                [UserModel defaultUser].qtIdNum = @"";
+                [UserModel defaultUser].s_meber = @"";
             }
-            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_card] rangeOfString:@"null"].location != NSNotFound || [UserModel defaultUser].hua_card == nil) {
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_card] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].hua_card = @"";
             }
-            
+
             [usermodelachivar achive];
             [[NSNotificationCenter defaultCenter]postNotificationName:@"refreshInterface" object:nil];
             
             if ([[UserModel defaultUser].group_id isEqualToString:MANAGER] || [[UserModel defaultUser].group_id isEqualToString:DIRECTOR]|| [[UserModel defaultUser].group_id isEqualToString:MINISTER]){
-                
-//                GLMineHomeController *homevc = [[GLMineHomeController alloc] init];
-//                BaseNavigationViewController *nav = [[BaseNavigationViewController alloc]initWithRootViewController:homevc];
-//                [UIApplication sharedApplication].keyWindow.rootViewController = nav;
                 
                 if ([UserModel defaultUser].loginstatus == YES) {
 

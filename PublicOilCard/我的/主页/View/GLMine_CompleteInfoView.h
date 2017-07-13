@@ -17,5 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *petroChinaViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *SinopecViewHeight;
+@property (weak, nonatomic) IBOutlet UIView *youView;
+@property (weak, nonatomic) IBOutlet UIView *huaView;
 
 @end
