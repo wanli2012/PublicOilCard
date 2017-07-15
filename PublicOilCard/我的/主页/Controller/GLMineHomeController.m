@@ -492,7 +492,6 @@ static NSString *headerID = @"GLMine_HeaderView";
         case 2:
         {
             if([[UserModel defaultUser].group_id integerValue] == 1 ||[[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
-
                 
                 LBExchangeViewController *exchageVC = [[LBExchangeViewController alloc] init];
                 [self.navigationController pushViewController:exchageVC animated:YES];

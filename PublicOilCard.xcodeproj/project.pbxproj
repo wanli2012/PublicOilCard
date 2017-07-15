@@ -3310,7 +3310,7 @@
 					4A4FA5811EF0CA1100A256D2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = YT92Q94P8S;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -3947,8 +3947,8 @@
 			baseConfigurationReference = CE8B0BB81FC7EF0D1C71D6A0 /* Pods-PublicOilCard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3972,8 +3972,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
+				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3983,8 +3983,8 @@
 			baseConfigurationReference = 99D0512F57A7F383D89AAB99 /* Pods-PublicOilCard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4009,8 +4009,8 @@
 				"OTHER_CFLAGS[arch=*]" = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
+				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
