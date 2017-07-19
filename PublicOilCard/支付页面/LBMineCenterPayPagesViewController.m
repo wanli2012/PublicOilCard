@@ -12,6 +12,7 @@
 #import "GLSet_MaskVeiw.h"
 #import <AlipaySDK/AlipaySDK.h>
 #import "LBPayFooterView.h"
+#import "GLPay_OfflineController.h"
 
 @interface LBMineCenterPayPagesViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -186,12 +187,20 @@
     
     if ( self.selectIndex == 0) {
         [self alipayAndWeChatPay:@"1"];
-    }else{
+    }else if(self.selectIndex == 1){
         
         [MBProgressHUD showError:@"暂不支持"];
         return;
 //        [self alipayAndWeChatPay:@"1"];
         
+    }else{
+        
+        self.hidesBottomBarWhenPushed = YES;
+        
+        GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
+        payOffVC.goods_name = self.goods_name;
+        
+        [self.navigationController pushViewController:payOffVC animated:YES];
     }
     
  }
@@ -323,7 +332,6 @@
         dict[@"pay_fun"] = payType;
         urlstr = kUPGRADE_URL;
     }
-  
     
     [NetworkManager requestPOSTWithURLStr:urlstr paramDic:dict finish:^(id responseObject) {
         
@@ -408,7 +416,7 @@
    
 //        if (self.payType == 1) {
 //            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"线下支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
-        _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
+        _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"},@{@"image":@"微信",@"title":@"线下支付"}, nil];
 //        }else if (self.payType == 2){
 //        
 //           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"米券支付"}, nil];

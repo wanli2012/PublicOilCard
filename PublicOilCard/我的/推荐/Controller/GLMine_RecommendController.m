@@ -88,7 +88,7 @@
     
         }else{
             if ([data isKindOfClass:[UMSocialShareResponse class]]) {
-//                UMSocialShareResponse *resp = data;
+
             }
         }
        
@@ -105,7 +105,7 @@
     [qrImageFilter setDefaults];
     
     //将字符串转换成 NSdata (虽然二维码本质上是 字符串,但是这里需要转换,不转换就崩溃)
-    NSData *qrImageData = [[UserModel defaultUser].username dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *qrImageData = [[NSString stringWithFormat:@"%@%@",kRECOMMEND_URL,[UserModel defaultUser].username] dataUsingEncoding:NSUTF8StringEncoding];
     
     //设置过滤器的 输入值  ,KVC赋值
     [qrImageFilter setValue:qrImageData forKey:@"inputMessage"];

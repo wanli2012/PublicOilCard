@@ -155,7 +155,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册协议" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fnw-Ob-Dc7">
-                    <rect key="frame" x="50" y="352" width="70" height="20"/>
+                    <rect key="frame" x="40" y="352" width="70" height="20"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="bht-pr-Cy1"/>
@@ -186,7 +186,7 @@
                         <constraint firstAttribute="height" constant="30" id="B9c-9h-ScB"/>
                         <constraint firstAttribute="width" constant="40" id="KFv-Oj-lXp"/>
                     </constraints>
-                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <state key="normal" image="注册协议未选中"/>
                     <connections>
                         <action selector="isAgreeRegist:" destination="-1" eventType="touchUpInside" id="QFq-5j-bdM"/>
@@ -222,7 +222,7 @@
                 <constraint firstItem="K31-MW-KcV" firstAttribute="height" secondItem="938-Pe-Vlq" secondAttribute="height" id="Ise-Ja-mey"/>
                 <constraint firstItem="938-Pe-Vlq" firstAttribute="height" secondItem="cdY-G6-IKH" secondAttribute="height" id="LVm-lP-WhC"/>
                 <constraint firstItem="K31-MW-KcV" firstAttribute="leading" secondItem="q4m-Rw-aQi" secondAttribute="leading" id="Lay-HK-wrc"/>
-                <constraint firstItem="Fnw-Ob-Dc7" firstAttribute="leading" secondItem="9ww-l4-nLH" secondAttribute="trailing" constant="10" id="Lbz-or-3qq"/>
+                <constraint firstItem="Fnw-Ob-Dc7" firstAttribute="leading" secondItem="9ww-l4-nLH" secondAttribute="trailing" id="Lbz-or-3qq"/>
                 <constraint firstItem="P6t-3L-cMm" firstAttribute="top" secondItem="938-Pe-Vlq" secondAttribute="bottom" constant="20" id="NjF-PR-mpW"/>
                 <constraint firstItem="exc-r1-sn0" firstAttribute="height" secondItem="K5O-wd-F1o" secondAttribute="height" id="QLq-ZD-7Dy"/>
                 <constraint firstItem="cdY-G6-IKH" firstAttribute="top" secondItem="ciV-YP-4k3" secondAttribute="bottom" constant="20" id="Qik-sd-6tg"/>

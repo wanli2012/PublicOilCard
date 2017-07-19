@@ -10,4 +10,6 @@
 
 @interface GLPay_OfflineController : UIViewController
 
+@property (nonatomic, strong)NSString *goods_name;
+
 @end

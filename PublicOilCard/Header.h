@@ -89,7 +89,8 @@
 
 #define kUPGRADE_URL @"UserInfo/upgrade"//升级成个代
 
-
+//分享推荐注册
+#define kRECOMMEND_URL @"http://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1256847817?mt=8"
 //获取appStore上的最新版本号地址

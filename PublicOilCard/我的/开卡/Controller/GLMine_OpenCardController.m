@@ -30,8 +30,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = @"我要开卡";
     
-    self.isAgreel = NO;
-    self.openCardBtn.userInteractionEnabled = NO;
+    self.isAgreel = YES;
+    self.openCardBtn.userInteractionEnabled = YES;
     
     [self refresh];
 }
@@ -49,15 +49,25 @@
             if ([responseObject[@"data"] count] != 0) {
                 
                 [UserModel defaultUser].cost = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost"]];
+                [UserModel defaultUser].cost2 = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost2"]];
                 [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+                [UserModel defaultUser].hua_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_status"]];
                 
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost] rangeOfString:@"null"].location != NSNotFound) {
                     
                     [UserModel defaultUser].cost = @"";
                 }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost2] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].cost2 = @"";
+                }
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].isHaveOilCard] rangeOfString:@"null"].location != NSNotFound) {
                     
-                    [UserModel defaultUser].isHaveOilCard = @"";
+                    [UserModel defaultUser].isHaveOilCard = @"0";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_status] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].hua_status = @"0";
                 }
                 
                 [usermodelachivar achive];
@@ -67,7 +77,7 @@
             
             [MBProgressHUD showError:responseObject[@"message"]];
         }
-        if (self.type == 1) {
+        if (self.type == 0) {
             
             self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost];
         }else{

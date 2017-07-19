@@ -20,6 +20,7 @@
 
 @property (nonatomic, copy) NSString *realy_price;//支付金额
 
+@property (nonatomic, strong)NSString *goods_name;
 
 @property (nonatomic, copy)NSString *goods_id;
 

@@ -27,6 +27,7 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "GLCompleteInfoController.h"
 #import "QQPopMenuView.h"
+#import "GLHome_jifenRecordController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
@@ -518,6 +519,14 @@ static NSString *headerID = @"GLMine_HeaderView";
     }
     self.hidesBottomBarWhenPushed = NO;
 }
+-(void)jifenRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+    [self.navigationController pushViewController:jifenVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
              viewForSupplementaryElementOfKind:(NSString *)kind
                                    atIndexPath:(NSIndexPath *)indexPath {
@@ -532,11 +541,13 @@ static NSString *headerID = @"GLMine_HeaderView";
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
 
     //数据显示
-//    [_header.picImageV sd_setBackgroundImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     [_header.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
+    
+    UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
+    [_header.jifenView addGestureRecognizer:jifenTap];
     //消费
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].price floatValue]/10000];

@@ -238,10 +238,10 @@
     }
 
     if(self.indentifierTF.text.length <= 0){
-        [MBProgressHUD showError:@"请输入身份证号"];
+        [MBProgressHUD showError:@"请输入证件号"];
         return;
-    }else if(![predicateModel validateIdentityCard:self.indentifierTF.text]){
-        [MBProgressHUD showError:@"输入的身份证号不正确"];
+    }else if(self.indentifierTF.text.length < 6 ){
+        [MBProgressHUD showError:@"请输入正确的证件号码"];
         return;
     }
     if(self.bankCardNumTF.text.length <= 0){
@@ -308,14 +308,16 @@
   
 }
 
+#pragma mark UITextfield
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if (textField == self.indentifierTF) {//身份证号只能输入数字和X
-        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890Xx"] invertedSet];
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         BOOL basicTest = [string isEqualToString:filtered];
         if(!basicTest){
-            [MBProgressHUD showError:@"身份证号输入不合法"];
+            [MBProgressHUD showError:@"证件号输入不合法"];
             return NO;
         }
 
@@ -323,6 +325,7 @@
     return YES;
     
 }
+
 #pragma 动画要用到的招商总管
 //动画
 - (nullable UIPresentationController *)presentationControllerForPresentedViewController:(UIViewController *)presented presentingViewController:(UIViewController *)presenting sourceViewController:(UIViewController *)source{

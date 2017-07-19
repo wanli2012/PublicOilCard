@@ -70,8 +70,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQ0-U3-e1m">
                     <rect key="frame" x="0.0" y="114" width="349" height="50"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAY-Q1-2al">
-                            <rect key="frame" x="10" y="15" width="61.5" height="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="证件号:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAY-Q1-2al">
+                            <rect key="frame" x="10" y="15" width="47" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="2L7-eb-yMB"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="S4m-iZ-iqP"/>
@@ -80,8 +80,8 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入身份证号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-8K-385">
-                            <rect key="frame" x="81.5" y="0.0" width="257.5" height="50"/>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="身份证/港澳通行证/护照" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6MR-8K-385">
+                            <rect key="frame" x="67" y="0.0" width="272" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -214,7 +214,7 @@
                                 <constraint firstAttribute="height" constant="1" id="adT-nc-UsR"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="请选择省市区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMq-O9-sYz">
+                        <label opaque="NO" contentMode="left" verticalHuggingPriority="251" text="请选择居住地省市区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMq-O9-sYz">
                             <rect key="frame" x="67" y="0.0" width="252" height="49"/>
                             <gestureRecognizers/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -305,7 +305,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入详细地址(不含省市区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48J-hk-1JS">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入居住邮寄地址(不含省市区)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="48J-hk-1JS">
                             <rect key="frame" x="82" y="0.0" width="257" height="50"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

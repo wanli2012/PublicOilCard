@@ -45,4 +45,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *jiangliLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *vipImageV;
 
+@property (weak, nonatomic) IBOutlet UIView *jifenView;
+
 @end

@@ -370,6 +370,10 @@
 		4A5BBBE81EF26A35008270F2 /* NodataView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBBE31EF26A35008270F2 /* NodataView.m */; };
 		4A5BBBE91EF26A35008270F2 /* NodataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BBBE41EF26A35008270F2 /* NodataView.xib */; };
 		4A5BBBED1EF26AED008270F2 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BBBEC1EF26AED008270F2 /* NetworkManager.m */; };
+		4A5BFE8D1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BFE8B1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m */; };
+		4A5BFE8E1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BFE8C1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib */; };
+		4A5BFE921F1F409100DE1221 /* GLHome_JifenRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A5BFE901F1F409100DE1221 /* GLHome_JifenRecordCell.m */; };
+		4A5BFE931F1F409100DE1221 /* GLHome_JifenRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A5BFE911F1F409100DE1221 /* GLHome_JifenRecordCell.xib */; };
 		4A69C8EA1F00F07F00035664 /* GLMine_CompleteInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A69C8E91F00F07F00035664 /* GLMine_CompleteInfoView.m */; };
 		4A69C8EC1F00F08B00035664 /* GLMine_CompleteInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A69C8EB1F00F08B00035664 /* GLMine_CompleteInfoView.xib */; };
 		4A6ADC921EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADC901EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.m */; };
@@ -1163,6 +1167,12 @@
 		4A5BBBE41EF26A35008270F2 /* NodataView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NodataView.xib; sourceTree = "<group>"; };
 		4A5BBBEB1EF26AED008270F2 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
 		4A5BBBEC1EF26AED008270F2 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		4A5BFE8A1F1F3FAC00DE1221 /* GLHome_jifenRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHome_jifenRecordController.h; sourceTree = "<group>"; };
+		4A5BFE8B1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHome_jifenRecordController.m; sourceTree = "<group>"; };
+		4A5BFE8C1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLHome_jifenRecordController.xib; sourceTree = "<group>"; };
+		4A5BFE8F1F1F409100DE1221 /* GLHome_JifenRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHome_JifenRecordCell.h; sourceTree = "<group>"; };
+		4A5BFE901F1F409100DE1221 /* GLHome_JifenRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHome_JifenRecordCell.m; sourceTree = "<group>"; };
+		4A5BFE911F1F409100DE1221 /* GLHome_JifenRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLHome_JifenRecordCell.xib; sourceTree = "<group>"; };
 		4A69C8E81F00F07F00035664 /* GLMine_CompleteInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_CompleteInfoView.h; sourceTree = "<group>"; };
 		4A69C8E91F00F07F00035664 /* GLMine_CompleteInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_CompleteInfoView.m; sourceTree = "<group>"; };
 		4A69C8EB1F00F08B00035664 /* GLMine_CompleteInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_CompleteInfoView.xib; sourceTree = "<group>"; };
@@ -1791,6 +1801,7 @@
 			children = (
 				4A4FA5A01EF0CEEF00A256D2 /* 主页 */,
 				4A6ADC971EF7E00700C99498 /* 个人信息 */,
+				4A5BFE861F1F3F8300DE1221 /* 积分奖励记录 */,
 				4A39F4911EF3AF9E0038C147 /* 设置 */,
 				4AEEC9C01EF28B2D00F827BB /* 开卡 */,
 				4AEC05931EF1425F00B39497 /* 升级管理 */,
@@ -2869,6 +2880,43 @@
 			path = "网络请求";
 			sourceTree = "<group>";
 		};
+		4A5BFE861F1F3F8300DE1221 /* 积分奖励记录 */ = {
+			isa = PBXGroup;
+			children = (
+				4A5BFE871F1F3F8300DE1221 /* Controller */,
+				4A5BFE881F1F3F8300DE1221 /* Model */,
+				4A5BFE891F1F3F8300DE1221 /* View */,
+			);
+			path = "积分奖励记录";
+			sourceTree = "<group>";
+		};
+		4A5BFE871F1F3F8300DE1221 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4A5BFE8A1F1F3FAC00DE1221 /* GLHome_jifenRecordController.h */,
+				4A5BFE8B1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m */,
+				4A5BFE8C1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4A5BFE881F1F3F8300DE1221 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A5BFE891F1F3F8300DE1221 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A5BFE8F1F1F409100DE1221 /* GLHome_JifenRecordCell.h */,
+				4A5BFE901F1F409100DE1221 /* GLHome_JifenRecordCell.m */,
+				4A5BFE911F1F409100DE1221 /* GLHome_JifenRecordCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		4A6ADC971EF7E00700C99498 /* 个人信息 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3310,7 +3358,7 @@
 					4A4FA5811EF0CA1100A256D2 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = YT92Q94P8S;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -3366,6 +3414,7 @@
 				4A4FA5ED1EF0DE3100A256D2 /* GLMallHomeController.xib in Resources */,
 				4A532EDD1EFE5626009C3593 /* GLMine_PersonInfoCodeView.xib in Resources */,
 				4A5920331F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib in Resources */,
+				4A5BFE8E1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
@@ -3405,6 +3454,7 @@
 				4AEEC9C81EF28B2D00F827BB /* GLMine_OpenCardController.xib in Resources */,
 				4A1CE71F1EF50CD300895ADF /* GLMine_RelationshipController.xib in Resources */,
 				4A4C0E5E1F05F78E00FF53A4 /* HZQDatePickerView.xib in Resources */,
+				4A5BFE931F1F409100DE1221 /* GLHome_JifenRecordCell.xib in Resources */,
 				4A4FA5F01EF0DF2E00A256D2 /* Mall.xcassets in Resources */,
 				4A1CE7301EF52A8C00895ADF /* GLMine_RelationshipCell.xib in Resources */,
 				4A5BBBD91EF2659F008270F2 /* SelectUserTypeView.xib in Resources */,
@@ -3766,6 +3816,7 @@
 				4A4FA5B31EF0D6E300A256D2 /* BasetabbarViewController.m in Sources */,
 				4A1CE7161EF504C900895ADF /* GLMine_OpenController.m in Sources */,
 				4A4FA5DC1EF0D97B00A256D2 /* ScaleSizeImage.m in Sources */,
+				4A5BFE921F1F409100DE1221 /* GLHome_JifenRecordCell.m in Sources */,
 				4A53318E1EFE763F009C3593 /* ZXRSSExpandedCurrentParsingState.m in Sources */,
 				4A532F0C1EFE75BB009C3593 /* ZXingWrapper.m in Sources */,
 				4A53319B1EFE763F009C3593 /* ZXRSSDataCharacter.m in Sources */,
@@ -3816,6 +3867,7 @@
 				4A53315D1EFE763F009C3593 /* ZXByteMatrix.m in Sources */,
 				F92DA94A1EF4FD9C00530237 /* LBExchangeViewController.m in Sources */,
 				4A53312A1EFE763F009C3593 /* ZXGeoParsedResult.m in Sources */,
+				4A5BFE8D1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m in Sources */,
 				4AEC05A71EF1472900B39497 /* GLMine_InfoController.m in Sources */,
 				4A5331D61EFE763F009C3593 /* ZXQRCodeDecoder.m in Sources */,
 				4A5331541EFE763F009C3593 /* ZXDetectorResult.m in Sources */,
@@ -3947,8 +3999,8 @@
 			baseConfigurationReference = CE8B0BB81FC7EF0D1C71D6A0 /* Pods-PublicOilCard.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3972,8 +4024,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
-				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3983,8 +4035,8 @@
 			baseConfigurationReference = 99D0512F57A7F383D89AAB99 /* Pods-PublicOilCard.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4009,8 +4061,8 @@
 				"OTHER_CFLAGS[arch=*]" = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
-				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

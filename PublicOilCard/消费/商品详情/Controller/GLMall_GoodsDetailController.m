@@ -12,6 +12,7 @@
 #import "LBMineCenterPayPagesViewController.h"
 #import "JZAlbumViewController.h"
 
+
 @interface GLMall_GoodsDetailController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,GLMall_GoodsHeaderViewDelegate>
 {
     NSInteger _sum;//商品购买数量
@@ -156,6 +157,11 @@
         return;
     }
     self.hidesBottomBarWhenPushed = YES;
+    
+//    GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
+//    [self.navigationController pushViewController:payOffVC animated:YES];
+    
+    
     LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -178,8 +184,10 @@
             payVC.order_id = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_id"]];
             payVC.order_num = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_num"]];
             payVC.realy_price = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"realy_price"]];
+            payVC.goods_name = self.dataDic[@"goods_name"];
             payVC.pushIndex = 1;
             payVC.goods_id = self.dataDic[@"goods_id"];
+            
             payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
             [self.navigationController pushViewController:payVC animated:YES];
         }else{
@@ -192,7 +200,6 @@
         [MBProgressHUD showError:error.localizedDescription];
     }];
 
-    
 }
 
 //收藏

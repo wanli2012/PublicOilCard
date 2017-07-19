@@ -54,7 +54,7 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-gj-7ac">
                     <rect key="frame" x="43.5" y="360.5" width="220" height="50"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.99874526259999996" green="0.31327837710000001" blue="0.0048228097150000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="2fo-S9-gF0"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="QU3-ZC-X43"/>
@@ -93,7 +93,7 @@
                         <constraint firstAttribute="width" constant="25" id="guG-hE-AJJ"/>
                         <constraint firstAttribute="height" constant="25" id="wAd-OC-XZ2"/>
                     </constraints>
-                    <state key="normal" image="注册协议未选中"/>
+                    <state key="normal" image="注册协议选中"/>
                     <connections>
                         <action selector="isAgreeProtocol:" destination="-1" eventType="touchUpInside" id="BFk-ah-BPn"/>
                     </connections>
@@ -129,6 +129,6 @@
     </objects>
     <resources>
         <image name="图片" width="214" height="207"/>
-        <image name="注册协议未选中" width="15" height="15"/>
+        <image name="注册协议选中" width="15" height="15"/>
     </resources>
 </document>

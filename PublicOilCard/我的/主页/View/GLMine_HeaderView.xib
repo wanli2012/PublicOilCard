@@ -260,6 +260,7 @@
                 <outlet property="exchangeBtn" destination="nHy-ou-r2B" id="TcK-KW-tYV"/>
                 <outlet property="jiangliLabel" destination="B3M-WH-VRC" id="OY9-01-xHa"/>
                 <outlet property="jifenLabel" destination="d1D-If-WEp" id="ghj-fe-2TH"/>
+                <outlet property="jifenView" destination="M6O-QY-Reg" id="xzk-nY-l3P"/>
                 <outlet property="middleView" destination="VCu-vD-ESA" id="kWJ-Qa-Vgl"/>
                 <outlet property="middleViewBottom" destination="1B5-1H-FTb" id="sXc-yP-KIn"/>
                 <outlet property="middleViewHeight" destination="ZOq-fJ-6ep" id="UO9-3v-JS6"/>
