@@ -23,9 +23,9 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 ///接口
-//119.23.213.255  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
-//#define URL_Base @"http://192.168.0.132/CMcard/index.php/App/"
-#define URL_Base @"http://api.51qmtg.org/index.php/App/"
+//192.168.0.191  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
+#define URL_Base @"http://www.jcgy.cn.com/index.php/App/"
+//#define URL_Base @"http://api.51qmtg.org/index.php/App/"
 
 #define kLOGIN_URL @"User/login" //登录
 
@@ -88,6 +88,12 @@
 #define kOPENCARD_URL @"UserInfo/operate_card"//开卡
 
 #define kUPGRADE_URL @"UserInfo/upgrade"//升级成个代
+
+#define kREWORDLIST_URL @"UserInfo/user_msg_log"//奖励记录
+
+#define kCOUNT_URL @"User/main_buy"//代理商网体内消费统计
+
+#define kDETAIL_URL @"User/line_deta"//代理商网体会员消费详情
 
 //分享推荐注册
 #define kRECOMMEND_URL @"http://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="

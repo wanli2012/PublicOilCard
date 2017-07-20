@@ -10,4 +10,7 @@
 
 @interface GLHome_JifenRecordCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *sumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+
 @end

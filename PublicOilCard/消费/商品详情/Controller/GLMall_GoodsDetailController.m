@@ -187,7 +187,7 @@
             payVC.goods_name = self.dataDic[@"goods_name"];
             payVC.pushIndex = 1;
             payVC.goods_id = self.dataDic[@"goods_id"];
-            
+        
             payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
             [self.navigationController pushViewController:payVC animated:YES];
         }else{

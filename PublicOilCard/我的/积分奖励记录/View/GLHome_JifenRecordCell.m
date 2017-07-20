@@ -8,17 +8,19 @@
 
 #import "GLHome_JifenRecordCell.h"
 
+@interface GLHome_JifenRecordCell ()
+
+
+@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
+
+@end
+
 @implementation GLHome_JifenRecordCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
 }
 
 @end

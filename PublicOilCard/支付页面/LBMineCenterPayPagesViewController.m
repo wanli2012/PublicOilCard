@@ -29,8 +29,8 @@
 @property (strong, nonatomic)  NSArray *dataarr;
 @property (strong, nonatomic)  NSMutableArray *selectB;
 @property (assign, nonatomic)  NSInteger selectIndex;
-@property (weak, nonatomic) IBOutlet UILabel *goodsNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *goodsNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *order_numLabel;
+@property (weak, nonatomic) IBOutlet UILabel *addtimeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderMoney;
 @property (weak, nonatomic) IBOutlet UILabel *orderMTitleLb;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topViewHeight;
@@ -62,8 +62,8 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"LBMineCenterPayPagesTableViewCell" bundle:nil] forCellReuseIdentifier:@"LBMineCenterPayPagesTableViewCell"];
     
 //    self.goodsNumLabel.text = self.goods_num;
-    self.goodsNameLabel.text = self.order_num;
-    self.goodsNumLabel.text = self.addtime;
+    self.order_numLabel.text = self.order_num;
+    self.addtimeLabel.text = self.addtime;
     self.orderMoney.text = [NSString stringWithFormat:@"¥ %@",self.realy_price];
 
     for (int i=0; i<_dataarr.count; i++) {
@@ -199,7 +199,9 @@
         
         GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
         payOffVC.goods_name = self.goods_name;
-        
+        payOffVC.realy_price = self.realy_price;
+        payOffVC.order_num = self.order_num;
+        payOffVC.goods_num = self.goods_num;
         [self.navigationController pushViewController:payOffVC animated:YES];
     }
     

@@ -11,11 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LBMineCenterPayPagesViewController">
             <connections>
+                <outlet property="addtimeLabel" destination="g5d-nh-MtA" id="eAM-AP-Saw"/>
                 <outlet property="ensurePayBtnHeight" destination="xcS-Ov-cjm" id="6M4-5f-Pyk"/>
-                <outlet property="goodsNameLabel" destination="Tze-FR-r7j" id="vMq-bS-oKE"/>
-                <outlet property="goodsNumLabel" destination="g5d-nh-MtA" id="Rlm-kE-2K4"/>
                 <outlet property="orderMTitleLb" destination="C15-pT-DHN" id="JRB-Gj-CqW"/>
                 <outlet property="orderMoney" destination="CVf-8h-IXR" id="q9Q-4y-BTI"/>
+                <outlet property="order_numLabel" destination="Tze-FR-r7j" id="Yge-CH-Nuy"/>
                 <outlet property="sureBt" destination="0vu-4S-bQn" id="HLO-Kn-JgB"/>
                 <outlet property="tableview" destination="emM-Dt-cTZ" id="aBF-o4-K5l"/>
                 <outlet property="topViewHeight" destination="het-Nj-mn9" id="CrK-NT-58H"/>

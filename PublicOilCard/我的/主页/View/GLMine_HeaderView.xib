@@ -269,8 +269,10 @@
                 <outlet property="picImageV" destination="HbI-2F-pf3" id="1Ep-7s-fSX"/>
                 <outlet property="picImageVHeight" destination="tPP-xe-Cag" id="kWl-oG-b8m"/>
                 <outlet property="tuijianLabel" destination="xjj-rz-EKP" id="bpD-QT-eT6"/>
+                <outlet property="tuijianView" destination="np5-h9-Rr2" id="ayn-KU-GEA"/>
                 <outlet property="vipImageV" destination="NrA-w4-U7Y" id="Q18-eM-Nkp"/>
                 <outlet property="xiaofeiLabel" destination="xEG-88-hMR" id="KgT-Zq-Ycf"/>
+                <outlet property="yueView" destination="xmV-kj-RzV" id="mAv-Q4-n9a"/>
             </connections>
             <point key="canvasLocation" x="19.5" y="-101.5"/>
         </collectionReusableView>

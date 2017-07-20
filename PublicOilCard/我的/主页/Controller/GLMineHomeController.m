@@ -28,6 +28,7 @@
 #import "GLCompleteInfoController.h"
 #import "QQPopMenuView.h"
 #import "GLHome_jifenRecordController.h"
+#import "GLMine_SpendingController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
@@ -523,10 +524,27 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     self.hidesBottomBarWhenPushed = YES;
     GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+    jifenVC.type = 1;
     [self.navigationController pushViewController:jifenVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
 }
+-(void)yueRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+    jifenVC.type = 2;
+    [self.navigationController pushViewController:jifenVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+-(void)tuijianRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_SpendingController *spendingVC = [[GLMine_SpendingController alloc] init];
 
+    [self.navigationController pushViewController:spendingVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
              viewForSupplementaryElementOfKind:(NSString *)kind
                                    atIndexPath:(NSIndexPath *)indexPath {
@@ -548,6 +566,13 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
     [_header.jifenView addGestureRecognizer:jifenTap];
+    
+    UITapGestureRecognizer *yueTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yueRecord)];
+    [_header.yueView addGestureRecognizer:yueTap];
+    
+    UITapGestureRecognizer *tuijianTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuijianRecord)];
+    [_header.tuijianView addGestureRecognizer:tuijianTap];
+    
     //消费
     if([[UserModel defaultUser].price floatValue]> 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].price floatValue]/10000];

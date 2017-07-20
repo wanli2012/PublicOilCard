@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "GLMine_RecommendRecordModel.h"
+#import "GLMine_SpendingCountModel.h"
 
 @interface GLMine_RecommendRecordCell : UITableViewCell
 
 @property (nonatomic, strong)GLMine_RecommendRecordModel *model;
+
+@property (nonatomic, strong)GLMine_SpendingCountModel *countModel;
 
 @end

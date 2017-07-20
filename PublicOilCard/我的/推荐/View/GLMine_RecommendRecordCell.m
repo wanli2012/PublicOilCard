@@ -29,5 +29,11 @@
 
     self.dateLabel.text = [formattime formateTime:model.regtime];
 }
-
+- (void)setCountModel:(GLMine_SpendingCountModel *)countModel{
+    _countModel = countModel;
+    self.IDLabel.text = countModel.user_name;
+    self.trueNameLabel.text = countModel.truename;
+    
+    self.dateLabel.text = countModel.money;
+}
 @end

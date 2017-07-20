@@ -349,7 +349,7 @@
     if (tap.view == self.contentView.youLabel) {
         
         if ([UserModel defaultUser].jyzSelfCardNum.length == 0) {
-            [MBProgressHUD showError:@"未开通中石油油卡"];
+            [MBProgressHUD showError:@"未绑定中石油油卡"];
             [self maskViewTap];
             self.oilCardNumLabel.text = @"";
             return;
@@ -357,10 +357,11 @@
         self.type = 1;
         self.oilCardNumLabel.text = [UserModel defaultUser].jyzSelfCardNum;
         [self maskViewTap];
+        
     }else{
         
         if ([UserModel defaultUser].hua_card.length == 0) {
-            [MBProgressHUD showError:@"未开通中石化油卡"];
+            [MBProgressHUD showError:@"未绑定中石化油卡"];
             [self maskViewTap];
             self.oilCardNumLabel.text = @"";
             

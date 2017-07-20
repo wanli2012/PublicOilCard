@@ -1,42 +1,43 @@
 //
-//  GLMine_RecommendRecordController.m
+//  GLMine_SpendingRecordDetailController.m
 //  PublicOilCard
 //
-//  Created by 龚磊 on 2017/6/15.
+//  Created by 龚磊 on 2017/7/20.
 //  Copyright © 2017年 三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_RecommendRecordController.h"
+#import "GLMine_SpendingRecordCountController.h"
+//#import "GLMine_SpendingRecordCell.h"
+#import "GLMine_SpendingCountModel.h"
 #import "GLMine_RecommendRecordCell.h"
-#import "QQPopMenuView.h"
-//#import "GLMine_SpendingController.h"
+#import "GLMine_SpendingDetailController.h"
 
-@interface GLMine_RecommendRecordController ()<UITableViewDataSource,UITableViewDelegate>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface GLMine_SpendingRecordCountController ()<UITableViewDelegate,UITableViewDataSource>
 
+@property (nonatomic, strong)UITableView *tableView;
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, assign)NSInteger page;//页数
-@property (nonatomic, assign)NSInteger type;//
 
 @end
 
-@implementation GLMine_RecommendRecordController
+@implementation GLMine_SpendingRecordCountController
 
+- (instancetype)initWithType:(NSInteger)type{
+    self = [super init];
+    if (self) {
+        self = [[GLMine_SpendingRecordCountController alloc] init];
+        self.type = type;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"推荐记录";
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.type = 0;
-    //右键自定义
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0, 0, 80, 44);
-    [rightBtn setImage:[UIImage imageNamed:@"筛选更多"] forState:UIControlStateNormal];
-    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;//(需要何值请参看API文档)
-    [rightBtn addTarget:self action:@selector(filte) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-
+//    self.automaticallyAdjustsScrollViewInsets = NO;
+ 
+    [self initTableView];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_RecommendRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_RecommendRecordCell"];
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
@@ -66,7 +67,15 @@
     [self updateData:YES];
     
 }
-
+- (void)initTableView {
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:self.tableView];
+}
 - (void)updateData:(BOOL)status {
     if (status) {
         
@@ -84,14 +93,18 @@
     dict[@"type"] = [NSString stringWithFormat:@"%zd",self.type];
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:kRECOMMENDLIST_URL paramDic:dict finish:^(id responseObject) {
+    [NetworkManager requestPOSTWithURLStr:kCOUNT_URL paramDic:dict finish:^(id responseObject) {
+        
         [self endRefresh];
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
-            for (NSDictionary * dic in responseObject[@"data"]) {
-                GLMine_RecommendRecordModel *model = [GLMine_RecommendRecordModel mj_objectWithKeyValues:dic];
-                [self.models addObject:model];
+            if ([responseObject[@"data"] count] != 0) {
+                for (NSDictionary *dict in responseObject[@"data"]) {
+                    
+                    GLMine_SpendingCountModel * model = [GLMine_SpendingCountModel mj_objectWithKeyValues:dict];
+                    [self.models addObject:model];
+                }
             }
             
             if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
@@ -125,54 +138,34 @@
     return _nodataV;
     
 }
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-}
 
-//筛选
--(void)filte{
-    __weak typeof(self) weakself = self;
-    
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"非会员",@"imageName":@""}, @{@"title":@"会员",@"imageName":@""},@{@"title":@"首期招商总管",@"imageName":@""},@{@"title":@"二期招商总管",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5) action:^(NSInteger index) {
-        
-        self.type = index;
-        [weakself updateData:YES];
-    }];
-    popview.isHideImage = YES;
-    
-    [popview show];
-    
-}
-#pragma UITableViewDelegate
+
+#pragma mark - UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    if (self.models.count == 0) {
-        self.nodataV.hidden = NO;
-    }else{
-        self.nodataV.hidden = YES;
-    }
     
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GLMine_RecommendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_RecommendRecordCell"];
     cell.selectionStyle = 0;
-    cell.model = self.models[indexPath.row];
+    cell.countModel = self.models[indexPath.row];
     return cell;
     
 }
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
-//    self.hidesBottomBarWhenPushed = YES;
-//    GLMine_SpendingController *spendVC = [[GLMine_SpendingController alloc] init];
-//    [self.navigationController pushViewController:spendVC animated:YES];
-//    
-//    
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_SpendingDetailController *detailVC = [[GLMine_SpendingDetailController alloc] init];
+    GLMine_SpendingCountModel *model = self.models[indexPath.row];
+    detailVC.cid = model.uid;
+    detailVC.type = self.type;
+    [self.navigationController pushViewController:detailVC animated:YES];
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 40;
 }
+
 #pragma 懒加载
 - (NSMutableArray *)models{
     if (!_models) {

@@ -382,6 +382,17 @@
 		4A6ADCA11EF7E00700C99498 /* GLMine_PersonInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADC9A1EF7E00700C99498 /* GLMine_PersonInfoController.m */; };
 		4A6ADCA21EF7E00700C99498 /* GLMine_PersonInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6ADC9B1EF7E00700C99498 /* GLMine_PersonInfoController.xib */; };
 		4A6ADCA71EF7EC0100C99498 /* GLMallHomeGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADCA61EF7EC0100C99498 /* GLMallHomeGoodsModel.m */; };
+		4A6DEADF1F207DF900AC715A /* GLMine_SpendingRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEADD1F207DF900AC715A /* GLMine_SpendingRecordController.m */; };
+		4A6DEAE01F207DF900AC715A /* GLMine_SpendingRecordController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6DEADE1F207DF900AC715A /* GLMine_SpendingRecordController.xib */; };
+		4A6DEAE41F207E8F00AC715A /* GLMine_SpendingRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAE21F207E8F00AC715A /* GLMine_SpendingRecordCell.m */; };
+		4A6DEAE51F207E8F00AC715A /* GLMine_SpendingRecordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6DEAE31F207E8F00AC715A /* GLMine_SpendingRecordCell.xib */; };
+		4A6DEAE81F20936200AC715A /* GLMine_SpendingRecordCountController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAE71F20936200AC715A /* GLMine_SpendingRecordCountController.m */; };
+		4A6DEAEB1F20B8DB00AC715A /* GLMine_SpendingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAEA1F20B8DB00AC715A /* GLMine_SpendingController.m */; };
+		4A6DEAEE1F20CAB100AC715A /* GLMine_SpendingCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAED1F20CAB100AC715A /* GLMine_SpendingCountModel.m */; };
+		4A6DEAF21F20CBC500AC715A /* GLMine_SpendingCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAF01F20CBC500AC715A /* GLMine_SpendingCountCell.m */; };
+		4A6DEAF31F20CBC500AC715A /* GLMine_SpendingCountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6DEAF11F20CBC500AC715A /* GLMine_SpendingCountCell.xib */; };
+		4A6DEAF61F20CF8800AC715A /* GLMine_SpendingDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAF51F20CF8800AC715A /* GLMine_SpendingDetailController.m */; };
+		4A6DEAF91F20CFF600AC715A /* GLMine_SpendingDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6DEAF81F20CFF600AC715A /* GLMine_SpendingDetailModel.m */; };
 		4A751F741EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */; };
 		4A751F7A1EFA40E100C919F6 /* GLMine_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */; };
 		4A751F7B1EFA40E100C919F6 /* GLMine_PersonInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */; };
@@ -1186,6 +1197,25 @@
 		4A6ADC9B1EF7E00700C99498 /* GLMine_PersonInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_PersonInfoController.xib; sourceTree = "<group>"; };
 		4A6ADCA51EF7EC0100C99498 /* GLMallHomeGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMallHomeGoodsModel.h; path = "PublicOilCard/我的/关系/View/GLMallHomeGoodsModel.h"; sourceTree = SOURCE_ROOT; };
 		4A6ADCA61EF7EC0100C99498 /* GLMallHomeGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMallHomeGoodsModel.m; path = "PublicOilCard/我的/关系/View/GLMallHomeGoodsModel.m"; sourceTree = SOURCE_ROOT; };
+		4A6DEADC1F207DF900AC715A /* GLMine_SpendingRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingRecordController.h; sourceTree = "<group>"; };
+		4A6DEADD1F207DF900AC715A /* GLMine_SpendingRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingRecordController.m; sourceTree = "<group>"; };
+		4A6DEADE1F207DF900AC715A /* GLMine_SpendingRecordController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_SpendingRecordController.xib; sourceTree = "<group>"; };
+		4A6DEAE11F207E8F00AC715A /* GLMine_SpendingRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingRecordCell.h; sourceTree = "<group>"; };
+		4A6DEAE21F207E8F00AC715A /* GLMine_SpendingRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingRecordCell.m; sourceTree = "<group>"; };
+		4A6DEAE31F207E8F00AC715A /* GLMine_SpendingRecordCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_SpendingRecordCell.xib; sourceTree = "<group>"; };
+		4A6DEAE61F20936200AC715A /* GLMine_SpendingRecordCountController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingRecordCountController.h; sourceTree = "<group>"; };
+		4A6DEAE71F20936200AC715A /* GLMine_SpendingRecordCountController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingRecordCountController.m; sourceTree = "<group>"; };
+		4A6DEAE91F20B8DB00AC715A /* GLMine_SpendingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingController.h; sourceTree = "<group>"; };
+		4A6DEAEA1F20B8DB00AC715A /* GLMine_SpendingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingController.m; sourceTree = "<group>"; };
+		4A6DEAEC1F20CAB100AC715A /* GLMine_SpendingCountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMine_SpendingCountModel.h; path = "PublicOilCard/我的/推荐/Controller/GLMine_SpendingCountModel.h"; sourceTree = SOURCE_ROOT; };
+		4A6DEAED1F20CAB100AC715A /* GLMine_SpendingCountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMine_SpendingCountModel.m; path = "PublicOilCard/我的/推荐/Controller/GLMine_SpendingCountModel.m"; sourceTree = SOURCE_ROOT; };
+		4A6DEAEF1F20CBC500AC715A /* GLMine_SpendingCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingCountCell.h; sourceTree = "<group>"; };
+		4A6DEAF01F20CBC500AC715A /* GLMine_SpendingCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingCountCell.m; sourceTree = "<group>"; };
+		4A6DEAF11F20CBC500AC715A /* GLMine_SpendingCountCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_SpendingCountCell.xib; sourceTree = "<group>"; };
+		4A6DEAF41F20CF8800AC715A /* GLMine_SpendingDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_SpendingDetailController.h; sourceTree = "<group>"; };
+		4A6DEAF51F20CF8800AC715A /* GLMine_SpendingDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_SpendingDetailController.m; sourceTree = "<group>"; };
+		4A6DEAF71F20CFF600AC715A /* GLMine_SpendingDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMine_SpendingDetailModel.h; path = "PublicOilCard/我的/推荐/Controller/GLMine_SpendingDetailModel.h"; sourceTree = SOURCE_ROOT; };
+		4A6DEAF81F20CFF600AC715A /* GLMine_SpendingDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMine_SpendingDetailModel.m; path = "PublicOilCard/我的/推荐/Controller/GLMine_SpendingDetailModel.m"; sourceTree = SOURCE_ROOT; };
 		4A751F721EFA0ED100C919F6 /* GLMine_RecommendRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMine_RecommendRecordModel.h; path = "PublicOilCard/我的/关系/View/GLMine_RecommendRecordModel.h"; sourceTree = SOURCE_ROOT; };
 		4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMine_RecommendRecordModel.m; path = "PublicOilCard/我的/关系/View/GLMine_RecommendRecordModel.m"; sourceTree = SOURCE_ROOT; };
 		4A751F771EFA40E100C919F6 /* GLMine_PersonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_PersonInfoCell.h; sourceTree = "<group>"; };
@@ -3096,6 +3126,15 @@
 				4AEEC9AD1EF2742E00F827BB /* GLMine_RecommendRecordController.h */,
 				4AEEC9AE1EF2742E00F827BB /* GLMine_RecommendRecordController.m */,
 				4AEEC9AF1EF2742E00F827BB /* GLMine_RecommendRecordController.xib */,
+				4A6DEAE91F20B8DB00AC715A /* GLMine_SpendingController.h */,
+				4A6DEAEA1F20B8DB00AC715A /* GLMine_SpendingController.m */,
+				4A6DEADC1F207DF900AC715A /* GLMine_SpendingRecordController.h */,
+				4A6DEADD1F207DF900AC715A /* GLMine_SpendingRecordController.m */,
+				4A6DEADE1F207DF900AC715A /* GLMine_SpendingRecordController.xib */,
+				4A6DEAE61F20936200AC715A /* GLMine_SpendingRecordCountController.h */,
+				4A6DEAE71F20936200AC715A /* GLMine_SpendingRecordCountController.m */,
+				4A6DEAF41F20CF8800AC715A /* GLMine_SpendingDetailController.h */,
+				4A6DEAF51F20CF8800AC715A /* GLMine_SpendingDetailController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3105,6 +3144,10 @@
 			children = (
 				4A751F721EFA0ED100C919F6 /* GLMine_RecommendRecordModel.h */,
 				4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */,
+				4A6DEAEC1F20CAB100AC715A /* GLMine_SpendingCountModel.h */,
+				4A6DEAED1F20CAB100AC715A /* GLMine_SpendingCountModel.m */,
+				4A6DEAF71F20CFF600AC715A /* GLMine_SpendingDetailModel.h */,
+				4A6DEAF81F20CFF600AC715A /* GLMine_SpendingDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3118,6 +3161,12 @@
 				4AEEC9B21EF275AD00F827BB /* GLMine_RecommendRecordCell.h */,
 				4AEEC9B31EF275AD00F827BB /* GLMine_RecommendRecordCell.m */,
 				4AEEC9B41EF275AD00F827BB /* GLMine_RecommendRecordCell.xib */,
+				4A6DEAEF1F20CBC500AC715A /* GLMine_SpendingCountCell.h */,
+				4A6DEAF01F20CBC500AC715A /* GLMine_SpendingCountCell.m */,
+				4A6DEAF11F20CBC500AC715A /* GLMine_SpendingCountCell.xib */,
+				4A6DEAE11F207E8F00AC715A /* GLMine_SpendingRecordCell.h */,
+				4A6DEAE21F207E8F00AC715A /* GLMine_SpendingRecordCell.m */,
+				4A6DEAE31F207E8F00AC715A /* GLMine_SpendingRecordCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3417,6 +3466,7 @@
 				4A5BFE8E1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
+				4A6DEAE51F207E8F00AC715A /* GLMine_SpendingRecordCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
 				4A4924191F04DEFA00C549EB /* GLMine_UploadRecordController.xib in Resources */,
 				4A39F4C81EF3BA510038C147 /* GLMine_ExchangeRecordCell.xib in Resources */,
@@ -3444,6 +3494,7 @@
 				F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */,
 				4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */,
 				4A532ED81EFE0189009C3593 /* start_up.xcassets in Resources */,
+				4A6DEAF31F20CBC500AC715A /* GLMine_SpendingCountCell.xib in Resources */,
 				4A39F4DB1EF3C6420038C147 /* LBMineCenterPayPagesViewController.xib in Resources */,
 				4A6ADCA21EF7E00700C99498 /* GLMine_PersonInfoController.xib in Resources */,
 				4A39F4F01EF3E79F0038C147 /* GLMall_GoodsDetailController.xib in Resources */,
@@ -3458,6 +3509,7 @@
 				4A4FA5F01EF0DF2E00A256D2 /* Mall.xcassets in Resources */,
 				4A1CE7301EF52A8C00895ADF /* GLMine_RelationshipCell.xib in Resources */,
 				4A5BBBD91EF2659F008270F2 /* SelectUserTypeView.xib in Resources */,
+				4A6DEAE01F207DF900AC715A /* GLMine_SpendingRecordController.xib in Resources */,
 				4A4FA5A81EF0CF0B00A256D2 /* GLMineHomeController.xib in Resources */,
 				F92DA9521EF5020300530237 /* LBExchangeHeaderView.xib in Resources */,
 				4A39F4DD1EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.xib in Resources */,
@@ -3569,7 +3621,9 @@
 				4A532EDB1EFE560E009C3593 /* GLMine_PersonInfoCodeView.m in Sources */,
 				4A53312F1EFE763F009C3593 /* ZXProductParsedResult.m in Sources */,
 				4A5331671EFE763F009C3593 /* ZXRGBLuminanceSource.m in Sources */,
+				4A6DEAF91F20CFF600AC715A /* GLMine_SpendingDetailModel.m in Sources */,
 				4A5331891EFE763F009C3593 /* ZXAI01AndOtherAIs.m in Sources */,
+				4A6DEAF21F20CBC500AC715A /* GLMine_SpendingCountCell.m in Sources */,
 				4A53312C1EFE763F009C3593 /* ZXISBNParsedResult.m in Sources */,
 				4A5331A01EFE763F009C3593 /* ZXCodaBarWriter.m in Sources */,
 				4A5331881EFE763F009C3593 /* ZXAI013x0xDecoder.m in Sources */,
@@ -3722,6 +3776,7 @@
 				4A5331641EFE763F009C3593 /* ZXPlanarYUVLuminanceSource.m in Sources */,
 				F95D46041EFA5C090011C69B /* recordeManger.m in Sources */,
 				4A53319F1EFE763F009C3593 /* ZXCodaBarReader.m in Sources */,
+				4A6DEAF61F20CF8800AC715A /* GLMine_SpendingDetailController.m in Sources */,
 				4A5331301EFE763F009C3593 /* ZXProductResultParser.m in Sources */,
 				4A39F4E61EF3DA600038C147 /* GLMallHomeCell.m in Sources */,
 				4A5331C61EFE763F009C3593 /* ZXPDF417Detector.m in Sources */,
@@ -3753,6 +3808,7 @@
 				4A5331A21EFE763F009C3593 /* ZXCode128Writer.m in Sources */,
 				4A5331451EFE763F009C3593 /* ZXMathUtils.m in Sources */,
 				4A5331861EFE763F009C3593 /* ZXAI01393xDecoder.m in Sources */,
+				4A6DEAE41F207E8F00AC715A /* GLMine_SpendingRecordCell.m in Sources */,
 				4A4FA5DF1EF0D97B00A256D2 /* UIView+SFrame.m in Sources */,
 				4A5BBBE61EF26A35008270F2 /* LoadWaitView.m in Sources */,
 				4A39F4DA1EF3C6420038C147 /* LBMineCenterPayPagesViewController.m in Sources */,
@@ -3773,6 +3829,7 @@
 				4A5331E11EFE763F009C3593 /* ZXQRCodeFinderPatternInfo.m in Sources */,
 				4A5331461EFE763F009C3593 /* ZXMonochromeRectangleDetector.m in Sources */,
 				4A5331AF1EFE763F009C3593 /* ZXOneDimensionalCodeWriter.m in Sources */,
+				4A6DEAEB1F20B8DB00AC715A /* GLMine_SpendingController.m in Sources */,
 				4A39F4DC1EF3C6420038C147 /* LBMineCenterPayPagesTableViewCell.m in Sources */,
 				4A53314B1EFE763F009C3593 /* ZXReedSolomonEncoder.m in Sources */,
 				F92DA9601EF5194900530237 /* LBExchangeJiFenTableViewCell.m in Sources */,
@@ -3809,6 +3866,7 @@
 				4A5331A91EFE763F009C3593 /* ZXEAN8Writer.m in Sources */,
 				F91CA9611EFB6F3700817DEF /* LBViewProtocolViewController.m in Sources */,
 				4A69C8EA1F00F07F00035664 /* GLMine_CompleteInfoView.m in Sources */,
+				4A6DEADF1F207DF900AC715A /* GLMine_SpendingRecordController.m in Sources */,
 				4A4FA5B41EF0D6E300A256D2 /* LBLoginNavigationViewController.m in Sources */,
 				4A5331981EFE763F009C3593 /* ZXRSSExpandedRow.m in Sources */,
 				4A5331221EFE763F009C3593 /* ZXBizcardResultParser.m in Sources */,
@@ -3829,6 +3887,7 @@
 				4A751F741EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m in Sources */,
 				F94AFF291EF92AD800DC34F8 /* LBWaitOrdersListModel.m in Sources */,
 				4A5331B91EFE763F009C3593 /* ZXModulusGF.m in Sources */,
+				4A6DEAEE1F20CAB100AC715A /* GLMine_SpendingCountModel.m in Sources */,
 				4A5BBBAD1EF235A0008270F2 /* GLMine_OrderCell.m in Sources */,
 				4A5331EA1EFE763F009C3593 /* ZXQRCodeReader.m in Sources */,
 				4A532EE71EFE755A009C3593 /* ScanResultViewController.m in Sources */,
@@ -3839,6 +3898,7 @@
 				4A5331521EFE763F009C3593 /* ZXDecoderResult.m in Sources */,
 				4A5BBB951EF21617008270F2 /* GLMine_InfoCell.m in Sources */,
 				F95F710C1F04A0B100FF7AB5 /* MinePhoneAlertView.m in Sources */,
+				4A6DEAE81F20936200AC715A /* GLMine_SpendingRecordCountController.m in Sources */,
 				4A5331281EFE763F009C3593 /* ZXExpandedProductParsedResult.m in Sources */,
 				4A5331511EFE763F009C3593 /* ZXCharacterSetECI.m in Sources */,
 				4A6ADCA71EF7EC0100C99498 /* GLMallHomeGoodsModel.m in Sources */,
