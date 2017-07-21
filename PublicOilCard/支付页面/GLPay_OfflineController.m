@@ -39,11 +39,29 @@
     self.contentViewWidth.constant = SCREEN_WIDTH;
     self.contentViewHeight.constant = 640;
     [self random:@""];
-    self.accountLabel.text = @"hahahhahahahhaha";
-    self.goodsNameLabel.text = self.goods_name;
-    self.usernameLabel.text = [UserModel defaultUser].username;
-    self.moneyLabel.text = self.realy_price;
-    self.sumLabel.text = self.goods_num;
+    
+    if (self.pushIndex == 1) {
+        
+        self.accountLabel.text = @"hahahhahahahhaha";
+        self.goodsNameLabel.text = self.goods_name;
+        self.usernameLabel.text = [UserModel defaultUser].username;
+        self.moneyLabel.text = self.realy_price;
+        self.sumLabel.text = self.goods_num;
+    }else{
+        self.accountLabel.text = @"hahahhahahahhaha";
+        self.goodsNameLabel.text = @"招商总管身份";
+        self.usernameLabel.text = [UserModel defaultUser].username;
+        self.sumLabel.text = @"1";
+        if(self.upgrade == 1){
+            
+            self.moneyLabel.text = @"6000";
+            
+        }else{
+            
+            self.moneyLabel.text = @"12000";
+        }
+
+    }
     
 }
 
@@ -68,8 +86,8 @@
     } enError:^(NSError *error) {
         
     }];
-
 }
+
 //获取倒计时
 -(void)startTime{
     
@@ -108,61 +126,113 @@
         [MBProgressHUD showError:@"请上传图片"];
         return;
     }
-    
-    //拿到图片准备上传
-    NSDictionary *dic;
+    [self submitTheRequest:self.pushIndex];
 
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
-    manager.requestSerializer.timeoutInterval = 10;
-    // 加上这行代码，https ssl 验证。
-    [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
-    [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kSHOPINFO_UPLOAD_URL] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        //将图片以表单形式上传
-        
-        if (self.picImage) {
-            
-            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-            formatter.dateFormat=@"yyyyMMddHHmmss";
-            NSString *str=[formatter stringFromDate:[NSDate date]];
-            NSString *fileName=[NSString stringWithFormat:@"%@.png",str];
-            NSData *data = UIImagePNGRepresentation(self.picImage);
-            [formData appendPartWithFileData:data name:@"order_pic" fileName:fileName mimeType:@"image/png"];
-        }
-        
-    }progress:^(NSProgress *uploadProgress){
-        
-        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
-        //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
-        //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-        //        [SVProgressHUD setCornerRadius:8.0];
-        
-        if (uploadProgress.fractionCompleted == 1.0) {
-            [SVProgressHUD dismiss];
-            //                self.submit.userInteractionEnabled = YES;
-        }
-        
-    }success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        if ([dic[@"code"]integerValue]==1) {
-
-            [MBProgressHUD showError:dic[@"message"]];
-            [self.navigationController popViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadSuccessfulNotification" object:nil];
-        }else{
-            [MBProgressHUD showError:dic[@"message"]];
-        }
-        [_loadV removeloadview];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
-    }];
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    dict[@"userphone"] = [UserModel defaultUser].phone;
+//    dict[@"yzm"] = self.yzmTextF.text;
+//    
+//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+//    [NetworkManager requestPOSTWithURLStr:kENSURE_CODE_URL paramDic:dict finish:^(id responseObject) {
+//        [_loadV removeloadview];
+//        if ([responseObject[@"code"] integerValue]==1) {
+//           
+//            [self submitTheRequest:self.pushIndex];
+//        }else{
+//            [MBProgressHUD showError:responseObject[@"message"]];
+//        }
+//    } enError:^(NSError *error) {
+//        
+//        [_loadV removeloadview];
+//        [MBProgressHUD showError:error.localizedDescription];
+//        
+//    }];
     
 
 }
+- (void)submitTheRequest:(NSInteger)pushIndex {
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    NSString *urlstr = [[NSString alloc]init];
+    
+    if (pushIndex == 1) {
+        
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"goods_id"] = self.goods_id;
+        dict[@"num"] = self.goods_num;
+        dict[@"code"] = self.randomLabel.text;
+        dict[@"l_money"] = self.realy_price;
+        urlstr = kPay_OffLine_URL;
+        
+    }else if(pushIndex == 3){
+        
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        dict[@"money"] = self.moneyLabel.text;
+        dict[@"upgrade"] = @(self.upgrade);
+        dict[@"code"] = self.randomLabel.text;
+        urlstr = kPayDelegate_OffLine_URL;
+    }
+    
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
+        manager.requestSerializer.timeoutInterval = 10;
+        // 加上这行代码，https ssl 验证。
+        [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
+        [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,urlstr] parameters:dict  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            //将图片以表单形式上传
+            
+            if (self.picImage) {
+                
+                NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+                formatter.dateFormat=@"yyyyMMddHHmmss";
+                NSString *str=[formatter stringFromDate:[NSDate date]];
+                NSString *fileName=[NSString stringWithFormat:@"%@.png",str];
+                NSData *data = UIImagePNGRepresentation(self.picImage);
+                
+                if (pushIndex == 1) {
+                    
+                    [formData appendPartWithFileData:data name:@"l_pic" fileName:fileName mimeType:@"image/png"];
+                }else if(pushIndex == 3){
+                    
+                    [formData appendPartWithFileData:data name:@"money_pic" fileName:fileName mimeType:@"image/png"];
+                }
+            }
+            
+        }progress:^(NSProgress *uploadProgress){
+            
+            [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"上传中%.0f%%",(uploadProgress.fractionCompleted * 100)]];
+            
+            //        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+            //        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+            //        [SVProgressHUD setCornerRadius:8.0];
+            
+            if (uploadProgress.fractionCompleted == 1.0) {
+                [SVProgressHUD dismiss];
+                //                self.submit.userInteractionEnabled = YES;
+            }
+            
+        }success:^(NSURLSessionDataTask *task, id responseObject) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            if ([dic[@"code"]integerValue]==1) {
+                
+                [MBProgressHUD showError:dic[@"message"]];
+                [self.navigationController popViewControllerAnimated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadSuccessfulNotification" object:nil];
+            }else{
+                [MBProgressHUD showError:dic[@"message"]];
+            }
+            [_loadV removeloadview];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
+    
 
-//上传凭证
+}
+//上传图片
 - (IBAction)uploadPic:(id)sender {
     UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"请选择图片来源" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"用相机拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {

@@ -32,6 +32,7 @@
 #define kREGISTER_URL @"User/register" //注册
 
 #define kGET_CODE_URL @"User/get_yzm" //获取验证码
+#define kENSURE_CODE_URL @"User/check_yzm" //验证验证码
 
 #define kGET_CITYLIST_URL @"User/getCityList" //城市列表
 
@@ -71,7 +72,9 @@
 
 #define kCOLLECTEIONLIST_URL @"UserInfo/collec_list"//收藏列表
 
-#define kORDERLIST_URL @"UserInfo/order_list"//订单列表
+#define kORDERLIST_URL @"UserInfo/order_list"//线上订单列表
+
+#define kOrderList_OffLine_URL @"ShopInfo/l_list"//线下订单列表
 
 #define kDEL_ORDER_URL @"UserInfo/del_order"//删除订单
 
@@ -89,11 +92,17 @@
 
 #define kUPGRADE_URL @"UserInfo/upgrade"//升级成个代
 
+#define kConsumeList_URL @"ShopInfo/list_line"//消费记录
+
 #define kREWORDLIST_URL @"UserInfo/user_msg_log"//奖励记录
 
 #define kCOUNT_URL @"User/main_buy"//代理商网体内消费统计
 
 #define kDETAIL_URL @"User/line_deta"//代理商网体会员消费详情
+
+#define kPay_OffLine_URL @"ShopInfo/o_line"//线下支付(商品)
+
+#define kPayDelegate_OffLine_URL @"User/agent_apply"//线下支付(代理商申请)
 
 //分享推荐注册
 #define kRECOMMEND_URL @"http://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="

@@ -10,8 +10,5 @@
 
 @interface GLMine_SpendingRecordCountController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;
-
-- (instancetype)initWithType:(NSInteger)type;
 
 @end

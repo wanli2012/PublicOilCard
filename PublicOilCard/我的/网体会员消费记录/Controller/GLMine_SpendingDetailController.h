@@ -10,8 +10,6 @@
 
 @interface GLMine_SpendingDetailController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;
-
 @property (nonatomic, copy)NSString *cid;
 
 @end

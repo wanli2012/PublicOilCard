@@ -61,7 +61,6 @@
     self.tableView.mj_header = header;
     self.tableView.mj_footer = footer;
     
-    
 }
 
 //下拉刷新

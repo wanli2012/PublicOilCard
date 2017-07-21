@@ -48,5 +48,6 @@
 @property (weak, nonatomic) IBOutlet UIView *jifenView;
 @property (weak, nonatomic) IBOutlet UIView *yueView;
 @property (weak, nonatomic) IBOutlet UIView *tuijianView;
+@property (weak, nonatomic) IBOutlet UIView *xiaofeiView;
 
 @end

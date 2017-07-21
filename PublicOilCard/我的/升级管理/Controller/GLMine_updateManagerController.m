@@ -10,6 +10,7 @@
 #import "GLMine_updateManagerModel.h"
 #import "GLMine_updateNewCell.h"
 #import "LBMineCenterPayPagesViewController.h"
+#import "GLPay_OfflineController.h"
 
 @interface GLMine_updateManagerController ()<UITableViewDelegate,UITableViewDataSource,GLMine_updateNewCellDelegate>
 {
@@ -206,7 +207,8 @@
 - (void)open:(NSInteger)index{
     
     self.hidesBottomBarWhenPushed = YES;
-    LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
+//    LBMineCenterPayPagesViewController *pay = [[LBMineCenterPayPagesViewController alloc] init];
+    GLPay_OfflineController *pay = [[GLPay_OfflineController alloc] init];
     
     if (index == 0) {
         if ([self.upgrade integerValue] == 1) {

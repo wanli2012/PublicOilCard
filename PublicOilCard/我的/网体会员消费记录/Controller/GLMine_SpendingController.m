@@ -7,7 +7,6 @@
 //
 
 #import "GLMine_SpendingController.h"
-#import "GLMine_SpendingRecordController.h"
 #import "GLMine_SpendingRecordCountController.h"
 
 @interface GLMine_SpendingController ()
@@ -23,22 +22,23 @@
 @implementation GLMine_SpendingController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.seg = [[UISegmentedControl alloc] initWithItems:@[@"中石油",@"中石化"]];
     self.seg.frame = CGRectMake(0, 0, 100, 30);
     [self.seg addTarget:self action:@selector(doSomethingInSegment:)forControlEvents:UIControlEventValueChanged];
     
     self.navigationItem.titleView = self.seg;
     
-    self.fristVc = [[GLMine_SpendingRecordCountController alloc] initWithType:1];
-    self.fristVc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
+    self.fristVc = [[GLMine_SpendingRecordCountController alloc] init];
+    self.fristVc.view.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
 
     [self addChildViewController:self.fristVc];
     
-    self.secondVc = [[GLMine_SpendingRecordCountController alloc] initWithType:2];
+    self.secondVc = [[GLMine_SpendingRecordCountController alloc] init];
     self.secondVc.view.frame = CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64);
-    self.secondVc.type = 2;
     [self addChildViewController:self.secondVc];
     
     //设置默认控制器为fristVc

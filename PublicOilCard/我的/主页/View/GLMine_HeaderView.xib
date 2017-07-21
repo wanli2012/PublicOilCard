@@ -272,6 +272,7 @@
                 <outlet property="tuijianView" destination="np5-h9-Rr2" id="ayn-KU-GEA"/>
                 <outlet property="vipImageV" destination="NrA-w4-U7Y" id="Q18-eM-Nkp"/>
                 <outlet property="xiaofeiLabel" destination="xEG-88-hMR" id="KgT-Zq-Ycf"/>
+                <outlet property="xiaofeiView" destination="lOk-YC-qIA" id="VTq-lw-voQ"/>
                 <outlet property="yueView" destination="xmV-kj-RzV" id="mAv-Q4-n9a"/>
             </connections>
             <point key="canvasLocation" x="19.5" y="-101.5"/>

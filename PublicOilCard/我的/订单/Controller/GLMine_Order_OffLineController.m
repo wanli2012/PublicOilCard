@@ -1,37 +1,37 @@
 //
-//  GLMine_SpendingDetailController.m
+//  GLMine_Order_OffLineController.m
 //  PublicOilCard
 //
-//  Created by 龚磊 on 2017/7/20.
+//  Created by 龚磊 on 2017/7/21.
 //  Copyright © 2017年 三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_SpendingDetailController.h"
-#import "GLMine_SpendingDetailModel.h"
-#import "GLMine_SpendingRecordCell.h"
+#import "GLMine_Order_OffLineController.h"
+#import "GLMine_Order_OffLineCell.h"
+#import "GLMine_Order_OffLineModel.h"
 
-@interface GLMine_SpendingDetailController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_Order_OffLineController ()
 
-@property (nonatomic, strong)UITableView *tableView;
-@property (strong, nonatomic)LoadWaitView *loadV;
-@property (nonatomic,strong)NodataView *nodataV;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *models;
-@property (nonatomic, assign)NSInteger page;//页数
+
+@property (strong, nonatomic)LoadWaitView *loadV;
+@property (assign, nonatomic)NSInteger page;//页数默认为1
+@property (assign, nonatomic)BOOL refreshType;//判断刷新状态 默认为no
+@property (strong, nonatomic)NodataView *nodataV;
 
 @end
 
-@implementation GLMine_SpendingDetailController
+@implementation GLMine_Order_OffLineController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
-    [self initTableView];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_SpendingRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_SpendingRecordCell"];
+    self.navigationItem.title = @"我的订单";
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_Order_OffLineCell" bundle:nil] forCellReuseIdentifier:@"GLMine_Order_OffLineCell"];
     __weak __typeof(self) weakSelf = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
@@ -55,47 +55,33 @@
     self.tableView.mj_footer = footer;
     
     [self updateData:YES];
-    
+ 
 }
-- (void)initTableView {
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-}
+
 - (void)updateData:(BOOL)status {
     if (status) {
-        
         self.page = 1;
         [self.models removeAllObjects];
         
     }else{
         _page ++;
-        
     }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.type];
-    dict[@"cid"] = self.cid;
+    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:kDETAIL_URL paramDic:dict finish:^(id responseObject) {
-        
+    [NetworkManager requestPOSTWithURLStr:kOrderList_OffLine_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
-            if ([responseObject[@"data"] count] != 0) {
-                for (NSDictionary *dict in responseObject[@"data"]) {
-                    
-                    GLMine_SpendingDetailModel * model = [GLMine_SpendingDetailModel mj_objectWithKeyValues:dict];
-                    [self.models addObject:model];
-                }
+            for (NSDictionary * dic in responseObject[@"data"]) {
+                GLMine_Order_OffLineModel *model = [GLMine_Order_OffLineModel mj_objectWithKeyValues:dic];
+                [self.models addObject:model];
             }
             
             if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
@@ -120,43 +106,54 @@
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+#pragma UITableViewDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (self.models.count != 0) {
+        self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+    }
+    
+    return self.models.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    GLMine_Order_OffLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Order_OffLineCell"];
+    cell.model = self.models[indexPath.row];
+                             
+    return cell;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 160;
+}
+
+#pragma  懒加载
+
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [[NSMutableArray alloc] init];
+        
+    }
+    return _models;
+}
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
         _nodataV=[[NSBundle mainBundle]loadNibNamed:@"NodataView" owner:self options:nil].firstObject;
-        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-114-49);
+        _nodataV.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64);
     }
     return _nodataV;
     
-}
-
-
-#pragma mark - UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return self.models.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GLMine_SpendingRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_SpendingRecordCell"];
-    cell.selectionStyle = 0;
-//    cell.countModel = self.models[indexPath.row];
-    cell.model = self.models[indexPath.row];
-    return cell;
-    
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80;
-}
-
-#pragma 懒加载
-- (NSMutableArray *)models{
-    if (!_models) {
-        _models = [[NSMutableArray alloc] init];
-    }
-    return _models;
 }
 
 @end

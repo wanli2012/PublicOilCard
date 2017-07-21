@@ -151,16 +151,22 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     if (self.selectIndex == -1) {
+        
         BOOL a=[self.selectB[indexPath.row]boolValue];
         [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
         self.selectIndex = indexPath.row;
         
     }else{
-    
+        
         if (self.selectIndex == indexPath.row) {
             return;
         }
-        BOOL a=[self.selectB[indexPath.row]boolValue];
+        
+        if (self.pushIndex == 1) {
+            
+        }
+        
+        BOOL a=[self.selectB[indexPath.row] boolValue];
         [self.selectB replaceObjectAtIndex:indexPath.row withObject:[NSNumber numberWithBool:!a]];
         [self.selectB replaceObjectAtIndex:self.selectIndex withObject:[NSNumber numberWithBool:NO]];
         self.selectIndex = indexPath.row;
@@ -171,12 +177,14 @@
 }
 
 - (void)dismiss{
+    
 //    [_contentView.passwordF resignFirstResponder];
 //    [UIView animateWithDuration:0.3 animations:^{
 //        _contentView.frame = CGRectMake(0, SCREEN_HEIGHT, SCREEN_WIDTH, 300);
 //    }completion:^(BOOL finished) {
 //        [_maskV removeFromSuperview];
 //    }];
+    
 }
 - (IBAction)surebutton:(UIButton *)sender {
     
@@ -186,123 +194,36 @@
     }
     
     if ( self.selectIndex == 0) {
-        [self alipayAndWeChatPay:@"1"];
+        if(self.pushIndex == 1 || self.pushIndex == 3){
+//            self.hidesBottomBarWhenPushed = YES;
+//            
+//            GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
+//            
+//            payOffVC.goods_name = self.goods_name;
+//            payOffVC.realy_price = self.realy_price;
+//            payOffVC.order_num = self.order_num;
+//            payOffVC.goods_num = self.goods_num;
+//            payOffVC.goods_id = self.goods_id;
+//            payOffVC.pushIndex = self.pushIndex;
+//            
+//            [self.navigationController pushViewController:payOffVC animated:YES];
+        }else{
+            
+            [self alipayAndWeChatPay:@"1"];
+        }
     }else if(self.selectIndex == 1){
         
         [MBProgressHUD showError:@"暂不支持"];
         return;
 //        [self alipayAndWeChatPay:@"1"];
         
-    }else{
-        
-        self.hidesBottomBarWhenPushed = YES;
-        
-        GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
-        payOffVC.goods_name = self.goods_name;
-        payOffVC.realy_price = self.realy_price;
-        payOffVC.order_num = self.order_num;
-        payOffVC.goods_num = self.goods_num;
-        [self.navigationController pushViewController:payOffVC animated:YES];
     }
     
  }
-- (void)ricePay:(NSNotification *)sender {
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    
-//    NSString *orderID = [NSString stringWithFormat:@"%@_%@_%@",self.order_sh,self.order_id,self.order_sn];
-//    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-//    //    dict[@"uid"] = uid;
-////    dict[@"order_id"] = [RSAEncryptor encryptString:orderID publicKey:public_RSA];
-//    
-//    if (self.selectIndex == 0) {
-//        
-//        dict[@"type"] = @4;
-//    }else{
-//        dict[@"type"] = @4;
-//    }
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-////    dict[@"order_id"] = self.order_id;
-//    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-//
-//    [NetworkManager requestPOSTWithURLStr:@"shop/ricePayCoupons" paramDic:dict finish:^(id responseObject) {
-//        
-//        [_loadV removeloadview];
-//
-//        if ([responseObject[@"code"] integerValue] == 1){
-//            
-//            self.hidesBottomBarWhenPushed = YES;
-//            
-//            [MBProgressHUD showSuccess:responseObject[@"message"]];
-//            
-//            if(self.pushIndex == 1){
-//                
-//                [self.navigationController popToRootViewControllerAnimated:YES];
-//                
-//            }else{
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-//            
-//            self.hidesBottomBarWhenPushed = NO;
-//            
-//        }else{
-//            
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//         [self dismiss];
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        
-//    }];
 
-}
-- (void)integralPay:(NSNotification *)sender {
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"token"] = [UserModel defaultUser].token;
-//    
-//    //    NSString *orderID = [RSAEncryptor encryptString:self.orderNum publicKey:public_RSA];
-//    //    NSString *uid = [RSAEncryptor encryptString:[UserModel defaultUser].uid publicKey:public_RSA];
-//    //    dict[@"uid"] = uid;
-//    //    dict[@"order_id"] = orderID;
-//    
-//    dict[@"uid"] = [UserModel defaultUser].uid;
-//    dict[@"order_id"] = self.order_id;
-//    dict[@"password"] = [RSAEncryptor encryptString:[sender.userInfo objectForKey:@"password"] publicKey:public_RSA];
-//    
-//    [NetworkManager requestPOSTWithURLStr:@"shop/markPay" paramDic:dict finish:^(id responseObject) {
-//        
-//        [_loadV removeloadview];
-//        
-//        [self dismiss];
-//
-//        if ([responseObject[@"code"] integerValue] == 1){
-//            
-//            [MBProgressHUD showSuccess:responseObject[@"message"]];
-//            self.hidesBottomBarWhenPushed = YES;
-//            
-//            if(self.pushIndex == 1){
-//                
-//                [self.navigationController popToRootViewControllerAnimated:YES];
-//                
-//            }else{
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-//            
-//            self.hidesBottomBarWhenPushed = NO;
-//            
-//        }else{
-//            
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//        
-//    } enError:^(NSError *error) {
-//        [_loadV removeloadview];
-//        
-//    }];
-
-}
 
 - (void)alipayAndWeChatPay:(NSString *)payType{
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     NSString *urlstr = [[NSString alloc]init];
     if(self.pushIndex == 1){
@@ -416,13 +337,14 @@
 
     if (!_dataarr) {
    
-//        if (self.payType == 1) {
-//            _dataarr = [NSArray arrayWithObjects:@{@"image":@"余额",@"title":@"线下支付"},@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
-        _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"},@{@"image":@"微信",@"title":@"线下支付"}, nil];
-//        }else if (self.payType == 2){
-//        
-//           _dataarr=[NSArray arrayWithObjects:@{@"image":@"支付积分",@"title":@"米券支付"}, nil];
-//        }
+        if(self.pushIndex == 1){
+            _dataarr = [NSArray arrayWithObjects:@{@"image":@"微信",@"title":@"线下支付"}, nil];
+            
+        }else{
+//
+            _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"},@{@"image":@"微信",@"title":@"线下支付"}, nil];
+        }
+
     }
 
     return _dataarr;

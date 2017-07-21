@@ -11,7 +11,7 @@
 #import "GLMallHomeCell.h"
 #import "LBMineCenterPayPagesViewController.h"
 #import "JZAlbumViewController.h"
-
+#import "GLPay_OfflineController.h"
 
 @interface GLMall_GoodsDetailController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,GLMall_GoodsHeaderViewDelegate>
 {
@@ -158,48 +158,53 @@
     }
     self.hidesBottomBarWhenPushed = YES;
     
-//    GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
-//    [self.navigationController pushViewController:payOffVC animated:YES];
+    GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
     
-    
-    LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
-    
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    
-    dict[@"uid"] = [UserModel defaultUser].uid;
-    dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"user_name"] = [UserModel defaultUser].username;
-    dict[@"group_id"] = [UserModel defaultUser].group_id;
-    dict[@"goods_id"] = self.dataDic[@"goods_id"];
-    dict[@"goods_num"] = [NSString stringWithFormat:@"%zd",_sum];
-    
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:kSHOP_BUYNOW_URL paramDic:dict finish:^(id responseObject) {
-        
-        [_loadV removeloadview];
-        
-        if ([responseObject[@"code"] integerValue]==1) {
-            
-            payVC.addtime =[NSString stringWithFormat:@"%@", responseObject[@"data"][@"addtime"]];
-            payVC.order_id = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_id"]];
-            payVC.order_num = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_num"]];
-            payVC.realy_price = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"realy_price"]];
-            payVC.goods_name = self.dataDic[@"goods_name"];
-            payVC.pushIndex = 1;
-            payVC.goods_id = self.dataDic[@"goods_id"];
-        
-            payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
-            [self.navigationController pushViewController:payVC animated:YES];
-        }else{
-            
-            [MBProgressHUD showError:responseObject[@"message"]];
-        }
-        
-    } enError:^(NSError *error) {
-        [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
-    }];
+    payOffVC.goods_name = self.dataDic[@"goods_name"];
+    payOffVC.realy_price = self.dataDic[@"discount"];
+    payOffVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
+    payOffVC.goods_id = self.dataDic[@"goods_id"];
+    payOffVC.pushIndex = self.pushIndex;
 
+    [self.navigationController pushViewController:payOffVC animated:YES];
+    
+//    LBMineCenterPayPagesViewController *payVC = [[LBMineCenterPayPagesViewController alloc] init];
+//    
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    
+//    dict[@"uid"] = [UserModel defaultUser].uid;
+//    dict[@"token"] = [UserModel defaultUser].token;
+//    dict[@"user_name"] = [UserModel defaultUser].username;
+//    dict[@"group_id"] = [UserModel defaultUser].group_id;
+//    dict[@"goods_id"] = self.dataDic[@"goods_id"];
+//    dict[@"goods_num"] = [NSString stringWithFormat:@"%zd",_sum];
+//    
+//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+//    [NetworkManager requestPOSTWithURLStr:kSHOP_BUYNOW_URL paramDic:dict finish:^(id responseObject) {
+//        
+//        [_loadV removeloadview];
+//        
+//        if ([responseObject[@"code"] integerValue]==1) {
+//            
+//            payVC.addtime =[NSString stringWithFormat:@"%@", responseObject[@"data"][@"addtime"]];
+//            payVC.order_id = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_id"]];
+//            payVC.order_num = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"order_num"]];
+//            payVC.realy_price = [NSString stringWithFormat:@"%@", responseObject[@"data"][@"realy_price"]];
+//            payVC.goods_name = self.dataDic[@"goods_name"];
+//            payVC.pushIndex = 1;
+//            payVC.goods_id = self.dataDic[@"goods_id"];
+//            payVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
+//            [self.navigationController pushViewController:payVC animated:YES];
+//        }else{
+//            
+//            [MBProgressHUD showError:responseObject[@"message"]];
+//        }
+//        
+//    } enError:^(NSError *error) {
+//        [_loadV removeloadview];
+//        [MBProgressHUD showError:error.localizedDescription];
+//    }];
+//
 }
 
 //收藏

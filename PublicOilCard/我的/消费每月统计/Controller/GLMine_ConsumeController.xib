@@ -9,36 +9,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_SpendingRecordController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GLMine_ConsumeController">
             <connections>
-                <outlet property="tableView" destination="3r4-VA-zO3" id="URD-Gu-VfR"/>
+                <outlet property="tableView" destination="lgP-3K-8b1" id="avN-hE-Uw5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="286" height="429"/>
+        <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3r4-VA-zO3">
-                    <rect key="frame" x="0.0" y="0.0" width="286" height="429"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lgP-3K-8b1">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="YS6-Nv-kKQ"/>
-                        <outlet property="delegate" destination="-1" id="uVc-ZL-0Ra"/>
+                        <outlet property="dataSource" destination="-1" id="niA-bs-lTX"/>
+                        <outlet property="delegate" destination="-1" id="ZWr-aP-vZS"/>
                     </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="3r4-VA-zO3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Snx-Fu-buz"/>
-                <constraint firstAttribute="trailing" secondItem="3r4-VA-zO3" secondAttribute="trailing" id="d0B-N6-h30"/>
-                <constraint firstItem="3r4-VA-zO3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gQs-XL-7gv"/>
-                <constraint firstAttribute="bottom" secondItem="3r4-VA-zO3" secondAttribute="bottom" id="tFX-pm-hed"/>
+                <constraint firstItem="lgP-3K-8b1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="Hht-sh-bei"/>
+                <constraint firstAttribute="bottom" secondItem="lgP-3K-8b1" secondAttribute="bottom" id="VcK-eJ-QR1"/>
+                <constraint firstAttribute="trailing" secondItem="lgP-3K-8b1" secondAttribute="trailing" id="x9I-Ny-hVg"/>
+                <constraint firstItem="lgP-3K-8b1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xFG-X5-lUp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-46" y="-147.5"/>
         </view>
     </objects>
 </document>

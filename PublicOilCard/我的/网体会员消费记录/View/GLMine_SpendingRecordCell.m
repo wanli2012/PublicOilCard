@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageV;
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *goodsTypeLabel;
 
 @end
 
@@ -26,8 +27,11 @@
 
 - (void)setModel:(GLMine_SpendingDetailModel *)model{
     _model = model;
-    [self.imageV sd_setImageWithURL:[NSURL URLWithString:model.order_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
-    self.moneyLabel.text = model.order_money;
+    
+    [self.imageV sd_setImageWithURL:[NSURL URLWithString:model.l_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    self.moneyLabel.text = model.l_money;
     self.dateLabel.text = model.addtime;
+    self.goodsTypeLabel.text = model.type;
 }
+
 @end

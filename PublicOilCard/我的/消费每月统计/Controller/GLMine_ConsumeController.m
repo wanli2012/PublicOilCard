@@ -1,44 +1,35 @@
 //
-//  GLMine_SpendingRecordDetailController.m
+//  GLMine_ConsumeController.m
 //  PublicOilCard
 //
-//  Created by 龚磊 on 2017/7/20.
+//  Created by 龚磊 on 2017/7/21.
 //  Copyright © 2017年 三君科技有限公司. All rights reserved.
 //
 
-#import "GLMine_SpendingRecordCountController.h"
-//#import "GLMine_SpendingRecordCell.h"
-#import "GLMine_SpendingCountModel.h"
-#import "GLMine_RecommendRecordCell.h"
-#import "GLMine_SpendingDetailController.h"
+#import "GLMine_ConsumeController.h"
+#import "GLMine_ConsumeCell.h"
+#import "GLMine_ConsumeModel.h"
 
-@interface GLMine_SpendingRecordCountController ()<UITableViewDelegate,UITableViewDataSource>
+@interface GLMine_ConsumeController ()
 
-@property (nonatomic, strong)UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic)LoadWaitView *loadV;
 @property (nonatomic,strong)NodataView *nodataV;
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, assign)NSInteger page;//页数
 
+
 @end
 
-@implementation GLMine_SpendingRecordCountController
+@implementation GLMine_ConsumeController
 
-- (instancetype)initWithType:(NSInteger)type{
-    self = [super init];
-    if (self) {
-        self = [[GLMine_SpendingRecordCountController alloc] init];
-        self.type = type;
-    }
-    return self;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.automaticallyAdjustsScrollViewInsets = NO;
- 
-    [self initTableView];
-    
-    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_RecommendRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_RecommendRecordCell"];
+
+    self.navigationItem.title = @"消费统计";
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_ConsumeCell" bundle:nil] forCellReuseIdentifier:@"GLMine_ConsumeCell"];
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
@@ -65,46 +56,34 @@
     self.tableView.mj_footer = footer;
     
     [self updateData:YES];
+
     
 }
-- (void)initTableView {
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:self.tableView];
-}
+
 - (void)updateData:(BOOL)status {
     if (status) {
-        
         self.page = 1;
         [self.models removeAllObjects];
         
     }else{
         _page ++;
-        
     }
+    
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"page"] = [NSString stringWithFormat:@"%zd",self.page];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"type"] = [NSString stringWithFormat:@"%zd",self.type];
+    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
-    [NetworkManager requestPOSTWithURLStr:kCOUNT_URL paramDic:dict finish:^(id responseObject) {
-        
+    [NetworkManager requestPOSTWithURLStr:kConsumeList_URL paramDic:dict finish:^(id responseObject) {
         [self endRefresh];
         [_loadV removeloadview];
         
         if ([responseObject[@"code"] integerValue]==1) {
-            if ([responseObject[@"data"] count] != 0) {
-                for (NSDictionary *dict in responseObject[@"data"]) {
-                    
-                    GLMine_SpendingCountModel * model = [GLMine_SpendingCountModel mj_objectWithKeyValues:dict];
-                    [self.models addObject:model];
-                }
+            for (NSDictionary * dic in responseObject[@"data"]) {
+                GLMine_ConsumeModel *model = [GLMine_ConsumeModel mj_objectWithKeyValues:dic];
+                [self.models addObject:model];
             }
             
             if ([responseObject[@"data"] count] == 0 && self.models.count != 0) {
@@ -125,10 +104,12 @@
     }];
     
 }
+
 - (void)endRefresh {
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
 }
+
 -(NodataView*)nodataV{
     
     if (!_nodataV) {
@@ -139,33 +120,47 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
 
-#pragma mark - UITableViewDelegate
+#pragma UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    if (self.models.count == 0) {
+        self.nodataV.hidden = NO;
+    }else{
+        self.nodataV.hidden = YES;
+    }
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    GLMine_RecommendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_RecommendRecordCell"];
+    
+    GLMine_ConsumeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_ConsumeCell"];
     cell.selectionStyle = 0;
-    cell.countModel = self.models[indexPath.row];
+    cell.model = self.models[indexPath.row];
     return cell;
     
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_SpendingDetailController *detailVC = [[GLMine_SpendingDetailController alloc] init];
-    GLMine_SpendingCountModel *model = self.models[indexPath.row];
-    detailVC.cid = model.uid;
-    detailVC.type = self.type;
-    [self.navigationController pushViewController:detailVC animated:YES];
-    
-}
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    self.isdelete = indexPath.row;
+//    
+//    self.hidesBottomBarWhenPushed = YES;
+//    GLMall_GoodsDetailController *detailVC = [[GLMall_GoodsDetailController alloc] init];
+//    GLMine_CollectModel *model = self.models[indexPath.row];
+//    detailVC.goods_id = model.goods_id;
+//    detailVC.pushIndex = 2;
+//    [self.navigationController pushViewController:detailVC animated:YES];
+//    
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 40;
+    //    tableView.rowHeight = UITableViewAutomaticDimension;
+    //    tableView.estimatedRowHeight = 44;
+    
+    return 50;
 }
-
 #pragma 懒加载
 - (NSMutableArray *)models{
     if (!_models) {

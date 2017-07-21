@@ -28,7 +28,9 @@
 #import "GLCompleteInfoController.h"
 #import "QQPopMenuView.h"
 #import "GLHome_jifenRecordController.h"
-#import "GLMine_SpendingController.h"
+#import "GLMine_SpendingRecordCountController.h"
+#import "GLMine_Order_OffLineController.h"
+#import "GLMine_ConsumeController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
@@ -485,7 +487,8 @@ static NSString *headerID = @"GLMine_HeaderView";
                 
             }else{
                 
-                GLMine_OrderController *orderVC = [[GLMine_OrderController alloc] init];
+//                GLMine_OrderController *orderVC = [[GLMine_OrderController alloc] init];
+                GLMine_Order_OffLineController *orderVC = [[GLMine_Order_OffLineController alloc] init];
                 [self.navigationController pushViewController:orderVC animated:YES];
 
             }
@@ -539,8 +542,17 @@ static NSString *headerID = @"GLMine_HeaderView";
 -(void)tuijianRecord {
     
     self.hidesBottomBarWhenPushed = YES;
-    GLMine_SpendingController *spendingVC = [[GLMine_SpendingController alloc] init];
+    GLMine_SpendingRecordCountController *spendingVC = [[GLMine_SpendingRecordCountController alloc] init];
 
+    [self.navigationController pushViewController:spendingVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+-(void)xiaofeiRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+     GLMine_ConsumeController*spendingVC = [[GLMine_ConsumeController alloc] init];
+    
     [self.navigationController pushViewController:spendingVC animated:YES];
     self.hidesBottomBarWhenPushed = NO;
     
@@ -572,6 +584,9 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     UITapGestureRecognizer *tuijianTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuijianRecord)];
     [_header.tuijianView addGestureRecognizer:tuijianTap];
+    
+    UITapGestureRecognizer *xiaofeiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xiaofeiRecord)];
+    [_header.xiaofeiView addGestureRecognizer:xiaofeiTap];
     
     //消费
     if([[UserModel defaultUser].price floatValue]> 100000){
