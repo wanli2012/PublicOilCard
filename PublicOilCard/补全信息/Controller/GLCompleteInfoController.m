@@ -305,7 +305,6 @@
         [MBProgressHUD showError:error.localizedDescription];
         
     }];
-  
 }
 
 #pragma mark UITextfield

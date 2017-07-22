@@ -42,13 +42,13 @@
     
     if (self.pushIndex == 1) {
         
-        self.accountLabel.text = @"hahahhahahahhaha";
+        self.accountLabel.text = [UserModel defaultUser].congig_card;
         self.goodsNameLabel.text = self.goods_name;
         self.usernameLabel.text = [UserModel defaultUser].username;
         self.moneyLabel.text = self.realy_price;
         self.sumLabel.text = self.goods_num;
     }else{
-        self.accountLabel.text = @"hahahhahahahhaha";
+        self.accountLabel.text = [UserModel defaultUser].congig_card;
         self.goodsNameLabel.text = @"招商总管身份";
         self.usernameLabel.text = [UserModel defaultUser].username;
         self.sumLabel.text = @"1";
@@ -60,9 +60,7 @@
             
             self.moneyLabel.text = @"12000";
         }
-
     }
-    
 }
 
 - (IBAction)random:(id)sender {

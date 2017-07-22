@@ -28,10 +28,18 @@
 - (void)setModel:(GLMine_SpendingDetailModel *)model{
     _model = model;
     
-    [self.imageV sd_setImageWithURL:[NSURL URLWithString:model.l_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
-    self.moneyLabel.text = model.l_money;
+    [self.imageV sd_setImageWithURL:[NSURL URLWithString:model.order_pic] placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
+    self.moneyLabel.text = model.order_money;
     self.dateLabel.text = model.addtime;
-    self.goodsTypeLabel.text = model.type;
+    
+    if ([model.type integerValue] == 1) {//1中石油  2中石化
+        
+        self.goodsTypeLabel.text = @"中石油";
+        
+    }else{
+        
+        self.goodsTypeLabel.text = @"中石化";
+    }
 }
 
 @end

@@ -81,12 +81,24 @@
     self.exchangeFooterView.Remarks.text = @"备注 : 兑换积分额为线下奖励全团积分额;兑换余额，平台需收取%6手续费";
     self.tableview.tableFooterView = self.exchangeFooterView;
     //赋值
-    if ([[UserModel defaultUser].mark floatValue] > 100000000) {
-        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].mark floatValue]/10000000];
-    }else if([[UserModel defaultUser].mark floatValue] > 100000){
-        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
+    if (self.type == 1) {
+        if ([[UserModel defaultUser].plain_mark floatValue] > 100000000) {
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].plain_mark floatValue]/10000000];
+        }else if([[UserModel defaultUser].plain_mark floatValue] > 100000){
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].plain_mark floatValue]/10000];
+        }else{
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].plain_mark];
+        }
+
     }else{
-        self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
+        
+        if ([[UserModel defaultUser].mark floatValue] > 100000000) {
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].mark floatValue]/10000000];
+        }else if([[UserModel defaultUser].mark floatValue] > 100000){
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].mark floatValue]/10000];
+        }else{
+            self.exchangeHeaderView.jifenLb.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].mark];
+        }
     }
     if ([[UserModel defaultUser].yue floatValue] > 100000000) {
         self.exchangeHeaderView.yuELb.text = [NSString stringWithFormat:@"%.2f千万",[[UserModel defaultUser].yue floatValue]/10000000];
@@ -312,9 +324,13 @@
 }
 //兑换记录
 -(void)recommendRecord{
+    
     self.hidesBottomBarWhenPushed = YES;
+
     [recordeManger defaultUser].recordeType = @"1";
+    
     GLMine_ExchangeRecordController *vc=[[GLMine_ExchangeRecordController alloc]init];
+
     [self.navigationController pushViewController:vc animated:YES];
 
 }
@@ -400,7 +416,7 @@
 }
 
 -(void)infoSend:(NSString*)str{
-
+ 
     if (str.length <= 0) {
         [MBProgressHUD showError:@"请输入密码"];
         return;
@@ -408,15 +424,25 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     dict[@"uid"] = [UserModel defaultUser].uid;
     dict[@"token"] = [UserModel defaultUser].token;
-    dict[@"pwd"] = [RSAEncryptor encryptString:str publicKey:public_RSA] ;
-    dict[@"back_type"] = @(self.selectindex);
+    dict[@"pwd"] = [RSAEncryptor encryptString:str publicKey:public_RSA];
     dict[@"back_money"] = self.money;
     dict[@"user_name"] = [UserModel defaultUser].username;
     dict[@"choice"] = @(self.selectMethod);
     dict[@"bank_id"] = self.bank_id;
     dict[@"qt_name"] = [UserModel defaultUser].qtIdNum;
+    if (self.type == 1) {
+        
+        if (self.selectindex == 0) {
+            dict[@"back_type"] = @(0);
+        }else{
+            dict[@"back_type"] = @2;//普通积分
+        }
+        
+    }else{
+        
+        dict[@"back_type"] = @(self.selectindex);
+    }
 
-    
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     
     [NetworkManager requestPOSTWithURLStr:kEXCHANGE_URL paramDic:dict finish:^(id responseObject) {
@@ -432,7 +458,9 @@
             [MBProgressHUD showError:responseObject[@"message"]];
         }
         [self.tableview reloadData];
+        
     } enError:^(NSError *error) {
+        
         [_loadV removeloadview];
         [MBProgressHUD showError:error.localizedDescription];
     }];
@@ -455,6 +483,7 @@
             [UserModel defaultUser].truename = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"truename"]];
             [UserModel defaultUser].group_name = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"group_name"]];
             [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
+            [UserModel defaultUser].plain_mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"plain_mark"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].price] rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -484,7 +513,11 @@
                 
                 [UserModel defaultUser].isHaveOilCard = @"";
             }
-            
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].plain_mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].plain_mark = @"";
+            }
+
             [usermodelachivar achive];
         }else{
             

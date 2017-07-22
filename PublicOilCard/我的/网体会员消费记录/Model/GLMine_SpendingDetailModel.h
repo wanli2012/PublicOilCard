@@ -12,8 +12,8 @@
 
 
 @property (nonatomic, copy)NSString *type;
-@property (nonatomic, copy)NSString *l_pic;
+@property (nonatomic, copy)NSString *order_pic;
 @property (nonatomic, copy)NSString *addtime;
-@property (nonatomic, copy)NSString *l_money;
+@property (nonatomic, copy)NSString *order_money;
 
 @end

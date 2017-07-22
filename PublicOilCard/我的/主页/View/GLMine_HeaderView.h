@@ -30,6 +30,7 @@
 //
 //@property (nonatomic, strong)UIImageView *adImageV;
 @property (weak, nonatomic) IBOutlet UIButton *picImageV;
+@property (weak, nonatomic) IBOutlet UILabel *plain_markLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *IDLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -49,5 +50,7 @@
 @property (weak, nonatomic) IBOutlet UIView *yueView;
 @property (weak, nonatomic) IBOutlet UIView *tuijianView;
 @property (weak, nonatomic) IBOutlet UIView *xiaofeiView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *tuijianImageV;
 
 @end

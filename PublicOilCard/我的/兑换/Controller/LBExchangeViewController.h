@@ -10,4 +10,6 @@
 
 @interface LBExchangeViewController : UIViewController
 
+@property (nonatomic, assign)NSInteger type;
+
 @end

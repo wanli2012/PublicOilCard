@@ -23,4 +23,5 @@
 @property (nonatomic, assign)NSInteger pushIndex;//1: 商品消费  2:代理商申请
 
 @property (nonatomic, assign)NSInteger upgrade;//升级类型 1首期代理 2二期代理
+
 @end

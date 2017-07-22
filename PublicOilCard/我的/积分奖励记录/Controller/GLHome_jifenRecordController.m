@@ -168,6 +168,7 @@
         
         cell.hidden = YES;
     }
+    cell.selectionStyle = 0;
     return cell;
 }
 

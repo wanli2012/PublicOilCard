@@ -20,6 +20,11 @@
 @property (nonatomic, strong)UIView *lineView3;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *picImageVHeight;
 
+@property (weak, nonatomic) IBOutlet UILabel *xiaofeiLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *jifenLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *tuijianLabel1;
+@property (weak, nonatomic) IBOutlet UILabel *yueLabel1;
+
 @end
 
 @implementation GLMine_HeaderView
@@ -37,11 +42,24 @@
     self.picImageV.contentMode = UIViewContentModeScaleAspectFill;
     self.picImageV.layer.cornerRadius = self.picImageVHeight.constant /2;
 
-    self.IDLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
-    self.nameLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.IDLabel.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    self.nameLabel.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    self.plain_markLabel.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
 
-    [self.openCardBtn.titleLabel setFont:[UIFont systemFontOfSize:12 * autoSizeScaleY]];
-    [self.exchangeBtn.titleLabel setFont:[UIFont systemFontOfSize:12 * autoSizeScaleY]];
+    [self.openCardBtn.titleLabel setFont:[UIFont systemFontOfSize:11 * autoSizeScaleY]];
+    [self.exchangeBtn.titleLabel setFont:[UIFont systemFontOfSize:11 * autoSizeScaleY]];
+    
+    self.xiaofeiLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.jifenLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.tuijianLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    self.jiangliLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
+    
+    self.xiaofeiLabel1.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    self.jifenLabel1.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    self.tuijianLabel1.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    self.yueLabel1.font = [UIFont systemFontOfSize:10 * autoSizeScaleY];
+    
+    
 }
 
 @end

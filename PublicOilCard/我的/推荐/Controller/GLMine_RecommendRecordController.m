@@ -144,6 +144,7 @@
     [popview show];
     
 }
+
 #pragma UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -156,23 +157,28 @@
     return self.models.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     GLMine_RecommendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_RecommendRecordCell"];
     cell.selectionStyle = 0;
     cell.model = self.models[indexPath.row];
     return cell;
     
 }
+
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 //    
 //    self.hidesBottomBarWhenPushed = YES;
 //    GLMine_SpendingController *spendVC = [[GLMine_SpendingController alloc] init];
 //    [self.navigationController pushViewController:spendVC animated:YES];
-//    
-//    
+//
 //}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     return 40;
+    
 }
+
 #pragma 懒加载
 - (NSMutableArray *)models{
     if (!_models) {

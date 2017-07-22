@@ -269,12 +269,83 @@ static NSString *headerID = @"GLMine_HeaderView";
 //兑换
 - (void)exchange {
     
-    self.hidesBottomBarWhenPushed = YES;
-    LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
-    [self.navigationController pushViewController:exchangeVC animated:YES];
-    
-    self.hidesBottomBarWhenPushed = NO;
 
+    
+//    __weak typeof(self) weakself = self;
+    
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 80) action:^(NSInteger index) {
+        
+//        self.type = index;
+        self.hidesBottomBarWhenPushed = YES;
+        LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
+        exchangeVC.type = 2;
+        
+        if(index != 1){
+
+            exchangeVC.type = 1;
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM"];
+            
+            NSDateFormatter *formatter2 = [[NSDateFormatter alloc] init];
+            [formatter2 setDateFormat:@"yyyy-MM-dd"];
+            
+            NSString *str = @"2017-07-31";
+            
+            // 1.创建一个时间格式化对象
+            NSDateFormatter *formatter4 = [[NSDateFormatter alloc] init];
+            
+            // 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样
+            formatter4.dateFormat = @"yyyy-MM-dd";
+            
+            // 3.利用时间格式化对象让字符串转换成时间 (自动转换0时区/东加西减)
+            NSDate *date = [formatter4 dateFromString:str];
+    
+            NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+            NSString *dateTime2 = [formatter2 stringFromDate:date];
+            NSString *dateStr = [self getMonthBeginAndEndWith:dateTime];
+            
+            if (![dateTime2 isEqualToString:dateStr]) {
+                [MBProgressHUD showError:@"普通积分只能在月末兑换"];
+                return ;
+            }
+            
+        }
+        
+        [self.navigationController pushViewController:exchangeVC animated:YES];
+
+        self.hidesBottomBarWhenPushed = NO;
+        
+        
+    }];
+    popview.isHideImage = YES;
+    
+    [popview show];
+
+}
+- (NSString *)getMonthBeginAndEndWith:(NSString *)dateStr{
+    
+    NSDateFormatter *format=[[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM"];
+    NSDate *newDate=[format dateFromString:dateStr];
+    double interval = 0;
+    NSDate *beginDate = nil;
+    NSDate *endDate = nil;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    [calendar setFirstWeekday:2];//设定周一为周首日
+    BOOL ok = [calendar rangeOfUnit:NSCalendarUnitMonth startDate:&beginDate interval:&interval forDate:newDate];
+    //分别修改为 NSDayCalendarUnit NSWeekCalendarUnit NSYearCalendarUnit
+    if (ok) {
+        endDate = [beginDate dateByAddingTimeInterval:interval-1];
+    }else {
+        return @"";
+    }
+    NSDateFormatter *myDateFormatter = [[NSDateFormatter alloc] init];
+    [myDateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *beginString = [myDateFormatter stringFromDate:beginDate];
+    NSString *endString = [myDateFormatter stringFromDate:endDate];
+    NSString *s = [NSString stringWithFormat:@"%@",endString];
+    return s;
 }
 #pragma mark 完善信息
 
@@ -575,15 +646,19 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
-    
+    _header.plain_markLabel.text= [NSString stringWithFormat:@"普通积分:%@",[UserModel defaultUser].plain_mark];
     UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
     [_header.jifenView addGestureRecognizer:jifenTap];
     
     UITapGestureRecognizer *yueTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yueRecord)];
     [_header.yueView addGestureRecognizer:yueTap];
     
-    UITapGestureRecognizer *tuijianTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuijianRecord)];
-    [_header.tuijianView addGestureRecognizer:tuijianTap];
+    if([[UserModel defaultUser].group_id integerValue] == 4 || [[UserModel defaultUser].group_id integerValue] == 5){
+        
+        _header.tuijianImageV.hidden = NO;
+        UITapGestureRecognizer *tuijianTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tuijianRecord)];
+        [_header.tuijianView addGestureRecognizer:tuijianTap];
+    }
     
     UITapGestureRecognizer *xiaofeiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xiaofeiRecord)];
     [_header.xiaofeiView addGestureRecognizer:xiaofeiTap];
@@ -633,7 +708,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
         _header.middleViewBottom.constant = 0;
-        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY, SCREEN_WIDTH, 0);
+        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY + 25, SCREEN_WIDTH, 0);
         _header.backgroundColor = [UIColor whiteColor];
         
     }else{
@@ -641,7 +716,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
         _header.middleViewBottom.constant = _headerImageHeight;
-        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY, SCREEN_WIDTH, _headerImageHeight);
+        self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY + 25, SCREEN_WIDTH, _headerImageHeight);
         self.cycleScrollView.imageURLStringsGroup = self.bannerArrM;
         _header.backgroundColor = [UIColor groupTableViewBackgroundColor];
     }
@@ -654,11 +729,11 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     
     if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {//非会员
         
-        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY);
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + 25);
         
     }else{//会员
         
-        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight);
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + _headerImageHeight +25);
     }
 }
 

@@ -43,6 +43,7 @@
 @property (nonatomic, copy)NSString  *hua_status;//中石化卡:0 未开卡  1:已开卡
 @property (nonatomic, copy)NSString  *s_meber;//招商总管网体剩余见点奖励数量
 @property (nonatomic, copy)NSString  *congig_card;//对公账号
+@property (nonatomic, copy)NSString  *plain_mark;//普通积分
 
 @property (nonatomic, copy)NSString  *yue;//余额
 @property (nonatomic, copy)NSString  *KfPhone;//客服电话

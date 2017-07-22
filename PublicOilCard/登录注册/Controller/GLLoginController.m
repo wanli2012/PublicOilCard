@@ -183,6 +183,8 @@
             [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
             [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
             [UserModel defaultUser].congig_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"congig_card"]];
+            [UserModel defaultUser].plain_mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"plain_mark"]];
+
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 
@@ -287,6 +289,10 @@
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].congig_card] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].congig_card = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].plain_mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].plain_mark = @"";
             }
 
             [usermodelachivar achive];

@@ -33,7 +33,7 @@
     _countModel = countModel;
     self.IDLabel.text = countModel.user_name;
     self.trueNameLabel.text = countModel.truename;
-    
+    self.dateLabel.textColor = [UIColor redColor];
     self.dateLabel.text = countModel.money;
 }
 @end

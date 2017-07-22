@@ -147,7 +147,8 @@
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 70;
+    
+    return 70 *autoSizeScaleY;
 }
 
 #pragma 懒加载

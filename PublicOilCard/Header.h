@@ -23,8 +23,8 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 ///接口
-//192.168.0.191  http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
-#define URL_Base @"http://www.jcgy.cn.com/index.php/App/"
+//192.168.0.191  www.jcgy.cn.com   http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
+#define URL_Base @"http://192.168.0.191/CMcard/index.php/App/"
 //#define URL_Base @"http://api.51qmtg.org/index.php/App/"
 
 #define kLOGIN_URL @"User/login" //登录

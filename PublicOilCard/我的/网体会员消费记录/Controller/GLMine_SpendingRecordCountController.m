@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
  
-    self.navigationItem.title = @"会员消费统计";
+    self.navigationItem.title = @"推荐会员统计";
     [self initTableView];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"GLMine_RecommendRecordCell" bundle:nil] forCellReuseIdentifier:@"GLMine_RecommendRecordCell"];

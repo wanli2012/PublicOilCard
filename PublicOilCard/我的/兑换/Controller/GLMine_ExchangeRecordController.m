@@ -80,21 +80,15 @@
 -(void)edtingInfo{
     
     __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换余额",@"imageName":@""},
-                                                                   @{@"title":@"兑换积分",@"imageName":@""},
-                                                                   
-                                                                   ]
-                              
-                                                           width:100
-                                                triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)
-                                                          action:^(NSInteger index) {
-                                                              
-                                                              [recordeManger defaultUser].recordeType = [NSString stringWithFormat:@"%d",index];;
-                                                              
-                                                               [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:nil];
-                                                              
-                                                              
-                                                          }];
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""},@{@"title":@"普通积分",@"imageName":@""}]width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)action:^(NSInteger index) {
+        
+            
+            [recordeManger defaultUser].recordeType = [NSString stringWithFormat:@"%zd",index];
+        
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:nil];
+
+    }];
     
     popview.isHideImage = YES;
     
