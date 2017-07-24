@@ -133,6 +133,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].s_meber = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"s_meber"]];
             [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
             [UserModel defaultUser].hua_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_status"]];
+            [UserModel defaultUser].plain_mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"plain_mark"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].pic = @"";
@@ -188,6 +189,10 @@ static NSString *headerID = @"GLMine_HeaderView";
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].hua_status] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].hua_status = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].plain_mark] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].plain_mark = @"";
             }
             [usermodelachivar achive];
             
@@ -268,15 +273,11 @@ static NSString *headerID = @"GLMine_HeaderView";
 }
 //兑换
 - (void)exchange {
-    
+    self.hidesBottomBarWhenPushed = YES;
 
-    
-//    __weak typeof(self) weakself = self;
-    
+    __weak typeof(self) weakself = self;
     QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 80) action:^(NSInteger index) {
-        
-//        self.type = index;
-        self.hidesBottomBarWhenPushed = YES;
+
         LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
         exchangeVC.type = 2;
         
@@ -290,14 +291,8 @@ static NSString *headerID = @"GLMine_HeaderView";
             [formatter2 setDateFormat:@"yyyy-MM-dd"];
             
             NSString *str = @"2017-07-31";
-            
-            // 1.创建一个时间格式化对象
             NSDateFormatter *formatter4 = [[NSDateFormatter alloc] init];
-            
-            // 2.格式化对象的样式/z大小写都行/格式必须严格和字符串时间一样
             formatter4.dateFormat = @"yyyy-MM-dd";
-            
-            // 3.利用时间格式化对象让字符串转换成时间 (自动转换0时区/东加西减)
             NSDate *date = [formatter4 dateFromString:str];
     
             NSString *dateTime = [formatter stringFromDate:[NSDate date]];
@@ -308,19 +303,87 @@ static NSString *headerID = @"GLMine_HeaderView";
                 [MBProgressHUD showError:@"普通积分只能在月末兑换"];
                 return ;
             }
-            
         }
         
-        [self.navigationController pushViewController:exchangeVC animated:YES];
+        [weakself.navigationController pushViewController:exchangeVC animated:YES];
 
-        self.hidesBottomBarWhenPushed = NO;
-        
-        
+        weakself.hidesBottomBarWhenPushed = NO;
     }];
     popview.isHideImage = YES;
     
     [popview show];
 
+}
+
+//积分
+- (void)jifenBtnClick{
+    self.hidesBottomBarWhenPushed = YES;
+    
+    __weak typeof(self) weakself = self;
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 120) action:^(NSInteger index) {
+        
+        GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+        jifenVC.type = 1;
+
+        if(index != 1){
+            
+            jifenVC.type = 3;
+            
+        }
+        
+        [weakself.navigationController pushViewController:jifenVC animated:YES];
+        
+        weakself.hidesBottomBarWhenPushed = NO;
+    }];
+    popview.isHideImage = YES;
+    
+    [popview show];
+
+}
+-(void)jifenRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    
+    //    __weak typeof(self) weakself = self;
+    //    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 80) action:^(NSInteger index) {
+    //
+    //    }];
+    //    popview.isHideImage = YES;
+    //
+    //    [popview show];
+    
+    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+    jifenVC.type = 1;
+    [self.navigationController pushViewController:jifenVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+}
+
+-(void)yueRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
+    jifenVC.type = 2;
+    [self.navigationController pushViewController:jifenVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+-(void)tuijianRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_SpendingRecordCountController *spendingVC = [[GLMine_SpendingRecordCountController alloc] init];
+    
+    [self.navigationController pushViewController:spendingVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
+}
+-(void)xiaofeiRecord {
+    
+    self.hidesBottomBarWhenPushed = YES;
+    GLMine_ConsumeController *spendingVC = [[GLMine_ConsumeController alloc] init];
+    
+    [self.navigationController pushViewController:spendingVC animated:YES];
+    self.hidesBottomBarWhenPushed = NO;
+    
 }
 - (NSString *)getMonthBeginAndEndWith:(NSString *)dateStr{
     
@@ -584,6 +647,11 @@ static NSString *headerID = @"GLMine_HeaderView";
             break;
         case 3:
         {
+            if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0 && [[UserModel defaultUser].hua_status integerValue] == 0 ) {
+                [MBProgressHUD showError:@"请先开卡"];
+                return;
+            }
+
             GLMine_RecommendController *recommendVC = [[GLMine_RecommendController alloc] init];
             [self.navigationController pushViewController:recommendVC animated:YES];
         }
@@ -594,40 +662,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     }
     self.hidesBottomBarWhenPushed = NO;
 }
--(void)jifenRecord {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
-    jifenVC.type = 1;
-    [self.navigationController pushViewController:jifenVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-}
--(void)yueRecord {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
-    jifenVC.type = 2;
-    [self.navigationController pushViewController:jifenVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-}
--(void)tuijianRecord {
-    
-    self.hidesBottomBarWhenPushed = YES;
-    GLMine_SpendingRecordCountController *spendingVC = [[GLMine_SpendingRecordCountController alloc] init];
 
-    [self.navigationController pushViewController:spendingVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-    
-}
--(void)xiaofeiRecord {
-    
-    self.hidesBottomBarWhenPushed = YES;
-     GLMine_ConsumeController*spendingVC = [[GLMine_ConsumeController alloc] init];
-    
-    [self.navigationController pushViewController:spendingVC animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
-    
-}
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
              viewForSupplementaryElementOfKind:(NSString *)kind
                                    atIndexPath:(NSIndexPath *)indexPath {
@@ -640,15 +675,28 @@ static NSString *headerID = @"GLMine_HeaderView";
     
     [_header.openCardBtn addTarget:self action:@selector(openCard) forControlEvents:UIControlEventTouchUpInside];
     [_header.exchangeBtn addTarget:self action:@selector(exchange) forControlEvents:UIControlEventTouchUpInside];
+    [_header.jifenBtn addTarget:self action:@selector(jifenBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
     //数据显示
     [_header.picImageV sd_setImageWithURL:[NSURL URLWithString:[UserModel defaultUser].pic] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:PlaceHolderImage]];
     
     _header.IDLabel.text = [NSString stringWithFormat:@"ID:%@",[UserModel defaultUser].username];
     _header.nameLabel.text= [NSString stringWithFormat:@"%@:%@",[UserModel defaultUser].group_name,[UserModel defaultUser].truename];
-    _header.plain_markLabel.text= [NSString stringWithFormat:@"普通积分:%@",[UserModel defaultUser].plain_mark];
-    UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
-    [_header.jifenView addGestureRecognizer:jifenTap];
+    
+    if([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3){
+        _header.plain_markLabel.hidden = YES;
+    }else{
+        _header.plain_markLabel.hidden = NO;
+        _header.plain_markLabel.text= [NSString stringWithFormat:@"普通积分:%@",[UserModel defaultUser].plain_mark];
+    }
+    
+    //手势添加
+    if([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3){
+        
+        UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
+        _header.jifenImageV.hidden = NO;
+        [_header.jifenView addGestureRecognizer:jifenTap];
+    }
     
     UITapGestureRecognizer *yueTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yueRecord)];
     [_header.yueView addGestureRecognizer:yueTap];
@@ -707,6 +755,7 @@ static NSString *headerID = @"GLMine_HeaderView";
 
         _header.openCardBtn.hidden = YES;
         _header.exchangeBtn.hidden = YES;
+        _header.jifenBtn.hidden = YES;
         _header.middleViewBottom.constant = 0;
         self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY + 25, SCREEN_WIDTH, 0);
         _header.backgroundColor = [UIColor whiteColor];
@@ -715,6 +764,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         
         _header.openCardBtn.hidden = NO;
         _header.exchangeBtn.hidden = NO;
+        _header.jifenBtn.hidden = NO;
         _header.middleViewBottom.constant = _headerImageHeight;
         self.cycleScrollView.frame = CGRectMake(0, 200 * autoSizeScaleY + 25, SCREEN_WIDTH, _headerImageHeight);
         self.cycleScrollView.imageURLStringsGroup = self.bannerArrM;
@@ -729,7 +779,7 @@ referenceSizeForHeaderInSection:(NSInteger)section {
     
     if ([[UserModel defaultUser].group_id integerValue] == 1|| [[UserModel defaultUser].group_id integerValue] == 2|| [[UserModel defaultUser].group_id integerValue] == 3) {//非会员
         
-        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY + 25);
+        return CGSizeMake(SCREEN_WIDTH, 200 * autoSizeScaleY);
         
     }else{//会员
         

@@ -8,6 +8,8 @@
 
 #import "GLHome_jifenRecordController.h"
 #import "GLHome_JifenRecordCell.h"
+#import "GLHome_jifenSectionModel.h"
+#import "GLHome_jifenHeaderView.h"
 
 @interface GLHome_jifenRecordController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,13 +29,18 @@
     [super viewDidLoad];
 
     if (self.type == 1) {
-        self.navigationItem.title = @"积分记录";
-    }else{
+        self.navigationItem.title = @"即时积分记录";
+    }else if(self.type == 2){
         self.navigationItem.title = @"余额记录";
+    }else if(self.type == 3){
+        self.navigationItem.title = @"普通积分记录";
     }
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.tableView registerNib:[UINib nibWithNibName:@"GLHome_JifenRecordCell" bundle:nil] forCellReuseIdentifier:@"GLHome_JifenRecordCell"];
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"GLHome_jifenHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"GLHome_jifenHeaderView"];
+
     [self.tableView addSubview:self.nodataV];
     self.nodataV.hidden = YES;
     
@@ -87,7 +94,23 @@
         if ([responseObject[@"code"] integerValue]==1) {
             if([responseObject[@"data"] count] != 0){
                 
-                self.dataArr = responseObject[@"data"];
+                for (NSDictionary *dict in responseObject[@"data"]) {
+                    
+                    GLHome_jifenSectionModel *model = [[GLHome_jifenSectionModel alloc] init];
+                    
+                    model.money = dict[@"money"];
+                    model.time = dict[@"time"];
+                    model.type = dict[@"type"];
+                    model.isExpanded = NO;
+                    
+                    for (NSDictionary *dic in dict[@"log_list"]) {
+                        
+                        [model.log_listArr addObject:dic[@"content"]];
+                        
+                    }
+                    [self.models addObject:model];
+                }
+                
                 
             }else{
                 
@@ -134,50 +157,87 @@
 }
 
 #pragma mark -UITableViewDelegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    if ([self.dataArr count] == 0) {
-        self.nodataV.hidden = NO;
-    }else{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.models.count > 0 ) {
+        
         self.nodataV.hidden = YES;
+    }else{
+        self.nodataV.hidden = NO;
+        
     }
     
-    return self.dataArr.count;
-    
+    return self.models.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    GLHome_jifenSectionModel *model=self.models[section];
+    return model.isExpanded?model.log_listArr.count:0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     GLHome_JifenRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLHome_JifenRecordCell"];
     
-    if([[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"time"]] rangeOfString:@"null"].location != NSNotFound){
-        cell.dateLabel.text = @"";
-    }else{
-        
-        cell.dateLabel.text = self.dataArr[indexPath.row][@"time"];
-    }
+    GLHome_jifenSectionModel *model = self.models[indexPath.section];
+    cell.reasonLabel.text = model.log_listArr[indexPath.row];
     
-    if (self.type == 1) {
-        
-        cell.sumLabel.text = [NSString stringWithFormat:@"积分: +%@",self.dataArr[indexPath.row][@"money"]];
-    }else{
-        cell.sumLabel.text = [NSString stringWithFormat:@"余额: +%@",self.dataArr[indexPath.row][@"money"]];
-    }
-    
-    if([self.dataArr[indexPath.row][@"money"] isEqualToString:@"0"] || [[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"money"]] rangeOfString:@"null"].location != NSNotFound ){
-        
-        cell.hidden = YES;
-    }
+//    if([[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"time"]] rangeOfString:@"null"].location != NSNotFound){
+//        cell.dateLabel.text = @"";
+//    }else{
+//        
+//        cell.dateLabel.text = self.dataArr[indexPath.row][@"time"];
+//    }
+//    
+//    if (self.type == 1) {
+//        
+//        cell.sumLabel.text = [NSString stringWithFormat:@"积分: +%@",self.dataArr[indexPath.row][@"money"]];
+//    }else{
+//        cell.sumLabel.text = [NSString stringWithFormat:@"余额: +%@",self.dataArr[indexPath.row][@"money"]];
+//    }
+//    
+//    if([self.dataArr[indexPath.row][@"money"] isEqualToString:@"0"] || [[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"money"]] rangeOfString:@"null"].location != NSNotFound ){
+//        
+//        cell.hidden = YES;
+//    }else{
+//        cell.hidden = NO;
+//    }
     cell.selectionStyle = 0;
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    GLHome_jifenHeaderView *headerView =  [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"GLHome_jifenHeaderView"];
+//    headerView.delegete = self;
+    headerView.section = section;
+    headerView.expandCallback = ^(BOOL isExpanded) {
+        
+        [tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    headerView.sectionModel = self.models[section];
+    return headerView;
+    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    if ([self.dataArr[indexPath.row][@"money"] isEqualToString:@"0"] || [[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"money"]] rangeOfString:@"null"].location != NSNotFound ) {
-        return 0;
-    }
-    return 50;
+//    if ([self.dataArr[indexPath.row][@"money"] isEqualToString:@"0"] || [[NSString stringWithFormat:@"%@",self.dataArr[indexPath.row][@"money"]] rangeOfString:@"null"].location != NSNotFound ) {
+//        return 0;
+//    }
+    
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    tableView.estimatedRowHeight = 44;
+    
+    return tableView.rowHeight;
 }
 
+
+#pragma mark 懒加载
+- (NSMutableArray *)models{
+    if (!_models) {
+        _models = [NSMutableArray array];
+    }
+    return _models;
+}
 @end

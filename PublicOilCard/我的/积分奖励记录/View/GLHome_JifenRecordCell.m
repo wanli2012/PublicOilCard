@@ -11,8 +11,6 @@
 @interface GLHome_JifenRecordCell ()
 
 
-@property (weak, nonatomic) IBOutlet UILabel *reasonLabel;
-
 @end
 
 @implementation GLHome_JifenRecordCell

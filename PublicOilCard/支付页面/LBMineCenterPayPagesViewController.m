@@ -342,7 +342,7 @@
             
         }else{
 //
-            _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"},@{@"image":@"微信",@"title":@"线下支付"}, nil];
+            _dataarr = [NSArray arrayWithObjects:@{@"image":@"支付宝",@"title":@"支付宝支付"},@{@"image":@"微信",@"title":@"微信支付"}, nil];
         }
 
     }

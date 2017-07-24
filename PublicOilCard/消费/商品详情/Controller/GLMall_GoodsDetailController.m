@@ -161,7 +161,7 @@
     GLPay_OfflineController *payOffVC = [[GLPay_OfflineController alloc] init];
     
     payOffVC.goods_name = self.dataDic[@"goods_name"];
-    payOffVC.realy_price = self.dataDic[@"discount"];
+    payOffVC.realy_price = [NSString stringWithFormat:@"%.2f",[self.dataDic[@"discount"] floatValue] * _sum];
     payOffVC.goods_num = [NSString stringWithFormat:@"%zd",_sum];
     payOffVC.goods_id = self.dataDic[@"goods_id"];
     payOffVC.pushIndex = self.pushIndex;

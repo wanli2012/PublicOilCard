@@ -124,27 +124,27 @@
         [MBProgressHUD showError:@"请上传图片"];
         return;
     }
-    [self submitTheRequest:self.pushIndex];
+//    [self submitTheRequest:self.pushIndex];
 
-//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-//    dict[@"userphone"] = [UserModel defaultUser].phone;
-//    dict[@"yzm"] = self.yzmTextF.text;
-//    
-//    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-//    [NetworkManager requestPOSTWithURLStr:kENSURE_CODE_URL paramDic:dict finish:^(id responseObject) {
-//        [_loadV removeloadview];
-//        if ([responseObject[@"code"] integerValue]==1) {
-//           
-//            [self submitTheRequest:self.pushIndex];
-//        }else{
-//            [MBProgressHUD showError:responseObject[@"message"]];
-//        }
-//    } enError:^(NSError *error) {
-//        
-//        [_loadV removeloadview];
-//        [MBProgressHUD showError:error.localizedDescription];
-//        
-//    }];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"userphone"] = [UserModel defaultUser].phone;
+    dict[@"yzm"] = self.yzmTextF.text;
+    
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:kENSURE_CODE_URL paramDic:dict finish:^(id responseObject) {
+        [_loadV removeloadview];
+        if ([responseObject[@"code"] integerValue]==1) {
+           
+            [self submitTheRequest:self.pushIndex];
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
     
 
 }
@@ -214,11 +214,21 @@
             
         }success:^(NSURLSessionDataTask *task, id responseObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+            
             if ([dic[@"code"]integerValue]==1) {
                 
-                [MBProgressHUD showError:dic[@"message"]];
-                [self.navigationController popViewControllerAnimated:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"UploadSuccessfulNotification" object:nil];
+                [MBProgressHUD showSuccess:dic[@"message"]];
+                
+                if (pushIndex == 1) {
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+
+                }else if(pushIndex == 3){
+                    
+                    [self.navigationController popViewControllerAnimated:YES];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateManagerNotification" object:nil];
+                }
+                
             }else{
                 [MBProgressHUD showError:dic[@"message"]];
             }
@@ -228,7 +238,6 @@
             [MBProgressHUD showError:error.localizedDescription];
         }];
     
-
 }
 //上传图片
 - (IBAction)uploadPic:(id)sender {

@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "GLMine_Order_OffLineModel.h"
 
+@protocol GLMine_Order_OffLineCellDelegate <NSObject>
+
+- (void)deleteOrder:(NSInteger)index;
+
+@end
+
 @interface GLMine_Order_OffLineCell : UITableViewCell
 
 @property (nonatomic, strong)GLMine_Order_OffLineModel *model;
+@property (nonatomic, weak)id<GLMine_Order_OffLineCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
+
+@property (nonatomic, assign)NSInteger index;
+
 
 @end

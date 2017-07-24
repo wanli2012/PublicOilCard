@@ -76,7 +76,9 @@
 
 #define kOrderList_OffLine_URL @"ShopInfo/l_list"//线下订单列表
 
-#define kDEL_ORDER_URL @"UserInfo/del_order"//删除订单
+#define kDEL_ORDER_URL @"UserInfo/del_order"//删除线上订单
+
+#define kDEL_OFFLINE_ORDER_URL @"ShopInfo/del_l"//删除线下订单
 
 #define kCANCEL_ORDER_URL @"UserInfo/cancel_order"//取消定单
 
@@ -103,6 +105,8 @@
 #define kPay_OffLine_URL @"ShopInfo/o_line"//线下支付(商品)
 
 #define kPayDelegate_OffLine_URL @"User/agent_apply"//线下支付(代理商申请)
+
+#define kCheckID @"UserInfo/code_name"//验证会员是否存在
 
 //分享推荐注册
 #define kRECOMMEND_URL @"http://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="

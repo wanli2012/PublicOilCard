@@ -36,6 +36,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *openCardBtn;
 @property (weak, nonatomic) IBOutlet UIButton *exchangeBtn;
+@property (weak, nonatomic) IBOutlet UIButton *jifenBtn;
+
+
 @property (weak, nonatomic) IBOutlet UIView *middleView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *middleViewBottom;
@@ -52,5 +55,6 @@
 @property (weak, nonatomic) IBOutlet UIView *xiaofeiView;
 
 @property (weak, nonatomic) IBOutlet UIImageView *tuijianImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *jifenImageV;
 
 @end

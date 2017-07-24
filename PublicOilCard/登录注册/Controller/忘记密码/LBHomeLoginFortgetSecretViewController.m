@@ -207,7 +207,6 @@
         
     } completion:^(BOOL finished) {
         
-        
     }];
 
 }
@@ -222,7 +221,6 @@
         [self.maskView removeFromSuperview];
         [self.selectUserTypeView removeFromSuperview];
     }];
-    
     
 }
 

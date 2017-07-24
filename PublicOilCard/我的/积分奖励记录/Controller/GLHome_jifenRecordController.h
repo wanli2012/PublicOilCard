@@ -10,7 +10,6 @@
 
 @interface GLHome_jifenRecordController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;//1:积分  2:余额
-
+@property (nonatomic, assign)NSInteger type;//1:积分  2:余额 3:普通积分
 
 @end

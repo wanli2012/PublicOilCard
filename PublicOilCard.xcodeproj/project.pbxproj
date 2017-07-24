@@ -404,6 +404,11 @@
 		4A751F741EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */; };
 		4A751F7A1EFA40E100C919F6 /* GLMine_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */; };
 		4A751F7B1EFA40E100C919F6 /* GLMine_PersonInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */; };
+		4A911AAA1F26011A003C0F6C /* GLMine_jifenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A911AA81F26011A003C0F6C /* GLMine_jifenController.m */; };
+		4A911AAB1F26011A003C0F6C /* GLMine_jifenController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A911AA91F26011A003C0F6C /* GLMine_jifenController.xib */; };
+		4A911AAE1F2609D9003C0F6C /* GLHome_jifenSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A911AAD1F2609D9003C0F6C /* GLHome_jifenSectionModel.m */; };
+		4A911AB91F260E9E003C0F6C /* GLHome_jifenHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A911AB81F260E9E003C0F6C /* GLHome_jifenHeaderView.m */; };
+		4A911ABB1F260EBB003C0F6C /* GLHome_jifenHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A911ABA1F260EBB003C0F6C /* GLHome_jifenHeaderView.xib */; };
 		4A9FBE3D1EFA98AE00BAEBBF /* GLMine_updateNewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FBE3B1EFA98AE00BAEBBF /* GLMine_updateNewCell.m */; };
 		4A9FBE3E1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9FBE3C1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib */; };
 		4AEC057F1EF1151600B39497 /* GLMine_HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC057D1EF1151600B39497 /* GLMine_HeaderView.m */; };
@@ -1242,6 +1247,14 @@
 		4A751F771EFA40E100C919F6 /* GLMine_PersonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_PersonInfoCell.h; sourceTree = "<group>"; };
 		4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_PersonInfoCell.m; sourceTree = "<group>"; };
 		4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_PersonInfoCell.xib; sourceTree = "<group>"; };
+		4A911AA71F26011A003C0F6C /* GLMine_jifenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_jifenController.h; sourceTree = "<group>"; };
+		4A911AA81F26011A003C0F6C /* GLMine_jifenController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_jifenController.m; sourceTree = "<group>"; };
+		4A911AA91F26011A003C0F6C /* GLMine_jifenController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_jifenController.xib; sourceTree = "<group>"; };
+		4A911AAC1F2609D9003C0F6C /* GLHome_jifenSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHome_jifenSectionModel.h; sourceTree = "<group>"; };
+		4A911AAD1F2609D9003C0F6C /* GLHome_jifenSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHome_jifenSectionModel.m; sourceTree = "<group>"; };
+		4A911AB71F260E9E003C0F6C /* GLHome_jifenHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLHome_jifenHeaderView.h; sourceTree = "<group>"; };
+		4A911AB81F260E9E003C0F6C /* GLHome_jifenHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLHome_jifenHeaderView.m; sourceTree = "<group>"; };
+		4A911ABA1F260EBB003C0F6C /* GLHome_jifenHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLHome_jifenHeaderView.xib; sourceTree = "<group>"; };
 		4A9FBE3A1EFA98AE00BAEBBF /* GLMine_updateNewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_updateNewCell.h; sourceTree = "<group>"; };
 		4A9FBE3B1EFA98AE00BAEBBF /* GLMine_updateNewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLMine_updateNewCell.m; sourceTree = "<group>"; };
 		4A9FBE3C1EFA98AE00BAEBBF /* GLMine_updateNewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_updateNewCell.xib; sourceTree = "<group>"; };
@@ -3035,6 +3048,9 @@
 				4A5BFE8A1F1F3FAC00DE1221 /* GLHome_jifenRecordController.h */,
 				4A5BFE8B1F1F3FAC00DE1221 /* GLHome_jifenRecordController.m */,
 				4A5BFE8C1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib */,
+				4A911AA71F26011A003C0F6C /* GLMine_jifenController.h */,
+				4A911AA81F26011A003C0F6C /* GLMine_jifenController.m */,
+				4A911AA91F26011A003C0F6C /* GLMine_jifenController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3042,6 +3058,8 @@
 		4A5BFE881F1F3F8300DE1221 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4A911AAC1F2609D9003C0F6C /* GLHome_jifenSectionModel.h */,
+				4A911AAD1F2609D9003C0F6C /* GLHome_jifenSectionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3049,6 +3067,9 @@
 		4A5BFE891F1F3F8300DE1221 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4A911AB71F260E9E003C0F6C /* GLHome_jifenHeaderView.h */,
+				4A911AB81F260E9E003C0F6C /* GLHome_jifenHeaderView.m */,
+				4A911ABA1F260EBB003C0F6C /* GLHome_jifenHeaderView.xib */,
 				4A5BFE8F1F1F409100DE1221 /* GLHome_JifenRecordCell.h */,
 				4A5BFE901F1F409100DE1221 /* GLHome_JifenRecordCell.m */,
 				4A5BFE911F1F409100DE1221 /* GLHome_JifenRecordCell.xib */,
@@ -3564,6 +3585,7 @@
 				4A532EDD1EFE5626009C3593 /* GLMine_PersonInfoCodeView.xib in Resources */,
 				4A5920331F15EF3700D8A5E3 /* GL_CardTypeChooseView.xib in Resources */,
 				4A5BFE8E1F1F3FAC00DE1221 /* GLHome_jifenRecordController.xib in Resources */,
+				4A911ABB1F260EBB003C0F6C /* GLHome_jifenHeaderView.xib in Resources */,
 				4AEEC9AC1EF2716900F827BB /* GLMine_RecommendController.xib in Resources */,
 				4AEEC9D21EF28DF500F827BB /* GLMine_updateManagerCell.xib in Resources */,
 				F92DA94B1EF4FD9C00530237 /* LBExchangeViewController.xib in Resources */,
@@ -3590,6 +3612,7 @@
 				4A4FA5F41EF0E16A00A256D2 /* Common.xcassets in Resources */,
 				4A5BBBDB1EF2659F008270F2 /* LBHomeLoginFortgetSecretViewController.xib in Resources */,
 				4A4A53481F22056B00287FF6 /* GLMine_ConsumeController.xib in Resources */,
+				4A911AAB1F26011A003C0F6C /* GLMine_jifenController.xib in Resources */,
 				4AEC05891EF13CBA00B39497 /* GLMine_CollectController.xib in Resources */,
 				F9652D5C1EF76B1600DD229F /* LBModifyPasswordViewController.xib in Resources */,
 				4A39F4871EF378430038C147 /* GLMine_updateManagerDealNowCell.xib in Resources */,
@@ -3792,10 +3815,12 @@
 				4A5331B81EFE763F009C3593 /* ZXUPCEReader.m in Sources */,
 				4A39F4C71EF3BA510038C147 /* GLMine_ExchangeRecordCell.m in Sources */,
 				4A5331181EFE763F009C3593 /* ZXAztecSimpleToken.m in Sources */,
+				4A911AB91F260E9E003C0F6C /* GLHome_jifenHeaderView.m in Sources */,
 				4A39F50A1EF406A60038C147 /* JZAlbumViewController.m in Sources */,
 				4A532F021EFE75BB009C3593 /* LBXScanLineAnimation.m in Sources */,
 				4A5331151EFE763E009C3593 /* ZXAztecCode.m in Sources */,
 				4A4FA58A1EF0CA1100A256D2 /* AppDelegate.mm in Sources */,
+				4A911AAA1F26011A003C0F6C /* GLMine_jifenController.m in Sources */,
 				4A9FBE3D1EFA98AE00BAEBBF /* GLMine_updateNewCell.m in Sources */,
 				4A5331441EFE763F009C3593 /* ZXImage.m in Sources */,
 				4A39F49D1EF3B0810038C147 /* GLMine_SetCell.m in Sources */,
@@ -3966,6 +3991,7 @@
 				4AEEC9AB1EF2716900F827BB /* GLMine_RecommendController.m in Sources */,
 				F9652D551EF766AF00DD229F /* LBExchangeFooterView.m in Sources */,
 				4A53317A1EFE763F009C3593 /* ZXDataMatrixReader.m in Sources */,
+				4A911AAE1F2609D9003C0F6C /* GLHome_jifenSectionModel.m in Sources */,
 				4A5331C41EFE763F009C3593 /* ZXPDF417DetectionResultRowIndicatorColumn.m in Sources */,
 				4A5331C21EFE763F009C3593 /* ZXPDF417DetectionResult.m in Sources */,
 				4AEEC9CC1EF28C3700F827BB /* GLMine_updateManagerController.m in Sources */,

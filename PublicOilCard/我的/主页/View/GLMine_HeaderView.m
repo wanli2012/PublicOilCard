@@ -38,6 +38,9 @@
     _exchangeBtn.layer.borderWidth = 1;
     _exchangeBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
     
+    _jifenBtn.layer.borderWidth = 1;
+    _jifenBtn.layer.borderColor = TABBARTITLE_COLOR.CGColor;
+    
     self.picImageVHeight.constant = 80 *autoSizeScaleY;
     self.picImageV.contentMode = UIViewContentModeScaleAspectFill;
     self.picImageV.layer.cornerRadius = self.picImageVHeight.constant /2;
@@ -48,6 +51,7 @@
 
     [self.openCardBtn.titleLabel setFont:[UIFont systemFontOfSize:11 * autoSizeScaleY]];
     [self.exchangeBtn.titleLabel setFont:[UIFont systemFontOfSize:11 * autoSizeScaleY]];
+    [self.jifenBtn.titleLabel setFont:[UIFont systemFontOfSize:11 * autoSizeScaleY]];
     
     self.xiaofeiLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];
     self.jifenLabel.font = [UIFont systemFontOfSize:11 * autoSizeScaleY];

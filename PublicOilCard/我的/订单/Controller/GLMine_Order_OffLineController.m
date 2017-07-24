@@ -10,7 +10,7 @@
 #import "GLMine_Order_OffLineCell.h"
 #import "GLMine_Order_OffLineModel.h"
 
-@interface GLMine_Order_OffLineController ()
+@interface GLMine_Order_OffLineController ()<GLMine_Order_OffLineCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray *models;
@@ -111,6 +111,47 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = NO;
 }
+
+- (void)deleteOrder:(NSInteger)index{
+    
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"删除订单" message:@"确定删除该订单吗?" preferredStyle:UIAlertControllerStyleAlert];
+ 
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        GLMine_Order_OffLineModel *model = self.models[index];
+        
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"lid"] = model.lid;
+        dict[@"uid"] = [UserModel defaultUser].uid;
+        dict[@"token"] = [UserModel defaultUser].token;
+        
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        
+        [NetworkManager requestPOSTWithURLStr:kDEL_OFFLINE_ORDER_URL paramDic:dict finish:^(id responseObject) {
+            [self endRefresh];
+            [_loadV removeloadview];
+            
+            if ([responseObject[@"code"] integerValue]==1) {
+                [self updateData:YES];
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+            
+        } enError:^(NSError *error) {
+            [_loadV removeloadview];
+            [self endRefresh];
+            [MBProgressHUD showError:error.localizedDescription];
+        }];
+    }];
+    
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:okAction];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
+    
+}
+
 #pragma UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -128,13 +169,23 @@
     
     GLMine_Order_OffLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GLMine_Order_OffLineCell"];
     cell.model = self.models[indexPath.row];
-                             
+    cell.index = indexPath.row;
+    cell.delegate = self;
+    
     return cell;
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 160;
+    
+    GLMine_Order_OffLineModel *model = self.models[indexPath.row];
+    if ([model.status integerValue] == 1) {
+        
+        return 224;
+    }else{
+        return 174;
+    }
+
 }
 
 #pragma  懒加载

@@ -10,6 +10,6 @@
 
 @interface LBExchangeViewController : UIViewController
 
-@property (nonatomic, assign)NSInteger type;
+@property (nonatomic, assign)NSInteger type;//1:普通积分 2:即时积分
 
 @end

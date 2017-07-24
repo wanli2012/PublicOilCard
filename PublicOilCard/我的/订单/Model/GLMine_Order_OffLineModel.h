@@ -28,7 +28,10 @@
 
 @property (copy, nonatomic)NSString *code;// 交易码
 
+@property (copy, nonatomic)NSString *lid;// 线下订单ID
+
 @property (copy, nonatomic)NSString *l_money;// 产品总价
+
 @property (copy, nonatomic)NSString *goods_info;// 订单产品描述
 
 

@@ -213,7 +213,7 @@
     if (index == 0) {
         if ([self.upgrade integerValue] == 1) {
             
-            if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
+            if([self.status integerValue] == 0 ){
                 [MBProgressHUD showError:@"首期招商总管资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){
@@ -234,7 +234,7 @@
     }else{
         if([self.upgrade integerValue] == 2){
             
-            if([self.status integerValue] == 0 && [self.is_pay integerValue] == 1){
+            if([self.status integerValue] == 0){
                 [MBProgressHUD showError:@"二期招商总管资格正在审核中"];
                 return;
             }else if([self.status integerValue] == 1){

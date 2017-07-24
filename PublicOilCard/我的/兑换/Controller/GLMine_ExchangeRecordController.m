@@ -71,7 +71,6 @@
     self.selectedTitleColor = TABBARTITLE_COLOR;
     self.selectedIndicatorColor = TABBARTITLE_COLOR;
     
-    
     [self reloadDataWith:titleArray andSubViewdisplayClasses:classNames withParams:nil];
     
 }
@@ -79,20 +78,26 @@
 //筛选
 -(void)edtingInfo{
     
-    __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""},@{@"title":@"普通积分",@"imageName":@""}]width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)action:^(NSInteger index) {
+    NSArray *arr;
+    
+    if([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ){
+        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""}];
+    }else{
+        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""},@{@"title":@"普通积分",@"imageName":@""}];
+    }
+    
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:arr width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)action:^(NSInteger index) {
         
-            
-            [recordeManger defaultUser].recordeType = [NSString stringWithFormat:@"%zd",index];
-        
+        [recordeManger defaultUser].recordeType = [NSString stringWithFormat:@"%zd",index];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"filterExtensionCategories" object:nil userInfo:nil];
-
+        
     }];
     
     popview.isHideImage = YES;
     
     [popview show];
+    
     
 }
 @end

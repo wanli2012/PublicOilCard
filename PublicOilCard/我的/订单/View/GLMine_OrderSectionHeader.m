@@ -26,7 +26,7 @@
     self.cancelBtn.layer.borderWidth = 1;
     self.cancelBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
     
-    UITapGestureRecognizer *tapgesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapgestureSection)];
+    UITapGestureRecognizer *tapgesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapgestureSection)];
     [self addGestureRecognizer:tapgesture];
     self.contentView.backgroundColor = [UIColor whiteColor];
     

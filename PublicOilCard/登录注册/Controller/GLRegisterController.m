@@ -111,13 +111,45 @@
     //vc.isOpenInterestRect = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-//注册
+//注册按钮事件
 - (IBAction)regsiterEventBt:(UIButton *)sender {
     
-//    if (self.recomendId.text.length <= 0) {
-//        [MBProgressHUD showError:@"推荐人ID不能为空"];
-//        return;
-//    }
+    if (self.recomendId.text.length <= 0) {
+        [MBProgressHUD showError:@"推荐人ID不能为空"];
+        return;
+    }
+
+
+    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+    [NetworkManager requestPOSTWithURLStr:kCheckID paramDic:@{@"user_name":self.recomendId.text} finish:^(id responseObject) {
+        [_loadV removeloadview];
+        
+        if ([responseObject[@"code"] integerValue] == 1) {
+            
+            if ([[NSString stringWithFormat:@"%@",responseObject[@"data"]] rangeOfString:@"null"].location != NSNotFound ) {
+                [MBProgressHUD showError:@"查无此人"];
+                return ;
+                
+            }else{
+                
+                //查到推荐人,开始注册
+                [self registerRequest:responseObject[@"data"]];
+            }
+
+        }else{
+            [MBProgressHUD showError:responseObject[@"message"]];
+        }
+    } enError:^(NSError *error) {
+        
+        [_loadV removeloadview];
+        [MBProgressHUD showError:error.localizedDescription];
+        
+    }];
+  
+}
+
+//注册请求
+- (void)registerRequest:(NSString *)name {
     if (self.phoneTf.text.length <=0 ) {
         [MBProgressHUD showError:@"请输入手机号码"];
         return;
@@ -161,34 +193,41 @@
         [MBProgressHUD showError:@"勾选注册协议"];
         return;
     }
-//    NSString *encryptphone = [RSAEncryptor encryptString:self.phoneTf.text publicKey:public_RSA];
-//      NSString *encryptsecret = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
-//    NSString *encryptrecoemd = [RSAEncryptor encryptString:self.recomendId.text publicKey:public_RSA];
-//    NSString *encrypteyzm = [RSAEncryptor encryptString:self.verificationTf.text publicKey:public_RSA];
-
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"userphone"] = self.phoneTf.text;
-    dict[@"password"] = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
-    dict[@"user_name"] = self.recomendId.text;
-    dict[@"yzm"] = self.verificationTf.text;
- 
-    _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
-    [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
-        [_loadV removeloadview];
-        if ([responseObject[@"code"] integerValue]==1) {
-             [MBProgressHUD showError:@"注册成功"];
-            [self.navigationController popViewControllerAnimated:YES];
-        }else{
-            [MBProgressHUD showError:responseObject[@"message"]];
-        }
-    } enError:^(NSError *error) {
+    
+    NSString *str = [NSString stringWithFormat:@"推荐人:%@",name];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"确认推荐人" message:str preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
-        [_loadV removeloadview];
-        [MBProgressHUD showError:error.localizedDescription];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        dict[@"userphone"] = self.phoneTf.text;
+        dict[@"password"] = [RSAEncryptor encryptString:self.secretTf.text publicKey:public_RSA];
+        dict[@"user_name"] = self.recomendId.text;
+        dict[@"yzm"] = self.verificationTf.text;
         
+        _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
+        [NetworkManager requestPOSTWithURLStr:kREGISTER_URL paramDic:dict finish:^(id responseObject) {
+            [_loadV removeloadview];
+            if ([responseObject[@"code"] integerValue]==1) {
+                [MBProgressHUD showError:@"注册成功"];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else{
+                [MBProgressHUD showError:responseObject[@"message"]];
+            }
+        } enError:^(NSError *error) {
+            
+            [_loadV removeloadview];
+            [MBProgressHUD showError:error.localizedDescription];
+            
+        }];
     }];
     
+    [alertVC addAction:cancelAction];
+    [alertVC addAction:okAction];
+    
+    [self presentViewController:alertVC animated:YES completion:nil];
 }
+
 /**
  *是否同意注册协议
  */

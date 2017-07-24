@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *countLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *codeLabel;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
+
 
 
 @end
@@ -28,6 +30,16 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+//    self.deleteBtn.layer.cornerRadius = 5.f;
+    self.deleteBtn.layer.borderColor = [UIColor redColor].CGColor;
+    self.deleteBtn.layer.borderWidth = 1;
+    
+}
+- (IBAction)clickTheDelegate:(id)sender {
+    if ([self.delegate respondsToSelector:@selector(deleteOrder:)]) {
+        [self.delegate deleteOrder:self.index];
+    }
 }
 
 - (void)setModel:(GLMine_Order_OffLineModel *)model{
@@ -78,12 +90,22 @@
     
     if ([model.status integerValue] == 0) {
         self.statusLabel.text = @"审核失败";
+        self.deleteBtn.hidden = YES;
+        self.lineView.hidden = YES;
     }else if([model.status integerValue] == 1){
         self.statusLabel.text = @"审核成功";
+        self.deleteBtn.hidden = NO;
+        self.lineView.hidden = NO;
     }else if([model.status integerValue] == 2){
         self.statusLabel.text = @"未审核";
+        self.deleteBtn.hidden = YES;
+        self.lineView.hidden = YES;
     }else{
         self.statusLabel.text = @"";
+        self.deleteBtn.hidden = YES;
+        self.lineView.hidden = YES;
     }
+    
+    
 }
 @end
