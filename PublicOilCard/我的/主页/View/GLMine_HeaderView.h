@@ -56,5 +56,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *tuijianImageV;
 @property (weak, nonatomic) IBOutlet UIImageView *jifenImageV;
+@property (weak, nonatomic) IBOutlet UIImageView *xiaofeiImageV;
 
 @end

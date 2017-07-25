@@ -696,10 +696,13 @@ static NSString *headerID = @"GLMine_HeaderView";
         UITapGestureRecognizer *jifenTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jifenRecord)];
         _header.jifenImageV.hidden = NO;
         [_header.jifenView addGestureRecognizer:jifenTap];
+        
+    }else{
+        
+        UITapGestureRecognizer *xiaofeiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xiaofeiRecord)];
+        _header.xiaofeiImageV.hidden = NO;
+        [_header.xiaofeiView addGestureRecognizer:xiaofeiTap];
     }
-    
-    UITapGestureRecognizer *yueTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yueRecord)];
-    [_header.yueView addGestureRecognizer:yueTap];
     
     if([[UserModel defaultUser].group_id integerValue] == 4 || [[UserModel defaultUser].group_id integerValue] == 5){
         
@@ -708,11 +711,12 @@ static NSString *headerID = @"GLMine_HeaderView";
         [_header.tuijianView addGestureRecognizer:tuijianTap];
     }
     
-    UITapGestureRecognizer *xiaofeiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(xiaofeiRecord)];
-    [_header.xiaofeiView addGestureRecognizer:xiaofeiTap];
+    UITapGestureRecognizer *yueTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yueRecord)];
+    [_header.yueView addGestureRecognizer:yueTap];
     
+
     //消费
-    if([[UserModel defaultUser].price floatValue]> 100000){
+    if([[UserModel defaultUser].price floatValue] > 100000){
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%.2f万",[[UserModel defaultUser].price floatValue]/10000];
     }else{
         _header.xiaofeiLabel.text = [NSString stringWithFormat:@"%@元",[UserModel defaultUser].price];

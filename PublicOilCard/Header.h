@@ -24,7 +24,7 @@
 
 ///接口
 //192.168.0.191  www.jcgy.cn.com   http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
-#define URL_Base @"http://192.168.0.191/CMcard/index.php/App/"
+#define URL_Base @"https://api.51qmtg.org/index.php/App/"
 //#define URL_Base @"http://api.51qmtg.org/index.php/App/"
 
 #define kLOGIN_URL @"User/login" //登录
@@ -109,17 +109,17 @@
 #define kCheckID @"UserInfo/code_name"//验证会员是否存在
 
 //分享推荐注册
-#define kRECOMMEND_URL @"http://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="
+#define kRECOMMEND_URL @"https://api.51qmtg.org/CMcard/index.php/Wap/Index/index.html?username="
 //下载地址
 #define DOWNLOAD_URL @"https://itunes.apple.com/cn/app/id1256847817?mt=8"
 //获取appStore上的最新版本号地址
 #define GET_VERSION  @"https://itunes.apple.com/lookup?id=1256847817"
 //关于公司网址
-#define ABOUTUS_URL @"http://api.51qmtg.org/youka/about.html"
+#define ABOUTUS_URL @"https://api.51qmtg.org/youka/about.html"
 //注册协议
-#define REGISTER_URL @"http://api.51qmtg.org/youka/agreement.html"
+#define REGISTER_URL @"https://api.51qmtg.org/youka/agreement.html"
 //开卡协议
-#define kOPENCARD_DELEGATE_URL @"http://api.51qmtg.org/youka/protocol.html"
+#define kOPENCARD_DELEGATE_URL @"https://api.51qmtg.org/youka/protocol.html"
 //公告
 //#define NOTICE_URL @"https://www.51dztg.com/index.php/Home/Newsdemo/newestnotice.html"
 //个人招商总管首期招商总管
@@ -142,8 +142,7 @@
 #define kGOODS_PlaceHolder @"产品占位图"
 
 //http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html
-//分享
-#define SHARE_URL @"http://dzgx.joshuaweb.cn/index.php/Home/Regist/index.html?mod=member&act=register&username="
+
 #define UMSHARE_APPKEY @"58cf31dcf29d982906001f63"
 //微信分享
 #define WEIXI_APPKEY @"wxf482af02a200da8e"
@@ -154,9 +153,6 @@
 //友盟分享 AppKey
 #define USHARE_DEMO_APPKEY @"594b286765b6d607f3000f9a"
 
-//虚拟货币名称
-#define NormalMoney @"米子"
-#define SpecialMoney @"推荐米子"
 //公钥RSA
 #define public_RSA @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC14XtGpmuHCYlu7dgLbr8hoYNh6d8XRNY+pHulx/F+hMmOsPRX0HWZOTeFCpG11t9lVRQEcQdm587EyiUDiHEL7yrFPEnJ2Dlce55GrSSCP4IpEyH06gudK3O56t8AC02LSD9nrJ4e6WrGrPaahQVfvJBz4v+NSfvAao/xFthVlwIDAQAB"
 
@@ -164,12 +160,6 @@
 
 
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
-
-/**
- * 物流地址
- */
-
-#define logisticsUrl @"http://jisukdcx.market.alicloudapi.com/express/query"
 
 //3%返利的宏
 #define KThreePersent @"4"

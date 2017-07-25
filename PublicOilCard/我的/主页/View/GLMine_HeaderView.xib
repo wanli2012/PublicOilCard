@@ -63,7 +63,7 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下选三角形" translatesAutoresizingMaskIntoConstraints="NO" id="tnX-N5-Tvj">
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="下选三角形" translatesAutoresizingMaskIntoConstraints="NO" id="tnX-N5-Tvj">
                                     <rect key="frame" x="70" y="20.5" width="6" height="4"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="6" id="7G5-Kf-di3"/>
@@ -334,6 +334,7 @@
                 <outlet property="tuijianLabel1" destination="CjG-su-CAp" id="iml-ib-N0f"/>
                 <outlet property="tuijianView" destination="np5-h9-Rr2" id="ayn-KU-GEA"/>
                 <outlet property="vipImageV" destination="NrA-w4-U7Y" id="Q18-eM-Nkp"/>
+                <outlet property="xiaofeiImageV" destination="tnX-N5-Tvj" id="6za-Au-une"/>
                 <outlet property="xiaofeiLabel" destination="xEG-88-hMR" id="VHA-Ce-roU"/>
                 <outlet property="xiaofeiLabel1" destination="PWn-bw-TBT" id="NjI-0K-jlw"/>
                 <outlet property="xiaofeiView" destination="lOk-YC-qIA" id="VTq-lw-voQ"/>

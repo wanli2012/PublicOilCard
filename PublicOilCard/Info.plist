@@ -192,6 +192,8 @@
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
+			<key>hhh</key>
+			<string>api.51qmtg.org</string>
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>

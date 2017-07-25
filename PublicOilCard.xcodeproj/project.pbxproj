@@ -401,6 +401,7 @@
 		4A6ADCA11EF7E00700C99498 /* GLMine_PersonInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADC9A1EF7E00700C99498 /* GLMine_PersonInfoController.m */; };
 		4A6ADCA21EF7E00700C99498 /* GLMine_PersonInfoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6ADC9B1EF7E00700C99498 /* GLMine_PersonInfoController.xib */; };
 		4A6ADCA71EF7EC0100C99498 /* GLMallHomeGoodsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6ADCA61EF7EC0100C99498 /* GLMallHomeGoodsModel.m */; };
+		4A6C525B1F27175800CD418B /* certificate.cer in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C525A1F27175800CD418B /* certificate.cer */; };
 		4A751F741EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */; };
 		4A751F7A1EFA40E100C919F6 /* GLMine_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A751F781EFA40E100C919F6 /* GLMine_PersonInfoCell.m */; };
 		4A751F7B1EFA40E100C919F6 /* GLMine_PersonInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A751F791EFA40E100C919F6 /* GLMine_PersonInfoCell.xib */; };
@@ -1242,6 +1243,7 @@
 		4A6ADC9B1EF7E00700C99498 /* GLMine_PersonInfoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLMine_PersonInfoController.xib; sourceTree = "<group>"; };
 		4A6ADCA51EF7EC0100C99498 /* GLMallHomeGoodsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMallHomeGoodsModel.h; path = "PublicOilCard/我的/关系/View/GLMallHomeGoodsModel.h"; sourceTree = SOURCE_ROOT; };
 		4A6ADCA61EF7EC0100C99498 /* GLMallHomeGoodsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMallHomeGoodsModel.m; path = "PublicOilCard/我的/关系/View/GLMallHomeGoodsModel.m"; sourceTree = SOURCE_ROOT; };
+		4A6C525A1F27175800CD418B /* certificate.cer */ = {isa = PBXFileReference; lastKnownFileType = file; name = certificate.cer; path = ../certificate.cer; sourceTree = "<group>"; };
 		4A751F721EFA0ED100C919F6 /* GLMine_RecommendRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLMine_RecommendRecordModel.h; path = "PublicOilCard/我的/关系/View/GLMine_RecommendRecordModel.h"; sourceTree = SOURCE_ROOT; };
 		4A751F731EFA0ED100C919F6 /* GLMine_RecommendRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GLMine_RecommendRecordModel.m; path = "PublicOilCard/我的/关系/View/GLMine_RecommendRecordModel.m"; sourceTree = SOURCE_ROOT; };
 		4A751F771EFA40E100C919F6 /* GLMine_PersonInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLMine_PersonInfoCell.h; sourceTree = "<group>"; };
@@ -1940,6 +1942,7 @@
 			children = (
 				4A4FA5861EF0CA1100A256D2 /* main.m */,
 				4A4FA5961EF0CA1100A256D2 /* LaunchScreen.storyboard */,
+				4A6C525A1F27175800CD418B /* certificate.cer */,
 				4A4FA5991EF0CA1100A256D2 /* Info.plist */,
 				4A4FA5911EF0CA1100A256D2 /* PublicOilCard.xcdatamodeld */,
 			);
@@ -3554,6 +3557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F95D46011EFA522F0011C69B /* GLMine_ExchangeRecord_UnCheckController.xib in Resources */,
+				4A6C525B1F27175800CD418B /* certificate.cer in Resources */,
 				F92DA95C1EF518B400530237 /* LBWriteInfoTableViewCell.xib in Resources */,
 				4AEC058E1EF13CE400B39497 /* GLMine_CollectCell.xib in Resources */,
 				4AEC05801EF1151600B39497 /* GLMine_HeaderView.xib in Resources */,
