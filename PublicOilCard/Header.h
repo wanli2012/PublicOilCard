@@ -23,7 +23,9 @@
 #define ADAPT(x) SCREEN_WIDTH / 375 *(x)
 
 ///接口
-//192.168.0.191  www.jcgy.cn.com   http://api.51qmtg.org/index.php/App/  http://www.51qmtg.org/index.php/app/
+//192.168.0.191  本地
+//www.jcgy.cn.com  公司服务器
+//http://api.51qmtg.org/index.php/App/  阿里云
 #define URL_Base @"https://api.51qmtg.org/index.php/App/"
 //#define URL_Base @"http://api.51qmtg.org/index.php/App/"
 

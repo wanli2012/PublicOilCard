@@ -134,6 +134,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             [UserModel defaultUser].hua_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_card"]];
             [UserModel defaultUser].hua_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_status"]];
             [UserModel defaultUser].plain_mark = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"plain_mark"]];
+            [UserModel defaultUser].congig_card = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"congig_card"]];
             
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].pic] rangeOfString:@"null"].location != NSNotFound) {
                 [UserModel defaultUser].pic = @"";
@@ -193,6 +194,10 @@ static NSString *headerID = @"GLMine_HeaderView";
             if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].plain_mark] rangeOfString:@"null"].location != NSNotFound) {
                 
                 [UserModel defaultUser].plain_mark = @"";
+            }
+            if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].congig_card] rangeOfString:@"null"].location != NSNotFound) {
+                
+                [UserModel defaultUser].congig_card = @"";
             }
             [usermodelachivar achive];
             
@@ -290,13 +295,13 @@ static NSString *headerID = @"GLMine_HeaderView";
             NSDateFormatter *formatter2 = [[NSDateFormatter alloc] init];
             [formatter2 setDateFormat:@"yyyy-MM-dd"];
             
-            NSString *str = @"2017-07-31";
-            NSDateFormatter *formatter4 = [[NSDateFormatter alloc] init];
-            formatter4.dateFormat = @"yyyy-MM-dd";
-            NSDate *date = [formatter4 dateFromString:str];
+//            NSString *str = @"2017-07-31";
+//            NSDateFormatter *formatter4 = [[NSDateFormatter alloc] init];
+//            formatter4.dateFormat = @"yyyy-MM-dd";
+//            NSDate *date = [formatter4 dateFromString:str];
     
             NSString *dateTime = [formatter stringFromDate:[NSDate date]];
-            NSString *dateTime2 = [formatter2 stringFromDate:date];
+            NSString *dateTime2 = [formatter2 stringFromDate:[NSDate date]];
             NSString *dateStr = [self getMonthBeginAndEndWith:dateTime];
             
             if (![dateTime2 isEqualToString:dateStr]) {
