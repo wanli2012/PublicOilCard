@@ -3528,8 +3528,8 @@
 				TargetAttributes = {
 					4A4FA5811EF0CA1100A256D2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = YT92Q94P8S;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = GCU762TQ3E;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -4196,8 +4196,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				DEVELOPMENT_TEAM = YT92Q94P8S;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4211,7 +4211,7 @@
 					"\"${PODS_ROOT}/Headers/Public/UMengUShare\"",
 				);
 				INFOPLIST_FILE = PublicOilCard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4220,8 +4220,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
-				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4232,8 +4232,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				DEVELOPMENT_TEAM = YT92Q94P8S;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GCU762TQ3E;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4247,7 +4247,7 @@
 					"\"${PODS_ROOT}/Headers/Public/UMengUShare\"",
 				);
 				INFOPLIST_FILE = PublicOilCard/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4257,8 +4257,8 @@
 				"OTHER_CFLAGS[arch=*]" = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
-				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

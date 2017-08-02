@@ -288,6 +288,7 @@
           @"qt_id":[UserModel defaultUser].qtIdNum ,
           @"order_money":self.moneyTextF.text,
           @"user_name":[UserModel defaultUser].username,
+          @"card":self.oilCardNumLabel.text,
           @"type":[NSString stringWithFormat:@"%zd",self.type]};
     _loadV=[LoadWaitView addloadview:[UIScreen mainScreen].bounds tagert:self.view];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -297,7 +298,6 @@
     [manager setSecurityPolicy:[NetworkManager customSecurityPolicy]];
     [manager POST:[NSString stringWithFormat:@"%@%@",URL_Base,kSHOPINFO_UPLOAD_URL] parameters:dic  constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         //将图片以表单形式上传
-        
         if (self.picImage) {
             
             NSDateFormatter *formatter=[[NSDateFormatter alloc]init];

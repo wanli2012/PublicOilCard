@@ -81,9 +81,9 @@
     NSArray *arr;
     
     if([[UserModel defaultUser].group_id integerValue] == 1 || [[UserModel defaultUser].group_id integerValue] == 2 || [[UserModel defaultUser].group_id integerValue] == 3 ){
-        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""}];
+        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"奖励积分",@"imageName":@""}];
     }else{
-        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"即时积分",@"imageName":@""},@{@"title":@"普通积分",@"imageName":@""}];
+        arr = @[@{@"title":@"兑换余额",@"imageName":@""},@{@"title":@"奖励积分",@"imageName":@""},@{@"title":@"消费积分",@"imageName":@""}];
     }
     
     QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:arr width:100 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width-30, 64+5)action:^(NSInteger index) {

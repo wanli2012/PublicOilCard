@@ -186,6 +186,16 @@
     }else{
         cell.typeLabel.text = @"中石化";
     }
+    
+    if ([self.dataArr[indexPath.row][@"status"] integerValue] == 0) {
+        
+        cell.staues.text = @"审核失败";
+    }else  if ([self.dataArr[indexPath.row][@"status"] integerValue] == 1) {
+        
+        cell.staues.text = @"审核成功";
+    }else if ([self.dataArr[indexPath.row][@"status"] integerValue] == 2){
+        cell.staues.text = @"未审核";
+    }
     return cell;
     
 }

@@ -29,11 +29,11 @@
     [super viewDidLoad];
 
     if (self.type == 1) {
-        self.navigationItem.title = @"即时积分记录";
+        self.navigationItem.title = @"奖励积分记录";
     }else if(self.type == 2){
         self.navigationItem.title = @"余额记录";
     }else if(self.type == 3){
-        self.navigationItem.title = @"普通积分记录";
+        self.navigationItem.title = @"消费积分记录";
     }
     
     self.automaticallyAdjustsScrollViewInsets = NO;

@@ -281,7 +281,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     self.hidesBottomBarWhenPushed = YES;
 
     __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 80) action:^(NSInteger index) {
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"消费积分",@"imageName":@""}, @{@"title":@"奖励积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 80) action:^(NSInteger index) {
 
         LBExchangeViewController *exchangeVC = [[LBExchangeViewController alloc] init];
         exchangeVC.type = 2;
@@ -305,7 +305,7 @@ static NSString *headerID = @"GLMine_HeaderView";
             NSString *dateStr = [self getMonthBeginAndEndWith:dateTime];
             
             if (![dateTime2 isEqualToString:dateStr]) {
-                [MBProgressHUD showError:@"普通积分只能在月末兑换"];
+                [MBProgressHUD showError:@"消费积分只能在月末兑换"];
                 return ;
             }
         }
@@ -325,7 +325,7 @@ static NSString *headerID = @"GLMine_HeaderView";
     self.hidesBottomBarWhenPushed = YES;
     
     __weak typeof(self) weakself = self;
-    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"普通积分",@"imageName":@""}, @{@"title":@"即时积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 120) action:^(NSInteger index) {
+    QQPopMenuView *popview = [[QQPopMenuView alloc]initWithItems:@[@{@"title":@"消费积分",@"imageName":@""}, @{@"title":@"奖励积分",@"imageName":@""}] width:110 triangleLocation:CGPointMake([UIScreen mainScreen].bounds.size.width - 50, 64 + 120) action:^(NSInteger index) {
         
         GLHome_jifenRecordController *jifenVC = [[GLHome_jifenRecordController alloc] init];
         jifenVC.type = 1;
@@ -692,7 +692,7 @@ static NSString *headerID = @"GLMine_HeaderView";
         _header.plain_markLabel.hidden = YES;
     }else{
         _header.plain_markLabel.hidden = NO;
-        _header.plain_markLabel.text= [NSString stringWithFormat:@"普通积分:%@",[UserModel defaultUser].plain_mark];
+        _header.plain_markLabel.text= [NSString stringWithFormat:@"消费积分:%@",[UserModel defaultUser].plain_mark];
     }
     
     //手势添加
