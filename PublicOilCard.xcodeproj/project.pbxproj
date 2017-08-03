@@ -490,6 +490,8 @@
 		F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */; };
 		F96CE1991EFCB2B000D88BB0 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96CE1981EFCB2B000D88BB0 /* CoreMotion.framework */; };
 		F96CE19B1EFCB2C200D88BB0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96CE19A1EFCB2C200D88BB0 /* CFNetwork.framework */; };
+		F98181131F32B3090074CC2A /* CompleteInformationCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F98181111F32B3090074CC2A /* CompleteInformationCardViewController.m */; };
+		F98181141F32B3090074CC2A /* CompleteInformationCardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98181121F32B3090074CC2A /* CompleteInformationCardViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1380,6 +1382,9 @@
 		F9652D5F1EF76B6200DD229F /* GLRecommendController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLRecommendController.xib; sourceTree = "<group>"; };
 		F96CE1981EFCB2B000D88BB0 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		F96CE19A1EFCB2C200D88BB0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F98181101F32B3090074CC2A /* CompleteInformationCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompleteInformationCardViewController.h; sourceTree = "<group>"; };
+		F98181111F32B3090074CC2A /* CompleteInformationCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompleteInformationCardViewController.m; sourceTree = "<group>"; };
+		F98181121F32B3090074CC2A /* CompleteInformationCardViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompleteInformationCardViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3369,6 +3374,9 @@
 				4AEEC9C21EF28B2D00F827BB /* GLMine_OpenCardController.h */,
 				4AEEC9C31EF28B2D00F827BB /* GLMine_OpenCardController.m */,
 				4AEEC9C41EF28B2D00F827BB /* GLMine_OpenCardController.xib */,
+				F98181101F32B3090074CC2A /* CompleteInformationCardViewController.h */,
+				F98181111F32B3090074CC2A /* CompleteInformationCardViewController.m */,
+				F98181121F32B3090074CC2A /* CompleteInformationCardViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3598,6 +3606,7 @@
 				F92DA9661EF51F5700530237 /* IncentiveModel.xib in Resources */,
 				F95F710D1F04A0B100FF7AB5 /* MinePhoneAlertView.xib in Resources */,
 				4A6ADC931EF7B8F000C99498 /* LBMineCenterChooseAreaViewController.xib in Resources */,
+				F98181141F32B3090074CC2A /* CompleteInformationCardViewController.xib in Resources */,
 				4A4FA5FE1EF1068C00A256D2 /* GLMine_collectionCell.xib in Resources */,
 				F9652D611EF76B6200DD229F /* GLRecommendController.xib in Resources */,
 				4AEEC9CD1EF28C3700F827BB /* GLMine_updateManagerController.xib in Resources */,
@@ -3786,6 +3795,7 @@
 				4A5331241EFE763F009C3593 /* ZXCalendarParsedResult.m in Sources */,
 				4A532F1C1EFE75E0009C3593 /* UIAlertView+LBXAlertAction.m in Sources */,
 				F92DA9651EF51F5700530237 /* IncentiveModel.m in Sources */,
+				F98181131F32B3090074CC2A /* CompleteInformationCardViewController.m in Sources */,
 				4A5331771EFE763F009C3593 /* ZXDataMatrixSymbolInfo144.m in Sources */,
 				4A4FA58D1EF0CA1100A256D2 /* ViewController.m in Sources */,
 				4A53311E1EFE763F009C3593 /* ZXAbstractDoCoMoResultParser.m in Sources */,

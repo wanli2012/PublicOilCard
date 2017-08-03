@@ -31,6 +31,7 @@
 #import "GLMine_SpendingRecordCountController.h"
 #import "GLMine_Order_OffLineController.h"
 #import "GLMine_ConsumeController.h"
+#import "CompleteInformationCardViewController.h"
 
 @interface GLMineHomeController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate,UITextFieldDelegate,UIActionSheetDelegate>
 {
@@ -258,17 +259,48 @@ static NSString *headerID = @"GLMine_HeaderView";
                 [MBProgressHUD showError:@"已拥有中石油油卡"];
                 return ;
             }
+          else  if ([[UserModel defaultUser].isHaveOilCard integerValue] == 3){
+                [MBProgressHUD showError:@"正在审核中"];
+                return ;
+            }
+          else  if ([[UserModel defaultUser].isHaveOilCard integerValue] == 0){
+              GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
+              openVC.type = index;
+              [weakself.navigationController pushViewController:openVC animated:YES];
+              weakself.hidesBottomBarWhenPushed = NO;
+              return ;
+          }
+          else  if ([[UserModel defaultUser].isHaveOilCard integerValue] == 2){
+              CompleteInformationCardViewController *openVC = [[CompleteInformationCardViewController alloc] init];
+              openVC.card_fun = 1;
+              [weakself.navigationController pushViewController:openVC animated:YES];
+              weakself.hidesBottomBarWhenPushed = NO;
+              return ;
+          }
         }else{
             if ([[UserModel defaultUser].hua_status integerValue] == 1){
                 [MBProgressHUD showError:@"已拥有中石化油卡"];
                 return ;
             }
+           else if ([[UserModel defaultUser].hua_status integerValue] == 3){
+                [MBProgressHUD showError:@"正在审核中"];
+                return ;
+            }
+            else  if ([[UserModel defaultUser].hua_status integerValue] == 0){
+                GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
+                openVC.type = index;
+                [weakself.navigationController pushViewController:openVC animated:YES];
+                weakself.hidesBottomBarWhenPushed = NO;
+                return ;
+            }
+            else  if ([[UserModel defaultUser].hua_status integerValue] == 2){
+                CompleteInformationCardViewController *openVC = [[CompleteInformationCardViewController alloc] init];
+                openVC.card_fun = 2;
+                [weakself.navigationController pushViewController:openVC animated:YES];
+                weakself.hidesBottomBarWhenPushed = NO;
+                return ;
+            }
         }
-        
-        GLMine_OpenCardController *openVC = [[GLMine_OpenCardController alloc] init];
-        openVC.type = index;
-        [weakself.navigationController pushViewController:openVC animated:YES];
-        weakself.hidesBottomBarWhenPushed = NO;
         
     }];
     
