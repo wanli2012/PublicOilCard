@@ -60,6 +60,11 @@
         return;
     }
     
+    if (self.typeindex == 0) {
+        [MBProgressHUD showError:@"请选择上传类型"];
+        return;
+    }
+    
     self.submitBt.userInteractionEnabled = NO;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];//响应
