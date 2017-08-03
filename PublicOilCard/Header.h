@@ -28,7 +28,7 @@
 //http://api.51qmtg.org/index.php/App/  阿里云
 #define URL_Base @"https://api.51qmtg.org/index.php/App/"
 //#define URL_Base @"http://192.168.0.191/CMcard/index.php/App/"
-
+//#define URL_Base @"http://www.jcgy.cn.com/index.php/App/"
 #define kLOGIN_URL @"User/login" //登录
 
 #define kREGISTER_URL @"User/register" //注册
