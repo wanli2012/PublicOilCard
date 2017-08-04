@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D30" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mtq-ZS-LHe">
-                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="6Ow-XV-n27"/>
@@ -73,7 +73,7 @@
                 <constraint firstItem="Mtq-ZS-LHe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="ZL7-1V-0o6"/>
                 <constraint firstItem="B2V-Xn-jmT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bBQ-a8-iQE"/>
                 <constraint firstAttribute="trailing" secondItem="B2V-Xn-jmT" secondAttribute="trailing" id="eod-RS-6BD"/>
-                <constraint firstAttribute="bottom" secondItem="Mtq-ZS-LHe" secondAttribute="bottom" id="f3H-g5-pmk"/>
+                <constraint firstAttribute="bottom" secondItem="Mtq-ZS-LHe" secondAttribute="bottom" constant="49" id="f3H-g5-pmk"/>
                 <constraint firstItem="B2V-Xn-jmT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="jnL-28-hR2"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

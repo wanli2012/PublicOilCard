@@ -190,11 +190,21 @@
     if ([self.dataArr[indexPath.row][@"status"] integerValue] == 0) {
         
         cell.staues.text = @"审核失败";
-    }else  if ([self.dataArr[indexPath.row][@"status"] integerValue] == 1) {
+        cell.reanson.hidden = NO;
+        cell.topconstarait.constant = 15;
+        cell.reanson.text = [NSString stringWithFormat:@"失败原因: %@",self.dataArr[indexPath.row][@"sb_content"]];
         
+    }else  if ([self.dataArr[indexPath.row][@"status"] integerValue] == 1) {
+       
+        cell.reanson.hidden = YES;
         cell.staues.text = @"审核成功";
+        cell.topconstarait.constant = 20;
+        cell.reanson.text = @"";
     }else if ([self.dataArr[indexPath.row][@"status"] integerValue] == 2){
         cell.staues.text = @"未审核";
+        cell.reanson.hidden = YES;
+        cell.topconstarait.constant = 20;
+        cell.reanson.text = @"";
     }
     return cell;
     
@@ -204,7 +214,17 @@
   
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    
+    if ([self.dataArr[indexPath.row][@"status"] integerValue] == 0) {
+         self.tableView.estimatedRowHeight = 80;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }else{
+        self.tableView.estimatedRowHeight = 80;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        return UITableViewAutomaticDimension;
+    }
+   
 }
 
 #pragma mark 懒加载
