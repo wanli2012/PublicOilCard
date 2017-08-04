@@ -3536,8 +3536,8 @@
 				TargetAttributes = {
 					4A4FA5811EF0CA1100A256D2 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = GCU762TQ3E;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = YT92Q94P8S;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -4206,8 +4206,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GCU762TQ3E;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
+				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4230,8 +4230,8 @@
 				OTHER_CFLAGS = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
+				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4242,8 +4242,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GCU762TQ3E;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sichuan Quanmin Zhongyou Technology Co., Ltd. (YT92Q94P8S)";
+				DEVELOPMENT_TEAM = YT92Q94P8S;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4267,8 +4267,8 @@
 				"OTHER_CFLAGS[arch=*]" = "-fembed-bitcode";
 				PRODUCT_BUNDLE_IDENTIFIER = sanjun.com.PublicOilCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "ba2ccf0b-df5b-4911-9d56-31b158854087";
+				PROVISIONING_PROFILE_SPECIFIER = PublicOilCard;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
