@@ -16,6 +16,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *noticeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *noticeLabel2;
 @property (weak, nonatomic) IBOutlet UIButton *openCardBtn;
 @property (weak, nonatomic) IBOutlet UIButton *selectedImageBtn;
 
@@ -35,6 +36,7 @@
     
     [self refresh];
 }
+
 - (void)refresh {
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -52,6 +54,8 @@
                 [UserModel defaultUser].cost2 = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"cost2"]];
                 [UserModel defaultUser].isHaveOilCard = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"isHaveOilCard"]];
                 [UserModel defaultUser].hua_status = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"hua_status"]];
+                [UserModel defaultUser].card_info = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"card_info"]];
+                [UserModel defaultUser].card_money = [NSString stringWithFormat:@"%@",responseObject[@"data"][@"card_money"]];
                 
                 if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].cost] rangeOfString:@"null"].location != NSNotFound) {
                     
@@ -69,6 +73,14 @@
                     
                     [UserModel defaultUser].hua_status = @"0";
                 }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].card_info] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].card_info = @"0";
+                }
+                if ([[NSString stringWithFormat:@"%@",[UserModel defaultUser].card_money] rangeOfString:@"null"].location != NSNotFound) {
+                    
+                    [UserModel defaultUser].card_money = @"0";
+                }
                 
                 [usermodelachivar achive];
             }
@@ -77,12 +89,18 @@
             
             [MBProgressHUD showError:responseObject[@"message"]];
         }
+        
+        
         if (self.type == 0) {
             
-            self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost];
+            self.noticeLabel.text = [NSString stringWithFormat:@"一次性服务费%@元+卡内%@元油费",[UserModel defaultUser].cost,[UserModel defaultUser].card_money];
+            
         }else{
-            self.noticeLabel.text = [NSString stringWithFormat:@"首次制卡费押金:%@元/张,一次性永久服务费",[UserModel defaultUser].cost2];
+            
+             self.noticeLabel.text = [NSString stringWithFormat:@"一次性服务费%@元+卡内%@元油费",[UserModel defaultUser].cost2,[UserModel defaultUser].card_money];
+
         }
+        self.noticeLabel2.text = [NSString stringWithFormat:@"%@",[UserModel defaultUser].card_info];
         
     } enError:^(NSError *error) {
         [_loadV removeloadview];
