@@ -34,6 +34,7 @@
 @property (nonatomic, strong)NSMutableArray *models;
 @property (nonatomic, strong)NSArray *dataArr;
 @property (nonatomic, assign)NSInteger page;//页数
+
 @property (nonatomic, copy)NSString *cate_id;//分类id
 @property (nonatomic, copy)NSString *order_money;//售价排序
 @property (nonatomic, copy)NSString *order_num;//销量排序
